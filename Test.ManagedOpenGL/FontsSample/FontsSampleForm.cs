@@ -105,8 +105,11 @@ namespace Test.ManagedOpenGL.FontsSample
 			OpenGLNative.Color3f( 1, 0, 0 );
 
 			Renderer.RenderMode = RenderMode.MODE_2D;
+            font.ResetLocation();
 			font.FontSize = 20;
-			font.WriteLine( "FPS = {0}. Русский текст.", currentFPS );
+			font.WriteLine( "FPS = {0}. Русский текст. And Long text", currentFPS );
+		    OpenGLNative.Color3f( 0, 1, 0 );
+            font.WriteLine( "Another line of text" );
 		}
 
 		private void DrawCube() 
