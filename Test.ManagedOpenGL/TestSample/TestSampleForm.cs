@@ -12,95 +12,121 @@
  *******************************************************/
 
 using ManagedOpenGL;
-using ManagedOpenGL.Engine.Objects;
+using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Render;
-using ManagedOpenGL.Engine.Windows;
-
+using ManagedOpenGL.Engine.Shaders;
 using gl=ManagedOpenGL.OpenGLNative;
-using PixelFormat=System.Drawing.Imaging.PixelFormat;
 
 namespace Test.ManagedOpenGL.TestSample
 {
-	public class TestSampleForm : SampleOpenGLForm
-	{
-		private readonly Font font = new Font( @"Data\Fonts\Verdana.jpg" ) { FontSize = 20 };
+    public class TestSampleForm : SampleOpenGLForm
+    {
+        private const float size = 25.0f;
 
-		private readonly TextureCubeMap cubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMapTest", "png" );
+        private class TestShader : ShaderProgram
+        {
+            public Vector3F Top { get; set; }
 
-		private readonly Skybox skybox = Skybox.CreateFromFolder( 100, 100, 100, @"Data\SkyBox\CubeMapTest", "png" );
-		private readonly Cube cube = new Cube( 10, 10, 10 );
+            public int TopLocation { get; private set; }
 
-		private readonly Texture2D logo = new Texture2D( @"Data\Test\Test.bmp" );
+            protected override void AfterLink()
+            {
+                base.AfterLink();
 
-		private readonly byte[] pixels;
-		private int width;
-		private int height;
+                this.TopLocation = this.GetUniformLocation( "top" );
+            }
 
-		public TestSampleForm()
-		{
-			this.camera.Move( 0, 0, 50 );
+            public override void Use()
+            {
+                base.Use();
 
-			int stride;
-			this.pixels = TextureHelper.LoadImageData( @"Data\Test\Test.bmp", PixelFormat.Format32bppArgb, out stride, out this.width, out this.height, true );
-		}
+                gl.Uniform3fv( TopLocation, 3, Top.Data );
+            }
+        }
 
-		protected override void AfterInitGLOverride()
-		{
-			base.AfterInitGLOverride();
+        private readonly TestShader shader = ShaderProgram.Create<TestShader>( @"Data\Test\vert.vert",
+                                                                               @"Data\Test\frag.frag" );
 
-			cubeMap.Load();
+        private readonly Vector3F[] quad = new[]
+                                           {
+                                               new Vector3F( -size, -size, 0 ),
+                                               new Vector3F( +size, -size, 0 ),
+                                               new Vector3F( +size, +size, 0 ),
+                                               new Vector3F( -size, +size, 0 ),
+                                           };
 
-			skybox.Load();
+        private readonly Vector3F topVector;
 
-			logo.Load();
+        #region Constructors
+        public TestSampleForm()
+        {
+            this.camera.Move( 0, 0, 50 );
 
-			font.Load();
-		}
+            this.topVector = new Vector3F( 0, 0, 50 );
+            this.shader.Top = this.topVector;
 
-		protected override void Draw()
-		{
-			base.Draw();
+            this.shader.ApplyProgram( itemsManager );
+        }
+        #endregion
 
-			Renderer.RenderMode = RenderMode.MODE_3D;
+        #region Methods
+        protected override void Draw()
+        {
+            base.Draw();
 
-			TextureCubeMapBase.UnUse();
+            //shader.Use();
 
-			gl.TexEnvi( TextureEnvTarget.TextureEnv, TextureEnvParameter.TextureEnvMode, (int)TextureEnvMode.Decal );
+            gl.Begin(BeginMode.Quads);
 
-			unsafe
-			{
-				fixed (byte* p = &pixels[0])
-				{
-					gl.DrawPixels( width, height, (global::ManagedOpenGL.PixelFormat)(int)EXT_bgra.BgraExt, PixelType.UnsignedByte, p );
-				}
-			}
+            gl.Color3f(1, 1, 1);
+            foreach (var quadVertex in quad)
+                gl.Vertex3fv( quadVertex.Data );
 
-			//gl.Enable( EnableCap.Texture2d );
-			//logo.Use();
-			//cube.Draw();
+            gl.End();
 
-			//gl.Begin( BeginMode.Quads );
+            ShaderProgram.UnUse();
 
-			//gl.TexCoord2i( 0, 1 );
-			//gl.Vertex2f( -20, -20 );
+            gl.LineWidth(4);
+            gl.Enable(EnableCap.LineSmooth);
 
-			//gl.TexCoord2i( 1, 1 );
-			//gl.Vertex2f( +20, -20 );
+            gl.Begin( BeginMode.Lines );
 
-			//gl.TexCoord2i( 1, 0 );
-			//gl.Vertex2f( +20, +20 );
+            gl.Color3f( 1, 1, 1 );
 
-			//gl.TexCoord2i( 0, 0 );
-			//gl.Vertex2f( -20, +20 );
+            //foreach (var quadVertex in quad)
+            //{
+            //    gl.Vertex3fv( topVector.Data );
+            //    gl.Vertex3fv( quadVertex.Data );
+            //}
 
-			//gl.End();
+            var length = 10;
 
-			Renderer.RenderMode = RenderMode.MODE_2D;
+            for (var i = 0; i < length; i++)
+            {
+                var x = -size + (2 * size * i / (length - 1));
 
-			gl.Color3f( 1, 0, 0 );
+                for (var j = 0; j < length; j++)
+                {
+                    var y = -size + (2 * size * j / (length - 1));
 
-			font.FontSize = 20;
-			font.WriteLine( "Just String" );
-		}
-	}
+                    var startVect = new Vector3F( x, y, 0 );
+                    var vect = topVector - startVect;
+                    vect.Normalize();
+
+                    var colorVect = ((vect + new Vector3F( 1, 1, 1 )) * 0.5f);
+                    gl.Color3fv( colorVect.Data );
+
+                    vect = startVect + vect;
+
+                    gl.Vertex3fv( startVect.Data );
+                    gl.Vertex3fv( vect.Data );
+                }
+            }
+
+            gl.End();
+
+            Renderer.RenderMode = RenderMode.MODE_2D;
+        }
+        #endregion
+    }
 }
