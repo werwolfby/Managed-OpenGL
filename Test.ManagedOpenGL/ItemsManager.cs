@@ -8,6 +8,7 @@
  * 
  * History:
  *   24.06.2008 11:55 - Create Wireframe
+ *   14.03.2009 16:17 - Add to manager support font classes.
  *
  *******************************************************/
 
@@ -22,6 +23,7 @@ namespace Test.ManagedOpenGL
 		private readonly List<Texture2D> textures = new List<Texture2D>();
 		private readonly List<Shader> shaders = new List<Shader>();
 		private readonly List<ShaderProgram> programs = new List<ShaderProgram>();
+        private readonly List<Font> fonts = new List<Font>();
 
 		public void Add( Texture2D texture2D )
 		{
@@ -37,6 +39,11 @@ namespace Test.ManagedOpenGL
 		{
 			this.programs.Add( program );
 		}
+
+        public void Add( Font font )
+        {
+            this.fonts.Add( font );
+        }
 
 		public void Load()
 		{
@@ -57,6 +64,11 @@ namespace Test.ManagedOpenGL
 				program.Compile();
 				program.TryLink();
 			}
+
+		    foreach (var font in fonts)
+		    {
+		        font.Load();
+		    }
 		}
 	}
 
@@ -81,5 +93,11 @@ namespace Test.ManagedOpenGL
 			manager.Add( program );
 			return program;
 		}
+
+        public static Font ApplyFont( this Font font, ItemsManager manager )
+        {
+            manager.Add( font );
+            return font;
+        }
 	}
 }

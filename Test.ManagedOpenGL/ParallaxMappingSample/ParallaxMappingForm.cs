@@ -14,6 +14,8 @@
 using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Math;
+using ManagedOpenGL.Engine.Objects;
+using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Shaders;
 using ManagedOpenGL.Engine.Windows;
 
@@ -85,9 +87,14 @@ namespace Test.ManagedOpenGL.ParallaxMappingSample
 		private readonly Texture2D textureHeight;
 		private readonly Texture2D textureNormal;
 
+	    private readonly Font font;
+
+        private readonly Cube cube = new Cube( 100, 100, 100 );
+
 		public ParallaxMappingForm()
 		{
-			this.texture = new Texture2D( @"Data\ParallaxMapping\Maps\rockwall.jpg" ).ApplyTexture( this.itemsManager );
+		    this.font = new Font( @"Data\Fonts\Verdana.jpg" ).ApplyFont( itemsManager );
+		    this.texture = new Texture2D( @"Data\ParallaxMapping\Maps\rockwall.jpg" ).ApplyTexture( this.itemsManager );
 			this.textureHeight = new Texture2D( @"Data\ParallaxMapping\Maps\rockwall_height.png" )
 			                     {
 			                     	WrapS = TextureWrapMode.ClampToEdgeSgis,
@@ -135,6 +142,8 @@ namespace Test.ManagedOpenGL.ParallaxMappingSample
 		{
 			base.Draw();
 
+            Renderer.RenderMode = RenderMode.MODE_3D;
+
 			gl.Enable( EnableCap.Texture2d );
 			gl.ActiveTexture( (uint)VERSION_1_3.Texture0 );
 			this.texture.Use();
@@ -145,28 +154,43 @@ namespace Test.ManagedOpenGL.ParallaxMappingSample
 			gl.ActiveTexture( (uint)VERSION_1_3.Texture2 );
 			this.textureNormal.Use();
 
-			this.programs[programIndex].Use();
+		    var program = this.programs[this.programIndex];
+		    program.Use();
+            
+		    cube.TangentVectorAttributeIndex = (int)program.TangentAttribLocation;
+		    cube.BinormalVectorAttributeIndex = (int)program.BinormalAttribLocation;
+
+            cube.Draw();
 			
-			gl.Begin( BeginMode.Quads );
+            //gl.Begin( BeginMode.Quads );
 
-			gl.VertexAttrib3f( programs[programIndex].TangentAttribLocation, 1, 0, 0 );
-			gl.VertexAttrib3f( programs[programIndex].BinormalAttribLocation, 0, 1, 0 );
-			gl.Normal3f( 0, 0, 1 );
+            //gl.VertexAttrib3f( programs[programIndex].TangentAttribLocation, 1, 0, 0 );
+            //gl.VertexAttrib3f( programs[programIndex].BinormalAttribLocation, 0, 1, 0 );
+            //gl.Normal3f( 0, 0, 1 );
 
-			gl.TexCoord2f( 0, 0 );
-			gl.Vertex3f( -10, -10, 0 );
+            //gl.TexCoord2f( 0, 0 );
+            //gl.Vertex3f( -10, -10, 0 );
 
-			gl.TexCoord2f( 1, 0 );
-			gl.Vertex3f( +10, -10, 0 );
+            //gl.TexCoord2f( 1, 0 );
+            //gl.Vertex3f( +10, -10, 0 );
 
-			gl.TexCoord2f( 1, 1 );
-			gl.Vertex3f( +10, +10, 0 );
+            //gl.TexCoord2f( 1, 1 );
+            //gl.Vertex3f( +10, +10, 0 );
 
-			gl.TexCoord2f( 0, 1 );
-			gl.Vertex3f( -10, +10, 0 );
+            //gl.TexCoord2f( 0, 1 );
+            //gl.Vertex3f( -10, +10, 0 );
 
-			gl.End();
-			gl.Disable( EnableCap.Texture2d );
+            //gl.End();
+            //gl.Disable( EnableCap.Texture2d );
+
+            Renderer.RenderMode = RenderMode.MODE_2D;
+
+            ShaderProgram.UnUse();
+
+		    gl.Color3f( 1, 1, 1 );
+            gl.Disable( EnableCap.DepthTest );
+            font.FontSize = 20;
+		    font.WriteLine( "Camera at: {0:F2}, {1:F2}, {2:F2}", camera.Position.X, camera.Position.Y, camera.Position.Z );
 		}
 
 		protected override void OnKeyDown( KeyEventArgs e )

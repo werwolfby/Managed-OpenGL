@@ -14,5 +14,6 @@ void main()
 	
 	vec2 texDisp = gl_TexCoord[0].xy - e.xy * h / e.z;
 
-	gl_FragColor = vec4( texture2D( texture, texDisp ).rgb, 1.0 );
+	//gl_FragColor = vec4( texture2D( texture, texDisp ).rgb, 1.0 );
+	gl_FragColor = vec4( e.rgb, 1.0 );
 }

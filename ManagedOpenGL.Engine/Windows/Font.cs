@@ -80,6 +80,7 @@ namespace ManagedOpenGL.Engine.Windows
 			var position = 0;
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadIdentity();
+            OpenGLNative.ActiveTexture( (uint)VERSION_1_3.Texture0 );
 			OpenGLNative.Scalef( FontSize, FontSize, 1 );
 			OpenGLNative.Enable( EnableCap.Texture2d );
 			texture.Use();
