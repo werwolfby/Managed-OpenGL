@@ -10,6 +10,7 @@ public partial class NativeGenerator
 	public string Main( IEnumerable<Function> functionList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )
 	{
 		CodeWriter codeWriter = new CodeWriter();
+		codeWriter.AppendLine( "using System;" );
 		codeWriter.AppendLine( "using System.Runtime.InteropServices;" );
 		codeWriter.AppendLine();
 		codeWriter.AppendLine( "namespace ManagedOpenGL" );
@@ -25,6 +26,14 @@ public partial class NativeGenerator
 			else codeWriter.Append( value );
 		}
 		codeWriter.AppendLine( "			" );
+		codeWriter.AppendLine( "		}" );
+		codeWriter.AppendLine();
+		codeWriter.AppendLine( "		private static T GetProcAdress<T>( string functionName )" );
+		codeWriter.AppendLine( "			where T : class" );
+		codeWriter.AppendLine( "		{" );
+		codeWriter.AppendLine( "			var ptr = WindowsOpenGLNative.wglGetProcAddress( functionName );" );
+		codeWriter.AppendLine( "			if (ptr == IntPtr.Zero) return null;" );
+		codeWriter.AppendLine( "			return Marshal.GetDelegateForFunctionPointer( ptr, typeof(T) ) as T;" );
 		codeWriter.AppendLine( "		}" );
 		codeWriter.AppendLine( "	" );
 		codeWriter.Append( "		" );
@@ -42,14 +51,11 @@ public partial class NativeGenerator
 		CodeWriter codeWriter = new CodeWriter();
 		if (function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) return "";
 		codeWriter.Append( function.Name );
-		codeWriter.Append( " = (" );
+		codeWriter.Append( " = GetProcAdress< " );
 		codeWriter.Append( function.Name );
-		codeWriter.AppendLine( "Delegate)" );
-		codeWriter.Append( "	Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( \"" );
+		codeWriter.Append( "Delegate >( \"" );
 		codeWriter.Append( function.Name );
-		codeWriter.Append( "\" ), typeof(" );
-		codeWriter.Append( function.Name );
-		codeWriter.AppendLine( "Delegate) );" );
+		codeWriter.AppendLine( "\" );" );
 		return codeWriter.ToString();
 	}
 	public string GenerateOpenGLFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )

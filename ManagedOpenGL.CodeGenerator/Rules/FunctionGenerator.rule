@@ -5,6 +5,7 @@
 <%using ManagedOpenGL.CodeGenerator%>
 
 <%rule Main( IEnumerable<Function> functionList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
+using System;
 using System.Runtime.InteropServices;
 
 namespace ManagedOpenGL
@@ -15,6 +16,14 @@ namespace ManagedOpenGL
 		{
 			<%apply GetFunction( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from functionList%>			
 		}
+
+		private static T GetProcAdress<T>( string functionName )
+			where T : class
+		{
+			var ptr = WindowsOpenGLNative.wglGetProcAddress( functionName );
+			if (ptr == IntPtr.Zero) return null;
+			return Marshal.GetDelegateForFunctionPointer( ptr, typeof(T) ) as T;
+		}
 	
 		<%apply GenerateFunction( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from functionList%>
 	}
@@ -23,8 +32,7 @@ namespace ManagedOpenGL
 
 <%rule GetFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
 <%%if (function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) return "";%>
-<%= function.Name %> = (<%= function.Name %>Delegate)
-	Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "<%= function.Name %>" ), typeof(<%= function.Name %>Delegate) );
+<%= function.Name %> = GetProcAdress< <%= function.Name %>Delegate >( "<%= function.Name %>" );
 <%end rule%>
 
 <%method string GenerateFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>

@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 
 namespace ManagedOpenGL
@@ -6,279 +7,151 @@ namespace ManagedOpenGL
 	{
 		unsafe static OpenGLNative()
 		{
-			BlendEquationSeparate = (BlendEquationSeparateDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "BlendEquationSeparate" ), typeof(BlendEquationSeparateDelegate) );
-			DrawBuffers = (DrawBuffersDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DrawBuffers" ), typeof(DrawBuffersDelegate) );
-			StencilOpSeparate = (StencilOpSeparateDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "StencilOpSeparate" ), typeof(StencilOpSeparateDelegate) );
-			StencilFuncSeparate = (StencilFuncSeparateDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "StencilFuncSeparate" ), typeof(StencilFuncSeparateDelegate) );
-			StencilMaskSeparate = (StencilMaskSeparateDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "StencilMaskSeparate" ), typeof(StencilMaskSeparateDelegate) );
-			AttachShader = (AttachShaderDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "AttachShader" ), typeof(AttachShaderDelegate) );
-			BindAttribLocation = (BindAttribLocationDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "BindAttribLocation" ), typeof(BindAttribLocationDelegate) );
-			CompileShader = (CompileShaderDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "CompileShader" ), typeof(CompileShaderDelegate) );
-			CreateProgram = (CreateProgramDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "CreateProgram" ), typeof(CreateProgramDelegate) );
-			CreateShader = (CreateShaderDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "CreateShader" ), typeof(CreateShaderDelegate) );
-			DeleteProgram = (DeleteProgramDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DeleteProgram" ), typeof(DeleteProgramDelegate) );
-			DeleteShader = (DeleteShaderDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DeleteShader" ), typeof(DeleteShaderDelegate) );
-			DetachShader = (DetachShaderDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DetachShader" ), typeof(DetachShaderDelegate) );
-			DisableVertexAttribArray = (DisableVertexAttribArrayDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DisableVertexAttribArray" ), typeof(DisableVertexAttribArrayDelegate) );
-			EnableVertexAttribArray = (EnableVertexAttribArrayDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "EnableVertexAttribArray" ), typeof(EnableVertexAttribArrayDelegate) );
-			GetActiveAttrib = (GetActiveAttribDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetActiveAttrib" ), typeof(GetActiveAttribDelegate) );
-			GetActiveUniform = (GetActiveUniformDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetActiveUniform" ), typeof(GetActiveUniformDelegate) );
-			GetAttachedShaders = (GetAttachedShadersDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetAttachedShaders" ), typeof(GetAttachedShadersDelegate) );
-			GetAttribLocation = (GetAttribLocationDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetAttribLocation" ), typeof(GetAttribLocationDelegate) );
-			GetProgramiv = (GetProgramivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetProgramiv" ), typeof(GetProgramivDelegate) );
-			GetProgramInfoLog = (GetProgramInfoLogDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetProgramInfoLog" ), typeof(GetProgramInfoLogDelegate) );
-			GetShaderiv = (GetShaderivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetShaderiv" ), typeof(GetShaderivDelegate) );
-			GetShaderInfoLog = (GetShaderInfoLogDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetShaderInfoLog" ), typeof(GetShaderInfoLogDelegate) );
-			GetShaderSource = (GetShaderSourceDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetShaderSource" ), typeof(GetShaderSourceDelegate) );
-			GetUniformLocation = (GetUniformLocationDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformLocation" ), typeof(GetUniformLocationDelegate) );
-			GetUniformfv = (GetUniformfvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformfv" ), typeof(GetUniformfvDelegate) );
-			GetUniformiv = (GetUniformivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformiv" ), typeof(GetUniformivDelegate) );
-			GetVertexAttribdv = (GetVertexAttribdvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribdv" ), typeof(GetVertexAttribdvDelegate) );
-			GetVertexAttribfv = (GetVertexAttribfvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribfv" ), typeof(GetVertexAttribfvDelegate) );
-			GetVertexAttribiv = (GetVertexAttribivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribiv" ), typeof(GetVertexAttribivDelegate) );
-			GetVertexAttribPointerv = (GetVertexAttribPointervDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribPointerv" ), typeof(GetVertexAttribPointervDelegate) );
-			IsProgram = (IsProgramDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "IsProgram" ), typeof(IsProgramDelegate) );
-			IsShader = (IsShaderDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "IsShader" ), typeof(IsShaderDelegate) );
-			LinkProgram = (LinkProgramDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "LinkProgram" ), typeof(LinkProgramDelegate) );
-			ShaderSource = (ShaderSourceDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ShaderSource" ), typeof(ShaderSourceDelegate) );
-			UseProgram = (UseProgramDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UseProgram" ), typeof(UseProgramDelegate) );
-			Uniform1f = (Uniform1fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1f" ), typeof(Uniform1fDelegate) );
-			Uniform2f = (Uniform2fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2f" ), typeof(Uniform2fDelegate) );
-			Uniform3f = (Uniform3fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3f" ), typeof(Uniform3fDelegate) );
-			Uniform4f = (Uniform4fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4f" ), typeof(Uniform4fDelegate) );
-			Uniform1i = (Uniform1iDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1i" ), typeof(Uniform1iDelegate) );
-			Uniform2i = (Uniform2iDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2i" ), typeof(Uniform2iDelegate) );
-			Uniform3i = (Uniform3iDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3i" ), typeof(Uniform3iDelegate) );
-			Uniform4i = (Uniform4iDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4i" ), typeof(Uniform4iDelegate) );
-			Uniform1fv = (Uniform1fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1fv" ), typeof(Uniform1fvDelegate) );
-			Uniform2fv = (Uniform2fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2fv" ), typeof(Uniform2fvDelegate) );
-			Uniform3fv = (Uniform3fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3fv" ), typeof(Uniform3fvDelegate) );
-			Uniform4fv = (Uniform4fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4fv" ), typeof(Uniform4fvDelegate) );
-			Uniform1iv = (Uniform1ivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1iv" ), typeof(Uniform1ivDelegate) );
-			Uniform2iv = (Uniform2ivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2iv" ), typeof(Uniform2ivDelegate) );
-			Uniform3iv = (Uniform3ivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3iv" ), typeof(Uniform3ivDelegate) );
-			Uniform4iv = (Uniform4ivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4iv" ), typeof(Uniform4ivDelegate) );
-			UniformMatrix2fv = (UniformMatrix2fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix2fv" ), typeof(UniformMatrix2fvDelegate) );
-			UniformMatrix3fv = (UniformMatrix3fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix3fv" ), typeof(UniformMatrix3fvDelegate) );
-			UniformMatrix4fv = (UniformMatrix4fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix4fv" ), typeof(UniformMatrix4fvDelegate) );
-			ValidateProgram = (ValidateProgramDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ValidateProgram" ), typeof(ValidateProgramDelegate) );
-			VertexAttrib1d = (VertexAttrib1dDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1d" ), typeof(VertexAttrib1dDelegate) );
-			VertexAttrib1dv = (VertexAttrib1dvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1dv" ), typeof(VertexAttrib1dvDelegate) );
-			VertexAttrib1f = (VertexAttrib1fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1f" ), typeof(VertexAttrib1fDelegate) );
-			VertexAttrib1fv = (VertexAttrib1fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1fv" ), typeof(VertexAttrib1fvDelegate) );
-			VertexAttrib1s = (VertexAttrib1sDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1s" ), typeof(VertexAttrib1sDelegate) );
-			VertexAttrib1sv = (VertexAttrib1svDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1sv" ), typeof(VertexAttrib1svDelegate) );
-			VertexAttrib2d = (VertexAttrib2dDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2d" ), typeof(VertexAttrib2dDelegate) );
-			VertexAttrib2dv = (VertexAttrib2dvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2dv" ), typeof(VertexAttrib2dvDelegate) );
-			VertexAttrib2f = (VertexAttrib2fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2f" ), typeof(VertexAttrib2fDelegate) );
-			VertexAttrib2fv = (VertexAttrib2fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2fv" ), typeof(VertexAttrib2fvDelegate) );
-			VertexAttrib2s = (VertexAttrib2sDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2s" ), typeof(VertexAttrib2sDelegate) );
-			VertexAttrib2sv = (VertexAttrib2svDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2sv" ), typeof(VertexAttrib2svDelegate) );
-			VertexAttrib3d = (VertexAttrib3dDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3d" ), typeof(VertexAttrib3dDelegate) );
-			VertexAttrib3dv = (VertexAttrib3dvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3dv" ), typeof(VertexAttrib3dvDelegate) );
-			VertexAttrib3f = (VertexAttrib3fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3f" ), typeof(VertexAttrib3fDelegate) );
-			VertexAttrib3fv = (VertexAttrib3fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3fv" ), typeof(VertexAttrib3fvDelegate) );
-			VertexAttrib3s = (VertexAttrib3sDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3s" ), typeof(VertexAttrib3sDelegate) );
-			VertexAttrib3sv = (VertexAttrib3svDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3sv" ), typeof(VertexAttrib3svDelegate) );
-			VertexAttrib4Nbv = (VertexAttrib4NbvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nbv" ), typeof(VertexAttrib4NbvDelegate) );
-			VertexAttrib4Niv = (VertexAttrib4NivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Niv" ), typeof(VertexAttrib4NivDelegate) );
-			VertexAttrib4Nsv = (VertexAttrib4NsvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nsv" ), typeof(VertexAttrib4NsvDelegate) );
-			VertexAttrib4Nub = (VertexAttrib4NubDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nub" ), typeof(VertexAttrib4NubDelegate) );
-			VertexAttrib4Nubv = (VertexAttrib4NubvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nubv" ), typeof(VertexAttrib4NubvDelegate) );
-			VertexAttrib4Nuiv = (VertexAttrib4NuivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nuiv" ), typeof(VertexAttrib4NuivDelegate) );
-			VertexAttrib4Nusv = (VertexAttrib4NusvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nusv" ), typeof(VertexAttrib4NusvDelegate) );
-			VertexAttrib4bv = (VertexAttrib4bvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4bv" ), typeof(VertexAttrib4bvDelegate) );
-			VertexAttrib4d = (VertexAttrib4dDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4d" ), typeof(VertexAttrib4dDelegate) );
-			VertexAttrib4dv = (VertexAttrib4dvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4dv" ), typeof(VertexAttrib4dvDelegate) );
-			VertexAttrib4f = (VertexAttrib4fDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4f" ), typeof(VertexAttrib4fDelegate) );
-			VertexAttrib4fv = (VertexAttrib4fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4fv" ), typeof(VertexAttrib4fvDelegate) );
-			VertexAttrib4iv = (VertexAttrib4ivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4iv" ), typeof(VertexAttrib4ivDelegate) );
-			VertexAttrib4s = (VertexAttrib4sDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4s" ), typeof(VertexAttrib4sDelegate) );
-			VertexAttrib4sv = (VertexAttrib4svDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4sv" ), typeof(VertexAttrib4svDelegate) );
-			VertexAttrib4ubv = (VertexAttrib4ubvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4ubv" ), typeof(VertexAttrib4ubvDelegate) );
-			VertexAttrib4uiv = (VertexAttrib4uivDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4uiv" ), typeof(VertexAttrib4uivDelegate) );
-			VertexAttrib4usv = (VertexAttrib4usvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4usv" ), typeof(VertexAttrib4usvDelegate) );
-			VertexAttribPointer = (VertexAttribPointerDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttribPointer" ), typeof(VertexAttribPointerDelegate) );
-			UniformMatrix2x3fv = (UniformMatrix2x3fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix2x3fv" ), typeof(UniformMatrix2x3fvDelegate) );
-			UniformMatrix3x2fv = (UniformMatrix3x2fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix3x2fv" ), typeof(UniformMatrix3x2fvDelegate) );
-			UniformMatrix2x4fv = (UniformMatrix2x4fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix2x4fv" ), typeof(UniformMatrix2x4fvDelegate) );
-			UniformMatrix4x2fv = (UniformMatrix4x2fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix4x2fv" ), typeof(UniformMatrix4x2fvDelegate) );
-			UniformMatrix3x4fv = (UniformMatrix3x4fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix3x4fv" ), typeof(UniformMatrix3x4fvDelegate) );
-			UniformMatrix4x3fv = (UniformMatrix4x3fvDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix4x3fv" ), typeof(UniformMatrix4x3fvDelegate) );
-			ProgramVertexLimitNV = (ProgramVertexLimitNVDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ProgramVertexLimitNV" ), typeof(ProgramVertexLimitNVDelegate) );
-			FramebufferTextureEXT = (FramebufferTextureEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "FramebufferTextureEXT" ), typeof(FramebufferTextureEXTDelegate) );
-			FramebufferTextureLayerEXT = (FramebufferTextureLayerEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "FramebufferTextureLayerEXT" ), typeof(FramebufferTextureLayerEXTDelegate) );
-			FramebufferTextureFaceEXT = (FramebufferTextureFaceEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "FramebufferTextureFaceEXT" ), typeof(FramebufferTextureFaceEXTDelegate) );
-			ProgramParameteriEXT = (ProgramParameteriEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ProgramParameteriEXT" ), typeof(ProgramParameteriEXTDelegate) );
-			GetUniformuivEXT = (GetUniformuivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformuivEXT" ), typeof(GetUniformuivEXTDelegate) );
-			BindFragDataLocationEXT = (BindFragDataLocationEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "BindFragDataLocationEXT" ), typeof(BindFragDataLocationEXTDelegate) );
-			GetFragDataLocationEXT = (GetFragDataLocationEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetFragDataLocationEXT" ), typeof(GetFragDataLocationEXTDelegate) );
-			Uniform1uiEXT = (Uniform1uiEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1uiEXT" ), typeof(Uniform1uiEXTDelegate) );
-			Uniform2uiEXT = (Uniform2uiEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2uiEXT" ), typeof(Uniform2uiEXTDelegate) );
-			Uniform3uiEXT = (Uniform3uiEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3uiEXT" ), typeof(Uniform3uiEXTDelegate) );
-			Uniform4uiEXT = (Uniform4uiEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4uiEXT" ), typeof(Uniform4uiEXTDelegate) );
-			Uniform1uivEXT = (Uniform1uivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1uivEXT" ), typeof(Uniform1uivEXTDelegate) );
-			Uniform2uivEXT = (Uniform2uivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2uivEXT" ), typeof(Uniform2uivEXTDelegate) );
-			Uniform3uivEXT = (Uniform3uivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3uivEXT" ), typeof(Uniform3uivEXTDelegate) );
-			Uniform4uivEXT = (Uniform4uivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4uivEXT" ), typeof(Uniform4uivEXTDelegate) );
-			DrawArraysInstancedEXT = (DrawArraysInstancedEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DrawArraysInstancedEXT" ), typeof(DrawArraysInstancedEXTDelegate) );
-			DrawElementsInstancedEXT = (DrawElementsInstancedEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DrawElementsInstancedEXT" ), typeof(DrawElementsInstancedEXTDelegate) );
-			TexBufferEXT = (TexBufferEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "TexBufferEXT" ), typeof(TexBufferEXTDelegate) );
-			DepthRangedNV = (DepthRangedNVDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DepthRangedNV" ), typeof(DepthRangedNVDelegate) );
-			ClearDepthdNV = (ClearDepthdNVDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ClearDepthdNV" ), typeof(ClearDepthdNVDelegate) );
-			DepthBoundsdNV = (DepthBoundsdNVDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DepthBoundsdNV" ), typeof(DepthBoundsdNVDelegate) );
-			ColorMaskIndexedEXT = (ColorMaskIndexedEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ColorMaskIndexedEXT" ), typeof(ColorMaskIndexedEXTDelegate) );
-			GetBooleanIndexedvEXT = (GetBooleanIndexedvEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetBooleanIndexedvEXT" ), typeof(GetBooleanIndexedvEXTDelegate) );
-			GetIntegerIndexedvEXT = (GetIntegerIndexedvEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetIntegerIndexedvEXT" ), typeof(GetIntegerIndexedvEXTDelegate) );
-			EnableIndexedEXT = (EnableIndexedEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "EnableIndexedEXT" ), typeof(EnableIndexedEXTDelegate) );
-			DisableIndexedEXT = (DisableIndexedEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DisableIndexedEXT" ), typeof(DisableIndexedEXTDelegate) );
-			IsEnabledIndexedEXT = (IsEnabledIndexedEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "IsEnabledIndexedEXT" ), typeof(IsEnabledIndexedEXTDelegate) );
-			UniformBufferEXT = (UniformBufferEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformBufferEXT" ), typeof(UniformBufferEXTDelegate) );
-			GetUniformBufferSizeEXT = (GetUniformBufferSizeEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformBufferSizeEXT" ), typeof(GetUniformBufferSizeEXTDelegate) );
-			GetUniformOffsetEXT = (GetUniformOffsetEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformOffsetEXT" ), typeof(GetUniformOffsetEXTDelegate) );
-			TexParameterIivEXT = (TexParameterIivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "TexParameterIivEXT" ), typeof(TexParameterIivEXTDelegate) );
-			TexParameterIuivEXT = (TexParameterIuivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "TexParameterIuivEXT" ), typeof(TexParameterIuivEXTDelegate) );
-			GetTexParameterIivEXT = (GetTexParameterIivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetTexParameterIivEXT" ), typeof(GetTexParameterIivEXTDelegate) );
-			GetTexParameterIuivEXT = (GetTexParameterIuivEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetTexParameterIuivEXT" ), typeof(GetTexParameterIuivEXTDelegate) );
-			ClearColorIiEXT = (ClearColorIiEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ClearColorIiEXT" ), typeof(ClearColorIiEXTDelegate) );
-			ClearColorIuiEXT = (ClearColorIuiEXTDelegate)
-				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ClearColorIuiEXT" ), typeof(ClearColorIuiEXTDelegate) );
+			BlendEquationSeparate = GetProcAdress< BlendEquationSeparateDelegate >( "BlendEquationSeparate" );
+			DrawBuffers = GetProcAdress< DrawBuffersDelegate >( "DrawBuffers" );
+			StencilOpSeparate = GetProcAdress< StencilOpSeparateDelegate >( "StencilOpSeparate" );
+			StencilFuncSeparate = GetProcAdress< StencilFuncSeparateDelegate >( "StencilFuncSeparate" );
+			StencilMaskSeparate = GetProcAdress< StencilMaskSeparateDelegate >( "StencilMaskSeparate" );
+			AttachShader = GetProcAdress< AttachShaderDelegate >( "AttachShader" );
+			BindAttribLocation = GetProcAdress< BindAttribLocationDelegate >( "BindAttribLocation" );
+			CompileShader = GetProcAdress< CompileShaderDelegate >( "CompileShader" );
+			CreateProgram = GetProcAdress< CreateProgramDelegate >( "CreateProgram" );
+			CreateShader = GetProcAdress< CreateShaderDelegate >( "CreateShader" );
+			DeleteProgram = GetProcAdress< DeleteProgramDelegate >( "DeleteProgram" );
+			DeleteShader = GetProcAdress< DeleteShaderDelegate >( "DeleteShader" );
+			DetachShader = GetProcAdress< DetachShaderDelegate >( "DetachShader" );
+			DisableVertexAttribArray = GetProcAdress< DisableVertexAttribArrayDelegate >( "DisableVertexAttribArray" );
+			EnableVertexAttribArray = GetProcAdress< EnableVertexAttribArrayDelegate >( "EnableVertexAttribArray" );
+			GetActiveAttrib = GetProcAdress< GetActiveAttribDelegate >( "GetActiveAttrib" );
+			GetActiveUniform = GetProcAdress< GetActiveUniformDelegate >( "GetActiveUniform" );
+			GetAttachedShaders = GetProcAdress< GetAttachedShadersDelegate >( "GetAttachedShaders" );
+			GetAttribLocation = GetProcAdress< GetAttribLocationDelegate >( "GetAttribLocation" );
+			GetProgramiv = GetProcAdress< GetProgramivDelegate >( "GetProgramiv" );
+			GetProgramInfoLog = GetProcAdress< GetProgramInfoLogDelegate >( "GetProgramInfoLog" );
+			GetShaderiv = GetProcAdress< GetShaderivDelegate >( "GetShaderiv" );
+			GetShaderInfoLog = GetProcAdress< GetShaderInfoLogDelegate >( "GetShaderInfoLog" );
+			GetShaderSource = GetProcAdress< GetShaderSourceDelegate >( "GetShaderSource" );
+			GetUniformLocation = GetProcAdress< GetUniformLocationDelegate >( "GetUniformLocation" );
+			GetUniformfv = GetProcAdress< GetUniformfvDelegate >( "GetUniformfv" );
+			GetUniformiv = GetProcAdress< GetUniformivDelegate >( "GetUniformiv" );
+			GetVertexAttribdv = GetProcAdress< GetVertexAttribdvDelegate >( "GetVertexAttribdv" );
+			GetVertexAttribfv = GetProcAdress< GetVertexAttribfvDelegate >( "GetVertexAttribfv" );
+			GetVertexAttribiv = GetProcAdress< GetVertexAttribivDelegate >( "GetVertexAttribiv" );
+			GetVertexAttribPointerv = GetProcAdress< GetVertexAttribPointervDelegate >( "GetVertexAttribPointerv" );
+			IsProgram = GetProcAdress< IsProgramDelegate >( "IsProgram" );
+			IsShader = GetProcAdress< IsShaderDelegate >( "IsShader" );
+			LinkProgram = GetProcAdress< LinkProgramDelegate >( "LinkProgram" );
+			ShaderSource = GetProcAdress< ShaderSourceDelegate >( "ShaderSource" );
+			UseProgram = GetProcAdress< UseProgramDelegate >( "UseProgram" );
+			Uniform1f = GetProcAdress< Uniform1fDelegate >( "Uniform1f" );
+			Uniform2f = GetProcAdress< Uniform2fDelegate >( "Uniform2f" );
+			Uniform3f = GetProcAdress< Uniform3fDelegate >( "Uniform3f" );
+			Uniform4f = GetProcAdress< Uniform4fDelegate >( "Uniform4f" );
+			Uniform1i = GetProcAdress< Uniform1iDelegate >( "Uniform1i" );
+			Uniform2i = GetProcAdress< Uniform2iDelegate >( "Uniform2i" );
+			Uniform3i = GetProcAdress< Uniform3iDelegate >( "Uniform3i" );
+			Uniform4i = GetProcAdress< Uniform4iDelegate >( "Uniform4i" );
+			Uniform1fv = GetProcAdress< Uniform1fvDelegate >( "Uniform1fv" );
+			Uniform2fv = GetProcAdress< Uniform2fvDelegate >( "Uniform2fv" );
+			Uniform3fv = GetProcAdress< Uniform3fvDelegate >( "Uniform3fv" );
+			Uniform4fv = GetProcAdress< Uniform4fvDelegate >( "Uniform4fv" );
+			Uniform1iv = GetProcAdress< Uniform1ivDelegate >( "Uniform1iv" );
+			Uniform2iv = GetProcAdress< Uniform2ivDelegate >( "Uniform2iv" );
+			Uniform3iv = GetProcAdress< Uniform3ivDelegate >( "Uniform3iv" );
+			Uniform4iv = GetProcAdress< Uniform4ivDelegate >( "Uniform4iv" );
+			UniformMatrix2fv = GetProcAdress< UniformMatrix2fvDelegate >( "UniformMatrix2fv" );
+			UniformMatrix3fv = GetProcAdress< UniformMatrix3fvDelegate >( "UniformMatrix3fv" );
+			UniformMatrix4fv = GetProcAdress< UniformMatrix4fvDelegate >( "UniformMatrix4fv" );
+			ValidateProgram = GetProcAdress< ValidateProgramDelegate >( "ValidateProgram" );
+			VertexAttrib1d = GetProcAdress< VertexAttrib1dDelegate >( "VertexAttrib1d" );
+			VertexAttrib1dv = GetProcAdress< VertexAttrib1dvDelegate >( "VertexAttrib1dv" );
+			VertexAttrib1f = GetProcAdress< VertexAttrib1fDelegate >( "VertexAttrib1f" );
+			VertexAttrib1fv = GetProcAdress< VertexAttrib1fvDelegate >( "VertexAttrib1fv" );
+			VertexAttrib1s = GetProcAdress< VertexAttrib1sDelegate >( "VertexAttrib1s" );
+			VertexAttrib1sv = GetProcAdress< VertexAttrib1svDelegate >( "VertexAttrib1sv" );
+			VertexAttrib2d = GetProcAdress< VertexAttrib2dDelegate >( "VertexAttrib2d" );
+			VertexAttrib2dv = GetProcAdress< VertexAttrib2dvDelegate >( "VertexAttrib2dv" );
+			VertexAttrib2f = GetProcAdress< VertexAttrib2fDelegate >( "VertexAttrib2f" );
+			VertexAttrib2fv = GetProcAdress< VertexAttrib2fvDelegate >( "VertexAttrib2fv" );
+			VertexAttrib2s = GetProcAdress< VertexAttrib2sDelegate >( "VertexAttrib2s" );
+			VertexAttrib2sv = GetProcAdress< VertexAttrib2svDelegate >( "VertexAttrib2sv" );
+			VertexAttrib3d = GetProcAdress< VertexAttrib3dDelegate >( "VertexAttrib3d" );
+			VertexAttrib3dv = GetProcAdress< VertexAttrib3dvDelegate >( "VertexAttrib3dv" );
+			VertexAttrib3f = GetProcAdress< VertexAttrib3fDelegate >( "VertexAttrib3f" );
+			VertexAttrib3fv = GetProcAdress< VertexAttrib3fvDelegate >( "VertexAttrib3fv" );
+			VertexAttrib3s = GetProcAdress< VertexAttrib3sDelegate >( "VertexAttrib3s" );
+			VertexAttrib3sv = GetProcAdress< VertexAttrib3svDelegate >( "VertexAttrib3sv" );
+			VertexAttrib4Nbv = GetProcAdress< VertexAttrib4NbvDelegate >( "VertexAttrib4Nbv" );
+			VertexAttrib4Niv = GetProcAdress< VertexAttrib4NivDelegate >( "VertexAttrib4Niv" );
+			VertexAttrib4Nsv = GetProcAdress< VertexAttrib4NsvDelegate >( "VertexAttrib4Nsv" );
+			VertexAttrib4Nub = GetProcAdress< VertexAttrib4NubDelegate >( "VertexAttrib4Nub" );
+			VertexAttrib4Nubv = GetProcAdress< VertexAttrib4NubvDelegate >( "VertexAttrib4Nubv" );
+			VertexAttrib4Nuiv = GetProcAdress< VertexAttrib4NuivDelegate >( "VertexAttrib4Nuiv" );
+			VertexAttrib4Nusv = GetProcAdress< VertexAttrib4NusvDelegate >( "VertexAttrib4Nusv" );
+			VertexAttrib4bv = GetProcAdress< VertexAttrib4bvDelegate >( "VertexAttrib4bv" );
+			VertexAttrib4d = GetProcAdress< VertexAttrib4dDelegate >( "VertexAttrib4d" );
+			VertexAttrib4dv = GetProcAdress< VertexAttrib4dvDelegate >( "VertexAttrib4dv" );
+			VertexAttrib4f = GetProcAdress< VertexAttrib4fDelegate >( "VertexAttrib4f" );
+			VertexAttrib4fv = GetProcAdress< VertexAttrib4fvDelegate >( "VertexAttrib4fv" );
+			VertexAttrib4iv = GetProcAdress< VertexAttrib4ivDelegate >( "VertexAttrib4iv" );
+			VertexAttrib4s = GetProcAdress< VertexAttrib4sDelegate >( "VertexAttrib4s" );
+			VertexAttrib4sv = GetProcAdress< VertexAttrib4svDelegate >( "VertexAttrib4sv" );
+			VertexAttrib4ubv = GetProcAdress< VertexAttrib4ubvDelegate >( "VertexAttrib4ubv" );
+			VertexAttrib4uiv = GetProcAdress< VertexAttrib4uivDelegate >( "VertexAttrib4uiv" );
+			VertexAttrib4usv = GetProcAdress< VertexAttrib4usvDelegate >( "VertexAttrib4usv" );
+			VertexAttribPointer = GetProcAdress< VertexAttribPointerDelegate >( "VertexAttribPointer" );
+			UniformMatrix2x3fv = GetProcAdress< UniformMatrix2x3fvDelegate >( "UniformMatrix2x3fv" );
+			UniformMatrix3x2fv = GetProcAdress< UniformMatrix3x2fvDelegate >( "UniformMatrix3x2fv" );
+			UniformMatrix2x4fv = GetProcAdress< UniformMatrix2x4fvDelegate >( "UniformMatrix2x4fv" );
+			UniformMatrix4x2fv = GetProcAdress< UniformMatrix4x2fvDelegate >( "UniformMatrix4x2fv" );
+			UniformMatrix3x4fv = GetProcAdress< UniformMatrix3x4fvDelegate >( "UniformMatrix3x4fv" );
+			UniformMatrix4x3fv = GetProcAdress< UniformMatrix4x3fvDelegate >( "UniformMatrix4x3fv" );
+			ProgramVertexLimitNV = GetProcAdress< ProgramVertexLimitNVDelegate >( "ProgramVertexLimitNV" );
+			FramebufferTextureEXT = GetProcAdress< FramebufferTextureEXTDelegate >( "FramebufferTextureEXT" );
+			FramebufferTextureLayerEXT = GetProcAdress< FramebufferTextureLayerEXTDelegate >( "FramebufferTextureLayerEXT" );
+			FramebufferTextureFaceEXT = GetProcAdress< FramebufferTextureFaceEXTDelegate >( "FramebufferTextureFaceEXT" );
+			ProgramParameteriEXT = GetProcAdress< ProgramParameteriEXTDelegate >( "ProgramParameteriEXT" );
+			GetUniformuivEXT = GetProcAdress< GetUniformuivEXTDelegate >( "GetUniformuivEXT" );
+			BindFragDataLocationEXT = GetProcAdress< BindFragDataLocationEXTDelegate >( "BindFragDataLocationEXT" );
+			GetFragDataLocationEXT = GetProcAdress< GetFragDataLocationEXTDelegate >( "GetFragDataLocationEXT" );
+			Uniform1uiEXT = GetProcAdress< Uniform1uiEXTDelegate >( "Uniform1uiEXT" );
+			Uniform2uiEXT = GetProcAdress< Uniform2uiEXTDelegate >( "Uniform2uiEXT" );
+			Uniform3uiEXT = GetProcAdress< Uniform3uiEXTDelegate >( "Uniform3uiEXT" );
+			Uniform4uiEXT = GetProcAdress< Uniform4uiEXTDelegate >( "Uniform4uiEXT" );
+			Uniform1uivEXT = GetProcAdress< Uniform1uivEXTDelegate >( "Uniform1uivEXT" );
+			Uniform2uivEXT = GetProcAdress< Uniform2uivEXTDelegate >( "Uniform2uivEXT" );
+			Uniform3uivEXT = GetProcAdress< Uniform3uivEXTDelegate >( "Uniform3uivEXT" );
+			Uniform4uivEXT = GetProcAdress< Uniform4uivEXTDelegate >( "Uniform4uivEXT" );
+			DrawArraysInstancedEXT = GetProcAdress< DrawArraysInstancedEXTDelegate >( "DrawArraysInstancedEXT" );
+			DrawElementsInstancedEXT = GetProcAdress< DrawElementsInstancedEXTDelegate >( "DrawElementsInstancedEXT" );
+			TexBufferEXT = GetProcAdress< TexBufferEXTDelegate >( "TexBufferEXT" );
+			DepthRangedNV = GetProcAdress< DepthRangedNVDelegate >( "DepthRangedNV" );
+			ClearDepthdNV = GetProcAdress< ClearDepthdNVDelegate >( "ClearDepthdNV" );
+			DepthBoundsdNV = GetProcAdress< DepthBoundsdNVDelegate >( "DepthBoundsdNV" );
+			ColorMaskIndexedEXT = GetProcAdress< ColorMaskIndexedEXTDelegate >( "ColorMaskIndexedEXT" );
+			GetBooleanIndexedvEXT = GetProcAdress< GetBooleanIndexedvEXTDelegate >( "GetBooleanIndexedvEXT" );
+			GetIntegerIndexedvEXT = GetProcAdress< GetIntegerIndexedvEXTDelegate >( "GetIntegerIndexedvEXT" );
+			EnableIndexedEXT = GetProcAdress< EnableIndexedEXTDelegate >( "EnableIndexedEXT" );
+			DisableIndexedEXT = GetProcAdress< DisableIndexedEXTDelegate >( "DisableIndexedEXT" );
+			IsEnabledIndexedEXT = GetProcAdress< IsEnabledIndexedEXTDelegate >( "IsEnabledIndexedEXT" );
+			UniformBufferEXT = GetProcAdress< UniformBufferEXTDelegate >( "UniformBufferEXT" );
+			GetUniformBufferSizeEXT = GetProcAdress< GetUniformBufferSizeEXTDelegate >( "GetUniformBufferSizeEXT" );
+			GetUniformOffsetEXT = GetProcAdress< GetUniformOffsetEXTDelegate >( "GetUniformOffsetEXT" );
+			TexParameterIivEXT = GetProcAdress< TexParameterIivEXTDelegate >( "TexParameterIivEXT" );
+			TexParameterIuivEXT = GetProcAdress< TexParameterIuivEXTDelegate >( "TexParameterIuivEXT" );
+			GetTexParameterIivEXT = GetProcAdress< GetTexParameterIivEXTDelegate >( "GetTexParameterIivEXT" );
+			GetTexParameterIuivEXT = GetProcAdress< GetTexParameterIuivEXTDelegate >( "GetTexParameterIuivEXT" );
+			ClearColorIiEXT = GetProcAdress< ClearColorIiEXTDelegate >( "ClearColorIiEXT" );
+			ClearColorIuiEXT = GetProcAdress< ClearColorIuiEXTDelegate >( "ClearColorIuiEXT" );
 			
+		}
+
+		private static T GetProcAdress<T>( string functionName )
+			where T : class
+		{
+			var ptr = WindowsOpenGLNative.wglGetProcAddress( "gl" + functionName );
+			if (ptr == IntPtr.Zero) return null;
+			return Marshal.GetDelegateForFunctionPointer( ptr, typeof(T) ) as T;
 		}
 	
 		[DllImport( "opengl32.dll" )]

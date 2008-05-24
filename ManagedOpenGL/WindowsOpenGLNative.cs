@@ -33,8 +33,8 @@ namespace ManagedOpenGL
 		[DllImport( "opengl32.dll", SetLastError=true )]
 		public static extern Int32 wglDeleteContext( IntPtr hglrc );
 
-		[DllImport( "opengl32.dll", SetLastError=true )]
-		public static extern IntPtr wglGetProcAddress( [MarshalAs(UnmanagedType.LPStr)]string functionName );
+		[DllImport( "opengl32.dll", SetLastError=true, CharSet=CharSet.Ansi )]
+		public static extern IntPtr wglGetProcAddress( [MarshalAs(UnmanagedType.LPTStr)]string functionName );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
 		public static extern Int32 ChoosePixelFormat( IntPtr hdc, ref PixelFormatDescriptor ppfd );
