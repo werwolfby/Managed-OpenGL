@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace ManagedOpenGL.CodeGenerator
 {
@@ -29,8 +30,22 @@ namespace ManagedOpenGL.CodeGenerator
 
 		public readonly List<ParamFunctionOption> ParamList = new List<ParamFunctionOption>();
 		public ReturnFunctionOption Return;
+		public VersionFunctionOption Version;
 
 		private readonly List<FunctionOption> options = new List<FunctionOption>();
+
+		public bool IsUnsafeMethod( IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMaps )
+		{
+			foreach (var paramFunctionOption in this.ParamList)
+			{
+				CSTypeMap csTypeMap;
+				TypeMap typeMap;
+				paramFunctionOption.GetTypeMap( typeMapList, csTypeMaps, out csTypeMap, out typeMap );
+				if ((csTypeMap != null && csTypeMap.LanguageName == "void") || typeMap.LanguageName.PointDeep > 0) return true;
+			}
+
+			return false;
+		}
 
 		public static bool IsFunctionLine( string line )
 		{
@@ -53,8 +68,14 @@ namespace ManagedOpenGL.CodeGenerator
 		{
 			if (functionOption is ParamFunctionOption) ParamList.Add( (ParamFunctionOption)functionOption );
 			if (functionOption is ReturnFunctionOption) Return = (ReturnFunctionOption)functionOption;
+			if (functionOption is VersionFunctionOption) Version = (VersionFunctionOption)functionOption;
 
 			options.Add( functionOption );
+		}
+
+		public bool Contains( string option )
+		{
+			return options.FirstOrDefault( functionOption => functionOption.Name == option ) != null;
 		}
 	}
 }

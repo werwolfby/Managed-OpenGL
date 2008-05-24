@@ -38,16 +38,16 @@ namespace ManagedOpenGL.CodeGenerator
 
 			var enumGenerator = new EnumGenerator();
 
-			using (var writer = new StreamWriter( "Enums.cs" ))
+			using (var writer = new StreamWriter( @"..\..\..\ManagedOpenGL\Enums.cs" ))
 			{
 				writer.WriteLine( enumGenerator.Main( enumList, typeMapList, csTypeMapList ) );
 			}
 
 			var nativeGenerator = new NativeGenerator();
 
-			using (var writer = new StreamWriter( "OpenGLNative.cs" ))
+			using (var writer = new StreamWriter( @"..\..\..\ManagedOpenGL\OpenGLNative.cs" ))
 			{
-				writer.WriteLine( nativeGenerator.Main( functions, typeMapList, csTypeMapList ) );
+				writer.WriteLine( nativeGenerator.Main( functions, typeMapList, csTypeMapList, enumDatas ) );
 			}
 		}
 

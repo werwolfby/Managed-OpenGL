@@ -12,10 +12,12 @@
  *******************************************************/
 
 using System;
+using System.CodeDom.Compiler;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Microsoft.CSharp;
 
 namespace ManagedOpenGL.CodeGenerator
 {
@@ -48,6 +50,8 @@ namespace ManagedOpenGL.CodeGenerator
 					return ParamFunctionOption.Parse( name, tail, lineNumber );
 				case "return":
 					return new ReturnFunctionOption { Name = name, ReturnType = tail.Trim() };
+				case "version":
+					return VersionFunctionOption.Parse( name, tail, lineNumber );
 				default:
 					return new OtherTailFunctionOption
 					       {
@@ -60,25 +64,109 @@ namespace ManagedOpenGL.CodeGenerator
 
 	public static class FunctionOptionExtension
 	{
-		public static string GetCSName( this ReturnFunctionOption returnFunctionOption, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
+		public static readonly CodeDomProvider codeDomProvider = new CSharpCodeProvider();
+
+		public static string GetCSName( this ReturnFunctionOption returnFunctionOption, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList,
+			IList<EnumData> enumDatas )
 		{
-			var typeMap = typeMapList.FirstOrDefault( map => map.GLName == returnFunctionOption.ReturnType );
-			if (typeMap == null) throw new Exception( "Unknow return type: " + returnFunctionOption.ReturnType );
+			CSTypeMap csTypeMap;
+			TypeMap typeMap;
+			GetTypeMap( typeMapList, csTypeMapList, out csTypeMap, out typeMap, returnFunctionOption.ReturnType, false );
 			if (typeMap.LanguageName.Name == "*") return "void";
-			var csTypeMap = csTypeMapList.FirstOrDefault( map1 => map1.GLName == typeMap.LanguageName.Name );
-			if (csTypeMap == null) throw new Exception( "Unknow CS type: " + typeMap.LanguageName.Name );
-			if (csTypeMap.Attributes.Contains( "enum" )) return returnFunctionOption.ReturnType;
+			if (csTypeMap.Attributes.Contains( "enum" ))
+			{
+				if (enumDatas.FirstOrDefault(data => data.Name == returnFunctionOption.ReturnType) != null) 
+					return returnFunctionOption.ReturnType;
+			}
 			return csTypeMap.LanguageName;
 		}
 
-		public static string GetCSName( this ParamFunctionOption returnFunctionOption, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
+		public static string GetCSName( this ParamFunctionOption paramFunctionOption, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList,
+			IList<EnumData> enumDatas )
 		{
-			var typeMap = typeMapList.FirstOrDefault( map => map.GLName == returnFunctionOption.ParamType );
-			if (typeMap == null) throw new Exception( "Unknow return type: " + returnFunctionOption.ParamType );
-			var csTypeMap = csTypeMapList.FirstOrDefault( map1 => map1.GLName == typeMap.LanguageName.Name );
-			if (csTypeMap == null) throw new Exception( "Unknow CS type: " + typeMap.LanguageName.Name );
-			if (csTypeMap.Attributes.Contains( "enum" )) return returnFunctionOption.ParamType;
-			return csTypeMap.LanguageName;
+			CSTypeMap csTypeMap;
+			TypeMap typeMap;
+			GetTypeMap( typeMapList, csTypeMapList, out csTypeMap, out typeMap, paramFunctionOption.ParamType,
+			            paramFunctionOption is ArrayParamFunctionOption );
+			if (csTypeMap.Attributes.Contains( "enum" ))
+			{
+				if (enumDatas.FirstOrDefault(data => data.Name == paramFunctionOption.ParamType) != null) 
+					return paramFunctionOption.ParamType;
+			}
+			if (csTypeMap.LanguageName == "void")
+			{
+				return "void" + new string( '*', typeMap.LanguageName.PointDeep +
+				                                 (paramFunctionOption is ArrayParamFunctionOption ? 1 : 0) );
+			}
+			return csTypeMap.LanguageName + new string( '*', typeMap.LanguageName.PointDeep > 0 ? typeMap.LanguageName.PointDeep : 0 ) +
+			       (paramFunctionOption is ArrayParamFunctionOption ? "[]" : "");
+		}
+
+		public static void GetTypeMap( this ReturnFunctionOption returnFunctionOption, 
+			IEnumerable<TypeMap> typeMapList, IEnumerable<CSTypeMap> csTypeMapList, out CSTypeMap csTypeMap, 
+			out TypeMap typeMap )
+		{
+			GetTypeMap( typeMapList, csTypeMapList, out csTypeMap, out typeMap, returnFunctionOption.ReturnType, false );
+		}
+
+		public static void GetTypeMap( this ParamFunctionOption paramFunctionOption, 
+			IEnumerable<TypeMap> typeMapList, IEnumerable<CSTypeMap> csTypeMapList, out CSTypeMap csTypeMap, 
+			out TypeMap typeMap )
+		{
+			GetTypeMap( typeMapList, csTypeMapList, out csTypeMap, out typeMap, paramFunctionOption.ParamType, 
+				paramFunctionOption is ArrayParamFunctionOption );
+		}
+
+		public static void GetTypeMap( IEnumerable<TypeMap> typeMapList, IEnumerable<CSTypeMap> csTypeMapList, out CSTypeMap csTypeMap, 
+			out TypeMap typeMap, string type, bool isArray )
+		{
+			var _typeMap = typeMapList.FirstOrDefault( map => map.GLName == type );
+			typeMap = _typeMap;
+			if (_typeMap == null) throw new Exception( "Unknow return type: " + type );
+			if (_typeMap.LanguageName.Name == "*")
+			{
+				csTypeMap = null;
+				return;
+			}
+			csTypeMap = csTypeMapList.FirstOrDefault( map1 => map1.GLName == _typeMap.LanguageName.Name );
+			if (csTypeMap.LanguageName == "char" && (_typeMap.LanguageName.PointDeep == 1 || isArray))
+			{
+				csTypeMap = new CSTypeMap { GLName = "GLchar", LanguageName = "string", Attributes = new string[0] };
+				if (_typeMap.LanguageName.PointDeep == 1) _typeMap.LanguageName.PointDeep--;
+			}
+			if (csTypeMap == null) throw new Exception( "Unknow CS type: " + _typeMap.LanguageName.Name );
+		}
+
+		public static string GetCSName( this string name )
+		{
+			return codeDomProvider.CreateEscapedIdentifier( name );
+		}
+	}
+
+	[DebuggerDisplay("version {MajorVersion}.{MinorVersion}")]
+	public class VersionFunctionOption : TailFunctionOption
+	{
+		private static readonly Regex versionRegex = new Regex( @"^(?'major'[0-9]+)\.(?'minor'[0-9]+)$" );
+
+		public int MajorVersion;
+		public int MinorVersion;
+
+		public new static VersionFunctionOption Parse( string name, string tail, int lineNumber )
+		{
+			var match = versionRegex.Match( tail.Trim() );
+			if (!match.Success) throw new Exception( "Can't parse version: " + tail + "at line " + lineNumber );
+
+			return new VersionFunctionOption
+			       {
+			       	Name = name,
+			       	MajorVersion = Convert.ToInt32( match.Groups["major"].Value ),
+			       	MinorVersion = Convert.ToInt32( match.Groups["major"].Value ),
+			       };
+		}
+
+		public bool LessOrEqual( int major, int minor )
+		{
+			return MajorVersion <= major && MinorVersion <= minor;
 		}
 	}
 

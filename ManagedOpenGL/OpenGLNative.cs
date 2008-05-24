@@ -4,3064 +4,3341 @@ namespace ManagedOpenGL
 {
 	public static class OpenGLNative
 	{
+		unsafe static OpenGLNative()
+		{
+			BlendEquationSeparate = (BlendEquationSeparateDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "BlendEquationSeparate" ), typeof(BlendEquationSeparateDelegate) );
+			DrawBuffers = (DrawBuffersDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DrawBuffers" ), typeof(DrawBuffersDelegate) );
+			StencilOpSeparate = (StencilOpSeparateDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "StencilOpSeparate" ), typeof(StencilOpSeparateDelegate) );
+			StencilFuncSeparate = (StencilFuncSeparateDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "StencilFuncSeparate" ), typeof(StencilFuncSeparateDelegate) );
+			StencilMaskSeparate = (StencilMaskSeparateDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "StencilMaskSeparate" ), typeof(StencilMaskSeparateDelegate) );
+			AttachShader = (AttachShaderDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "AttachShader" ), typeof(AttachShaderDelegate) );
+			BindAttribLocation = (BindAttribLocationDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "BindAttribLocation" ), typeof(BindAttribLocationDelegate) );
+			CompileShader = (CompileShaderDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "CompileShader" ), typeof(CompileShaderDelegate) );
+			CreateProgram = (CreateProgramDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "CreateProgram" ), typeof(CreateProgramDelegate) );
+			CreateShader = (CreateShaderDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "CreateShader" ), typeof(CreateShaderDelegate) );
+			DeleteProgram = (DeleteProgramDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DeleteProgram" ), typeof(DeleteProgramDelegate) );
+			DeleteShader = (DeleteShaderDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DeleteShader" ), typeof(DeleteShaderDelegate) );
+			DetachShader = (DetachShaderDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DetachShader" ), typeof(DetachShaderDelegate) );
+			DisableVertexAttribArray = (DisableVertexAttribArrayDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DisableVertexAttribArray" ), typeof(DisableVertexAttribArrayDelegate) );
+			EnableVertexAttribArray = (EnableVertexAttribArrayDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "EnableVertexAttribArray" ), typeof(EnableVertexAttribArrayDelegate) );
+			GetActiveAttrib = (GetActiveAttribDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetActiveAttrib" ), typeof(GetActiveAttribDelegate) );
+			GetActiveUniform = (GetActiveUniformDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetActiveUniform" ), typeof(GetActiveUniformDelegate) );
+			GetAttachedShaders = (GetAttachedShadersDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetAttachedShaders" ), typeof(GetAttachedShadersDelegate) );
+			GetAttribLocation = (GetAttribLocationDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetAttribLocation" ), typeof(GetAttribLocationDelegate) );
+			GetProgramiv = (GetProgramivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetProgramiv" ), typeof(GetProgramivDelegate) );
+			GetProgramInfoLog = (GetProgramInfoLogDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetProgramInfoLog" ), typeof(GetProgramInfoLogDelegate) );
+			GetShaderiv = (GetShaderivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetShaderiv" ), typeof(GetShaderivDelegate) );
+			GetShaderInfoLog = (GetShaderInfoLogDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetShaderInfoLog" ), typeof(GetShaderInfoLogDelegate) );
+			GetShaderSource = (GetShaderSourceDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetShaderSource" ), typeof(GetShaderSourceDelegate) );
+			GetUniformLocation = (GetUniformLocationDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformLocation" ), typeof(GetUniformLocationDelegate) );
+			GetUniformfv = (GetUniformfvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformfv" ), typeof(GetUniformfvDelegate) );
+			GetUniformiv = (GetUniformivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformiv" ), typeof(GetUniformivDelegate) );
+			GetVertexAttribdv = (GetVertexAttribdvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribdv" ), typeof(GetVertexAttribdvDelegate) );
+			GetVertexAttribfv = (GetVertexAttribfvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribfv" ), typeof(GetVertexAttribfvDelegate) );
+			GetVertexAttribiv = (GetVertexAttribivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribiv" ), typeof(GetVertexAttribivDelegate) );
+			GetVertexAttribPointerv = (GetVertexAttribPointervDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetVertexAttribPointerv" ), typeof(GetVertexAttribPointervDelegate) );
+			IsProgram = (IsProgramDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "IsProgram" ), typeof(IsProgramDelegate) );
+			IsShader = (IsShaderDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "IsShader" ), typeof(IsShaderDelegate) );
+			LinkProgram = (LinkProgramDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "LinkProgram" ), typeof(LinkProgramDelegate) );
+			ShaderSource = (ShaderSourceDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ShaderSource" ), typeof(ShaderSourceDelegate) );
+			UseProgram = (UseProgramDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UseProgram" ), typeof(UseProgramDelegate) );
+			Uniform1f = (Uniform1fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1f" ), typeof(Uniform1fDelegate) );
+			Uniform2f = (Uniform2fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2f" ), typeof(Uniform2fDelegate) );
+			Uniform3f = (Uniform3fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3f" ), typeof(Uniform3fDelegate) );
+			Uniform4f = (Uniform4fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4f" ), typeof(Uniform4fDelegate) );
+			Uniform1i = (Uniform1iDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1i" ), typeof(Uniform1iDelegate) );
+			Uniform2i = (Uniform2iDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2i" ), typeof(Uniform2iDelegate) );
+			Uniform3i = (Uniform3iDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3i" ), typeof(Uniform3iDelegate) );
+			Uniform4i = (Uniform4iDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4i" ), typeof(Uniform4iDelegate) );
+			Uniform1fv = (Uniform1fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1fv" ), typeof(Uniform1fvDelegate) );
+			Uniform2fv = (Uniform2fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2fv" ), typeof(Uniform2fvDelegate) );
+			Uniform3fv = (Uniform3fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3fv" ), typeof(Uniform3fvDelegate) );
+			Uniform4fv = (Uniform4fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4fv" ), typeof(Uniform4fvDelegate) );
+			Uniform1iv = (Uniform1ivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1iv" ), typeof(Uniform1ivDelegate) );
+			Uniform2iv = (Uniform2ivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2iv" ), typeof(Uniform2ivDelegate) );
+			Uniform3iv = (Uniform3ivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3iv" ), typeof(Uniform3ivDelegate) );
+			Uniform4iv = (Uniform4ivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4iv" ), typeof(Uniform4ivDelegate) );
+			UniformMatrix2fv = (UniformMatrix2fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix2fv" ), typeof(UniformMatrix2fvDelegate) );
+			UniformMatrix3fv = (UniformMatrix3fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix3fv" ), typeof(UniformMatrix3fvDelegate) );
+			UniformMatrix4fv = (UniformMatrix4fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix4fv" ), typeof(UniformMatrix4fvDelegate) );
+			ValidateProgram = (ValidateProgramDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ValidateProgram" ), typeof(ValidateProgramDelegate) );
+			VertexAttrib1d = (VertexAttrib1dDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1d" ), typeof(VertexAttrib1dDelegate) );
+			VertexAttrib1dv = (VertexAttrib1dvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1dv" ), typeof(VertexAttrib1dvDelegate) );
+			VertexAttrib1f = (VertexAttrib1fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1f" ), typeof(VertexAttrib1fDelegate) );
+			VertexAttrib1fv = (VertexAttrib1fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1fv" ), typeof(VertexAttrib1fvDelegate) );
+			VertexAttrib1s = (VertexAttrib1sDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1s" ), typeof(VertexAttrib1sDelegate) );
+			VertexAttrib1sv = (VertexAttrib1svDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib1sv" ), typeof(VertexAttrib1svDelegate) );
+			VertexAttrib2d = (VertexAttrib2dDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2d" ), typeof(VertexAttrib2dDelegate) );
+			VertexAttrib2dv = (VertexAttrib2dvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2dv" ), typeof(VertexAttrib2dvDelegate) );
+			VertexAttrib2f = (VertexAttrib2fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2f" ), typeof(VertexAttrib2fDelegate) );
+			VertexAttrib2fv = (VertexAttrib2fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2fv" ), typeof(VertexAttrib2fvDelegate) );
+			VertexAttrib2s = (VertexAttrib2sDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2s" ), typeof(VertexAttrib2sDelegate) );
+			VertexAttrib2sv = (VertexAttrib2svDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib2sv" ), typeof(VertexAttrib2svDelegate) );
+			VertexAttrib3d = (VertexAttrib3dDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3d" ), typeof(VertexAttrib3dDelegate) );
+			VertexAttrib3dv = (VertexAttrib3dvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3dv" ), typeof(VertexAttrib3dvDelegate) );
+			VertexAttrib3f = (VertexAttrib3fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3f" ), typeof(VertexAttrib3fDelegate) );
+			VertexAttrib3fv = (VertexAttrib3fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3fv" ), typeof(VertexAttrib3fvDelegate) );
+			VertexAttrib3s = (VertexAttrib3sDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3s" ), typeof(VertexAttrib3sDelegate) );
+			VertexAttrib3sv = (VertexAttrib3svDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib3sv" ), typeof(VertexAttrib3svDelegate) );
+			VertexAttrib4Nbv = (VertexAttrib4NbvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nbv" ), typeof(VertexAttrib4NbvDelegate) );
+			VertexAttrib4Niv = (VertexAttrib4NivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Niv" ), typeof(VertexAttrib4NivDelegate) );
+			VertexAttrib4Nsv = (VertexAttrib4NsvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nsv" ), typeof(VertexAttrib4NsvDelegate) );
+			VertexAttrib4Nub = (VertexAttrib4NubDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nub" ), typeof(VertexAttrib4NubDelegate) );
+			VertexAttrib4Nubv = (VertexAttrib4NubvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nubv" ), typeof(VertexAttrib4NubvDelegate) );
+			VertexAttrib4Nuiv = (VertexAttrib4NuivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nuiv" ), typeof(VertexAttrib4NuivDelegate) );
+			VertexAttrib4Nusv = (VertexAttrib4NusvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4Nusv" ), typeof(VertexAttrib4NusvDelegate) );
+			VertexAttrib4bv = (VertexAttrib4bvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4bv" ), typeof(VertexAttrib4bvDelegate) );
+			VertexAttrib4d = (VertexAttrib4dDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4d" ), typeof(VertexAttrib4dDelegate) );
+			VertexAttrib4dv = (VertexAttrib4dvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4dv" ), typeof(VertexAttrib4dvDelegate) );
+			VertexAttrib4f = (VertexAttrib4fDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4f" ), typeof(VertexAttrib4fDelegate) );
+			VertexAttrib4fv = (VertexAttrib4fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4fv" ), typeof(VertexAttrib4fvDelegate) );
+			VertexAttrib4iv = (VertexAttrib4ivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4iv" ), typeof(VertexAttrib4ivDelegate) );
+			VertexAttrib4s = (VertexAttrib4sDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4s" ), typeof(VertexAttrib4sDelegate) );
+			VertexAttrib4sv = (VertexAttrib4svDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4sv" ), typeof(VertexAttrib4svDelegate) );
+			VertexAttrib4ubv = (VertexAttrib4ubvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4ubv" ), typeof(VertexAttrib4ubvDelegate) );
+			VertexAttrib4uiv = (VertexAttrib4uivDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4uiv" ), typeof(VertexAttrib4uivDelegate) );
+			VertexAttrib4usv = (VertexAttrib4usvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttrib4usv" ), typeof(VertexAttrib4usvDelegate) );
+			VertexAttribPointer = (VertexAttribPointerDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "VertexAttribPointer" ), typeof(VertexAttribPointerDelegate) );
+			UniformMatrix2x3fv = (UniformMatrix2x3fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix2x3fv" ), typeof(UniformMatrix2x3fvDelegate) );
+			UniformMatrix3x2fv = (UniformMatrix3x2fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix3x2fv" ), typeof(UniformMatrix3x2fvDelegate) );
+			UniformMatrix2x4fv = (UniformMatrix2x4fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix2x4fv" ), typeof(UniformMatrix2x4fvDelegate) );
+			UniformMatrix4x2fv = (UniformMatrix4x2fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix4x2fv" ), typeof(UniformMatrix4x2fvDelegate) );
+			UniformMatrix3x4fv = (UniformMatrix3x4fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix3x4fv" ), typeof(UniformMatrix3x4fvDelegate) );
+			UniformMatrix4x3fv = (UniformMatrix4x3fvDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformMatrix4x3fv" ), typeof(UniformMatrix4x3fvDelegate) );
+			ProgramVertexLimitNV = (ProgramVertexLimitNVDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ProgramVertexLimitNV" ), typeof(ProgramVertexLimitNVDelegate) );
+			FramebufferTextureEXT = (FramebufferTextureEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "FramebufferTextureEXT" ), typeof(FramebufferTextureEXTDelegate) );
+			FramebufferTextureLayerEXT = (FramebufferTextureLayerEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "FramebufferTextureLayerEXT" ), typeof(FramebufferTextureLayerEXTDelegate) );
+			FramebufferTextureFaceEXT = (FramebufferTextureFaceEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "FramebufferTextureFaceEXT" ), typeof(FramebufferTextureFaceEXTDelegate) );
+			ProgramParameteriEXT = (ProgramParameteriEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ProgramParameteriEXT" ), typeof(ProgramParameteriEXTDelegate) );
+			GetUniformuivEXT = (GetUniformuivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformuivEXT" ), typeof(GetUniformuivEXTDelegate) );
+			BindFragDataLocationEXT = (BindFragDataLocationEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "BindFragDataLocationEXT" ), typeof(BindFragDataLocationEXTDelegate) );
+			GetFragDataLocationEXT = (GetFragDataLocationEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetFragDataLocationEXT" ), typeof(GetFragDataLocationEXTDelegate) );
+			Uniform1uiEXT = (Uniform1uiEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1uiEXT" ), typeof(Uniform1uiEXTDelegate) );
+			Uniform2uiEXT = (Uniform2uiEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2uiEXT" ), typeof(Uniform2uiEXTDelegate) );
+			Uniform3uiEXT = (Uniform3uiEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3uiEXT" ), typeof(Uniform3uiEXTDelegate) );
+			Uniform4uiEXT = (Uniform4uiEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4uiEXT" ), typeof(Uniform4uiEXTDelegate) );
+			Uniform1uivEXT = (Uniform1uivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform1uivEXT" ), typeof(Uniform1uivEXTDelegate) );
+			Uniform2uivEXT = (Uniform2uivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform2uivEXT" ), typeof(Uniform2uivEXTDelegate) );
+			Uniform3uivEXT = (Uniform3uivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform3uivEXT" ), typeof(Uniform3uivEXTDelegate) );
+			Uniform4uivEXT = (Uniform4uivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "Uniform4uivEXT" ), typeof(Uniform4uivEXTDelegate) );
+			DrawArraysInstancedEXT = (DrawArraysInstancedEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DrawArraysInstancedEXT" ), typeof(DrawArraysInstancedEXTDelegate) );
+			DrawElementsInstancedEXT = (DrawElementsInstancedEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DrawElementsInstancedEXT" ), typeof(DrawElementsInstancedEXTDelegate) );
+			TexBufferEXT = (TexBufferEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "TexBufferEXT" ), typeof(TexBufferEXTDelegate) );
+			DepthRangedNV = (DepthRangedNVDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DepthRangedNV" ), typeof(DepthRangedNVDelegate) );
+			ClearDepthdNV = (ClearDepthdNVDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ClearDepthdNV" ), typeof(ClearDepthdNVDelegate) );
+			DepthBoundsdNV = (DepthBoundsdNVDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DepthBoundsdNV" ), typeof(DepthBoundsdNVDelegate) );
+			ColorMaskIndexedEXT = (ColorMaskIndexedEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ColorMaskIndexedEXT" ), typeof(ColorMaskIndexedEXTDelegate) );
+			GetBooleanIndexedvEXT = (GetBooleanIndexedvEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetBooleanIndexedvEXT" ), typeof(GetBooleanIndexedvEXTDelegate) );
+			GetIntegerIndexedvEXT = (GetIntegerIndexedvEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetIntegerIndexedvEXT" ), typeof(GetIntegerIndexedvEXTDelegate) );
+			EnableIndexedEXT = (EnableIndexedEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "EnableIndexedEXT" ), typeof(EnableIndexedEXTDelegate) );
+			DisableIndexedEXT = (DisableIndexedEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "DisableIndexedEXT" ), typeof(DisableIndexedEXTDelegate) );
+			IsEnabledIndexedEXT = (IsEnabledIndexedEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "IsEnabledIndexedEXT" ), typeof(IsEnabledIndexedEXTDelegate) );
+			UniformBufferEXT = (UniformBufferEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "UniformBufferEXT" ), typeof(UniformBufferEXTDelegate) );
+			GetUniformBufferSizeEXT = (GetUniformBufferSizeEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformBufferSizeEXT" ), typeof(GetUniformBufferSizeEXTDelegate) );
+			GetUniformOffsetEXT = (GetUniformOffsetEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetUniformOffsetEXT" ), typeof(GetUniformOffsetEXTDelegate) );
+			TexParameterIivEXT = (TexParameterIivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "TexParameterIivEXT" ), typeof(TexParameterIivEXTDelegate) );
+			TexParameterIuivEXT = (TexParameterIuivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "TexParameterIuivEXT" ), typeof(TexParameterIuivEXTDelegate) );
+			GetTexParameterIivEXT = (GetTexParameterIivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetTexParameterIivEXT" ), typeof(GetTexParameterIivEXTDelegate) );
+			GetTexParameterIuivEXT = (GetTexParameterIuivEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "GetTexParameterIuivEXT" ), typeof(GetTexParameterIuivEXTDelegate) );
+			ClearColorIiEXT = (ClearColorIiEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ClearColorIiEXT" ), typeof(ClearColorIiEXTDelegate) );
+			ClearColorIuiEXT = (ClearColorIuiEXTDelegate)
+				Marshal.GetDelegateForFunctionPointer( WindowsOpenGLNative.wglGetProcAddress( "ClearColorIuiEXT" ), typeof(ClearColorIuiEXTDelegate) );
+			
+		}
+	
+		[DllImport( "opengl32.dll" )]
+		public static extern void NewList( uint list, ListMode mode ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void EndList(  ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void CallList( uint list ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern unsafe void CallLists( int n, ListNameType type, void* lists ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void DeleteLists( uint list, int range ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern uint GenLists( int range ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void ListBase( uint @base ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Begin( BeginMode mode ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Bitmap( int width, int height, float xorig, float yorig, float xmove, float ymove, byte[] bitmap ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3b( sbyte red, sbyte green, sbyte blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3bv( sbyte[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3d( double red, double green, double blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3dv( double[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3f( float red, float green, float blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3fv( float[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3i( int red, int green, int blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3iv( int[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3s( short red, short green, short blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3sv( short[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3ub( byte red, byte green, byte blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3ubv( byte[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3ui( uint red, uint green, uint blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3uiv( uint[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3us( ushort red, ushort green, ushort blue ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color3usv( ushort[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4b( sbyte red, sbyte green, sbyte blue, sbyte alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4bv( sbyte[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4d( double red, double green, double blue, double alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4dv( double[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4f( float red, float green, float blue, float alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4fv( float[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4i( int red, int green, int blue, int alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4iv( int[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4s( short red, short green, short blue, short alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4sv( short[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4ub( byte red, byte green, byte blue, byte alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4ubv( byte[] v ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4ui( uint red, uint green, uint blue, uint alpha ); // 	
+		[DllImport( "opengl32.dll" )]
+		public static extern void Color4uiv( uint[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NewList( uint list, ListMode mode );
+		public static extern void Color4us( ushort red, ushort green, ushort blue, ushort alpha ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EndList(  );
+		public static extern void Color4usv( ushort[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CallList( uint list );
+		public static extern void EdgeFlag( bool flag ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CallLists( int n, ListNameType type, void lists );
+		public static extern void EdgeFlagv( bool[] flag ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteLists( uint list, int range );
+		public static extern void End(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint GenLists( int range );
+		public static extern void Indexd( double c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ListBase( uint @base );
+		public static extern void Indexdv( double[] c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Begin( BeginMode mode );
+		public static extern void Indexf( float c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Bitmap( int width, int height, float xorig, float yorig, float xmove, float ymove, byte bitmap );
+		public static extern void Indexfv( float[] c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3b( sbyte red, sbyte green, sbyte blue );
+		public static extern void Indexi( int c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3bv( sbyte v );
+		public static extern void Indexiv( int[] c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3d( double red, double green, double blue );
+		public static extern void Indexs( short c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3dv( double v );
+		public static extern void Indexsv( short[] c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3f( float red, float green, float blue );
+		public static extern void Normal3b( sbyte nx, sbyte ny, sbyte nz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3fv( float v );
+		public static extern void Normal3bv( sbyte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3i( int red, int green, int blue );
+		public static extern void Normal3d( double nx, double ny, double nz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3iv( int v );
+		public static extern void Normal3dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3s( short red, short green, short blue );
+		public static extern void Normal3f( float nx, float ny, float nz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3sv( short v );
+		public static extern void Normal3fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3ub( byte red, byte green, byte blue );
+		public static extern void Normal3i( int nx, int ny, int nz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3ubv( byte v );
+		public static extern void Normal3iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3ui( uint red, uint green, uint blue );
+		public static extern void Normal3s( short nx, short ny, short nz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3uiv( uint v );
+		public static extern void Normal3sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3us( ushort red, ushort green, ushort blue );
+		public static extern void RasterPos2d( double x, double y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3usv( ushort v );
+		public static extern void RasterPos2dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4b( sbyte red, sbyte green, sbyte blue, sbyte alpha );
+		public static extern void RasterPos2f( float x, float y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4bv( sbyte v );
+		public static extern void RasterPos2fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4d( double red, double green, double blue, double alpha );
+		public static extern void RasterPos2i( int x, int y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4dv( double v );
+		public static extern void RasterPos2iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4f( float red, float green, float blue, float alpha );
+		public static extern void RasterPos2s( short x, short y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4fv( float v );
+		public static extern void RasterPos2sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4i( int red, int green, int blue, int alpha );
+		public static extern void RasterPos3d( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4iv( int v );
+		public static extern void RasterPos3dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4s( short red, short green, short blue, short alpha );
+		public static extern void RasterPos3f( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4sv( short v );
+		public static extern void RasterPos3fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ub( byte red, byte green, byte blue, byte alpha );
+		public static extern void RasterPos3i( int x, int y, int z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ubv( byte v );
+		public static extern void RasterPos3iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ui( uint red, uint green, uint blue, uint alpha );
+		public static extern void RasterPos3s( short x, short y, short z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4uiv( uint v );
+		public static extern void RasterPos3sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4us( ushort red, ushort green, ushort blue, ushort alpha );
+		public static extern void RasterPos4d( double x, double y, double z, double w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4usv( ushort v );
+		public static extern void RasterPos4dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EdgeFlag( bool flag );
+		public static extern void RasterPos4f( float x, float y, float z, float w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EdgeFlagv( bool flag );
+		public static extern void RasterPos4fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void End(  );
+		public static extern void RasterPos4i( int x, int y, int z, int w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexd( double c );
+		public static extern void RasterPos4iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexdv( double c );
+		public static extern void RasterPos4s( short x, short y, short z, short w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexf( float c );
+		public static extern void RasterPos4sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexfv( float c );
+		public static extern void Rectd( double x1, double y1, double x2, double y2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexi( int c );
+		public static extern void Rectdv( double[] v1, double[] v2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexiv( int c );
+		public static extern void Rectf( float x1, float y1, float x2, float y2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexs( short c );
+		public static extern void Rectfv( float[] v1, float[] v2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexsv( short c );
+		public static extern void Recti( int x1, int y1, int x2, int y2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3b( sbyte nx, sbyte ny, sbyte nz );
+		public static extern void Rectiv( int[] v1, int[] v2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3bv( sbyte v );
+		public static extern void Rects( short x1, short y1, short x2, short y2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3d( double nx, double ny, double nz );
+		public static extern void Rectsv( short[] v1, short[] v2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3dv( double v );
+		public static extern void TexCoord1d( double s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3f( float nx, float ny, float nz );
+		public static extern void TexCoord1dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3fv( float v );
+		public static extern void TexCoord1f( float s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3i( int nx, int ny, int nz );
+		public static extern void TexCoord1fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3iv( int v );
+		public static extern void TexCoord1i( int s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3s( short nx, short ny, short nz );
+		public static extern void TexCoord1iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3sv( short v );
+		public static extern void TexCoord1s( short s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2d( double x, double y );
+		public static extern void TexCoord1sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2dv( double v );
+		public static extern void TexCoord2d( double s, double t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2f( float x, float y );
+		public static extern void TexCoord2dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2fv( float v );
+		public static extern void TexCoord2f( float s, float t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2i( int x, int y );
+		public static extern void TexCoord2fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2iv( int v );
+		public static extern void TexCoord2i( int s, int t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2s( short x, short y );
+		public static extern void TexCoord2iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos2sv( short v );
+		public static extern void TexCoord2s( short s, short t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3d( double x, double y, double z );
+		public static extern void TexCoord2sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3dv( double v );
+		public static extern void TexCoord3d( double s, double t, double r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3f( float x, float y, float z );
+		public static extern void TexCoord3dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3fv( float v );
+		public static extern void TexCoord3f( float s, float t, float r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3i( int x, int y, int z );
+		public static extern void TexCoord3fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3iv( int v );
+		public static extern void TexCoord3i( int s, int t, int r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3s( short x, short y, short z );
+		public static extern void TexCoord3iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos3sv( short v );
+		public static extern void TexCoord3s( short s, short t, short r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4d( double x, double y, double z, double w );
+		public static extern void TexCoord3sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4dv( double v );
+		public static extern void TexCoord4d( double s, double t, double r, double q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4f( float x, float y, float z, float w );
+		public static extern void TexCoord4dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4fv( float v );
+		public static extern void TexCoord4f( float s, float t, float r, float q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4i( int x, int y, int z, int w );
+		public static extern void TexCoord4fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4iv( int v );
+		public static extern void TexCoord4i( int s, int t, int r, int q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4s( short x, short y, short z, short w );
+		public static extern void TexCoord4iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RasterPos4sv( short v );
+		public static extern void TexCoord4s( short s, short t, short r, short q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rectd( double x1, double y1, double x2, double y2 );
+		public static extern void TexCoord4sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rectdv( double v1, double v2 );
+		public static extern void Vertex2d( double x, double y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rectf( float x1, float y1, float x2, float y2 );
+		public static extern void Vertex2dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rectfv( float v1, float v2 );
+		public static extern void Vertex2f( float x, float y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Recti( int x1, int y1, int x2, int y2 );
+		public static extern void Vertex2fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rectiv( int v1, int v2 );
+		public static extern void Vertex2i( int x, int y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rects( short x1, short y1, short x2, short y2 );
+		public static extern void Vertex2iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rectsv( short v1, short v2 );
+		public static extern void Vertex2s( short x, short y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1d( double s );
+		public static extern void Vertex2sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1dv( double v );
+		public static extern void Vertex3d( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1f( float s );
+		public static extern void Vertex3dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1fv( float v );
+		public static extern void Vertex3f( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1i( int s );
+		public static extern void Vertex3fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1iv( int v );
+		public static extern void Vertex3i( int x, int y, int z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1s( short s );
+		public static extern void Vertex3iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1sv( short v );
+		public static extern void Vertex3s( short x, short y, short z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2d( double s, double t );
+		public static extern void Vertex3sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2dv( double v );
+		public static extern void Vertex4d( double x, double y, double z, double w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2f( float s, float t );
+		public static extern void Vertex4dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fv( float v );
+		public static extern void Vertex4f( float x, float y, float z, float w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2i( int s, int t );
+		public static extern void Vertex4fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2iv( int v );
+		public static extern void Vertex4i( int x, int y, int z, int w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2s( short s, short t );
+		public static extern void Vertex4iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2sv( short v );
+		public static extern void Vertex4s( short x, short y, short z, short w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3d( double s, double t, double r );
+		public static extern void Vertex4sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3dv( double v );
+		public static extern void ClipPlane( ClipPlaneName plane, double[] equation ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3f( float s, float t, float r );
+		public static extern void ColorMaterial( MaterialFace face, ColorMaterialParameter mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3fv( float v );
+		public static extern void CullFace( CullFaceMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3i( int s, int t, int r );
+		public static extern void Fogf( FogParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3iv( int v );
+		public static extern void Fogfv( FogParameter pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3s( short s, short t, short r );
+		public static extern void Fogi( FogParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3sv( short v );
+		public static extern void Fogiv( FogParameter pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4d( double s, double t, double r, double q );
+		public static extern void FrontFace( FrontFaceDirection mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4dv( double v );
+		public static extern void Hint( HintTarget target, HintMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4f( float s, float t, float r, float q );
+		public static extern void Lightf( LightName light, LightParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4fv( float v );
+		public static extern void Lightfv( LightName light, LightParameter pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4i( int s, int t, int r, int q );
+		public static extern void Lighti( LightName light, LightParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4iv( int v );
+		public static extern void Lightiv( LightName light, LightParameter pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4s( short s, short t, short r, short q );
+		public static extern void LightModelf( LightModelParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4sv( short v );
+		public static extern void LightModelfv( LightModelParameter pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2d( double x, double y );
+		public static extern void LightModeli( LightModelParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2dv( double v );
+		public static extern void LightModeliv( LightModelParameter pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2f( float x, float y );
+		public static extern void LineStipple( int factor, ushort pattern ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2fv( float v );
+		public static extern void LineWidth( float width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2i( int x, int y );
+		public static extern void Materialf( MaterialFace face, MaterialParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2iv( int v );
+		public static extern void Materialfv( MaterialFace face, MaterialParameter pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2s( short x, short y );
+		public static extern void Materiali( MaterialFace face, MaterialParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2sv( short v );
+		public static extern void Materialiv( MaterialFace face, MaterialParameter pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3d( double x, double y, double z );
+		public static extern void PointSize( float size ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3dv( double v );
+		public static extern void PolygonMode( MaterialFace face, PolygonMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3f( float x, float y, float z );
+		public static extern void PolygonStipple( byte[] mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3fv( float v );
+		public static extern void Scissor( int x, int y, int width, int height ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3i( int x, int y, int z );
+		public static extern void ShadeModel( ShadingModel mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3iv( int v );
+		public static extern void TexParameterf( TextureTarget target, TextureParameterName pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3s( short x, short y, short z );
+		public static extern void TexParameterfv( TextureTarget target, TextureParameterName pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3sv( short v );
+		public static extern void TexParameteri( TextureTarget target, TextureParameterName pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4d( double x, double y, double z, double w );
+		public static extern void TexParameteriv( TextureTarget target, TextureParameterName pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4dv( double v );
+		public static extern unsafe void TexImage1D( TextureTarget target, int level, int internalformat, int width, int border, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4f( float x, float y, float z, float w );
+		public static extern unsafe void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4fv( float v );
+		public static extern void TexEnvf( TextureEnvTarget target, TextureEnvParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4i( int x, int y, int z, int w );
+		public static extern void TexEnvfv( TextureEnvTarget target, TextureEnvParameter pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4iv( int v );
+		public static extern void TexEnvi( TextureEnvTarget target, TextureEnvParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4s( short x, short y, short z, short w );
+		public static extern void TexEnviv( TextureEnvTarget target, TextureEnvParameter pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4sv( short v );
+		public static extern void TexGend( TextureCoordName coord, TextureGenParameter pname, double param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClipPlane( ClipPlaneName plane, double equation );
+		public static extern void TexGendv( TextureCoordName coord, TextureGenParameter pname, double[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorMaterial( MaterialFace face, ColorMaterialParameter mode );
+		public static extern void TexGenf( TextureCoordName coord, TextureGenParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CullFace( CullFaceMode mode );
+		public static extern void TexGenfv( TextureCoordName coord, TextureGenParameter pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Fogf( FogParameter pname, float param );
+		public static extern void TexGeni( TextureCoordName coord, TextureGenParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Fogfv( FogParameter pname, float @params );
+		public static extern void TexGeniv( TextureCoordName coord, TextureGenParameter pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Fogi( FogParameter pname, int param );
+		public static extern void FeedbackBuffer( int size, FeedbackType type, ref float[] buffer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Fogiv( FogParameter pname, int @params );
+		public static extern void SelectBuffer( int size, ref uint[] buffer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FrontFace( FrontFaceDirection mode );
+		public static extern int RenderMode( RenderingMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Hint( HintTarget target, HintMode mode );
+		public static extern void InitNames(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Lightf( LightName light, LightParameter pname, float param );
+		public static extern void LoadName( uint name ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Lightfv( LightName light, LightParameter pname, float @params );
+		public static extern void PassThrough( float token ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Lighti( LightName light, LightParameter pname, int param );
+		public static extern void PopName(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Lightiv( LightName light, LightParameter pname, int @params );
+		public static extern void PushName( uint name ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LightModelf( LightModelParameter pname, float param );
+		public static extern void DrawBuffer( DrawBufferMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LightModelfv( LightModelParameter pname, float @params );
+		public static extern void Clear( ClearBufferMask mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LightModeli( LightModelParameter pname, int param );
+		public static extern void ClearAccum( float red, float green, float blue, float alpha ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LightModeliv( LightModelParameter pname, int @params );
+		public static extern void ClearIndex( float c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LineStipple( int factor, ushort pattern );
+		public static extern void ClearColor( float red, float green, float blue, float alpha ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LineWidth( float width );
+		public static extern void ClearStencil( int s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Materialf( MaterialFace face, MaterialParameter pname, float param );
+		public static extern void ClearDepth( double depth ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Materialfv( MaterialFace face, MaterialParameter pname, float @params );
+		public static extern void StencilMask( uint mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Materiali( MaterialFace face, MaterialParameter pname, int param );
+		public static extern void ColorMask( bool red, bool green, bool blue, bool alpha ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Materialiv( MaterialFace face, MaterialParameter pname, int @params );
+		public static extern void DepthMask( bool flag ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointSize( float size );
+		public static extern void IndexMask( uint mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PolygonMode( MaterialFace face, PolygonMode mode );
+		public static extern void Accum( AccumOp op, float value ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PolygonStipple( byte mask );
+		public static extern void Disable( EnableCap cap ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Scissor( int x, int y, int width, int height );
+		public static extern void Enable( EnableCap cap ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ShadeModel( ShadingModel mode );
+		public static extern void Finish(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexParameterf( TextureTarget target, TextureParameterName pname, float param );
+		public static extern void Flush(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexParameterfv( TextureTarget target, TextureParameterName pname, float @params );
+		public static extern void PopAttrib(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexParameteri( TextureTarget target, TextureParameterName pname, int param );
+		public static extern void PushAttrib( AttribMask mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexParameteriv( TextureTarget target, TextureParameterName pname, int @params );
+		public static extern void Map1d( MapTarget target, double u1, double u2, int stride, int order, double[] points ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexImage1D( TextureTarget target, int level, int internalformat, int width, int border, PixelFormat format, PixelType type, void pixels );
+		public static extern void Map1f( MapTarget target, float u1, float u2, int stride, int order, float[] points ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, PixelType type, void pixels );
+		public static extern void Map2d( MapTarget target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double[] points ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexEnvf( TextureEnvTarget target, TextureEnvParameter pname, float param );
+		public static extern void Map2f( MapTarget target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float[] points ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexEnvfv( TextureEnvTarget target, TextureEnvParameter pname, float @params );
+		public static extern void MapGrid1d( int un, double u1, double u2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexEnvi( TextureEnvTarget target, TextureEnvParameter pname, int param );
+		public static extern void MapGrid1f( int un, float u1, float u2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexEnviv( TextureEnvTarget target, TextureEnvParameter pname, int @params );
+		public static extern void MapGrid2d( int un, double u1, double u2, int vn, double v1, double v2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexGend( TextureCoordName coord, TextureGenParameter pname, double param );
+		public static extern void MapGrid2f( int un, float u1, float u2, int vn, float v1, float v2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexGendv( TextureCoordName coord, TextureGenParameter pname, double @params );
+		public static extern void EvalCoord1d( double u ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexGenf( TextureCoordName coord, TextureGenParameter pname, float param );
+		public static extern void EvalCoord1dv( double[] u ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexGenfv( TextureCoordName coord, TextureGenParameter pname, float @params );
+		public static extern void EvalCoord1f( float u ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexGeni( TextureCoordName coord, TextureGenParameter pname, int param );
+		public static extern void EvalCoord1fv( float[] u ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexGeniv( TextureCoordName coord, TextureGenParameter pname, int @params );
+		public static extern void EvalCoord2d( double u, double v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FeedbackBuffer( int size, FeedbackType type, float buffer );
+		public static extern void EvalCoord2dv( double[] u ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SelectBuffer( int size, uint buffer );
+		public static extern void EvalCoord2f( float u, float v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern int RenderMode( RenderingMode mode );
+		public static extern void EvalCoord2fv( float[] u ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void InitNames(  );
+		public static extern void EvalMesh1( MeshMode1 mode, int i1, int i2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadName( uint name );
+		public static extern void EvalPoint1( int i ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PassThrough( float token );
+		public static extern void EvalMesh2( MeshMode2 mode, int i1, int i2, int j1, int j2 ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PopName(  );
+		public static extern void EvalPoint2( int i, int j ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PushName( uint name );
+		public static extern void AlphaFunc( AlphaFunction func, float @ref ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawBuffer( DrawBufferMode mode );
+		public static extern void BlendFunc( BlendingFactorSrc sfactor, BlendingFactorDest dfactor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Clear( ClearBufferMask mask );
+		public static extern void LogicOp( LogicOp opcode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClearAccum( float red, float green, float blue, float alpha );
+		public static extern void StencilFunc( StencilFunction func, int @ref, uint mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClearIndex( float c );
+		public static extern void StencilOp( StencilOp fail, StencilOp zfail, StencilOp zpass ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClearColor( float red, float green, float blue, float alpha );
+		public static extern void DepthFunc( DepthFunction func ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClearStencil( int s );
+		public static extern void PixelZoom( float xfactor, float yfactor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClearDepth( double depth );
+		public static extern void PixelTransferf( PixelTransferParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StencilMask( uint mask );
+		public static extern void PixelTransferi( PixelTransferParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorMask( bool red, bool green, bool blue, bool alpha );
+		public static extern void PixelStoref( PixelStoreParameter pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DepthMask( bool flag );
+		public static extern void PixelStorei( PixelStoreParameter pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IndexMask( uint mask );
+		public static extern void PixelMapfv( PixelMap map, int mapsize, float[] values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Accum( AccumOp op, float value );
+		public static extern void PixelMapuiv( PixelMap map, int mapsize, uint[] values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Disable( EnableCap cap );
+		public static extern void PixelMapusv( PixelMap map, int mapsize, ushort[] values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Enable( EnableCap cap );
+		public static extern void ReadBuffer( ReadBufferMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Finish(  );
+		public static extern void CopyPixels( int x, int y, int width, int height, PixelCopyType type ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Flush(  );
+		public static extern unsafe void ReadPixels( int x, int y, int width, int height, PixelFormat format, PixelType type, ref void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PopAttrib(  );
+		public static extern unsafe void DrawPixels( int width, int height, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PushAttrib( AttribMask mask );
+		public static extern void GetBooleanv( GetPName pname, ref bool[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Map1d( MapTarget target, double u1, double u2, int stride, int order, double points );
+		public static extern void GetClipPlane( ClipPlaneName plane, ref double[] equation ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Map1f( MapTarget target, float u1, float u2, int stride, int order, float points );
+		public static extern void GetDoublev( GetPName pname, ref double[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Map2d( MapTarget target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double points );
+		public static extern ErrorCode GetError(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Map2f( MapTarget target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float points );
+		public static extern void GetFloatv( GetPName pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapGrid1d( int un, double u1, double u2 );
+		public static extern void GetIntegerv( GetPName pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapGrid1f( int un, float u1, float u2 );
+		public static extern void GetLightfv( LightName light, LightParameter pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapGrid2d( int un, double u1, double u2, int vn, double v1, double v2 );
+		public static extern void GetLightiv( LightName light, LightParameter pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapGrid2f( int un, float u1, float u2, int vn, float v1, float v2 );
+		public static extern void GetMapdv( MapTarget target, GetMapQuery query, ref double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord1d( double u );
+		public static extern void GetMapfv( MapTarget target, GetMapQuery query, ref float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord1dv( double u );
+		public static extern void GetMapiv( MapTarget target, GetMapQuery query, ref int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord1f( float u );
+		public static extern void GetMaterialfv( MaterialFace face, MaterialParameter pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord1fv( float u );
+		public static extern void GetMaterialiv( MaterialFace face, MaterialParameter pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord2d( double u, double v );
+		public static extern void GetPixelMapfv( PixelMap map, ref float[] values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord2dv( double u );
+		public static extern void GetPixelMapuiv( PixelMap map, ref uint[] values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord2f( float u, float v );
+		public static extern void GetPixelMapusv( PixelMap map, ref ushort[] values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalCoord2fv( float u );
+		public static extern void GetPolygonStipple( ref byte[] mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalMesh1( MeshMode1 mode, int i1, int i2 );
+		public static extern string GetString( StringName name ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalPoint1( int i );
+		public static extern void GetTexEnvfv( TextureEnvTarget target, TextureEnvParameter pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalMesh2( MeshMode2 mode, int i1, int i2, int j1, int j2 );
+		public static extern void GetTexEnviv( TextureEnvTarget target, TextureEnvParameter pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalPoint2( int i, int j );
+		public static extern void GetTexGendv( TextureCoordName coord, TextureGenParameter pname, ref double[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AlphaFunc( AlphaFunction func, float @ref );
+		public static extern void GetTexGenfv( TextureCoordName coord, TextureGenParameter pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendFunc( BlendingFactorSrc sfactor, BlendingFactorDest dfactor );
+		public static extern void GetTexGeniv( TextureCoordName coord, TextureGenParameter pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LogicOp( LogicOp opcode );
+		public static extern unsafe void GetTexImage( TextureTarget target, int level, PixelFormat format, PixelType type, ref void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StencilFunc( StencilFunction func, int @ref, uint mask );
+		public static extern void GetTexParameterfv( TextureTarget target, GetTextureParameter pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StencilOp( StencilOp fail, StencilOp zfail, StencilOp zpass );
+		public static extern void GetTexParameteriv( TextureTarget target, GetTextureParameter pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DepthFunc( DepthFunction func );
+		public static extern void GetTexLevelParameterfv( TextureTarget target, int level, GetTextureParameter pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelZoom( float xfactor, float yfactor );
+		public static extern void GetTexLevelParameteriv( TextureTarget target, int level, GetTextureParameter pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTransferf( PixelTransferParameter pname, float param );
+		public static extern bool IsEnabled( EnableCap cap ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTransferi( PixelTransferParameter pname, int param );
+		public static extern bool IsList( uint list ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelSto@ref( PixelStoreParameter pname, float param );
+		public static extern void DepthRange( double near, double far ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelStorei( PixelStoreParameter pname, int param );
+		public static extern void Frustum( double left, double right, double bottom, double top, double zNear, double zFar ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelMapfv( PixelMap map, int mapsize, float values );
+		public static extern void LoadIdentity(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelMapuiv( PixelMap map, int mapsize, uint values );
+		public static extern void LoadMatrixf( float[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelMapusv( PixelMap map, int mapsize, ushort values );
+		public static extern void LoadMatrixd( double[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReadBuffer( ReadBufferMode mode );
+		public static extern void MatrixMode( MatrixMode mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyPixels( int x, int y, int width, int height, PixelCopyType type );
+		public static extern void MultMatrixf( float[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReadPixels( int x, int y, int width, int height, PixelFormat format, PixelType type, void pixels );
+		public static extern void MultMatrixd( double[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawPixels( int width, int height, PixelFormat format, PixelType type, void pixels );
+		public static extern void Ortho( double left, double right, double bottom, double top, double zNear, double zFar ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBooleanv( GetPName pname, bool @params );
+		public static extern void PopMatrix(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetClipPlane( ClipPlaneName plane, double equation );
+		public static extern void PushMatrix(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetDoublev( GetPName pname, double @params );
+		public static extern void Rotated( double angle, double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern ErrorCode GetError(  );
+		public static extern void Rotatef( float angle, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFloatv( GetPName pname, float @params );
+		public static extern void Scaled( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetIntegerv( GetPName pname, int @params );
+		public static extern void Scalef( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetLightfv( LightName light, LightParameter pname, float @params );
+		public static extern void Translated( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetLightiv( LightName light, LightParameter pname, int @params );
+		public static extern void Translatef( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapdv( MapTarget target, GetMapQuery query, double v );
+		public static extern void Viewport( int x, int y, int width, int height ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapfv( MapTarget target, GetMapQuery query, float v );
+		public static extern void ArrayElement( int i ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapiv( MapTarget target, GetMapQuery query, int v );
+		public static extern unsafe void ColorPointer( int size, ColorPointerType type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMaterialfv( MaterialFace face, MaterialParameter pname, float @params );
+		public static extern void DisableClientState( EnableCap array ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMaterialiv( MaterialFace face, MaterialParameter pname, int @params );
+		public static extern void DrawArrays( BeginMode mode, int first, int count ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPixelMapfv( PixelMap map, float values );
+		public static extern unsafe void DrawElements( BeginMode mode, int count, uint type, void* indices ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPixelMapuiv( PixelMap map, uint values );
+		public static extern unsafe void EdgeFlagPointer( int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPixelMapusv( PixelMap map, ushort values );
+		public static extern void EnableClientState( EnableCap array ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPolygonStipple( byte mask );
+		public static extern unsafe void GetPointerv( GetPointervPName pname, ref void** @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern string GetString( StringName name );
+		public static extern unsafe void IndexPointer( IndexPointerType type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexEnvfv( TextureEnvTarget target, TextureEnvParameter pname, float @params );
+		public static extern unsafe void InterleavedArrays( InterleavedArrayFormat format, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexEnviv( TextureEnvTarget target, TextureEnvParameter pname, int @params );
+		public static extern unsafe void NormalPointer( NormalPointerType type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexGendv( TextureCoordName coord, TextureGenParameter pname, double @params );
+		public static extern unsafe void TexCoordPointer( int size, TexCoordPointerType type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexGenfv( TextureCoordName coord, TextureGenParameter pname, float @params );
+		public static extern unsafe void VertexPointer( int size, VertexPointerType type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexGeniv( TextureCoordName coord, TextureGenParameter pname, int @params );
+		public static extern void PolygonOffset( float factor, float units ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexImage( TextureTarget target, int level, PixelFormat format, PixelType type, void pixels );
+		public static extern void CopyTexImage1D( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int border ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexParameterfv( TextureTarget target, GetTextureParameter pname, float @params );
+		public static extern void CopyTexImage2D( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int height, int border ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexParameteriv( TextureTarget target, GetTextureParameter pname, int @params );
+		public static extern void CopyTexSubImage1D( TextureTarget target, int level, int xoffset, int x, int y, int width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexLevelParameterfv( TextureTarget target, int level, GetTextureParameter pname, float @params );
+		public static extern void CopyTexSubImage2D( TextureTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexLevelParameteriv( TextureTarget target, int level, GetTextureParameter pname, int @params );
+		public static extern unsafe void TexSubImage1D( TextureTarget target, int level, int xoffset, int width, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsEnabled( EnableCap cap );
+		public static extern unsafe void TexSubImage2D( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsList( uint list );
+		public static extern bool AreTexturesResident( int n, uint[] textures, ref bool[] residences ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DepthRange( double near, double far );
+		public static extern void BindTexture( TextureTarget target, uint texture ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Frustum( double left, double right, double bottom, double top, double zNear, double zFar );
+		public static extern void DeleteTextures( int n, uint[] textures ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadIdentity(  );
+		public static extern void GenTextures( int n, ref uint[] textures ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadMatrixf( float m );
+		public static extern bool IsTexture( uint texture ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadMatrixd( double m );
+		public static extern void PrioritizeTextures( int n, uint[] textures, float[] priorities ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MatrixMode( MatrixMode mode );
+		public static extern void Indexub( byte c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultMatrixf( float m );
+		public static extern void Indexubv( byte[] c ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultMatrixd( double m );
+		public static extern void PopClientAttrib(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Ortho( double left, double right, double bottom, double top, double zNear, double zFar );
+		public static extern void PushClientAttrib( ClientAttribMask mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PopMatrix(  );
+		public static extern void BlendColor( float red, float green, float blue, float alpha ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PushMatrix(  );
+		public static extern void BlendEquation( uint mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rotated( double angle, double x, double y, double z );
+		public static extern unsafe void DrawRangeElements( BeginMode mode, uint start, uint end, int count, uint type, void* indices ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Rotatef( float angle, float x, float y, float z );
+		public static extern unsafe void ColorTable( uint target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* table ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Scaled( double x, double y, double z );
+		public static extern void ColorTableParameterfv( uint target, uint pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Scalef( float x, float y, float z );
+		public static extern void ColorTableParameteriv( uint target, uint pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Translated( double x, double y, double z );
+		public static extern void CopyColorTable( uint target, PixelInternalFormat internalformat, int x, int y, int width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Translatef( float x, float y, float z );
+		public static extern unsafe void GetColorTable( uint target, PixelFormat format, PixelType type, ref void* table ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Viewport( int x, int y, int width, int height );
+		public static extern void GetColorTableParameterfv( uint target, uint pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ArrayElement( int i );
+		public static extern void GetColorTableParameteriv( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorPointer( int size, ColorPointerType type, int stride, void pointer );
+		public static extern unsafe void ColorSubTable( uint target, int start, int count, PixelFormat format, PixelType type, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DisableClientState( EnableCap array );
+		public static extern void CopyColorSubTable( uint target, int start, int x, int y, int width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawArrays( BeginMode mode, int first, int count );
+		public static extern unsafe void ConvolutionFilter1D( uint target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* image ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawElements( BeginMode mode, int count, DrawElementsType type, void indices );
+		public static extern unsafe void ConvolutionFilter2D( uint target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* image ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EdgeFlagPointer( int stride, void pointer );
+		public static extern void ConvolutionParameterf( uint target, uint pname, float @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EnableClientState( EnableCap array );
+		public static extern void ConvolutionParameterfv( uint target, uint pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPointerv( GetPointervPName pname, void @params );
+		public static extern void ConvolutionParameteri( uint target, uint pname, int @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IndexPointer( IndexPointerType type, int stride, void pointer );
+		public static extern void ConvolutionParameteriv( uint target, uint pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void InterleavedArrays( InterleavedArrayFormat format, int stride, void pointer );
+		public static extern void CopyConvolutionFilter1D( uint target, PixelInternalFormat internalformat, int x, int y, int width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalPointer( NormalPointerType type, int stride, void pointer );
+		public static extern void CopyConvolutionFilter2D( uint target, PixelInternalFormat internalformat, int x, int y, int width, int height ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoordPointer( int size, TexCoordPointerType type, int stride, void pointer );
+		public static extern unsafe void GetConvolutionFilter( uint target, PixelFormat format, PixelType type, ref void* image ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexPointer( int size, VertexPointerType type, int stride, void pointer );
+		public static extern void GetConvolutionParameterfv( uint target, uint pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PolygonOffset( float factor, float units );
+		public static extern void GetConvolutionParameteriv( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexImage1D( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int border );
+		public static extern unsafe void GetSeparableFilter( uint target, PixelFormat format, PixelType type, ref void* row, ref void* column, ref void* span ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexImage2D( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int height, int border );
+		public static extern unsafe void SeparableFilter2D( uint target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* row, void* column ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexSubImage1D( TextureTarget target, int level, int xoffset, int x, int y, int width );
+		public static extern unsafe void GetHistogram( uint target, bool reset, PixelFormat format, PixelType type, ref void* values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexSubImage2D( TextureTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height );
+		public static extern void GetHistogramParameterfv( uint target, uint pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage1D( TextureTarget target, int level, int xoffset, int width, PixelFormat format, PixelType type, void pixels );
+		public static extern void GetHistogramParameteriv( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage2D( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, void pixels );
+		public static extern unsafe void GetMinmax( uint target, bool reset, PixelFormat format, PixelType type, ref void* values ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool AreTexturesResident( int n, uint textures, bool residences );
+		public static extern void GetMinmaxParameterfv( uint target, uint pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindTexture( TextureTarget target, uint texture );
+		public static extern void GetMinmaxParameteriv( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteTextures( int n, uint textures );
+		public static extern void Histogram( uint target, int width, PixelInternalFormat internalformat, bool sink ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenTextures( int n, uint textures );
+		public static extern void Minmax( uint target, PixelInternalFormat internalformat, bool sink ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsTexture( uint texture );
+		public static extern void ResetHistogram( uint target ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PrioritizeTextures( int n, uint textures, float priorities );
+		public static extern void ResetMinmax( uint target ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexub( byte c );
+		public static extern unsafe void TexImage3D( TextureTarget target, int level, int internalformat, int width, int height, int depth, int border, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Indexubv( byte c );
+		public static extern unsafe void TexSubImage3D( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, PixelType type, void* pixels ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PopClientAttrib(  );
+		public static extern void CopyTexSubImage3D( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PushClientAttrib( ClientAttribMask mask );
+		public static extern void ActiveTexture( uint texture ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendColor( float red, float green, float blue, float alpha );
+		public static extern void ClientActiveTexture( uint texture ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendEquation( BlendEquationMode mode );
+		public static extern void MultiTexCoord1d( uint target, double s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawRangeElements( BeginMode mode, uint start, uint end, int count, DrawElementsType type, void indices );
+		public static extern void MultiTexCoord1dv( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTable( ColorTableTarget target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void table );
+		public static extern void MultiTexCoord1f( uint target, float s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTableParameterfv( ColorTableTarget target, ColorTableParameterPName pname, float @params );
+		public static extern void MultiTexCoord1fv( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTableParameteriv( ColorTableTarget target, ColorTableParameterPName pname, int @params );
+		public static extern void MultiTexCoord1i( uint target, int s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyColorTable( ColorTableTarget target, PixelInternalFormat internalformat, int x, int y, int width );
+		public static extern void MultiTexCoord1iv( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTable( ColorTableTarget target, PixelFormat format, PixelType type, void table );
+		public static extern void MultiTexCoord1s( uint target, short s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableParameterfv( ColorTableTarget target, GetColorTableParameterPName pname, float @params );
+		public static extern void MultiTexCoord1sv( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableParameteriv( ColorTableTarget target, GetColorTableParameterPName pname, int @params );
+		public static extern void MultiTexCoord2d( uint target, double s, double t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorSubTable( ColorTableTarget target, int start, int count, PixelFormat format, PixelType type, void data );
+		public static extern void MultiTexCoord2dv( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyColorSubTable( ColorTableTarget target, int start, int x, int y, int width );
+		public static extern void MultiTexCoord2f( uint target, float s, float t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionFilter1D( ConvolutionTarget target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void image );
+		public static extern void MultiTexCoord2fv( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionFilter2D( ConvolutionTarget target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void image );
+		public static extern void MultiTexCoord2i( uint target, int s, int t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameterf( ConvolutionTarget target, ConvolutionParameter pname, float @params );
+		public static extern void MultiTexCoord2iv( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameterfv( ConvolutionTarget target, ConvolutionParameter pname, float @params );
+		public static extern void MultiTexCoord2s( uint target, short s, short t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameteri( ConvolutionTarget target, ConvolutionParameter pname, int @params );
+		public static extern void MultiTexCoord2sv( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameteriv( ConvolutionTarget target, ConvolutionParameter pname, int @params );
+		public static extern void MultiTexCoord3d( uint target, double s, double t, double r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyConvolutionFilter1D( ConvolutionTarget target, PixelInternalFormat internalformat, int x, int y, int width );
+		public static extern void MultiTexCoord3dv( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyConvolutionFilter2D( ConvolutionTarget target, PixelInternalFormat internalformat, int x, int y, int width, int height );
+		public static extern void MultiTexCoord3f( uint target, float s, float t, float r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetConvolutionFilter( ConvolutionTarget target, PixelFormat format, PixelType type, void image );
+		public static extern void MultiTexCoord3fv( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetConvolutionParameterfv( ConvolutionTarget target, GetConvolutionParameterPName pname, float @params );
+		public static extern void MultiTexCoord3i( uint target, int s, int t, int r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetConvolutionParameteriv( ConvolutionTarget target, GetConvolutionParameterPName pname, int @params );
+		public static extern void MultiTexCoord3iv( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetSeparableFilter( SeparableTarget target, PixelFormat format, PixelType type, void row, void column, void span );
+		public static extern void MultiTexCoord3s( uint target, short s, short t, short r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SeparableFilter2D( SeparableTarget target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void row, void column );
+		public static extern void MultiTexCoord3sv( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetHistogram( HistogramTarget target, bool reset, PixelFormat format, PixelType type, void values );
+		public static extern void MultiTexCoord4d( uint target, double s, double t, double r, double q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetHistogramParameterfv( HistogramTarget target, GetHistogramParameterPName pname, float @params );
+		public static extern void MultiTexCoord4dv( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetHistogramParameteriv( HistogramTarget target, GetHistogramParameterPName pname, int @params );
+		public static extern void MultiTexCoord4f( uint target, float s, float t, float r, float q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMinmax( MinmaxTarget target, bool reset, PixelFormat format, PixelType type, void values );
+		public static extern void MultiTexCoord4fv( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMinmaxParameterfv( MinmaxTarget target, GetMinmaxParameterPName pname, float @params );
+		public static extern void MultiTexCoord4i( uint target, int s, int t, int r, int q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMinmaxParameteriv( MinmaxTarget target, GetMinmaxParameterPName pname, int @params );
+		public static extern void MultiTexCoord4iv( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Histogram( HistogramTarget target, int width, PixelInternalFormat internalformat, bool sink );
+		public static extern void MultiTexCoord4s( uint target, short s, short t, short r, short q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Minmax( MinmaxTarget target, PixelInternalFormat internalformat, bool sink );
+		public static extern void MultiTexCoord4sv( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ResetHistogram( HistogramTarget target );
+		public static extern void LoadTransposeMatrixf( float[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ResetMinmax( MinmaxTarget target );
+		public static extern void LoadTransposeMatrixd( double[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexImage3D( TextureTarget target, int level, int internalformat, int width, int height, int depth, int border, PixelFormat format, PixelType type, void pixels );
+		public static extern void MultTransposeMatrixf( float[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage3D( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, PixelType type, void pixels );
+		public static extern void MultTransposeMatrixd( double[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexSubImage3D( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height );
+		public static extern void SampleCoverage( float value, bool invert ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ActiveTexture( TextureUnit texture );
+		public static extern unsafe void CompressedTexImage3D( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClientActiveTexture( TextureUnit texture );
+		public static extern unsafe void CompressedTexImage2D( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int border, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1d( TextureUnit target, double s );
+		public static extern unsafe void CompressedTexImage1D( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int border, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1dv( TextureUnit target, double v );
+		public static extern unsafe void CompressedTexSubImage3D( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1f( TextureUnit target, float s );
+		public static extern unsafe void CompressedTexSubImage2D( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1fv( TextureUnit target, float v );
+		public static extern unsafe void CompressedTexSubImage1D( TextureTarget target, int level, int xoffset, int width, PixelFormat format, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1i( TextureUnit target, int s );
+		public static extern unsafe void GetCompressedTexImage( TextureTarget target, int level, ref void* img ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1iv( TextureUnit target, int v );
+		public static extern void BlendFuncSeparate( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1s( TextureUnit target, short s );
+		public static extern void FogCoordf( float coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1sv( TextureUnit target, short v );
+		public static extern void FogCoordfv( float[] coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2d( TextureUnit target, double s, double t );
+		public static extern void FogCoordd( double coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2dv( TextureUnit target, double v );
+		public static extern void FogCoorddv( double[] coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2f( TextureUnit target, float s, float t );
+		public static extern unsafe void FogCoordPointer( uint type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2fv( TextureUnit target, float v );
+		public static extern void MultiDrawArrays( BeginMode mode, ref int[] first, ref int[] count, int primcount ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2i( TextureUnit target, int s, int t );
+		public static extern unsafe void MultiDrawElements( BeginMode mode, int[] count, uint type, void** indices, int primcount ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2iv( TextureUnit target, int v );
+		public static extern void PointParameterf( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2s( TextureUnit target, short s, short t );
+		public static extern void PointParameterfv( uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2sv( TextureUnit target, short v );
+		public static extern void PointParameteri( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3d( TextureUnit target, double s, double t, double r );
+		public static extern void PointParameteriv( uint pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3dv( TextureUnit target, double v );
+		public static extern void SecondaryColor3b( sbyte red, sbyte green, sbyte blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3f( TextureUnit target, float s, float t, float r );
+		public static extern void SecondaryColor3bv( sbyte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3fv( TextureUnit target, float v );
+		public static extern void SecondaryColor3d( double red, double green, double blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3i( TextureUnit target, int s, int t, int r );
+		public static extern void SecondaryColor3dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3iv( TextureUnit target, int v );
+		public static extern void SecondaryColor3f( float red, float green, float blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3s( TextureUnit target, short s, short t, short r );
+		public static extern void SecondaryColor3fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3sv( TextureUnit target, short v );
+		public static extern void SecondaryColor3i( int red, int green, int blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4d( TextureUnit target, double s, double t, double r, double q );
+		public static extern void SecondaryColor3iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4dv( TextureUnit target, double v );
+		public static extern void SecondaryColor3s( short red, short green, short blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4f( TextureUnit target, float s, float t, float r, float q );
+		public static extern void SecondaryColor3sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4fv( TextureUnit target, float v );
+		public static extern void SecondaryColor3ub( byte red, byte green, byte blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4i( TextureUnit target, int s, int t, int r, int q );
+		public static extern void SecondaryColor3ubv( byte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4iv( TextureUnit target, int v );
+		public static extern void SecondaryColor3ui( uint red, uint green, uint blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4s( TextureUnit target, short s, short t, short r, short q );
+		public static extern void SecondaryColor3uiv( uint[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4sv( TextureUnit target, short v );
+		public static extern void SecondaryColor3us( ushort red, ushort green, ushort blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadTransposeMatrixf( float m );
+		public static extern void SecondaryColor3usv( ushort[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadTransposeMatrixd( double m );
+		public static extern unsafe void SecondaryColorPointer( int size, ColorPointerType type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultTransposeMatrixf( float m );
+		public static extern void WindowPos2d( double x, double y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultTransposeMatrixd( double m );
+		public static extern void WindowPos2dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SampleCoverage( float value, bool invert );
+		public static extern void WindowPos2f( float x, float y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexImage3D( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, int imageSize, void data );
+		public static extern void WindowPos2fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexImage2D( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int border, int imageSize, void data );
+		public static extern void WindowPos2i( int x, int y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexImage1D( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int border, int imageSize, void data );
+		public static extern void WindowPos2iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexSubImage3D( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, int imageSize, void data );
+		public static extern void WindowPos2s( short x, short y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexSubImage2D( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, int imageSize, void data );
+		public static extern void WindowPos2sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexSubImage1D( TextureTarget target, int level, int xoffset, int width, PixelFormat format, int imageSize, void data );
+		public static extern void WindowPos3d( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCompressedTexImage( TextureTarget target, int level, void img );
+		public static extern void WindowPos3dv( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendFuncSeparate( BlendFuncSeparateParameterEXT sfactorRGB, BlendFuncSeparateParameterEXT dfactorRGB, BlendFuncSeparateParameterEXT sfactorAlpha, BlendFuncSeparateParameterEXT dfactorAlpha );
+		public static extern void WindowPos3f( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordf( float coord );
+		public static extern void WindowPos3fv( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordfv( float coord );
+		public static extern void WindowPos3i( int x, int y, int z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordd( double coord );
+		public static extern void WindowPos3iv( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoorddv( double coord );
+		public static extern void WindowPos3s( short x, short y, short z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordPointer( FogPointerTypeEXT type, int stride, void pointer );
+		public static extern void WindowPos3sv( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiDrawArrays( BeginMode mode, int first, int count, int primcount );
+		public static extern void GenQueries( int n, ref uint[] ids ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiDrawElements( BeginMode mode, int count, DrawElementsType type, void indices, int primcount );
+		public static extern void DeleteQueries( int n, uint[] ids ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterf( PointParameterNameARB pname, float param );
+		public static extern bool IsQuery( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfv( PointParameterNameARB pname, float @params );
+		public static extern void BeginQuery( uint target, uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameteri( PointParameterNameARB pname, int param );
+		public static extern void EndQuery( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameteriv( PointParameterNameARB pname, int @params );
+		public static extern void GetQueryiv( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3b( sbyte red, sbyte green, sbyte blue );
+		public static extern void GetQueryObjectiv( uint id, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3bv( sbyte v );
+		public static extern void GetQueryObjectuiv( uint id, uint pname, ref uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3d( double red, double green, double blue );
+		public static extern void BindBuffer( uint target, uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3dv( double v );
+		public static extern void DeleteBuffers( int n, uint[] buffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3f( float red, float green, float blue );
+		public static extern void GenBuffers( int n, ref uint[] buffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3fv( float v );
+		public static extern bool IsBuffer( uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3i( int red, int green, int blue );
+		public static extern unsafe void BufferData( uint target, int size, void* data, uint usage ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3iv( int v );
+		public static extern unsafe void BufferSubData( uint target, int offset, int size, void* data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3s( short red, short green, short blue );
+		public static extern unsafe void GetBufferSubData( uint target, int offset, int size, ref void* data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3sv( short v );
+		public static extern void MapBuffer( uint target, uint access ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3ub( byte red, byte green, byte blue );
+		public static extern bool UnmapBuffer( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3ubv( byte v );
+		public static extern void GetBufferParameteriv( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3ui( uint red, uint green, uint blue );
+		public static extern unsafe void GetBufferPointerv( uint target, uint pname, ref void** @params ); //  extension method	
+		public delegate void BlendEquationSeparateDelegate( BlendEquationModeEXT modeRGB, BlendEquationModeEXT modeAlpha ); //  extension method
+		public static readonly BlendEquationSeparateDelegate BlendEquationSeparate;
+		public delegate void DrawBuffersDelegate( int n, uint[] bufs ); //  extension method
+		public static readonly DrawBuffersDelegate DrawBuffers;
+		public delegate void StencilOpSeparateDelegate( uint face, StencilOp sfail, StencilOp dpfail, StencilOp dppass ); //  extension method
+		public static readonly StencilOpSeparateDelegate StencilOpSeparate;
+		public delegate void StencilFuncSeparateDelegate( StencilFunction frontfunc, StencilFunction backfunc, int @ref, uint mask ); //  extension method
+		public static readonly StencilFuncSeparateDelegate StencilFuncSeparate;
+		public delegate void StencilMaskSeparateDelegate( uint face, uint mask ); //  extension method
+		public static readonly StencilMaskSeparateDelegate StencilMaskSeparate;
+		public delegate void AttachShaderDelegate( uint program, uint shader ); //  extension method
+		public static readonly AttachShaderDelegate AttachShader;
+		public delegate void BindAttribLocationDelegate( uint program, uint index, string[] name ); //  extension method
+		public static readonly BindAttribLocationDelegate BindAttribLocation;
+		public delegate void CompileShaderDelegate( uint shader ); //  extension method
+		public static readonly CompileShaderDelegate CompileShader;
+		public delegate uint CreateProgramDelegate(  ); //  extension method
+		public static readonly CreateProgramDelegate CreateProgram;
+		public delegate uint CreateShaderDelegate( uint type ); //  extension method
+		public static readonly CreateShaderDelegate CreateShader;
+		public delegate void DeleteProgramDelegate( uint program ); //  extension method
+		public static readonly DeleteProgramDelegate DeleteProgram;
+		public delegate void DeleteShaderDelegate( uint shader ); //  extension method
+		public static readonly DeleteShaderDelegate DeleteShader;
+		public delegate void DetachShaderDelegate( uint program, uint shader ); //  extension method
+		public static readonly DetachShaderDelegate DetachShader;
+		public delegate void DisableVertexAttribArrayDelegate( uint index ); //  extension method
+		public static readonly DisableVertexAttribArrayDelegate DisableVertexAttribArray;
+		public delegate void EnableVertexAttribArrayDelegate( uint index ); //  extension method
+		public static readonly EnableVertexAttribArrayDelegate EnableVertexAttribArray;
+		public delegate void GetActiveAttribDelegate( uint program, uint index, int bufSize, ref int[] length, ref int[] size, ref uint[] type, ref string[] name ); //  extension method
+		public static readonly GetActiveAttribDelegate GetActiveAttrib;
+		public delegate void GetActiveUniformDelegate( uint program, uint index, int bufSize, ref int[] length, ref int[] size, ref uint[] type, ref string[] name ); //  extension method
+		public static readonly GetActiveUniformDelegate GetActiveUniform;
+		public delegate void GetAttachedShadersDelegate( uint program, int maxCount, ref int[] count, ref uint[] obj ); //  extension method
+		public static readonly GetAttachedShadersDelegate GetAttachedShaders;
+		public delegate int GetAttribLocationDelegate( uint program, string[] name ); //  extension method
+		public static readonly GetAttribLocationDelegate GetAttribLocation;
+		public delegate void GetProgramivDelegate( uint program, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetProgramivDelegate GetProgramiv;
+		public delegate void GetProgramInfoLogDelegate( uint program, int bufSize, ref int[] length, ref string[] infoLog ); //  extension method
+		public static readonly GetProgramInfoLogDelegate GetProgramInfoLog;
+		public delegate void GetShaderivDelegate( uint shader, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetShaderivDelegate GetShaderiv;
+		public delegate void GetShaderInfoLogDelegate( uint shader, int bufSize, ref int[] length, ref string[] infoLog ); //  extension method
+		public static readonly GetShaderInfoLogDelegate GetShaderInfoLog;
+		public delegate void GetShaderSourceDelegate( uint shader, int bufSize, ref int[] length, ref string[] source ); //  extension method
+		public static readonly GetShaderSourceDelegate GetShaderSource;
+		public delegate int GetUniformLocationDelegate( uint program, string[] name ); //  extension method
+		public static readonly GetUniformLocationDelegate GetUniformLocation;
+		public delegate void GetUniformfvDelegate( uint program, int location, ref float[] @params ); //  extension method
+		public static readonly GetUniformfvDelegate GetUniformfv;
+		public delegate void GetUniformivDelegate( uint program, int location, ref int[] @params ); //  extension method
+		public static readonly GetUniformivDelegate GetUniformiv;
+		public delegate void GetVertexAttribdvDelegate( uint index, uint pname, ref double[] @params ); //  extension method
+		public static readonly GetVertexAttribdvDelegate GetVertexAttribdv;
+		public delegate void GetVertexAttribfvDelegate( uint index, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetVertexAttribfvDelegate GetVertexAttribfv;
+		public delegate void GetVertexAttribivDelegate( uint index, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetVertexAttribivDelegate GetVertexAttribiv;
+		public unsafe delegate void GetVertexAttribPointervDelegate( uint index, uint pname, ref void** pointer ); //  extension method
+		public static readonly GetVertexAttribPointervDelegate GetVertexAttribPointerv;
+		public delegate bool IsProgramDelegate( uint program ); //  extension method
+		public static readonly IsProgramDelegate IsProgram;
+		public delegate bool IsShaderDelegate( uint shader ); //  extension method
+		public static readonly IsShaderDelegate IsShader;
+		public delegate void LinkProgramDelegate( uint program ); //  extension method
+		public static readonly LinkProgramDelegate LinkProgram;
+		public delegate void ShaderSourceDelegate( uint shader, int count, string[] @string, int[] length ); //  extension method
+		public static readonly ShaderSourceDelegate ShaderSource;
+		public delegate void UseProgramDelegate( uint program ); //  extension method
+		public static readonly UseProgramDelegate UseProgram;
+		public delegate void Uniform1fDelegate( int location, float v0 ); //  extension method
+		public static readonly Uniform1fDelegate Uniform1f;
+		public delegate void Uniform2fDelegate( int location, float v0, float v1 ); //  extension method
+		public static readonly Uniform2fDelegate Uniform2f;
+		public delegate void Uniform3fDelegate( int location, float v0, float v1, float v2 ); //  extension method
+		public static readonly Uniform3fDelegate Uniform3f;
+		public delegate void Uniform4fDelegate( int location, float v0, float v1, float v2, float v3 ); //  extension method
+		public static readonly Uniform4fDelegate Uniform4f;
+		public delegate void Uniform1iDelegate( int location, int v0 ); //  extension method
+		public static readonly Uniform1iDelegate Uniform1i;
+		public delegate void Uniform2iDelegate( int location, int v0, int v1 ); //  extension method
+		public static readonly Uniform2iDelegate Uniform2i;
+		public delegate void Uniform3iDelegate( int location, int v0, int v1, int v2 ); //  extension method
+		public static readonly Uniform3iDelegate Uniform3i;
+		public delegate void Uniform4iDelegate( int location, int v0, int v1, int v2, int v3 ); //  extension method
+		public static readonly Uniform4iDelegate Uniform4i;
+		public delegate void Uniform1fvDelegate( int location, int count, float[] value ); //  extension method
+		public static readonly Uniform1fvDelegate Uniform1fv;
+		public delegate void Uniform2fvDelegate( int location, int count, float[] value ); //  extension method
+		public static readonly Uniform2fvDelegate Uniform2fv;
+		public delegate void Uniform3fvDelegate( int location, int count, float[] value ); //  extension method
+		public static readonly Uniform3fvDelegate Uniform3fv;
+		public delegate void Uniform4fvDelegate( int location, int count, float[] value ); //  extension method
+		public static readonly Uniform4fvDelegate Uniform4fv;
+		public delegate void Uniform1ivDelegate( int location, int count, int[] value ); //  extension method
+		public static readonly Uniform1ivDelegate Uniform1iv;
+		public delegate void Uniform2ivDelegate( int location, int count, int[] value ); //  extension method
+		public static readonly Uniform2ivDelegate Uniform2iv;
+		public delegate void Uniform3ivDelegate( int location, int count, int[] value ); //  extension method
+		public static readonly Uniform3ivDelegate Uniform3iv;
+		public delegate void Uniform4ivDelegate( int location, int count, int[] value ); //  extension method
+		public static readonly Uniform4ivDelegate Uniform4iv;
+		public delegate void UniformMatrix2fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix2fvDelegate UniformMatrix2fv;
+		public delegate void UniformMatrix3fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix3fvDelegate UniformMatrix3fv;
+		public delegate void UniformMatrix4fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix4fvDelegate UniformMatrix4fv;
+		public delegate void ValidateProgramDelegate( uint program ); //  extension method
+		public static readonly ValidateProgramDelegate ValidateProgram;
+		public delegate void VertexAttrib1dDelegate( uint index, double x ); //  extension method
+		public static readonly VertexAttrib1dDelegate VertexAttrib1d;
+		public delegate void VertexAttrib1dvDelegate( uint index, double[] v ); //  extension method
+		public static readonly VertexAttrib1dvDelegate VertexAttrib1dv;
+		public delegate void VertexAttrib1fDelegate( uint index, float x ); //  extension method
+		public static readonly VertexAttrib1fDelegate VertexAttrib1f;
+		public delegate void VertexAttrib1fvDelegate( uint index, float[] v ); //  extension method
+		public static readonly VertexAttrib1fvDelegate VertexAttrib1fv;
+		public delegate void VertexAttrib1sDelegate( uint index, short x ); //  extension method
+		public static readonly VertexAttrib1sDelegate VertexAttrib1s;
+		public delegate void VertexAttrib1svDelegate( uint index, short[] v ); //  extension method
+		public static readonly VertexAttrib1svDelegate VertexAttrib1sv;
+		public delegate void VertexAttrib2dDelegate( uint index, double x, double y ); //  extension method
+		public static readonly VertexAttrib2dDelegate VertexAttrib2d;
+		public delegate void VertexAttrib2dvDelegate( uint index, double[] v ); //  extension method
+		public static readonly VertexAttrib2dvDelegate VertexAttrib2dv;
+		public delegate void VertexAttrib2fDelegate( uint index, float x, float y ); //  extension method
+		public static readonly VertexAttrib2fDelegate VertexAttrib2f;
+		public delegate void VertexAttrib2fvDelegate( uint index, float[] v ); //  extension method
+		public static readonly VertexAttrib2fvDelegate VertexAttrib2fv;
+		public delegate void VertexAttrib2sDelegate( uint index, short x, short y ); //  extension method
+		public static readonly VertexAttrib2sDelegate VertexAttrib2s;
+		public delegate void VertexAttrib2svDelegate( uint index, short[] v ); //  extension method
+		public static readonly VertexAttrib2svDelegate VertexAttrib2sv;
+		public delegate void VertexAttrib3dDelegate( uint index, double x, double y, double z ); //  extension method
+		public static readonly VertexAttrib3dDelegate VertexAttrib3d;
+		public delegate void VertexAttrib3dvDelegate( uint index, double[] v ); //  extension method
+		public static readonly VertexAttrib3dvDelegate VertexAttrib3dv;
+		public delegate void VertexAttrib3fDelegate( uint index, float x, float y, float z ); //  extension method
+		public static readonly VertexAttrib3fDelegate VertexAttrib3f;
+		public delegate void VertexAttrib3fvDelegate( uint index, float[] v ); //  extension method
+		public static readonly VertexAttrib3fvDelegate VertexAttrib3fv;
+		public delegate void VertexAttrib3sDelegate( uint index, short x, short y, short z ); //  extension method
+		public static readonly VertexAttrib3sDelegate VertexAttrib3s;
+		public delegate void VertexAttrib3svDelegate( uint index, short[] v ); //  extension method
+		public static readonly VertexAttrib3svDelegate VertexAttrib3sv;
+		public delegate void VertexAttrib4NbvDelegate( uint index, sbyte[] v ); //  extension method
+		public static readonly VertexAttrib4NbvDelegate VertexAttrib4Nbv;
+		public delegate void VertexAttrib4NivDelegate( uint index, int[] v ); //  extension method
+		public static readonly VertexAttrib4NivDelegate VertexAttrib4Niv;
+		public delegate void VertexAttrib4NsvDelegate( uint index, short[] v ); //  extension method
+		public static readonly VertexAttrib4NsvDelegate VertexAttrib4Nsv;
+		public delegate void VertexAttrib4NubDelegate( uint index, byte x, byte y, byte z, byte w ); //  extension method
+		public static readonly VertexAttrib4NubDelegate VertexAttrib4Nub;
+		public delegate void VertexAttrib4NubvDelegate( uint index, byte[] v ); //  extension method
+		public static readonly VertexAttrib4NubvDelegate VertexAttrib4Nubv;
+		public delegate void VertexAttrib4NuivDelegate( uint index, uint[] v ); //  extension method
+		public static readonly VertexAttrib4NuivDelegate VertexAttrib4Nuiv;
+		public delegate void VertexAttrib4NusvDelegate( uint index, ushort[] v ); //  extension method
+		public static readonly VertexAttrib4NusvDelegate VertexAttrib4Nusv;
+		public delegate void VertexAttrib4bvDelegate( uint index, sbyte[] v ); //  extension method
+		public static readonly VertexAttrib4bvDelegate VertexAttrib4bv;
+		public delegate void VertexAttrib4dDelegate( uint index, double x, double y, double z, double w ); //  extension method
+		public static readonly VertexAttrib4dDelegate VertexAttrib4d;
+		public delegate void VertexAttrib4dvDelegate( uint index, double[] v ); //  extension method
+		public static readonly VertexAttrib4dvDelegate VertexAttrib4dv;
+		public delegate void VertexAttrib4fDelegate( uint index, float x, float y, float z, float w ); //  extension method
+		public static readonly VertexAttrib4fDelegate VertexAttrib4f;
+		public delegate void VertexAttrib4fvDelegate( uint index, float[] v ); //  extension method
+		public static readonly VertexAttrib4fvDelegate VertexAttrib4fv;
+		public delegate void VertexAttrib4ivDelegate( uint index, int[] v ); //  extension method
+		public static readonly VertexAttrib4ivDelegate VertexAttrib4iv;
+		public delegate void VertexAttrib4sDelegate( uint index, short x, short y, short z, short w ); //  extension method
+		public static readonly VertexAttrib4sDelegate VertexAttrib4s;
+		public delegate void VertexAttrib4svDelegate( uint index, short[] v ); //  extension method
+		public static readonly VertexAttrib4svDelegate VertexAttrib4sv;
+		public delegate void VertexAttrib4ubvDelegate( uint index, byte[] v ); //  extension method
+		public static readonly VertexAttrib4ubvDelegate VertexAttrib4ubv;
+		public delegate void VertexAttrib4uivDelegate( uint index, uint[] v ); //  extension method
+		public static readonly VertexAttrib4uivDelegate VertexAttrib4uiv;
+		public delegate void VertexAttrib4usvDelegate( uint index, ushort[] v ); //  extension method
+		public static readonly VertexAttrib4usvDelegate VertexAttrib4usv;
+		public unsafe delegate void VertexAttribPointerDelegate( uint index, int size, uint type, bool normalized, int stride, void* pointer ); //  extension method
+		public static readonly VertexAttribPointerDelegate VertexAttribPointer;
+		public delegate void UniformMatrix2x3fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix2x3fvDelegate UniformMatrix2x3fv;
+		public delegate void UniformMatrix3x2fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix3x2fvDelegate UniformMatrix3x2fv;
+		public delegate void UniformMatrix2x4fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix2x4fvDelegate UniformMatrix2x4fv;
+		public delegate void UniformMatrix4x2fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix4x2fvDelegate UniformMatrix4x2fv;
+		public delegate void UniformMatrix3x4fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix3x4fvDelegate UniformMatrix3x4fv;
+		public delegate void UniformMatrix4x3fvDelegate( int location, int count, bool transpose, float[] value ); //  extension method
+		public static readonly UniformMatrix4x3fvDelegate UniformMatrix4x3fv;
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3uiv( uint v );
+		public static extern void ActiveTextureARB( uint texture ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3us( ushort red, ushort green, ushort blue );
+		public static extern void ClientActiveTextureARB( uint texture ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3usv( ushort v );
+		public static extern void MultiTexCoord1dARB( uint target, double s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColorPointer( int size, ColorPointerType type, int stride, void pointer );
+		public static extern void MultiTexCoord1dvARB( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2d( double x, double y );
+		public static extern void MultiTexCoord1fARB( uint target, float s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2dv( double v );
+		public static extern void MultiTexCoord1fvARB( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2f( float x, float y );
+		public static extern void MultiTexCoord1iARB( uint target, int s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2fv( float v );
+		public static extern void MultiTexCoord1ivARB( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2i( int x, int y );
+		public static extern void MultiTexCoord1sARB( uint target, short s ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2iv( int v );
+		public static extern void MultiTexCoord1svARB( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2s( short x, short y );
+		public static extern void MultiTexCoord2dARB( uint target, double s, double t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2sv( short v );
+		public static extern void MultiTexCoord2dvARB( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3d( double x, double y, double z );
+		public static extern void MultiTexCoord2fARB( uint target, float s, float t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3dv( double v );
+		public static extern void MultiTexCoord2fvARB( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3f( float x, float y, float z );
+		public static extern void MultiTexCoord2iARB( uint target, int s, int t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3fv( float v );
+		public static extern void MultiTexCoord2ivARB( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3i( int x, int y, int z );
+		public static extern void MultiTexCoord2sARB( uint target, short s, short t ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3iv( int v );
+		public static extern void MultiTexCoord2svARB( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3s( short x, short y, short z );
+		public static extern void MultiTexCoord3dARB( uint target, double s, double t, double r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3sv( short v );
+		public static extern void MultiTexCoord3dvARB( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenQueries( int n, uint ids );
+		public static extern void MultiTexCoord3fARB( uint target, float s, float t, float r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteQueries( int n, uint ids );
+		public static extern void MultiTexCoord3fvARB( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsQuery( uint id );
+		public static extern void MultiTexCoord3iARB( uint target, int s, int t, int r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BeginQuery( GLenum target, uint id );
+		public static extern void MultiTexCoord3ivARB( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EndQuery( GLenum target );
+		public static extern void MultiTexCoord3sARB( uint target, short s, short t, short r ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryiv( GLenum target, GLenum pname, int @params );
+		public static extern void MultiTexCoord3svARB( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryObjectiv( uint id, GLenum pname, int @params );
+		public static extern void MultiTexCoord4dARB( uint target, double s, double t, double r, double q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryObjectuiv( uint id, GLenum pname, uint @params );
+		public static extern void MultiTexCoord4dvARB( uint target, double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindBuffer( BufferTargetARB target, uint buffer );
+		public static extern void MultiTexCoord4fARB( uint target, float s, float t, float r, float q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteBuffers( int n, uint buffers );
+		public static extern void MultiTexCoord4fvARB( uint target, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenBuffers( int n, uint buffers );
+		public static extern void MultiTexCoord4iARB( uint target, int s, int t, int r, int q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsBuffer( uint buffer );
+		public static extern void MultiTexCoord4ivARB( uint target, int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BufferData( BufferTargetARB target, int size, void data, BufferUsageARB usage );
+		public static extern void MultiTexCoord4sARB( uint target, short s, short t, short r, short q ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BufferSubData( BufferTargetARB target, int offset, int size, void data );
+		public static extern void MultiTexCoord4svARB( uint target, short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBufferSubData( BufferTargetARB target, int offset, int size, void data );
+		public static extern void LoadTransposeMatrixfARB( float[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapBuffer( BufferTargetARB target, BufferAccessARB access );
+		public static extern void LoadTransposeMatrixdARB( double[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool UnmapBuffer( BufferTargetARB target );
+		public static extern void MultTransposeMatrixfARB( float[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBufferParameteriv( BufferTargetARB target, BufferPNameARB pname, int @params );
+		public static extern void MultTransposeMatrixdARB( double[] m ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBufferPointerv( BufferTargetARB target, BufferPointerNameARB pname, void @params );
+		public static extern void SampleCoverageARB( float value, bool invert ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendEquationSeparate( BlendEquationModeEXT modeRGB, BlendEquationModeEXT modeAlpha );
+		public static extern unsafe void CompressedTexImage3DARB( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawBuffers( int n, DrawBufferModeATI bufs );
+		public static extern unsafe void CompressedTexImage2DARB( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int border, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StencilOpSeparate( StencilFaceDirection face, StencilOp sfail, StencilOp dpfail, StencilOp dppass );
+		public static extern unsafe void CompressedTexImage1DARB( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int border, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StencilFuncSeparate( StencilFunction frontfunc, StencilFunction backfunc, int @ref, uint mask );
+		public static extern unsafe void CompressedTexSubImage3DARB( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StencilMaskSeparate( StencilFaceDirection face, uint mask );
+		public static extern unsafe void CompressedTexSubImage2DARB( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AttachShader( uint program, uint shader );
+		public static extern unsafe void CompressedTexSubImage1DARB( TextureTarget target, int level, int xoffset, int width, PixelFormat format, int imageSize, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindAttribLocation( uint program, uint index, char name );
+		public static extern unsafe void GetCompressedTexImageARB( TextureTarget target, int level, ref void* img ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompileShader( uint shader );
+		public static extern void PointParameterfARB( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint CreateProgram(  );
+		public static extern void PointParameterfvARB( uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint CreateShader( GLenum type );
+		public static extern void WeightbvARB( int size, sbyte[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteProgram( uint program );
+		public static extern void WeightsvARB( int size, short[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteShader( uint shader );
+		public static extern void WeightivARB( int size, int[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DetachShader( uint program, uint shader );
+		public static extern void WeightfvARB( int size, float[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DisableVertexAttribArray( uint index );
+		public static extern void WeightdvARB( int size, double[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EnableVertexAttribArray( uint index );
+		public static extern void WeightubvARB( int size, byte[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetActiveAttrib( uint program, uint index, int bufSize, int length, int size, GLenum type, char name );
+		public static extern void WeightusvARB( int size, ushort[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetActiveUniform( uint program, uint index, int bufSize, int length, int size, GLenum type, char name );
+		public static extern void WeightuivARB( int size, uint[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetAttachedShaders( uint program, int maxCount, int count, uint obj );
+		public static extern unsafe void WeightPointerARB( int size, uint type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern int GetAttribLocation( uint program, char name );
+		public static extern void VertexBlendARB( int count ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramiv( uint program, GLenum pname, int @params );
+		public static extern void CurrentPaletteMatrixARB( int index ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramInfoLog( uint program, int bufSize, int length, char infoLog );
+		public static extern void MatrixIndexubvARB( int size, byte[] indices ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetShaderiv( uint shader, GLenum pname, int @params );
+		public static extern void MatrixIndexusvARB( int size, ushort[] indices ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetShaderInfoLog( uint shader, int bufSize, int length, char infoLog );
+		public static extern void MatrixIndexuivARB( int size, uint[] indices ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetShaderSource( uint shader, int bufSize, int length, char source );
+		public static extern unsafe void MatrixIndexPointerARB( int size, uint type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern int GetUniformLocation( uint program, char name );
+		public static extern void WindowPos2dARB( double x, double y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetUniformfv( uint program, int location, float @params );
+		public static extern void WindowPos2dvARB( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetUniformiv( uint program, int location, int @params );
+		public static extern void WindowPos2fARB( float x, float y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribdv( uint index, VertexAttribPropertyARB pname, double @params );
+		public static extern void WindowPos2fvARB( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribfv( uint index, VertexAttribPropertyARB pname, float @params );
+		public static extern void WindowPos2iARB( int x, int y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribiv( uint index, VertexAttribPropertyARB pname, int @params );
+		public static extern void WindowPos2ivARB( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribPointerv( uint index, VertexAttribPointerPropertyARB pname, void* pointer );
+		public static extern void WindowPos2sARB( short x, short y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsProgram( uint program );
+		public static extern void WindowPos2svARB( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsShader( uint shader );
+		public static extern void WindowPos3dARB( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LinkProgram( uint program );
+		public static extern void WindowPos3dvARB( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ShaderSource( uint shader, int count, char @string, int length );
+		public static extern void WindowPos3fARB( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UseProgram( uint program );
+		public static extern void WindowPos3fvARB( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1f( int location, float v0 );
+		public static extern void WindowPos3iARB( int x, int y, int z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2f( int location, float v0, float v1 );
+		public static extern void WindowPos3ivARB( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3f( int location, float v0, float v1, float v2 );
+		public static extern void WindowPos3sARB( short x, short y, short z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4f( int location, float v0, float v1, float v2, float v3 );
+		public static extern void WindowPos3svARB( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1i( int location, int v0 );
+		public static extern void VertexAttrib1dARB( uint index, double x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2i( int location, int v0, int v1 );
+		public static extern void VertexAttrib1dvARB( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3i( int location, int v0, int v1, int v2 );
+		public static extern void VertexAttrib1fARB( uint index, float x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4i( int location, int v0, int v1, int v2, int v3 );
+		public static extern void VertexAttrib1fvARB( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1fv( int location, int count, float value );
+		public static extern void VertexAttrib1sARB( uint index, short x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2fv( int location, int count, float value );
+		public static extern void VertexAttrib1svARB( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3fv( int location, int count, float value );
+		public static extern void VertexAttrib2dARB( uint index, double x, double y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4fv( int location, int count, float value );
+		public static extern void VertexAttrib2dvARB( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1iv( int location, int count, int value );
+		public static extern void VertexAttrib2fARB( uint index, float x, float y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2iv( int location, int count, int value );
+		public static extern void VertexAttrib2fvARB( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3iv( int location, int count, int value );
+		public static extern void VertexAttrib2sARB( uint index, short x, short y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4iv( int location, int count, int value );
+		public static extern void VertexAttrib2svARB( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix2fv( int location, int count, bool transpose, float value );
+		public static extern void VertexAttrib3dARB( uint index, double x, double y, double z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix3fv( int location, int count, bool transpose, float value );
+		public static extern void VertexAttrib3dvARB( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix4fv( int location, int count, bool transpose, float value );
+		public static extern void VertexAttrib3fARB( uint index, float x, float y, float z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ValidateProgram( uint program );
+		public static extern void VertexAttrib3fvARB( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1d( uint index, double x );
+		public static extern void VertexAttrib3sARB( uint index, short x, short y, short z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1dv( uint index, double v );
+		public static extern void VertexAttrib3svARB( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1f( uint index, float x );
+		public static extern void VertexAttrib4NbvARB( uint index, sbyte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1fv( uint index, float v );
+		public static extern void VertexAttrib4NivARB( uint index, int[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1s( uint index, short x );
+		public static extern void VertexAttrib4NsvARB( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1sv( uint index, short v );
+		public static extern void VertexAttrib4NubARB( uint index, byte x, byte y, byte z, byte w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2d( uint index, double x, double y );
+		public static extern void VertexAttrib4NubvARB( uint index, byte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2dv( uint index, double v );
+		public static extern void VertexAttrib4NuivARB( uint index, uint[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2f( uint index, float x, float y );
+		public static extern void VertexAttrib4NusvARB( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2fv( uint index, float v );
+		public static extern void VertexAttrib4bvARB( uint index, sbyte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2s( uint index, short x, short y );
+		public static extern void VertexAttrib4dARB( uint index, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2sv( uint index, short v );
+		public static extern void VertexAttrib4dvARB( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3d( uint index, double x, double y, double z );
+		public static extern void VertexAttrib4fARB( uint index, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3dv( uint index, double v );
+		public static extern void VertexAttrib4fvARB( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3f( uint index, float x, float y, float z );
+		public static extern void VertexAttrib4ivARB( uint index, int[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3fv( uint index, float v );
+		public static extern void VertexAttrib4sARB( uint index, short x, short y, short z, short w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3s( uint index, short x, short y, short z );
+		public static extern void VertexAttrib4svARB( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3sv( uint index, short v );
+		public static extern void VertexAttrib4ubvARB( uint index, byte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Nbv( uint index, sbyte v );
+		public static extern void VertexAttrib4uivARB( uint index, uint[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Niv( uint index, int v );
+		public static extern void VertexAttrib4usvARB( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Nsv( uint index, short v );
+		public static extern unsafe void VertexAttribPointerARB( uint index, int size, uint type, bool normalized, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Nub( uint index, byte x, byte y, byte z, byte w );
+		public static extern void EnableVertexAttribArrayARB( uint index ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Nubv( uint index, byte v );
+		public static extern void DisableVertexAttribArrayARB( uint index ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Nuiv( uint index, uint v );
+		public static extern unsafe void ProgramStringARB( uint target, uint format, int len, void* @string ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4Nusv( uint index, ushort v );
+		public static extern void BindProgramARB( uint target, uint program ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4bv( uint index, sbyte v );
+		public static extern void DeleteProgramsARB( int n, uint[] programs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4d( uint index, double x, double y, double z, double w );
+		public static extern void GenProgramsARB( int n, ref uint[] programs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4dv( uint index, double v );
+		public static extern void ProgramEnvParameter4dARB( uint target, uint index, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4f( uint index, float x, float y, float z, float w );
+		public static extern void ProgramEnvParameter4dvARB( uint target, uint index, double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4fv( uint index, float v );
+		public static extern void ProgramEnvParameter4fARB( uint target, uint index, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4iv( uint index, int v );
+		public static extern void ProgramEnvParameter4fvARB( uint target, uint index, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4s( uint index, short x, short y, short z, short w );
+		public static extern void ProgramLocalParameter4dARB( uint target, uint index, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4sv( uint index, short v );
+		public static extern void ProgramLocalParameter4dvARB( uint target, uint index, double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4ubv( uint index, byte v );
+		public static extern void ProgramLocalParameter4fARB( uint target, uint index, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4uiv( uint index, uint v );
+		public static extern void ProgramLocalParameter4fvARB( uint target, uint index, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4usv( uint index, ushort v );
+		public static extern void GetProgramEnvParameterdvARB( uint target, uint index, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribPointer( uint index, int size, VertexAttribPointerTypeARB type, bool normalized, int stride, void pointer );
+		public static extern void GetProgramEnvParameterfvARB( uint target, uint index, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix2x3fv( int location, int count, bool transpose, float value );
+		public static extern void GetProgramLocalParameterdvARB( uint target, uint index, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix3x2fv( int location, int count, bool transpose, float value );
+		public static extern void GetProgramLocalParameterfvARB( uint target, uint index, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix2x4fv( int location, int count, bool transpose, float value );
+		public static extern void GetProgramivARB( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix4x2fv( int location, int count, bool transpose, float value );
+		public static extern unsafe void GetProgramStringARB( uint target, uint pname, ref void* @string ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix3x4fv( int location, int count, bool transpose, float value );
+		public static extern void GetVertexAttribdvARB( uint index, uint pname, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix4x3fv( int location, int count, bool transpose, float value );
+		public static extern void GetVertexAttribfvARB( uint index, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ActiveTextureARB( TextureUnit texture );
+		public static extern void GetVertexAttribivARB( uint index, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClientActiveTextureARB( TextureUnit texture );
+		public static extern unsafe void GetVertexAttribPointervARB( uint index, uint pname, ref void** pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1dARB( TextureUnit target, double s );
+		public static extern bool IsProgramARB( uint program ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1dvARB( TextureUnit target, double v );
+		public static extern void BindBufferARB( uint target, uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1fARB( TextureUnit target, float s );
+		public static extern void DeleteBuffersARB( int n, uint[] buffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1fvARB( TextureUnit target, float v );
+		public static extern void GenBuffersARB( int n, ref uint[] buffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1iARB( TextureUnit target, int s );
+		public static extern bool IsBufferARB( uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1ivARB( TextureUnit target, int v );
+		public static extern unsafe void BufferDataARB( uint target, int size, void* data, uint usage ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1sARB( TextureUnit target, short s );
+		public static extern unsafe void BufferSubDataARB( uint target, int offset, int size, void* data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1svARB( TextureUnit target, short v );
+		public static extern unsafe void GetBufferSubDataARB( uint target, int offset, int size, ref void* data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2dARB( TextureUnit target, double s, double t );
+		public static extern void MapBufferARB( uint target, uint access ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2dvARB( TextureUnit target, double v );
+		public static extern bool UnmapBufferARB( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2fARB( TextureUnit target, float s, float t );
+		public static extern void GetBufferParameterivARB( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2fvARB( TextureUnit target, float v );
+		public static extern unsafe void GetBufferPointervARB( uint target, uint pname, ref void** @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2iARB( TextureUnit target, int s, int t );
+		public static extern void GenQueriesARB( int n, ref uint[] ids ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2ivARB( TextureUnit target, int v );
+		public static extern void DeleteQueriesARB( int n, uint[] ids ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2sARB( TextureUnit target, short s, short t );
+		public static extern bool IsQueryARB( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2svARB( TextureUnit target, short v );
+		public static extern void BeginQueryARB( uint target, uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3dARB( TextureUnit target, double s, double t, double r );
+		public static extern void EndQueryARB( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3dvARB( TextureUnit target, double v );
+		public static extern void GetQueryivARB( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3fARB( TextureUnit target, float s, float t, float r );
+		public static extern void GetQueryObjectivARB( uint id, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3fvARB( TextureUnit target, float v );
+		public static extern void GetQueryObjectuivARB( uint id, uint pname, ref uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3iARB( TextureUnit target, int s, int t, int r );
+		public static extern void DeleteObjectARB( uint obj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3ivARB( TextureUnit target, int v );
+		public static extern uint GetHandleARB( uint pname ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3sARB( TextureUnit target, short s, short t, short r );
+		public static extern void DetachObjectARB( uint containerObj, uint attachedObj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3svARB( TextureUnit target, short v );
+		public static extern uint CreateShaderObjectARB( uint shaderType ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4dARB( TextureUnit target, double s, double t, double r, double q );
+		public static extern void ShaderSourceARB( uint shaderObj, int count, string[] @string, int[] length ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4dvARB( TextureUnit target, double v );
+		public static extern void CompileShaderARB( uint shaderObj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4fARB( TextureUnit target, float s, float t, float r, float q );
+		public static extern uint CreateProgramObjectARB(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4fvARB( TextureUnit target, float v );
+		public static extern void AttachObjectARB( uint containerObj, uint obj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4iARB( TextureUnit target, int s, int t, int r, int q );
+		public static extern void LinkProgramARB( uint programObj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4ivARB( TextureUnit target, int v );
+		public static extern void UseProgramObjectARB( uint programObj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4sARB( TextureUnit target, short s, short t, short r, short q );
+		public static extern void ValidateProgramARB( uint programObj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4svARB( TextureUnit target, short v );
+		public static extern void Uniform1fARB( int location, float v0 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadTransposeMatrixfARB( float m );
+		public static extern void Uniform2fARB( int location, float v0, float v1 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadTransposeMatrixdARB( double m );
+		public static extern void Uniform3fARB( int location, float v0, float v1, float v2 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultTransposeMatrixfARB( float m );
+		public static extern void Uniform4fARB( int location, float v0, float v1, float v2, float v3 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultTransposeMatrixdARB( double m );
+		public static extern void Uniform1iARB( int location, int v0 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SampleCoverageARB( float value, bool invert );
+		public static extern void Uniform2iARB( int location, int v0, int v1 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexImage3DARB( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, int imageSize, void data );
+		public static extern void Uniform3iARB( int location, int v0, int v1, int v2 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexImage2DARB( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int border, int imageSize, void data );
+		public static extern void Uniform4iARB( int location, int v0, int v1, int v2, int v3 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexImage1DARB( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int border, int imageSize, void data );
+		public static extern void Uniform1fvARB( int location, int count, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexSubImage3DARB( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, int imageSize, void data );
+		public static extern void Uniform2fvARB( int location, int count, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexSubImage2DARB( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, int imageSize, void data );
+		public static extern void Uniform3fvARB( int location, int count, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompressedTexSubImage1DARB( TextureTarget target, int level, int xoffset, int width, PixelFormat format, int imageSize, void data );
+		public static extern void Uniform4fvARB( int location, int count, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCompressedTexImageARB( TextureTarget target, int level, void img );
+		public static extern void Uniform1ivARB( int location, int count, int[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfARB( PointParameterNameARB pname, float param );
+		public static extern void Uniform2ivARB( int location, int count, int[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfvARB( PointParameterNameARB pname, float @params );
+		public static extern void Uniform3ivARB( int location, int count, int[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightbvARB( int size, sbyte weights );
+		public static extern void Uniform4ivARB( int location, int count, int[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightsvARB( int size, short weights );
+		public static extern void UniformMatrix2fvARB( int location, int count, bool transpose, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightivARB( int size, int weights );
+		public static extern void UniformMatrix3fvARB( int location, int count, bool transpose, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightfvARB( int size, float weights );
+		public static extern void UniformMatrix4fvARB( int location, int count, bool transpose, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightdvARB( int size, double weights );
+		public static extern void GetObjectParameterfvARB( uint obj, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightubvARB( int size, byte weights );
+		public static extern void GetObjectParameterivARB( uint obj, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightusvARB( int size, ushort weights );
+		public static extern void GetInfoLogARB( uint obj, int maxLength, ref int[] length, ref string[] infoLog ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightuivARB( int size, uint weights );
+		public static extern void GetAttachedObjectsARB( uint containerObj, int maxCount, ref int[] count, ref uint[] obj ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WeightPointerARB( int size, WeightPointerTypeARB type, int stride, void pointer );
+		public static extern int GetUniformLocationARB( uint programObj, string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexBlendARB( int count );
+		public static extern void GetActiveUniformARB( uint programObj, uint index, int maxLength, ref int[] length, ref int[] size, ref uint[] type, ref string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CurrentPaletteMatrixARB( int index );
+		public static extern void GetUniformfvARB( uint programObj, int location, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MatrixIndexubvARB( int size, byte indices );
+		public static extern void GetUniformivARB( uint programObj, int location, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MatrixIndexusvARB( int size, ushort indices );
+		public static extern void GetShaderSourceARB( uint obj, int maxLength, ref int[] length, ref string[] source ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MatrixIndexuivARB( int size, uint indices );
+		public static extern void BindAttribLocationARB( uint programObj, uint index, string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MatrixIndexPointerARB( int size, MatrixIndexPointerTypeARB type, int stride, void pointer );
+		public static extern void GetActiveAttribARB( uint programObj, uint index, int maxLength, ref int[] length, ref int[] size, ref uint[] type, ref string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2dARB( double x, double y );
+		public static extern int GetAttribLocationARB( uint programObj, string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2dvARB( double v );
+		public static extern void DrawBuffersARB( int n, uint[] bufs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2fARB( float x, float y );
+		public static extern void ClampColorARB( uint target, uint clamp ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2fvARB( float v );
+		public static extern void BlendColorEXT( float red, float green, float blue, float alpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2iARB( int x, int y );
+		public static extern void PolygonOffsetEXT( float factor, float bias ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2ivARB( int v );
+		public static extern unsafe void TexImage3DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, PixelFormat format, PixelType type, void* pixels ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2sARB( short x, short y );
+		public static extern unsafe void TexSubImage3DEXT( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, PixelType type, void* pixels ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2svARB( short v );
+		public static extern void GetTexFilterFuncSGIS( TextureTarget target, uint filter, ref float[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3dARB( double x, double y, double z );
+		public static extern void TexFilterFuncSGIS( TextureTarget target, uint filter, int n, float[] weights ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3dvARB( double v );
+		public static extern unsafe void TexSubImage1DEXT( TextureTarget target, int level, int xoffset, int width, PixelFormat format, PixelType type, void* pixels ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3fARB( float x, float y, float z );
+		public static extern unsafe void TexSubImage2DEXT( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, void* pixels ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3fvARB( float v );
+		public static extern void CopyTexImage1DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int border ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3iARB( int x, int y, int z );
+		public static extern void CopyTexImage2DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int height, int border ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3ivARB( int v );
+		public static extern void CopyTexSubImage1DEXT( TextureTarget target, int level, int xoffset, int x, int y, int width ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3sARB( short x, short y, short z );
+		public static extern void CopyTexSubImage2DEXT( TextureTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3svARB( short v );
+		public static extern void CopyTexSubImage3DEXT( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1dARB( uint index, double x );
+		public static extern unsafe void GetHistogramEXT( HistogramTargetEXT target, bool reset, PixelFormat format, PixelType type, ref void* values ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1dvARB( uint index, double v );
+		public static extern void GetHistogramParameterfvEXT( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1fARB( uint index, float x );
+		public static extern void GetHistogramParameterivEXT( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1fvARB( uint index, float v );
+		public static extern unsafe void GetMinmaxEXT( MinmaxTargetEXT target, bool reset, PixelFormat format, PixelType type, ref void* values ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1sARB( uint index, short x );
+		public static extern void GetMinmaxParameterfvEXT( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1svARB( uint index, short v );
+		public static extern void GetMinmaxParameterivEXT( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2dARB( uint index, double x, double y );
+		public static extern void HistogramEXT( HistogramTargetEXT target, int width, PixelInternalFormat internalformat, bool sink ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2dvARB( uint index, double v );
+		public static extern void MinmaxEXT( MinmaxTargetEXT target, PixelInternalFormat internalformat, bool sink ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2fARB( uint index, float x, float y );
+		public static extern void ResetHistogramEXT( HistogramTargetEXT target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2fvARB( uint index, float v );
+		public static extern void ResetMinmaxEXT( MinmaxTargetEXT target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2sARB( uint index, short x, short y );
+		public static extern unsafe void ConvolutionFilter1DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* image ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2svARB( uint index, short v );
+		public static extern unsafe void ConvolutionFilter2DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* image ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3dARB( uint index, double x, double y, double z );
+		public static extern void ConvolutionParameterfEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3dvARB( uint index, double v );
+		public static extern void ConvolutionParameterfvEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3fARB( uint index, float x, float y, float z );
+		public static extern void ConvolutionParameteriEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3fvARB( uint index, float v );
+		public static extern void ConvolutionParameterivEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3sARB( uint index, short x, short y, short z );
+		public static extern void CopyConvolutionFilter1DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3svARB( uint index, short v );
+		public static extern void CopyConvolutionFilter2DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width, int height ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NbvARB( uint index, sbyte v );
+		public static extern unsafe void GetConvolutionFilterEXT( ConvolutionTargetEXT target, PixelFormat format, PixelType type, ref void* image ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NivARB( uint index, int v );
+		public static extern void GetConvolutionParameterfvEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NsvARB( uint index, short v );
+		public static extern void GetConvolutionParameterivEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NubARB( uint index, byte x, byte y, byte z, byte w );
+		public static extern unsafe void GetSeparableFilterEXT( SeparableTargetEXT target, PixelFormat format, PixelType type, ref void* row, ref void* column, ref void* span ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NubvARB( uint index, byte v );
+		public static extern unsafe void SeparableFilter2DEXT( SeparableTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* row, void* column ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NuivARB( uint index, uint v );
+		public static extern unsafe void ColorTableSGI( ColorTableTargetSGI target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* table ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4NusvARB( uint index, ushort v );
+		public static extern void ColorTableParameterfvSGI( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4bvARB( uint index, sbyte v );
+		public static extern void ColorTableParameterivSGI( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4dARB( uint index, double x, double y, double z, double w );
+		public static extern void CopyColorTableSGI( ColorTableTargetSGI target, PixelInternalFormat internalformat, int x, int y, int width ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4dvARB( uint index, double v );
+		public static extern unsafe void GetColorTableSGI( ColorTableTargetSGI target, PixelFormat format, PixelType type, ref void* table ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4fARB( uint index, float x, float y, float z, float w );
+		public static extern void GetColorTableParameterfvSGI( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4fvARB( uint index, float v );
+		public static extern void GetColorTableParameterivSGI( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4ivARB( uint index, int v );
+		public static extern void PixelTexGenSGIX( uint mode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4sARB( uint index, short x, short y, short z, short w );
+		public static extern void PixelTexGenParameteriSGIS( PixelTexGenParameterNameSGIS pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4svARB( uint index, short v );
+		public static extern void PixelTexGenParameterivSGIS( PixelTexGenParameterNameSGIS pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4ubvARB( uint index, byte v );
+		public static extern void PixelTexGenParameterfSGIS( PixelTexGenParameterNameSGIS pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4uivARB( uint index, uint v );
+		public static extern void PixelTexGenParameterfvSGIS( PixelTexGenParameterNameSGIS pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4usvARB( uint index, ushort v );
+		public static extern void GetPixelTexGenParameterivSGIS( PixelTexGenParameterNameSGIS pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribPointerARB( uint index, int size, VertexAttribPointerTypeARB type, bool normalized, int stride, void pointer );
+		public static extern void GetPixelTexGenParameterfvSGIS( PixelTexGenParameterNameSGIS pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EnableVertexAttribArrayARB( uint index );
+		public static extern unsafe void TexImage4DSGIS( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int size4d, int border, PixelFormat format, PixelType type, void* pixels ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DisableVertexAttribArrayARB( uint index );
+		public static extern unsafe void TexSubImage4DSGIS( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int woffset, int width, int height, int depth, int size4d, PixelFormat format, PixelType type, void* pixels ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramStringARB( ProgramTargetARB target, ProgramFormatARB format, int len, void string );
+		public static extern bool AreTexturesResidentEXT( int n, uint[] textures, ref bool[] residences ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindProgramARB( ProgramTargetARB target, uint program );
+		public static extern void BindTextureEXT( TextureTarget target, uint texture ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteProgramsARB( int n, uint programs );
+		public static extern void DeleteTexturesEXT( int n, uint[] textures ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenProgramsARB( int n, uint programs );
+		public static extern void GenTexturesEXT( int n, ref uint[] textures ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameter4dARB( ProgramTargetARB target, uint index, double x, double y, double z, double w );
+		public static extern bool IsTextureEXT( uint texture ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameter4dvARB( ProgramTargetARB target, uint index, double @params );
+		public static extern void PrioritizeTexturesEXT( int n, uint[] textures, float[] priorities ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameter4fARB( ProgramTargetARB target, uint index, float x, float y, float z, float w );
+		public static extern void DetailTexFuncSGIS( TextureTarget target, int n, float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameter4fvARB( ProgramTargetARB target, uint index, float @params );
+		public static extern void GetDetailTexFuncSGIS( TextureTarget target, ref float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameter4dARB( ProgramTargetARB target, uint index, double x, double y, double z, double w );
+		public static extern void SharpenTexFuncSGIS( TextureTarget target, int n, float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameter4dvARB( ProgramTargetARB target, uint index, double @params );
+		public static extern void GetSharpenTexFuncSGIS( TextureTarget target, ref float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameter4fARB( ProgramTargetARB target, uint index, float x, float y, float z, float w );
+		public static extern void SampleMaskSGIS( float value, bool invert ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameter4fvARB( ProgramTargetARB target, uint index, float @params );
+		public static extern void SamplePatternSGIS( SamplePatternSGIS pattern ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramEnvParameterdvARB( ProgramTargetARB target, uint index, double @params );
+		public static extern void ArrayElementEXT( int i ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramEnvParameterfvARB( ProgramTargetARB target, uint index, float @params );
+		public static extern unsafe void ColorPointerEXT( int size, ColorPointerType type, int stride, int count, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramLocalParameterdvARB( ProgramTargetARB target, uint index, double @params );
+		public static extern void DrawArraysEXT( BeginMode mode, int first, int count ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramLocalParameterfvARB( ProgramTargetARB target, uint index, float @params );
+		public static extern void EdgeFlagPointerEXT( int stride, int count, bool[] pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramivARB( ProgramTargetARB target, ProgramPropertyARB pname, int @params );
+		public static extern unsafe void GetPointervEXT( GetPointervPName pname, ref void** @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramStringARB( ProgramTargetARB target, ProgramStringPropertyARB pname, void string );
+		public static extern unsafe void IndexPointerEXT( IndexPointerType type, int stride, int count, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribdvARB( uint index, VertexAttribPropertyARB pname, double @params );
+		public static extern unsafe void NormalPointerEXT( NormalPointerType type, int stride, int count, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribfvARB( uint index, VertexAttribPropertyARB pname, float @params );
+		public static extern unsafe void TexCoordPointerEXT( int size, TexCoordPointerType type, int stride, int count, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribivARB( uint index, VertexAttribPropertyARB pname, int @params );
+		public static extern unsafe void VertexPointerEXT( int size, VertexPointerType type, int stride, int count, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribPointervARB( uint index, VertexAttribPointerPropertyARB pname, void pointer );
+		public static extern void BlendEquationEXT( BlendEquationModeEXT mode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsProgramARB( uint program );
+		public static extern void SpriteParameterfSGIX( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindBufferARB( BufferTargetARB target, uint buffer );
+		public static extern void SpriteParameterfvSGIX( uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteBuffersARB( int n, uint buffers );
+		public static extern void SpriteParameteriSGIX( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenBuffersARB( int n, uint buffers );
+		public static extern void SpriteParameterivSGIX( uint pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsBufferARB( uint buffer );
+		public static extern void PointParameterfEXT( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BufferDataARB( BufferTargetARB target, int size, void data, BufferUsageARB usage );
+		public static extern void PointParameterfvEXT( uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BufferSubDataARB( BufferTargetARB target, int offset, int size, void data );
+		public static extern void PointParameterfSGIS( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBufferSubDataARB( BufferTargetARB target, int offset, int size, void data );
+		public static extern void PointParameterfvSGIS( uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapBufferARB( BufferTargetARB target, BufferAccessARB access );
+		public static extern int GetInstrumentsSGIX(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool UnmapBufferARB( BufferTargetARB target );
+		public static extern void InstrumentsBufferSGIX( int size, ref int[] buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBufferParameterivARB( BufferTargetARB target, BufferPNameARB pname, int @params );
+		public static extern int PollInstrumentsSGIX( ref int[] marker_p ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetBufferPointervARB( BufferTargetARB target, BufferPointerNameARB pname, void @params );
+		public static extern void ReadInstrumentsSGIX( int marker ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenQueriesARB( int n, uint ids );
+		public static extern void StartInstrumentsSGIX(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteQueriesARB( int n, uint ids );
+		public static extern void StopInstrumentsSGIX( int marker ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsQueryARB( uint id );
+		public static extern void FrameZoomSGIX( int factor ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BeginQueryARB( GLenum target, uint id );
+		public static extern void TagSampleBufferSGIX(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EndQueryARB( GLenum target );
+		public static extern void DeformationMap3dSGIX( FfdTargetSGIX target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double w1, double w2, int wstride, int worder, double[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryivARB( GLenum target, GLenum pname, int @params );
+		public static extern void DeformationMap3fSGIX( FfdTargetSGIX target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float w1, float w2, int wstride, int worder, float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryObjectivARB( uint id, GLenum pname, int @params );
+		public static extern void DeformSGIX( FfdMaskSGIX mask ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryObjectuivARB( uint id, GLenum pname, uint @params );
+		public static extern void LoadIdentityDeformationMapSGIX( FfdMaskSGIX mask ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteObjectARB( uint obj );
+		public static extern void ReferencePlaneSGIX( double[] equation ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint GetHandleARB( GLenum pname );
+		public static extern void FlushRasterSGIX(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DetachObjectARB( uint containerObj, uint attachedObj );
+		public static extern void FogFuncSGIS( int n, float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint CreateShaderObjectARB( GLenum shaderType );
+		public static extern void GetFogFuncSGIS( ref float[] points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ShaderSourceARB( uint shaderObj, int count, char string, int length );
+		public static extern void ImageTransformParameteriHP( uint target, uint pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CompileShaderARB( uint shaderObj );
+		public static extern void ImageTransformParameterfHP( uint target, uint pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint CreateProgramObjectARB(  );
+		public static extern void ImageTransformParameterivHP( uint target, uint pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AttachObjectARB( uint containerObj, uint obj );
+		public static extern void ImageTransformParameterfvHP( uint target, uint pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LinkProgramARB( uint programObj );
+		public static extern void GetImageTransformParameterivHP( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UseProgramObjectARB( uint programObj );
+		public static extern void GetImageTransformParameterfvHP( uint target, uint pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ValidateProgramARB( uint programObj );
+		public static extern unsafe void ColorSubTableEXT( uint target, int start, int count, PixelFormat format, PixelType type, void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1fARB( int location, float v0 );
+		public static extern void CopyColorSubTableEXT( uint target, int start, int x, int y, int width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2fARB( int location, float v0, float v1 );
+		public static extern void HintPGI( uint target, int mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3fARB( int location, float v0, float v1, float v2 );
+		public static extern unsafe void ColorTableEXT( uint target, PixelInternalFormat internalFormat, int width, PixelFormat format, PixelType type, void* table ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4fARB( int location, float v0, float v1, float v2, float v3 );
+		public static extern unsafe void GetColorTableEXT( uint target, PixelFormat format, PixelType type, ref void* data ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1iARB( int location, int v0 );
+		public static extern void GetColorTableParameterivEXT( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2iARB( int location, int v0, int v1 );
+		public static extern void GetColorTableParameterfvEXT( uint target, uint pname, ref float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3iARB( int location, int v0, int v1, int v2 );
+		public static extern void GetListParameterfvSGIX( uint list, ListParameterName pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4iARB( int location, int v0, int v1, int v2, int v3 );
+		public static extern void GetListParameterivSGIX( uint list, ListParameterName pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1fvARB( int location, int count, float value );
+		public static extern void ListParameterfSGIX( uint list, ListParameterName pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2fvARB( int location, int count, float value );
+		public static extern void ListParameterfvSGIX( uint list, ListParameterName pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3fvARB( int location, int count, float value );
+		public static extern void ListParameteriSGIX( uint list, ListParameterName pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4fvARB( int location, int count, float value );
+		public static extern void ListParameterivSGIX( uint list, ListParameterName pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1ivARB( int location, int count, int value );
+		public static extern void IndexMaterialEXT( MaterialFace face, uint mode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2ivARB( int location, int count, int value );
+		public static extern void IndexFuncEXT( uint func, float @ref ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3ivARB( int location, int count, int value );
+		public static extern void LockArraysEXT( int first, int count ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4ivARB( int location, int count, int value );
+		public static extern void UnlockArraysEXT(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix2fvARB( int location, int count, bool transpose, float value );
+		public static extern void CullParameterdvEXT( uint pname, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix3fvARB( int location, int count, bool transpose, float value );
+		public static extern void CullParameterfvEXT( uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UniformMatrix4fvARB( int location, int count, bool transpose, float value );
+		public static extern void FragmentColorMaterialSGIX( MaterialFace face, MaterialParameter mode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetObjectParameterfvARB( uint obj, GLenum pname, float @params );
+		public static extern void FragmentLightfSGIX( uint light, uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetObjectParameterivARB( uint obj, GLenum pname, int @params );
+		public static extern void FragmentLightfvSGIX( uint light, uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetInfoLogARB( uint obj, int maxLength, int length, char infoLog );
+		public static extern void FragmentLightiSGIX( uint light, uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetAttachedObjectsARB( uint containerObj, int maxCount, int count, uint obj );
+		public static extern void FragmentLightivSGIX( uint light, uint pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern int GetUniformLocationARB( uint programObj, char name );
+		public static extern void FragmentLightModelfSGIX( FragmentLightModelParameterSGIX pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetActiveUniformARB( uint programObj, uint index, int maxLength, int length, int size, GLenum type, char name );
+		public static extern void FragmentLightModelfvSGIX( FragmentLightModelParameterSGIX pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetUniformfvARB( uint programObj, int location, float @params );
+		public static extern void FragmentLightModeliSGIX( FragmentLightModelParameterSGIX pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetUniformivARB( uint programObj, int location, int @params );
+		public static extern void FragmentLightModelivSGIX( FragmentLightModelParameterSGIX pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetShaderSourceARB( uint obj, int maxLength, int length, char source );
+		public static extern void FragmentMaterialfSGIX( MaterialFace face, MaterialParameter pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindAttribLocationARB( uint programObj, uint index, char name );
+		public static extern void FragmentMaterialfvSGIX( MaterialFace face, MaterialParameter pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetActiveAttribARB( uint programObj, uint index, int maxLength, int length, int size, GLenum type, char name );
+		public static extern void FragmentMaterialiSGIX( MaterialFace face, MaterialParameter pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern int GetAttribLocationARB( uint programObj, char name );
+		public static extern void FragmentMaterialivSGIX( MaterialFace face, MaterialParameter pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawBuffersARB( int n, DrawBufferModeATI bufs );
+		public static extern void GetFragmentLightfvSGIX( uint light, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClampColorARB( ClampColorTargetARB target, ClampColorModeARB clamp );
+		public static extern void GetFragmentLightivSGIX( uint light, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendColorEXT( float red, float green, float blue, float alpha );
+		public static extern void GetFragmentMaterialfvSGIX( MaterialFace face, MaterialParameter pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PolygonOffsetEXT( float factor, float bias );
+		public static extern void GetFragmentMaterialivSGIX( MaterialFace face, MaterialParameter pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexImage3DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, PixelFormat format, PixelType type, void pixels );
+		public static extern void LightEnviSGIX( LightEnvParameterSGIX pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage3DEXT( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, PixelType type, void pixels );
+		public static extern unsafe void DrawRangeElementsEXT( BeginMode mode, uint start, uint end, int count, uint type, void* indices ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexFilterFuncSGIS( TextureTarget target, TextureFilterSGIS filter, float weights );
+		public static extern void ApplyTextureEXT( uint mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexFilterFuncSGIS( TextureTarget target, TextureFilterSGIS filter, int n, float weights );
+		public static extern void TextureLightEXT( uint pname ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage1DEXT( TextureTarget target, int level, int xoffset, int width, PixelFormat format, PixelType type, void pixels );
+		public static extern void TextureMaterialEXT( MaterialFace face, MaterialParameter mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage2DEXT( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, void pixels );
+		public static extern void AsyncMarkerSGIX( uint marker ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexImage1DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int border );
+		public static extern int FinishAsyncSGIX( ref uint[] markerp ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexImage2DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int height, int border );
+		public static extern int PollAsyncSGIX( ref uint[] markerp ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexSubImage1DEXT( TextureTarget target, int level, int xoffset, int x, int y, int width );
+		public static extern uint GenAsyncMarkersSGIX( int range ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexSubImage2DEXT( TextureTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height );
+		public static extern void DeleteAsyncMarkersSGIX( uint marker, int range ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyTexSubImage3DEXT( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height );
+		public static extern bool IsAsyncMarkerSGIX( uint marker ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetHistogramEXT( HistogramTargetEXT target, bool reset, PixelFormat format, PixelType type, void values );
+		public static extern unsafe void VertexPointervINTEL( int size, VertexPointerType type, void** pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetHistogramParameterfvEXT( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, float @params );
+		public static extern unsafe void NormalPointervINTEL( NormalPointerType type, void** pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetHistogramParameterivEXT( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, int @params );
+		public static extern unsafe void ColorPointervINTEL( int size, VertexPointerType type, void** pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMinmaxEXT( MinmaxTargetEXT target, bool reset, PixelFormat format, PixelType type, void values );
+		public static extern unsafe void TexCoordPointervINTEL( int size, VertexPointerType type, void** pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMinmaxParameterfvEXT( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, float @params );
+		public static extern void PixelTransformParameteriEXT( uint target, uint pname, int param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMinmaxParameterivEXT( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, int @params );
+		public static extern void PixelTransformParameterfEXT( uint target, uint pname, float param ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void HistogramEXT( HistogramTargetEXT target, int width, PixelInternalFormat internalformat, bool sink );
+		public static extern void PixelTransformParameterivEXT( uint target, uint pname, int[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MinmaxEXT( MinmaxTargetEXT target, PixelInternalFormat internalformat, bool sink );
+		public static extern void PixelTransformParameterfvEXT( uint target, uint pname, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ResetHistogramEXT( HistogramTargetEXT target );
+		public static extern void SecondaryColor3bEXT( sbyte red, sbyte green, sbyte blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ResetMinmaxEXT( MinmaxTargetEXT target );
+		public static extern void SecondaryColor3bvEXT( sbyte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionFilter1DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void image );
+		public static extern void SecondaryColor3dEXT( double red, double green, double blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionFilter2DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void image );
+		public static extern void SecondaryColor3dvEXT( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameterfEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float @params );
+		public static extern void SecondaryColor3fEXT( float red, float green, float blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameterfvEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float @params );
+		public static extern void SecondaryColor3fvEXT( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameteriEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int @params );
+		public static extern void SecondaryColor3iEXT( int red, int green, int blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ConvolutionParameterivEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int @params );
+		public static extern void SecondaryColor3ivEXT( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyConvolutionFilter1DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width );
+		public static extern void SecondaryColor3sEXT( short red, short green, short blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyConvolutionFilter2DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width, int height );
+		public static extern void SecondaryColor3svEXT( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetConvolutionFilterEXT( ConvolutionTargetEXT target, PixelFormat format, PixelType type, void image );
+		public static extern void SecondaryColor3ubEXT( byte red, byte green, byte blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetConvolutionParameterfvEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float @params );
+		public static extern void SecondaryColor3ubvEXT( byte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetConvolutionParameterivEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int @params );
+		public static extern void SecondaryColor3uiEXT( uint red, uint green, uint blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetSeparableFilterEXT( SeparableTargetEXT target, PixelFormat format, PixelType type, void row, void column, void span );
+		public static extern void SecondaryColor3uivEXT( uint[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SeparableFilter2DEXT( SeparableTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void row, void column );
+		public static extern void SecondaryColor3usEXT( ushort red, ushort green, ushort blue ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTableSGI( ColorTableTargetSGI target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void table );
+		public static extern void SecondaryColor3usvEXT( ushort[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTableParameterfvSGI( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, float @params );
+		public static extern unsafe void SecondaryColorPointerEXT( int size, ColorPointerType type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTableParameterivSGI( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, int @params );
+		public static extern void TextureNormalEXT( uint mode ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyColorTableSGI( ColorTableTargetSGI target, PixelInternalFormat internalformat, int x, int y, int width );
+		public static extern void MultiDrawArraysEXT( BeginMode mode, ref int[] first, ref int[] count, int primcount ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableSGI( ColorTableTargetSGI target, PixelFormat format, PixelType type, void table );
+		public static extern unsafe void MultiDrawElementsEXT( BeginMode mode, int[] count, uint type, void** indices, int primcount ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableParameterfvSGI( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, float @params );
+		public static extern void FogCoordfEXT( float coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableParameterivSGI( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, int @params );
+		public static extern void FogCoordfvEXT( float[] coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTexGenSGIX( PixelTexGenModeSGIX mode );
+		public static extern void FogCoorddEXT( double coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTexGenParameteriSGIS( PixelTexGenParameterNameSGIS pname, int param );
+		public static extern void FogCoorddvEXT( double[] coord ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTexGenParameterivSGIS( PixelTexGenParameterNameSGIS pname, int @params );
+		public static extern unsafe void FogCoordPointerEXT( uint type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTexGenParameterfSGIS( PixelTexGenParameterNameSGIS pname, float param );
+		public static extern void Tangent3bEXT( sbyte tx, sbyte ty, sbyte tz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTexGenParameterfvSGIS( PixelTexGenParameterNameSGIS pname, float @params );
+		public static extern void Tangent3bvEXT( sbyte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPixelTexGenParameterivSGIS( PixelTexGenParameterNameSGIS pname, int @params );
+		public static extern void Tangent3dEXT( double tx, double ty, double tz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPixelTexGenParameterfvSGIS( PixelTexGenParameterNameSGIS pname, float @params );
+		public static extern void Tangent3dvEXT( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexImage4DSGIS( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int size4d, int border, PixelFormat format, PixelType type, void pixels );
+		public static extern void Tangent3fEXT( float tx, float ty, float tz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexSubImage4DSGIS( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int woffset, int width, int height, int depth, int size4d, PixelFormat format, PixelType type, void pixels );
+		public static extern void Tangent3fvEXT( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool AreTexturesResidentEXT( int n, uint textures, bool residences );
+		public static extern void Tangent3iEXT( int tx, int ty, int tz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindTextureEXT( TextureTarget target, uint texture );
+		public static extern void Tangent3ivEXT( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteTexturesEXT( int n, uint textures );
+		public static extern void Tangent3sEXT( short tx, short ty, short tz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenTexturesEXT( int n, uint textures );
+		public static extern void Tangent3svEXT( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsTextureEXT( uint texture );
+		public static extern void Binormal3bEXT( sbyte bx, sbyte by, sbyte bz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PrioritizeTexturesEXT( int n, uint textures, float priorities );
+		public static extern void Binormal3bvEXT( sbyte[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DetailTexFuncSGIS( TextureTarget target, int n, float points );
+		public static extern void Binormal3dEXT( double bx, double by, double bz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetDetailTexFuncSGIS( TextureTarget target, float points );
+		public static extern void Binormal3dvEXT( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SharpenTexFuncSGIS( TextureTarget target, int n, float points );
+		public static extern void Binormal3fEXT( float bx, float by, float bz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetSharpenTexFuncSGIS( TextureTarget target, float points );
+		public static extern void Binormal3fvEXT( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SampleMaskSGIS( float value, bool invert );
+		public static extern void Binormal3iEXT( int bx, int by, int bz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SamplePatternSGIS( SamplePatternSGIS pattern );
+		public static extern void Binormal3ivEXT( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ArrayElementEXT( int i );
+		public static extern void Binormal3sEXT( short bx, short by, short bz ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorPointerEXT( int size, ColorPointerType type, int stride, int count, void pointer );
+		public static extern void Binormal3svEXT( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawArraysEXT( BeginMode mode, int first, int count );
+		public static extern unsafe void TangentPointerEXT( uint type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EdgeFlagPointerEXT( int stride, int count, bool pointer );
+		public static extern unsafe void BinormalPointerEXT( uint type, int stride, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetPointervEXT( GetPointervPName pname, void @params );
+		public static extern void FinishTextureSUNX(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IndexPointerEXT( IndexPointerType type, int stride, int count, void pointer );
+		public static extern void GlobalAlphaFactorbSUN( sbyte factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalPointerEXT( NormalPointerType type, int stride, int count, void pointer );
+		public static extern void GlobalAlphaFactorsSUN( short factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoordPointerEXT( int size, TexCoordPointerType type, int stride, int count, void pointer );
+		public static extern void GlobalAlphaFactoriSUN( int factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexPointerEXT( int size, VertexPointerType type, int stride, int count, void pointer );
+		public static extern void GlobalAlphaFactorfSUN( float factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendEquationEXT( BlendEquationModeEXT mode );
+		public static extern void GlobalAlphaFactordSUN( double factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SpriteParameterfSGIX( SpriteParameterNameSGIX pname, float param );
+		public static extern void GlobalAlphaFactorubSUN( byte factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SpriteParameterfvSGIX( SpriteParameterNameSGIX pname, float @params );
+		public static extern void GlobalAlphaFactorusSUN( ushort factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SpriteParameteriSGIX( SpriteParameterNameSGIX pname, int param );
+		public static extern void GlobalAlphaFactoruiSUN( uint factor ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SpriteParameterivSGIX( SpriteParameterNameSGIX pname, int @params );
+		public static extern void ReplacementCodeuiSUN( uint code ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfEXT( PointParameterNameARB pname, float param );
+		public static extern void ReplacementCodeusSUN( ushort code ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfvEXT( PointParameterNameARB pname, float @params );
+		public static extern void ReplacementCodeubSUN( byte code ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfSGIS( PointParameterNameARB pname, float param );
+		public static extern void ReplacementCodeuivSUN( uint[] code ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterfvSGIS( PointParameterNameARB pname, float @params );
+		public static extern void ReplacementCodeusvSUN( ushort[] code ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern int GetInstrumentsSGIX(  );
+		public static extern void ReplacementCodeubvSUN( byte[] code ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void InstrumentsBufferSGIX( int size, int buffer );
+		public static extern unsafe void ReplacementCodePointerSUN( uint type, int stride, void** pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern int PollInstrumentsSGIX( int marker_p );
+		public static extern void Color4ubVertex2fSUN( byte r, byte g, byte b, byte a, float x, float y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReadInstrumentsSGIX( int marker );
+		public static extern void Color4ubVertex2fvSUN( byte[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StartInstrumentsSGIX(  );
+		public static extern void Color4ubVertex3fSUN( byte r, byte g, byte b, byte a, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void StopInstrumentsSGIX( int marker );
+		public static extern void Color4ubVertex3fvSUN( byte[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FrameZoomSGIX( int factor );
+		public static extern void Color3fVertex3fSUN( float r, float g, float b, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TagSampleBufferSGIX(  );
+		public static extern void Color3fVertex3fvSUN( float[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeformationMap3dSGIX( FfdTargetSGIX target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double w1, double w2, int wstride, int worder, double points );
+		public static extern void Normal3fVertex3fSUN( float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeformationMap3fSGIX( FfdTargetSGIX target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float w1, float w2, int wstride, int worder, float points );
+		public static extern void Normal3fVertex3fvSUN( float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeformSGIX( FfdMaskSGIX mask );
+		public static extern void Color4fNormal3fVertex3fSUN( float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadIdentityDeformationMapSGIX( FfdMaskSGIX mask );
+		public static extern void Color4fNormal3fVertex3fvSUN( float[] c, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReferencePlaneSGIX( double equation );
+		public static extern void TexCoord2fVertex3fSUN( float s, float t, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FlushRasterSGIX(  );
+		public static extern void TexCoord2fVertex3fvSUN( float[] tc, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogFuncSGIS( int n, float points );
+		public static extern void TexCoord4fVertex4fSUN( float s, float t, float p, float q, float x, float y, float z, float w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFogFuncSGIS( float points );
+		public static extern void TexCoord4fVertex4fvSUN( float[] tc, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ImageTransformParameteriHP( ImageTransformTargetHP target, ImageTransformPNameHP pname, int param );
+		public static extern void TexCoord2fColor4ubVertex3fSUN( float s, float t, byte r, byte g, byte b, byte a, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ImageTransformParameterfHP( ImageTransformTargetHP target, ImageTransformPNameHP pname, float param );
+		public static extern void TexCoord2fColor4ubVertex3fvSUN( float[] tc, byte[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ImageTransformParameterivHP( ImageTransformTargetHP target, ImageTransformPNameHP pname, int @params );
+		public static extern void TexCoord2fColor3fVertex3fSUN( float s, float t, float r, float g, float b, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ImageTransformParameterfvHP( ImageTransformTargetHP target, ImageTransformPNameHP pname, float @params );
+		public static extern void TexCoord2fColor3fVertex3fvSUN( float[] tc, float[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetImageTransformParameterivHP( ImageTransformTargetHP target, ImageTransformPNameHP pname, int @params );
+		public static extern void TexCoord2fNormal3fVertex3fSUN( float s, float t, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetImageTransformParameterfvHP( ImageTransformTargetHP target, ImageTransformPNameHP pname, float @params );
+		public static extern void TexCoord2fNormal3fVertex3fvSUN( float[] tc, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorSubTableEXT( ColorTableTarget target, int start, int count, PixelFormat format, PixelType type, void data );
+		public static extern void TexCoord2fColor4fNormal3fVertex3fSUN( float s, float t, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CopyColorSubTableEXT( ColorTableTarget target, int start, int x, int y, int width );
+		public static extern void TexCoord2fColor4fNormal3fVertex3fvSUN( float[] tc, float[] c, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void HintPGI( HintTargetPGI target, int mode );
+		public static extern void TexCoord4fColor4fNormal3fVertex4fSUN( float s, float t, float p, float q, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z, float w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorTableEXT( ColorTableTarget target, PixelInternalFormat internalFormat, int width, PixelFormat format, PixelType type, void table );
+		public static extern void TexCoord4fColor4fNormal3fVertex4fvSUN( float[] tc, float[] c, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableEXT( ColorTableTarget target, PixelFormat format, PixelType type, void data );
+		public static extern void ReplacementCodeuiVertex3fSUN( uint rc, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableParameterivEXT( ColorTableTarget target, GetColorTableParameterPName pname, int @params );
+		public static extern void ReplacementCodeuiVertex3fvSUN( uint[] rc, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetColorTableParameterfvEXT( ColorTableTarget target, GetColorTableParameterPName pname, float @params );
+		public static extern void ReplacementCodeuiColor4ubVertex3fSUN( uint rc, byte r, byte g, byte b, byte a, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetListParameterfvSGIX( uint list, ListParameterName pname, float @params );
+		public static extern void ReplacementCodeuiColor4ubVertex3fvSUN( uint[] rc, byte[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetListParameterivSGIX( uint list, ListParameterName pname, int @params );
+		public static extern void ReplacementCodeuiColor3fVertex3fSUN( uint rc, float r, float g, float b, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ListParameterfSGIX( uint list, ListParameterName pname, float param );
+		public static extern void ReplacementCodeuiColor3fVertex3fvSUN( uint[] rc, float[] c, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ListParameterfvSGIX( uint list, ListParameterName pname, float @params );
+		public static extern void ReplacementCodeuiNormal3fVertex3fSUN( uint rc, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ListParameteriSGIX( uint list, ListParameterName pname, int param );
+		public static extern void ReplacementCodeuiNormal3fVertex3fvSUN( uint[] rc, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ListParameterivSGIX( uint list, ListParameterName pname, int @params );
+		public static extern void ReplacementCodeuiColor4fNormal3fVertex3fSUN( uint rc, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IndexMaterialEXT( MaterialFace face, IndexMaterialParameterEXT mode );
+		public static extern void ReplacementCodeuiColor4fNormal3fVertex3fvSUN( uint[] rc, float[] c, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IndexFuncEXT( IndexFunctionEXT func, float @ref );
+		public static extern void ReplacementCodeuiTexCoord2fVertex3fSUN( uint rc, float s, float t, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LockArraysEXT( int first, int count );
+		public static extern void ReplacementCodeuiTexCoord2fVertex3fvSUN( uint[] rc, float[] tc, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UnlockArraysEXT(  );
+		public static extern void ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN( uint rc, float s, float t, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CullParameterdvEXT( CullParameterEXT pname, double @params );
+		public static extern void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN( uint[] rc, float[] tc, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CullParameterfvEXT( CullParameterEXT pname, float @params );
+		public static extern void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN( uint rc, float s, float t, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentColorMaterialSGIX( MaterialFace face, MaterialParameter mode );
+		public static extern void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN( uint[] rc, float[] tc, float[] c, float[] n, float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightfSGIX( FragmentLightNameSGIX light, FragmentLightParameterSGIX pname, float param );
+		public static extern void BlendFuncSeparateEXT( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightfvSGIX( FragmentLightNameSGIX light, FragmentLightParameterSGIX pname, float @params );
+		public static extern void BlendFuncSeparateINGR( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightiSGIX( FragmentLightNameSGIX light, FragmentLightParameterSGIX pname, int param );
+		public static extern void VertexWeightfEXT( float weight ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightivSGIX( FragmentLightNameSGIX light, FragmentLightParameterSGIX pname, int @params );
+		public static extern void VertexWeightfvEXT( float[] weight ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightModelfSGIX( FragmentLightModelParameterSGIX pname, float param );
+		public static extern unsafe void VertexWeightPointerEXT( int size, uint type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightModelfvSGIX( FragmentLightModelParameterSGIX pname, float @params );
+		public static extern void FlushVertexArrayRangeNV(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightModeliSGIX( FragmentLightModelParameterSGIX pname, int param );
+		public static extern unsafe void VertexArrayRangeNV( int length, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentLightModelivSGIX( FragmentLightModelParameterSGIX pname, int @params );
+		public static extern void CombinerParameterfvNV( uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentMaterialfSGIX( MaterialFace face, MaterialParameter pname, float param );
+		public static extern void CombinerParameterfNV( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentMaterialfvSGIX( MaterialFace face, MaterialParameter pname, float @params );
+		public static extern void CombinerParameterivNV( uint pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentMaterialiSGIX( MaterialFace face, MaterialParameter pname, int param );
+		public static extern void CombinerParameteriNV( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FragmentMaterialivSGIX( MaterialFace face, MaterialParameter pname, int @params );
+		public static extern void CombinerInputNV( uint stage, uint portion, uint variable, uint input, uint mapping, uint componentUsage ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFragmentLightfvSGIX( FragmentLightNameSGIX light, FragmentLightParameterSGIX pname, float @params );
+		public static extern void CombinerOutputNV( uint stage, uint portion, uint abOutput, uint cdOutput, uint sumOutput, uint scale, uint bias, bool abDotProduct, bool cdDotProduct, bool muxSum ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFragmentLightivSGIX( FragmentLightNameSGIX light, FragmentLightParameterSGIX pname, int @params );
+		public static extern void FinalCombinerInputNV( uint variable, uint input, uint mapping, uint componentUsage ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFragmentMaterialfvSGIX( MaterialFace face, MaterialParameter pname, float @params );
+		public static extern void GetCombinerInputParameterfvNV( uint stage, uint portion, uint variable, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFragmentMaterialivSGIX( MaterialFace face, MaterialParameter pname, int @params );
+		public static extern void GetCombinerInputParameterivNV( uint stage, uint portion, uint variable, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LightEnviSGIX( LightEnvParameterSGIX pname, int param );
+		public static extern void GetCombinerOutputParameterfvNV( uint stage, uint portion, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawRangeElementsEXT( BeginMode mode, uint start, uint end, int count, DrawElementsType type, void indices );
+		public static extern void GetCombinerOutputParameterivNV( uint stage, uint portion, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ApplyTextureEXT( LightTextureModeEXT mode );
+		public static extern void GetFinalCombinerInputParameterfvNV( uint variable, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TextureLightEXT( LightTexturePNameEXT pname );
+		public static extern void GetFinalCombinerInputParameterivNV( uint variable, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TextureMaterialEXT( MaterialFace face, MaterialParameter mode );
+		public static extern void ResizeBuffersMESA(  ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AsyncMarkerSGIX( uint marker );
+		public static extern void WindowPos2dMESA( double x, double y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern int FinishAsyncSGIX( uint markerp );
+		public static extern void WindowPos2dvMESA( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern int PollAsyncSGIX( uint markerp );
+		public static extern void WindowPos2fMESA( float x, float y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint GenAsyncMarkersSGIX( int range );
+		public static extern void WindowPos2fvMESA( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteAsyncMarkersSGIX( uint marker, int range );
+		public static extern void WindowPos2iMESA( int x, int y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsAsyncMarkerSGIX( uint marker );
+		public static extern void WindowPos2ivMESA( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexPointervINTEL( int size, VertexPointerType type, void pointer );
+		public static extern void WindowPos2sMESA( short x, short y ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalPointervINTEL( NormalPointerType type, void pointer );
+		public static extern void WindowPos2svMESA( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorPointervINTEL( int size, VertexPointerType type, void pointer );
+		public static extern void WindowPos3dMESA( double x, double y, double z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoordPointervINTEL( int size, VertexPointerType type, void pointer );
+		public static extern void WindowPos3dvMESA( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTransformParameteriEXT( PixelTransformTargetEXT target, PixelTransformPNameEXT pname, int param );
+		public static extern void WindowPos3fMESA( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTransformParameterfEXT( PixelTransformTargetEXT target, PixelTransformPNameEXT pname, float param );
+		public static extern void WindowPos3fvMESA( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTransformParameterivEXT( PixelTransformTargetEXT target, PixelTransformPNameEXT pname, int @params );
+		public static extern void WindowPos3iMESA( int x, int y, int z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PixelTransformParameterfvEXT( PixelTransformTargetEXT target, PixelTransformPNameEXT pname, float @params );
+		public static extern void WindowPos3ivMESA( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3bEXT( sbyte red, sbyte green, sbyte blue );
+		public static extern void WindowPos3sMESA( short x, short y, short z ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3bvEXT( sbyte v );
+		public static extern void WindowPos3svMESA( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3dEXT( double red, double green, double blue );
+		public static extern void WindowPos4dMESA( double x, double y, double z, double w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3dvEXT( double v );
+		public static extern void WindowPos4dvMESA( double[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3fEXT( float red, float green, float blue );
+		public static extern void WindowPos4fMESA( float x, float y, float z, float w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3fvEXT( float v );
+		public static extern void WindowPos4fvMESA( float[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3iEXT( int red, int green, int blue );
+		public static extern void WindowPos4iMESA( int x, int y, int z, int w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3ivEXT( int v );
+		public static extern void WindowPos4ivMESA( int[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3sEXT( short red, short green, short blue );
+		public static extern void WindowPos4sMESA( short x, short y, short z, short w ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3svEXT( short v );
+		public static extern void WindowPos4svMESA( short[] v ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3ubEXT( byte red, byte green, byte blue );
+		public static extern void MultiModeDrawArraysIBM( BeginMode mode, int[] first, int[] count, int primcount, int modestride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3ubvEXT( byte v );
+		public static extern unsafe void MultiModeDrawElementsIBM( BeginMode mode, int[] count, uint type, void** indices, int primcount, int modestride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3uiEXT( uint red, uint green, uint blue );
+		public static extern unsafe void ColorPointerListIBM( int size, ColorPointerType type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3uivEXT( uint v );
+		public static extern unsafe void SecondaryColorPointerListIBM( int size, uint type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3usEXT( ushort red, ushort green, ushort blue );
+		public static extern unsafe void EdgeFlagPointerListIBM( int stride, bool*[] pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3usvEXT( ushort v );
+		public static extern unsafe void FogCoordPointerListIBM( uint type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColorPointerEXT( int size, ColorPointerType type, int stride, void pointer );
+		public static extern unsafe void IndexPointerListIBM( IndexPointerType type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TextureNormalEXT( TextureNormalModeEXT mode );
+		public static extern unsafe void NormalPointerListIBM( NormalPointerType type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiDrawArraysEXT( BeginMode mode, int first, int count, int primcount );
+		public static extern unsafe void TexCoordPointerListIBM( int size, TexCoordPointerType type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiDrawElementsEXT( BeginMode mode, int count, DrawElementsType type, void indices, int primcount );
+		public static extern unsafe void VertexPointerListIBM( int size, VertexPointerType type, int stride, void** pointer, int ptrstride ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordfEXT( float coord );
+		public static extern void TbufferMask3DFX( uint mask ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordfvEXT( float coord );
+		public static extern void SampleMaskEXT( float value, bool invert ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoorddEXT( double coord );
+		public static extern void SamplePatternEXT( uint pattern ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoorddvEXT( double coord );
+		public static extern void TextureColorMaskSGIS( bool red, bool green, bool blue, bool alpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordPointerEXT( FogPointerTypeEXT type, int stride, void pointer );
+		public static extern unsafe void IglooInterfaceSGIX( uint pname, void* @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3bEXT( sbyte tx, sbyte ty, sbyte tz );
+		public static extern void DeleteFencesNV( int n, uint[] fences ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3bvEXT( sbyte v );
+		public static extern void GenFencesNV( int n, ref uint[] fences ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3dEXT( double tx, double ty, double tz );
+		public static extern bool IsFenceNV( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3dvEXT( double v );
+		public static extern bool TestFenceNV( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3fEXT( float tx, float ty, float tz );
+		public static extern void GetFenceivNV( uint fence, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3fvEXT( float v );
+		public static extern void FinishFenceNV( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3iEXT( int tx, int ty, int tz );
+		public static extern void SetFenceNV( uint fence, uint condition ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3ivEXT( int v );
+		public static extern unsafe void MapControlPointsNV( uint target, uint index, uint type, int ustride, int vstride, int uorder, int vorder, bool packed, void* points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3sEXT( short tx, short ty, short tz );
+		public static extern void MapParameterivNV( uint target, uint pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Tangent3svEXT( short v );
+		public static extern void MapParameterfvNV( uint target, uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3bEXT( sbyte bx, sbyte by, sbyte bz );
+		public static extern unsafe void GetMapControlPointsNV( uint target, uint index, uint type, int ustride, int vstride, bool packed, ref void* points ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3bvEXT( sbyte v );
+		public static extern void GetMapParameterivNV( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3dEXT( double bx, double by, double bz );
+		public static extern void GetMapParameterfvNV( uint target, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3dvEXT( double v );
+		public static extern void GetMapAttribParameterivNV( uint target, uint index, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3fEXT( float bx, float by, float bz );
+		public static extern void GetMapAttribParameterfvNV( uint target, uint index, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3fvEXT( float v );
+		public static extern void EvalMapsNV( uint target, uint mode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3iEXT( int bx, int by, int bz );
+		public static extern void CombinerStageParameterfvNV( uint stage, uint pname, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3ivEXT( int v );
+		public static extern void GetCombinerStageParameterfvNV( uint stage, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3sEXT( short bx, short by, short bz );
+		public static extern bool AreProgramsResidentNV( int n, uint[] programs, ref bool[] residences ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Binormal3svEXT( short v );
+		public static extern void BindProgramNV( uint target, uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TangentPointerEXT( TangentPointerTypeEXT type, int stride, void pointer );
+		public static extern void DeleteProgramsNV( int n, uint[] programs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BinormalPointerEXT( BinormalPointerTypeEXT type, int stride, void pointer );
+		public static extern void ExecuteProgramNV( uint target, uint id, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FinishTextureSUNX(  );
+		public static extern void GenProgramsNV( int n, ref uint[] programs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactorbSUN( sbyte factor );
+		public static extern void GetProgramParameterdvNV( uint target, uint index, uint pname, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactorsSUN( short factor );
+		public static extern void GetProgramParameterfvNV( uint target, uint index, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactoriSUN( int factor );
+		public static extern void GetProgramivNV( uint id, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactorfSUN( float factor );
+		public static extern void GetProgramStringNV( uint id, uint pname, ref byte[] program ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactordSUN( double factor );
+		public static extern void GetTrackMatrixivNV( uint target, uint address, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactorubSUN( byte factor );
+		public static extern void GetVertexAttribdvNV( uint index, uint pname, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactorusSUN( ushort factor );
+		public static extern void GetVertexAttribfvNV( uint index, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GlobalAlphaFactoruiSUN( uint factor );
+		public static extern void GetVertexAttribivNV( uint index, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiSUN( uint code );
+		public static extern unsafe void GetVertexAttribPointervNV( uint index, uint pname, ref void** pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeusSUN( ushort code );
+		public static extern bool IsProgramNV( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeubSUN( byte code );
+		public static extern void LoadProgramNV( uint target, uint id, int len, byte[] program ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuivSUN( uint code );
+		public static extern void ProgramParameter4dNV( uint target, uint index, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeusvSUN( ushort code );
+		public static extern void ProgramParameter4dvNV( uint target, uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeubvSUN( byte code );
+		public static extern void ProgramParameter4fNV( uint target, uint index, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodePointerSUN( ReplacementCodeTypeSUN type, int stride, void pointer );
+		public static extern void ProgramParameter4fvNV( uint target, uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ubVertex2fSUN( byte r, byte g, byte b, byte a, float x, float y );
+		public static extern void ProgramParameters4dvNV( uint target, uint index, uint count, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ubVertex2fvSUN( byte c, float v );
+		public static extern void ProgramParameters4fvNV( uint target, uint index, uint count, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ubVertex3fSUN( byte r, byte g, byte b, byte a, float x, float y, float z );
+		public static extern void RequestResidentProgramsNV( int n, uint[] programs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4ubVertex3fvSUN( byte c, float v );
+		public static extern void TrackMatrixNV( uint target, uint address, uint matrix, uint transform ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3fVertex3fSUN( float r, float g, float b, float x, float y, float z );
+		public static extern unsafe void VertexAttribPointerNV( uint index, int fsize, uint type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color3fVertex3fvSUN( float c, float v );
+		public static extern void VertexAttrib1dNV( uint index, double x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3fVertex3fSUN( float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttrib1dvNV( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3fVertex3fvSUN( float n, float v );
+		public static extern void VertexAttrib1fNV( uint index, float x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4fNormal3fVertex3fSUN( float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttrib1fvNV( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Color4fNormal3fVertex3fvSUN( float c, float n, float v );
+		public static extern void VertexAttrib1sNV( uint index, short x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fVertex3fSUN( float s, float t, float x, float y, float z );
+		public static extern void VertexAttrib1svNV( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fVertex3fvSUN( float tc, float v );
+		public static extern void VertexAttrib2dNV( uint index, double x, double y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4fVertex4fSUN( float s, float t, float p, float q, float x, float y, float z, float w );
+		public static extern void VertexAttrib2dvNV( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4fVertex4fvSUN( float tc, float v );
+		public static extern void VertexAttrib2fNV( uint index, float x, float y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fColor4ubVertex3fSUN( float s, float t, byte r, byte g, byte b, byte a, float x, float y, float z );
+		public static extern void VertexAttrib2fvNV( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fColor4ubVertex3fvSUN( float tc, byte c, float v );
+		public static extern void VertexAttrib2sNV( uint index, short x, short y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fColor3fVertex3fSUN( float s, float t, float r, float g, float b, float x, float y, float z );
+		public static extern void VertexAttrib2svNV( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fColor3fVertex3fvSUN( float tc, float c, float v );
+		public static extern void VertexAttrib3dNV( uint index, double x, double y, double z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fNormal3fVertex3fSUN( float s, float t, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttrib3dvNV( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fNormal3fVertex3fvSUN( float tc, float n, float v );
+		public static extern void VertexAttrib3fNV( uint index, float x, float y, float z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fColor4fNormal3fVertex3fSUN( float s, float t, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttrib3fvNV( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2fColor4fNormal3fVertex3fvSUN( float tc, float c, float n, float v );
+		public static extern void VertexAttrib3sNV( uint index, short x, short y, short z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4fColor4fNormal3fVertex4fSUN( float s, float t, float p, float q, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z, float w );
+		public static extern void VertexAttrib3svNV( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4fColor4fNormal3fVertex4fvSUN( float tc, float c, float n, float v );
+		public static extern void VertexAttrib4dNV( uint index, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiVertex3fSUN( uint rc, float x, float y, float z );
+		public static extern void VertexAttrib4dvNV( uint index, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiVertex3fvSUN( uint rc, float v );
+		public static extern void VertexAttrib4fNV( uint index, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiColor4ubVertex3fSUN( uint rc, byte r, byte g, byte b, byte a, float x, float y, float z );
+		public static extern void VertexAttrib4fvNV( uint index, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiColor4ubVertex3fvSUN( uint rc, byte c, float v );
+		public static extern void VertexAttrib4sNV( uint index, short x, short y, short z, short w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiColor3fVertex3fSUN( uint rc, float r, float g, float b, float x, float y, float z );
+		public static extern void VertexAttrib4svNV( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiColor3fVertex3fvSUN( uint rc, float c, float v );
+		public static extern void VertexAttrib4ubNV( uint index, byte x, byte y, byte z, byte w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiNormal3fVertex3fSUN( uint rc, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttrib4ubvNV( uint index, byte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiNormal3fVertex3fvSUN( uint rc, float n, float v );
+		public static extern void VertexAttribs1dvNV( uint index, int count, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiColor4fNormal3fVertex3fSUN( uint rc, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttribs1fvNV( uint index, int count, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiColor4fNormal3fVertex3fvSUN( uint rc, float c, float n, float v );
+		public static extern void VertexAttribs1svNV( uint index, int count, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiTexCoord2fVertex3fSUN( uint rc, float s, float t, float x, float y, float z );
+		public static extern void VertexAttribs2dvNV( uint index, int count, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiTexCoord2fVertex3fvSUN( uint rc, float tc, float v );
+		public static extern void VertexAttribs2fvNV( uint index, int count, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN( uint rc, float s, float t, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttribs2svNV( uint index, int count, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN( uint rc, float tc, float n, float v );
+		public static extern void VertexAttribs3dvNV( uint index, int count, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN( uint rc, float s, float t, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z );
+		public static extern void VertexAttribs3fvNV( uint index, int count, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN( uint rc, float tc, float c, float n, float v );
+		public static extern void VertexAttribs3svNV( uint index, int count, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendFuncSeparateEXT( BlendFuncSeparateParameterEXT sfactorRGB, BlendFuncSeparateParameterEXT dfactorRGB, BlendFuncSeparateParameterEXT sfactorAlpha, BlendFuncSeparateParameterEXT dfactorAlpha );
+		public static extern void VertexAttribs4dvNV( uint index, int count, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BlendFuncSeparateINGR( BlendFuncSeparateParameterEXT sfactorRGB, BlendFuncSeparateParameterEXT dfactorRGB, BlendFuncSeparateParameterEXT sfactorAlpha, BlendFuncSeparateParameterEXT dfactorAlpha );
+		public static extern void VertexAttribs4fvNV( uint index, int count, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexWeightfEXT( float weight );
+		public static extern void VertexAttribs4svNV( uint index, int count, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexWeightfvEXT( float weight );
+		public static extern void VertexAttribs4ubvNV( uint index, int count, byte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexWeightPointerEXT( int size, VertexWeightPointerTypeEXT type, int stride, void pointer );
+		public static extern void TexBumpParameterivATI( uint pname, int[] param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FlushVertexArrayRangeNV(  );
+		public static extern void TexBumpParameterfvATI( uint pname, float[] param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexArrayRangeNV( int length, void pointer );
+		public static extern void GetTexBumpParameterivATI( uint pname, ref int[] param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerParameterfvNV( CombinerParameterNV pname, float @params );
+		public static extern void GetTexBumpParameterfvATI( uint pname, ref float[] param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerParameterfNV( CombinerParameterNV pname, float param );
+		public static extern uint GenFragmentShadersATI( uint range ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerParameterivNV( CombinerParameterNV pname, int @params );
+		public static extern void BindFragmentShaderATI( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerParameteriNV( CombinerParameterNV pname, int param );
+		public static extern void DeleteFragmentShaderATI( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerInputNV( CombinerStageNV stage, CombinerPortionNV portion, CombinerVariableNV variable, CombinerRegisterNV input, CombinerMappingNV mapping, CombinerComponentUsageNV componentUsage );
+		public static extern void BeginFragmentShaderATI(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerOutputNV( CombinerStageNV stage, CombinerPortionNV portion, CombinerRegisterNV abOutput, CombinerRegisterNV cdOutput, CombinerRegisterNV sumOutput, CombinerScaleNV scale, CombinerBiasNV bias, bool abDotProduct, bool cdDotProduct, bool muxSum );
+		public static extern void EndFragmentShaderATI(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FinalCombinerInputNV( CombinerVariableNV variable, CombinerRegisterNV input, CombinerMappingNV mapping, CombinerComponentUsageNV componentUsage );
+		public static extern void PassTexCoordATI( uint dst, uint coord, uint swizzle ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCombinerInputParameterfvNV( CombinerStageNV stage, CombinerPortionNV portion, CombinerVariableNV variable, CombinerParameterNV pname, float @params );
+		public static extern void SampleMapATI( uint dst, uint interp, uint swizzle ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCombinerInputParameterivNV( CombinerStageNV stage, CombinerPortionNV portion, CombinerVariableNV variable, CombinerParameterNV pname, int @params );
+		public static extern void ColorFragmentOp1ATI( uint op, uint dst, uint dstMask, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCombinerOutputParameterfvNV( CombinerStageNV stage, CombinerPortionNV portion, CombinerParameterNV pname, float @params );
+		public static extern void ColorFragmentOp2ATI( uint op, uint dst, uint dstMask, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCombinerOutputParameterivNV( CombinerStageNV stage, CombinerPortionNV portion, CombinerParameterNV pname, int @params );
+		public static extern void ColorFragmentOp3ATI( uint op, uint dst, uint dstMask, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod, uint arg3, uint arg3Rep, uint arg3Mod ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFinalCombinerInputParameterfvNV( CombinerVariableNV variable, CombinerParameterNV pname, float @params );
+		public static extern void AlphaFragmentOp1ATI( uint op, uint dst, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFinalCombinerInputParameterivNV( CombinerVariableNV variable, CombinerParameterNV pname, int @params );
+		public static extern void AlphaFragmentOp2ATI( uint op, uint dst, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ResizeBuffersMESA(  );
+		public static extern void AlphaFragmentOp3ATI( uint op, uint dst, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod, uint arg3, uint arg3Rep, uint arg3Mod ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2dMESA( double x, double y );
+		public static extern void SetFragmentShaderConstantATI( uint dst, float[] value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2dvMESA( double v );
+		public static extern void PNTrianglesiATI( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2fMESA( float x, float y );
+		public static extern void PNTrianglesfATI( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2fvMESA( float v );
+		public static extern unsafe uint NewObjectBufferATI( int size, void* pointer, uint usage ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2iMESA( int x, int y );
+		public static extern bool IsObjectBufferATI( uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2ivMESA( int v );
+		public static extern unsafe void UpdateObjectBufferATI( uint buffer, uint offset, int size, void* pointer, uint preserve ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2sMESA( short x, short y );
+		public static extern void GetObjectBufferfvATI( uint buffer, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos2svMESA( short v );
+		public static extern void GetObjectBufferivATI( uint buffer, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3dMESA( double x, double y, double z );
+		public static extern void FreeObjectBufferATI( uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3dvMESA( double v );
+		public static extern void ArrayObjectATI( EnableCap array, int size, uint type, int stride, uint buffer, uint offset ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3fMESA( float x, float y, float z );
+		public static extern void GetArrayObjectfvATI( EnableCap array, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3fvMESA( float v );
+		public static extern void GetArrayObjectivATI( EnableCap array, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3iMESA( int x, int y, int z );
+		public static extern void VariantArrayObjectATI( uint id, uint type, int stride, uint buffer, uint offset ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3ivMESA( int v );
+		public static extern void GetVariantArrayObjectfvATI( uint id, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3sMESA( short x, short y, short z );
+		public static extern void GetVariantArrayObjectivATI( uint id, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos3svMESA( short v );
+		public static extern void BeginVertexShaderEXT(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4dMESA( double x, double y, double z, double w );
+		public static extern void EndVertexShaderEXT(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4dvMESA( double v );
+		public static extern void BindVertexShaderEXT( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4fMESA( float x, float y, float z, float w );
+		public static extern uint GenVertexShadersEXT( uint range ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4fvMESA( float v );
+		public static extern void DeleteVertexShaderEXT( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4iMESA( int x, int y, int z, int w );
+		public static extern void ShaderOp1EXT( uint op, uint res, uint arg1 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4ivMESA( int v );
+		public static extern void ShaderOp2EXT( uint op, uint res, uint arg1, uint arg2 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4sMESA( short x, short y, short z, short w );
+		public static extern void ShaderOp3EXT( uint op, uint res, uint arg1, uint arg2, uint arg3 ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WindowPos4svMESA( short v );
+		public static extern void SwizzleEXT( uint res, uint @in, uint outX, uint outY, uint outZ, uint outW ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiModeDrawArraysIBM( BeginMode mode, int first, int count, int primcount, int modestride );
+		public static extern void WriteMaskEXT( uint res, uint @in, uint outX, uint outY, uint outZ, uint outW ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiModeDrawElementsIBM( BeginMode mode, int count, DrawElementsType type, void indices, int primcount, int modestride );
+		public static extern void InsertComponentEXT( uint res, uint src, uint num ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorPointerListIBM( int size, ColorPointerType type, int stride, void pointer, int ptrstride );
+		public static extern void ExtractComponentEXT( uint res, uint src, uint num ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColorPointerListIBM( int size, SecondaryColorPointerTypeIBM type, int stride, void pointer, int ptrstride );
+		public static extern uint GenSymbolsEXT( uint datatype, uint storagetype, uint range, uint components ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EdgeFlagPointerListIBM( int stride, bool pointer, int ptrstride );
+		public static extern unsafe void SetInvariantEXT( uint id, uint type, void* addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordPointerListIBM( FogPointerTypeIBM type, int stride, void pointer, int ptrstride );
+		public static extern unsafe void SetLocalConstantEXT( uint id, uint type, void* addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IndexPointerListIBM( IndexPointerType type, int stride, void pointer, int ptrstride );
+		public static extern void VariantbvEXT( uint id, sbyte[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalPointerListIBM( NormalPointerType type, int stride, void pointer, int ptrstride );
+		public static extern void VariantsvEXT( uint id, short[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoordPointerListIBM( int size, TexCoordPointerType type, int stride, void pointer, int ptrstride );
+		public static extern void VariantivEXT( uint id, int[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexPointerListIBM( int size, VertexPointerType type, int stride, void pointer, int ptrstride );
+		public static extern void VariantfvEXT( uint id, float[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TbufferMask3DFX( uint mask );
+		public static extern void VariantdvEXT( uint id, double[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SampleMaskEXT( float value, bool invert );
+		public static extern void VariantubvEXT( uint id, byte[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SamplePatternEXT( SamplePatternEXT pattern );
+		public static extern void VariantusvEXT( uint id, ushort[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TextureColorMaskSGIS( bool red, bool green, bool blue, bool alpha );
+		public static extern void VariantuivEXT( uint id, uint[] addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void IglooInterfaceSGIX( IglooFunctionSelectSGIX pname, void @params );
+		public static extern unsafe void VariantPointerEXT( uint id, uint type, uint stride, void* addr ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteFencesNV( int n, uint fences );
+		public static extern void EnableVariantClientStateEXT( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenFencesNV( int n, uint fences );
+		public static extern void DisableVariantClientStateEXT( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsFenceNV( uint fence );
+		public static extern uint BindLightParameterEXT( LightName light, LightParameter value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool TestFenceNV( uint fence );
+		public static extern uint BindMaterialParameterEXT( MaterialFace face, MaterialParameter value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetFenceivNV( uint fence, FenceParameterNameNV pname, int @params );
+		public static extern uint BindTexGenParameterEXT( uint unit, TextureCoordName coord, TextureGenParameter value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FinishFenceNV( uint fence );
+		public static extern uint BindTextureUnitParameterEXT( uint unit, uint value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SetFenceNV( uint fence, FenceConditionNV condition );
+		public static extern uint BindParameterEXT( uint value ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapControlPointsNV( EvalTargetNV target, uint index, MapTypeNV type, int ustride, int vstride, int uorder, int vorder, bool packed, void points );
+		public static extern bool IsVariantEnabledEXT( uint id, uint cap ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapParameterivNV( EvalTargetNV target, MapParameterNV pname, int @params );
+		public static extern void GetVariantBooleanvEXT( uint id, uint value, ref bool[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MapParameterfvNV( EvalTargetNV target, MapParameterNV pname, float @params );
+		public static extern void GetVariantIntegervEXT( uint id, uint value, ref int[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapControlPointsNV( EvalTargetNV target, uint index, MapTypeNV type, int ustride, int vstride, bool packed, void points );
+		public static extern void GetVariantFloatvEXT( uint id, uint value, ref float[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapParameterivNV( EvalTargetNV target, MapParameterNV pname, int @params );
+		public static extern unsafe void GetVariantPointervEXT( uint id, uint value, ref void** data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapParameterfvNV( EvalTargetNV target, MapParameterNV pname, float @params );
+		public static extern void GetInvariantBooleanvEXT( uint id, uint value, ref bool[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapAttribParameterivNV( EvalTargetNV target, uint index, MapAttribParameterNV pname, int @params );
+		public static extern void GetInvariantIntegervEXT( uint id, uint value, ref int[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetMapAttribParameterfvNV( EvalTargetNV target, uint index, MapAttribParameterNV pname, float @params );
+		public static extern void GetInvariantFloatvEXT( uint id, uint value, ref float[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EvalMapsNV( EvalTargetNV target, EvalMapsModeNV mode );
+		public static extern void GetLocalConstantBooleanvEXT( uint id, uint value, ref bool[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void CombinerStageParameterfvNV( CombinerStageNV stage, CombinerParameterNV pname, float @params );
+		public static extern void GetLocalConstantIntegervEXT( uint id, uint value, ref int[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetCombinerStageParameterfvNV( CombinerStageNV stage, CombinerParameterNV pname, float @params );
+		public static extern void GetLocalConstantFloatvEXT( uint id, uint value, ref float[] data ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool AreProgramsResidentNV( int n, uint programs, bool residences );
+		public static extern void VertexStream1sATI( uint stream, short x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindProgramNV( VertexAttribEnumNV target, uint id );
+		public static extern void VertexStream1svATI( uint stream, short[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteProgramsNV( int n, uint programs );
+		public static extern void VertexStream1iATI( uint stream, int x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ExecuteProgramNV( VertexAttribEnumNV target, uint id, float @params );
+		public static extern void VertexStream1ivATI( uint stream, int[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenProgramsNV( int n, uint programs );
+		public static extern void VertexStream1fATI( uint stream, float x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramParameterdvNV( VertexAttribEnumNV target, uint index, VertexAttribEnumNV pname, double @params );
+		public static extern void VertexStream1fvATI( uint stream, float[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramParameterfvNV( VertexAttribEnumNV target, uint index, VertexAttribEnumNV pname, float @params );
+		public static extern void VertexStream1dATI( uint stream, double x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramivNV( uint id, VertexAttribEnumNV pname, int @params );
+		public static extern void VertexStream1dvATI( uint stream, double[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramStringNV( uint id, VertexAttribEnumNV pname, byte program );
+		public static extern void VertexStream2sATI( uint stream, short x, short y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTrackMatrixivNV( VertexAttribEnumNV target, uint address, VertexAttribEnumNV pname, int @params );
+		public static extern void VertexStream2svATI( uint stream, short[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribdvNV( uint index, VertexAttribEnumNV pname, double @params );
+		public static extern void VertexStream2iATI( uint stream, int x, int y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribfvNV( uint index, VertexAttribEnumNV pname, float @params );
+		public static extern void VertexStream2ivATI( uint stream, int[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribivNV( uint index, VertexAttribEnumNV pname, int @params );
+		public static extern void VertexStream2fATI( uint stream, float x, float y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribPointervNV( uint index, VertexAttribEnumNV pname, void pointer );
+		public static extern void VertexStream2fvATI( uint stream, float[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsProgramNV( uint id );
+		public static extern void VertexStream2dATI( uint stream, double x, double y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void LoadProgramNV( VertexAttribEnumNV target, uint id, int len, byte program );
+		public static extern void VertexStream2dvATI( uint stream, double[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameter4dNV( VertexAttribEnumNV target, uint index, double x, double y, double z, double w );
+		public static extern void VertexStream3sATI( uint stream, short x, short y, short z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameter4dvNV( VertexAttribEnumNV target, uint index, double v );
+		public static extern void VertexStream3svATI( uint stream, short[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameter4fNV( VertexAttribEnumNV target, uint index, float x, float y, float z, float w );
+		public static extern void VertexStream3iATI( uint stream, int x, int y, int z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameter4fvNV( VertexAttribEnumNV target, uint index, float v );
+		public static extern void VertexStream3ivATI( uint stream, int[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameters4dvNV( VertexAttribEnumNV target, uint index, uint count, double v );
+		public static extern void VertexStream3fATI( uint stream, float x, float y, float z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameters4fvNV( VertexAttribEnumNV target, uint index, uint count, float v );
+		public static extern void VertexStream3fvATI( uint stream, float[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void RequestResidentProgramsNV( int n, uint programs );
+		public static extern void VertexStream3dATI( uint stream, double x, double y, double z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TrackMatrixNV( VertexAttribEnumNV target, uint address, VertexAttribEnumNV matrix, VertexAttribEnumNV transform );
+		public static extern void VertexStream3dvATI( uint stream, double[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribPointerNV( uint index, int fsize, VertexAttribEnumNV type, int stride, void pointer );
+		public static extern void VertexStream4sATI( uint stream, short x, short y, short z, short w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1dNV( uint index, double x );
+		public static extern void VertexStream4svATI( uint stream, short[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1dvNV( uint index, double v );
+		public static extern void VertexStream4iATI( uint stream, int x, int y, int z, int w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1fNV( uint index, float x );
+		public static extern void VertexStream4ivATI( uint stream, int[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1fvNV( uint index, float v );
+		public static extern void VertexStream4fATI( uint stream, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1sNV( uint index, short x );
+		public static extern void VertexStream4fvATI( uint stream, float[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1svNV( uint index, short v );
+		public static extern void VertexStream4dATI( uint stream, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2dNV( uint index, double x, double y );
+		public static extern void VertexStream4dvATI( uint stream, double[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2dvNV( uint index, double v );
+		public static extern void NormalStream3bATI( uint stream, sbyte nx, sbyte ny, sbyte nz ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2fNV( uint index, float x, float y );
+		public static extern void NormalStream3bvATI( uint stream, sbyte[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2fvNV( uint index, float v );
+		public static extern void NormalStream3sATI( uint stream, short nx, short ny, short nz ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2sNV( uint index, short x, short y );
+		public static extern void NormalStream3svATI( uint stream, short[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2svNV( uint index, short v );
+		public static extern void NormalStream3iATI( uint stream, int nx, int ny, int nz ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3dNV( uint index, double x, double y, double z );
+		public static extern void NormalStream3ivATI( uint stream, int[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3dvNV( uint index, double v );
+		public static extern void NormalStream3fATI( uint stream, float nx, float ny, float nz ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3fNV( uint index, float x, float y, float z );
+		public static extern void NormalStream3fvATI( uint stream, float[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3fvNV( uint index, float v );
+		public static extern void NormalStream3dATI( uint stream, double nx, double ny, double nz ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3sNV( uint index, short x, short y, short z );
+		public static extern void NormalStream3dvATI( uint stream, double[] coords ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3svNV( uint index, short v );
+		public static extern void ClientActiveVertexStreamATI( uint stream ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4dNV( uint index, double x, double y, double z, double w );
+		public static extern void VertexBlendEnviATI( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4dvNV( uint index, double v );
+		public static extern void VertexBlendEnvfATI( uint pname, float param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4fNV( uint index, float x, float y, float z, float w );
+		public static extern unsafe void ElementPointerATI( uint type, void* pointer ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4fvNV( uint index, float v );
+		public static extern void DrawElementArrayATI( BeginMode mode, int count ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4sNV( uint index, short x, short y, short z, short w );
+		public static extern void DrawRangeElementArrayATI( BeginMode mode, uint start, uint end, int count ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4svNV( uint index, short v );
+		public static extern void DrawMeshArraysSUN( BeginMode mode, int first, int count, int width ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4ubNV( uint index, byte x, byte y, byte z, byte w );
+		public static extern void GenOcclusionQueriesNV( int n, ref uint[] ids ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4ubvNV( uint index, byte v );
+		public static extern void DeleteOcclusionQueriesNV( int n, uint[] ids ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs1dvNV( uint index, int count, double v );
+		public static extern bool IsOcclusionQueryNV( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs1fvNV( uint index, int count, float v );
+		public static extern void BeginOcclusionQueryNV( uint id ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs1svNV( uint index, int count, short v );
+		public static extern void EndOcclusionQueryNV(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs2dvNV( uint index, int count, double v );
+		public static extern void GetOcclusionQueryivNV( uint id, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs2fvNV( uint index, int count, float v );
+		public static extern void GetOcclusionQueryuivNV( uint id, uint pname, ref uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs2svNV( uint index, int count, short v );
+		public static extern void PointParameteriNV( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs3dvNV( uint index, int count, double v );
+		public static extern void PointParameterivNV( uint pname, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs3fvNV( uint index, int count, float v );
+		public static extern void ActiveStencilFaceEXT( uint face ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs3svNV( uint index, int count, short v );
+		public static extern unsafe void ElementPointerAPPLE( uint type, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs4dvNV( uint index, int count, double v );
+		public static extern void DrawElementArrayAPPLE( BeginMode mode, int first, int count ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs4fvNV( uint index, int count, float v );
+		public static extern void DrawRangeElementArrayAPPLE( BeginMode mode, uint start, uint end, int first, int count ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs4svNV( uint index, int count, short v );
+		public static extern void MultiDrawElementArrayAPPLE( BeginMode mode, int[] first, int[] count, int primcount ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs4ubvNV( uint index, int count, byte v );
+		public static extern void MultiDrawRangeElementArrayAPPLE( BeginMode mode, uint start, uint end, int[] first, int[] count, int primcount ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexBumpParameterivATI( TexBumpParameterATI pname, int param );
+		public static extern void GenFencesAPPLE( int n, ref uint[] fences ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void TexBumpParameterfvATI( TexBumpParameterATI pname, float param );
+		public static extern void DeleteFencesAPPLE( int n, uint[] fences ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexBumpParameterivATI( GetTexBumpParameterATI pname, int param );
+		public static extern void SetFenceAPPLE( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexBumpParameterfvATI( GetTexBumpParameterATI pname, float param );
+		public static extern bool IsFenceAPPLE( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint GenFragmentShadersATI( uint range );
+		public static extern bool TestFenceAPPLE( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindFragmentShaderATI( uint id );
+		public static extern void FinishFenceAPPLE( uint fence ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteFragmentShaderATI( uint id );
+		public static extern bool TestObjectAPPLE( uint @object, uint name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BeginFragmentShaderATI(  );
+		public static extern void FinishObjectAPPLE( uint @object, int name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EndFragmentShaderATI(  );
+		public static extern void BindVertexArrayAPPLE( uint array ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PassTexCoordATI( uint dst, uint coord, SwizzleOpATI swizzle );
+		public static extern void DeleteVertexArraysAPPLE( int n, uint[] arrays ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SampleMapATI( uint dst, uint interp, SwizzleOpATI swizzle );
+		public static extern void GenVertexArraysAPPLE( int n, ref uint[] arrays ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorFragmentOp1ATI( FragmentOpATI op, uint dst, uint dstMask, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod );
+		public static extern bool IsVertexArrayAPPLE( uint array ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorFragmentOp2ATI( FragmentOpATI op, uint dst, uint dstMask, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod );
+		public static extern unsafe void VertexArrayRangeAPPLE( int length, ref void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ColorFragmentOp3ATI( FragmentOpATI op, uint dst, uint dstMask, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod, uint arg3, uint arg3Rep, uint arg3Mod );
+		public static extern unsafe void FlushVertexArrayRangeAPPLE( int length, ref void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AlphaFragmentOp1ATI( FragmentOpATI op, uint dst, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod );
+		public static extern void VertexArrayParameteriAPPLE( uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AlphaFragmentOp2ATI( FragmentOpATI op, uint dst, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod );
+		public static extern void DrawBuffersATI( int n, uint[] bufs ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void AlphaFragmentOp3ATI( FragmentOpATI op, uint dst, uint dstMod, uint arg1, uint arg1Rep, uint arg1Mod, uint arg2, uint arg2Rep, uint arg2Mod, uint arg3, uint arg3Rep, uint arg3Mod );
+		public static extern void ProgramNamedParameter4fNV( uint id, int len, byte[] name, float x, float y, float z, float w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SetFragmentShaderConstantATI( uint dst, float value );
+		public static extern void ProgramNamedParameter4dNV( uint id, int len, byte[] name, double x, double y, double z, double w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PNTrianglesiATI( PNTrianglesPNameATI pname, int param );
+		public static extern void ProgramNamedParameter4fvNV( uint id, int len, byte[] name, float[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PNTrianglesfATI( PNTrianglesPNameATI pname, float param );
+		public static extern void ProgramNamedParameter4dvNV( uint id, int len, byte[] name, double[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint NewObjectBufferATI( int size, void pointer, ArrayObjectUsageATI usage );
+		public static extern void GetProgramNamedParameterfvNV( uint id, int len, byte[] name, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsObjectBufferATI( uint buffer );
+		public static extern void GetProgramNamedParameterdvNV( uint id, int len, byte[] name, ref double[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void UpdateObjectBufferATI( uint buffer, uint offset, int size, void pointer, PreserveModeATI preserve );
+		public static extern void Vertex2hNV( ushort x, ushort y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetObjectBufferfvATI( uint buffer, ArrayObjectPNameATI pname, float @params );
+		public static extern void Vertex2hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetObjectBufferivATI( uint buffer, ArrayObjectPNameATI pname, int @params );
+		public static extern void Vertex3hNV( ushort x, ushort y, ushort z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FreeObjectBufferATI( uint buffer );
+		public static extern void Vertex3hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ArrayObjectATI( EnableCap array, int size, ScalarType type, int stride, uint buffer, uint offset );
+		public static extern void Vertex4hNV( ushort x, ushort y, ushort z, ushort w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetArrayObjectfvATI( EnableCap array, ArrayObjectPNameATI pname, float @params );
+		public static extern void Vertex4hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetArrayObjectivATI( EnableCap array, ArrayObjectPNameATI pname, int @params );
+		public static extern void Normal3hNV( ushort nx, ushort ny, ushort nz ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantArrayObjectATI( uint id, ScalarType type, int stride, uint buffer, uint offset );
+		public static extern void Normal3hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVariantArrayObjectfvATI( uint id, ArrayObjectPNameATI pname, float @params );
+		public static extern void Color3hNV( ushort red, ushort green, ushort blue ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVariantArrayObjectivATI( uint id, ArrayObjectPNameATI pname, int @params );
+		public static extern void Color3hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BeginVertexShaderEXT(  );
+		public static extern void Color4hNV( ushort red, ushort green, ushort blue, ushort alpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EndVertexShaderEXT(  );
+		public static extern void Color4hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindVertexShaderEXT( uint id );
+		public static extern void TexCoord1hNV( ushort s ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint GenVertexShadersEXT( uint range );
+		public static extern void TexCoord1hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteVertexShaderEXT( uint id );
+		public static extern void TexCoord2hNV( ushort s, ushort t ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ShaderOp1EXT( VertexShaderOpEXT op, uint res, uint arg1 );
+		public static extern void TexCoord2hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ShaderOp2EXT( VertexShaderOpEXT op, uint res, uint arg1, uint arg2 );
+		public static extern void TexCoord3hNV( ushort s, ushort t, ushort r ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ShaderOp3EXT( VertexShaderOpEXT op, uint res, uint arg1, uint arg2, uint arg3 );
+		public static extern void TexCoord3hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SwizzleEXT( uint res, uint in, VertexShaderCoordOutEXT outX, VertexShaderCoordOutEXT outY, VertexShaderCoordOutEXT outZ, VertexShaderCoordOutEXT outW );
+		public static extern void TexCoord4hNV( ushort s, ushort t, ushort r, ushort q ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void WriteMaskEXT( uint res, uint in, VertexShaderWriteMaskEXT outX, VertexShaderWriteMaskEXT outY, VertexShaderWriteMaskEXT outZ, VertexShaderWriteMaskEXT outW );
+		public static extern void TexCoord4hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void InsertComponentEXT( uint res, uint src, uint num );
+		public static extern void MultiTexCoord1hNV( uint target, ushort s ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ExtractComponentEXT( uint res, uint src, uint num );
+		public static extern void MultiTexCoord1hvNV( uint target, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint GenSymbolsEXT( DataTypeEXT datatype, VertexShaderStorageTypeEXT storagetype, ParameterRangeEXT range, uint components );
+		public static extern void MultiTexCoord2hNV( uint target, ushort s, ushort t ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SetInvariantEXT( uint id, ScalarType type, void addr );
+		public static extern void MultiTexCoord2hvNV( uint target, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SetLocalConstantEXT( uint id, ScalarType type, void addr );
+		public static extern void MultiTexCoord3hNV( uint target, ushort s, ushort t, ushort r ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantbvEXT( uint id, sbyte addr );
+		public static extern void MultiTexCoord3hvNV( uint target, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantsvEXT( uint id, short addr );
+		public static extern void MultiTexCoord4hNV( uint target, ushort s, ushort t, ushort r, ushort q ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantivEXT( uint id, int addr );
+		public static extern void MultiTexCoord4hvNV( uint target, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantfvEXT( uint id, float addr );
+		public static extern void FogCoordhNV( ushort fog ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantdvEXT( uint id, double addr );
+		public static extern void FogCoordhvNV( ushort[] fog ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantubvEXT( uint id, byte addr );
+		public static extern void SecondaryColor3hNV( ushort red, ushort green, ushort blue ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantusvEXT( uint id, ushort addr );
+		public static extern void SecondaryColor3hvNV( ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantuivEXT( uint id, uint addr );
+		public static extern void VertexWeighthNV( ushort weight ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VariantPointerEXT( uint id, ScalarType type, uint stride, void addr );
+		public static extern void VertexWeighthvNV( ushort[] weight ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EnableVariantClientStateEXT( uint id );
+		public static extern void VertexAttrib1hNV( uint index, ushort x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DisableVariantClientStateEXT( uint id );
+		public static extern void VertexAttrib1hvNV( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint BindLightParameterEXT( LightName light, LightParameter value );
+		public static extern void VertexAttrib2hNV( uint index, ushort x, ushort y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint BindMaterialParameterEXT( MaterialFace face, MaterialParameter value );
+		public static extern void VertexAttrib2hvNV( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint BindTexGenParameterEXT( TextureUnit unit, TextureCoordName coord, TextureGenParameter value );
+		public static extern void VertexAttrib3hNV( uint index, ushort x, ushort y, ushort z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint BindTextureUnitParameterEXT( TextureUnit unit, VertexShaderTextureUnitParameter value );
+		public static extern void VertexAttrib3hvNV( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern uint BindParameterEXT( VertexShaderParameterEXT value );
+		public static extern void VertexAttrib4hNV( uint index, ushort x, ushort y, ushort z, ushort w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsVariantEnabledEXT( uint id, VariantCapEXT cap );
+		public static extern void VertexAttrib4hvNV( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVariantBooleanvEXT( uint id, GetVariantValueEXT value, bool data );
+		public static extern void VertexAttribs1hvNV( uint index, int n, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVariantIntegervEXT( uint id, GetVariantValueEXT value, int data );
+		public static extern void VertexAttribs2hvNV( uint index, int n, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVariantFloatvEXT( uint id, GetVariantValueEXT value, float data );
+		public static extern void VertexAttribs3hvNV( uint index, int n, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetVariantPointervEXT( uint id, GetVariantValueEXT value, void data );
+		public static extern void VertexAttribs4hvNV( uint index, int n, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetInvariantBooleanvEXT( uint id, GetVariantValueEXT value, bool data );
+		public static extern unsafe void PixelDataRangeNV( uint target, int length, ref void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetInvariantIntegervEXT( uint id, GetVariantValueEXT value, int data );
+		public static extern void FlushPixelDataRangeNV( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetInvariantFloatvEXT( uint id, GetVariantValueEXT value, float data );
+		public static extern void PrimitiveRestartNV(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetLocalConstantBooleanvEXT( uint id, GetVariantValueEXT value, bool data );
+		public static extern void PrimitiveRestartIndexNV( uint index ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetLocalConstantIntegervEXT( uint id, GetVariantValueEXT value, int data );
+		public static extern void MapObjectBufferATI( uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetLocalConstantFloatvEXT( uint id, GetVariantValueEXT value, float data );
+		public static extern void UnmapObjectBufferATI( uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1sATI( VertexStreamATI stream, short x );
+		public static extern void StencilOpSeparateATI( uint face, StencilOp sfail, StencilOp dpfail, StencilOp dppass ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1svATI( VertexStreamATI stream, short coords );
+		public static extern void StencilFuncSeparateATI( StencilFunction frontfunc, StencilFunction backfunc, int @ref, uint mask ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1iATI( VertexStreamATI stream, int x );
+		public static extern void VertexAttribArrayObjectATI( uint index, int size, uint type, bool normalized, int stride, uint buffer, uint offset ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1ivATI( VertexStreamATI stream, int coords );
+		public static extern void GetVertexAttribArrayObjectfvATI( uint index, uint pname, ref float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1fATI( VertexStreamATI stream, float x );
+		public static extern void GetVertexAttribArrayObjectivATI( uint index, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1fvATI( VertexStreamATI stream, float coords );
+		public static extern void DepthBoundsEXT( double zmin, double zmax ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1dATI( VertexStreamATI stream, double x );
+		public static extern void BlendEquationSeparateEXT( BlendEquationModeEXT modeRGB, BlendEquationModeEXT modeAlpha ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream1dvATI( VertexStreamATI stream, double coords );
+		public static extern bool IsRenderbufferEXT( uint renderbuffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2sATI( VertexStreamATI stream, short x, short y );
+		public static extern void BindRenderbufferEXT( uint target, uint renderbuffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2svATI( VertexStreamATI stream, short coords );
+		public static extern void DeleteRenderbuffersEXT( int n, uint[] renderbuffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2iATI( VertexStreamATI stream, int x, int y );
+		public static extern void GenRenderbuffersEXT( int n, ref uint[] renderbuffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2ivATI( VertexStreamATI stream, int coords );
+		public static extern void RenderbufferStorageEXT( uint target, uint internalformat, int width, int height ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2fATI( VertexStreamATI stream, float x, float y );
+		public static extern void GetRenderbufferParameterivEXT( uint target, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2fvATI( VertexStreamATI stream, float coords );
+		public static extern bool IsFramebufferEXT( uint framebuffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2dATI( VertexStreamATI stream, double x, double y );
+		public static extern void BindFramebufferEXT( uint target, uint framebuffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream2dvATI( VertexStreamATI stream, double coords );
+		public static extern void DeleteFramebuffersEXT( int n, uint[] framebuffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3sATI( VertexStreamATI stream, short x, short y, short z );
+		public static extern void GenFramebuffersEXT( int n, ref uint[] framebuffers ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3svATI( VertexStreamATI stream, short coords );
+		public static extern uint CheckFramebufferStatusEXT( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3iATI( VertexStreamATI stream, int x, int y, int z );
+		public static extern void FramebufferTexture1DEXT( uint target, uint attachment, uint textarget, uint texture, int level ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3ivATI( VertexStreamATI stream, int coords );
+		public static extern void FramebufferTexture2DEXT( uint target, uint attachment, uint textarget, uint texture, int level ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3fATI( VertexStreamATI stream, float x, float y, float z );
+		public static extern void FramebufferTexture3DEXT( uint target, uint attachment, uint textarget, uint texture, int level, int zoffset ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3fvATI( VertexStreamATI stream, float coords );
+		public static extern void FramebufferRenderbufferEXT( uint target, uint attachment, uint renderbuffertarget, uint renderbuffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3dATI( VertexStreamATI stream, double x, double y, double z );
+		public static extern void GetFramebufferAttachmentParameterivEXT( uint target, uint attachment, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream3dvATI( VertexStreamATI stream, double coords );
+		public static extern void GenerateMipmapEXT( uint target ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4sATI( VertexStreamATI stream, short x, short y, short z, short w );
+		public static extern unsafe void StringMarkerGREMEDY( int len, void* @string ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4svATI( VertexStreamATI stream, short coords );
+		public static extern void StencilClearTagEXT( int stencilTagBits, uint stencilClearTag ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4iATI( VertexStreamATI stream, int x, int y, int z, int w );
+		public static extern void BlitFramebufferEXT( int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, ClearBufferMask mask, uint filter ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4ivATI( VertexStreamATI stream, int coords );
+		public static extern void RenderbufferStorageMultisampleEXT( uint target, int samples, uint internalformat, int width, int height ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4fATI( VertexStreamATI stream, float x, float y, float z, float w );
+		public static extern void GetQueryObjecti64vEXT( uint id, uint pname, ref long[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4fvATI( VertexStreamATI stream, float coords );
+		public static extern void GetQueryObjectui64vEXT( uint id, uint pname, ref ulong[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4dATI( VertexStreamATI stream, double x, double y, double z, double w );
+		public static extern void ProgramEnvParameters4fvEXT( uint target, uint index, int count, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexStream4dvATI( VertexStreamATI stream, double coords );
+		public static extern void ProgramLocalParameters4fvEXT( uint target, uint index, int count, float[] @params ); // 	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3bATI( VertexStreamATI stream, sbyte nx, sbyte ny, sbyte nz );
+		public static extern void BufferParameteriAPPLE( uint target, uint pname, int param ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3bvATI( VertexStreamATI stream, sbyte coords );
+		public static extern void FlushMappedBufferRangeAPPLE( uint target, int offset, int size ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3sATI( VertexStreamATI stream, short nx, short ny, short nz );
+		public static extern void ProgramLocalParameterI4iNV( uint target, uint index, int x, int y, int z, int w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3svATI( VertexStreamATI stream, short coords );
+		public static extern void ProgramLocalParameterI4ivNV( uint target, uint index, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3iATI( VertexStreamATI stream, int nx, int ny, int nz );
+		public static extern void ProgramLocalParametersI4ivNV( uint target, uint index, int count, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3ivATI( VertexStreamATI stream, int coords );
+		public static extern void ProgramLocalParameterI4uiNV( uint target, uint index, uint x, uint y, uint z, uint w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3fATI( VertexStreamATI stream, float nx, float ny, float nz );
+		public static extern void ProgramLocalParameterI4uivNV( uint target, uint index, uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3fvATI( VertexStreamATI stream, float coords );
+		public static extern void ProgramLocalParametersI4uivNV( uint target, uint index, int count, uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3dATI( VertexStreamATI stream, double nx, double ny, double nz );
+		public static extern void ProgramEnvParameterI4iNV( uint target, uint index, int x, int y, int z, int w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void NormalStream3dvATI( VertexStreamATI stream, double coords );
+		public static extern void ProgramEnvParameterI4ivNV( uint target, uint index, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ClientActiveVertexStreamATI( VertexStreamATI stream );
+		public static extern void ProgramEnvParametersI4ivNV( uint target, uint index, int count, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexBlendEnviATI( VertexStreamATI pname, int param );
+		public static extern void ProgramEnvParameterI4uiNV( uint target, uint index, uint x, uint y, uint z, uint w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexBlendEnvfATI( VertexStreamATI pname, float param );
+		public static extern void ProgramEnvParameterI4uivNV( uint target, uint index, uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ElementPointerATI( ElementPointerTypeATI type, void pointer );
+		public static extern void ProgramEnvParametersI4uivNV( uint target, uint index, int count, uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawElementArrayATI( BeginMode mode, int count );
+		public static extern void GetProgramLocalParameterIivNV( uint target, uint index, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawRangeElementArrayATI( BeginMode mode, uint start, uint end, int count );
+		public static extern void GetProgramLocalParameterIuivNV( uint target, uint index, ref uint[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawMeshArraysSUN( BeginMode mode, int first, int count, int width );
+		public static extern void GetProgramEnvParameterIivNV( uint target, uint index, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenOcclusionQueriesNV( int n, uint ids );
+		public static extern void GetProgramEnvParameterIuivNV( uint target, uint index, ref uint[] @params ); //  extension method	
+		public delegate void ProgramVertexLimitNVDelegate( uint target, int limit ); //  extension method
+		public static readonly ProgramVertexLimitNVDelegate ProgramVertexLimitNV;
+		public delegate void FramebufferTextureEXTDelegate( uint target, uint attachment, uint texture, int level ); //  extension method
+		public static readonly FramebufferTextureEXTDelegate FramebufferTextureEXT;
+		public delegate void FramebufferTextureLayerEXTDelegate( uint target, uint attachment, uint texture, int level, int layer ); //  extension method
+		public static readonly FramebufferTextureLayerEXTDelegate FramebufferTextureLayerEXT;
+		public delegate void FramebufferTextureFaceEXTDelegate( uint target, uint attachment, uint texture, int level, TextureTarget face ); //  extension method
+		public static readonly FramebufferTextureFaceEXTDelegate FramebufferTextureFaceEXT;
+		public delegate void ProgramParameteriEXTDelegate( uint program, uint pname, int value ); //  extension method
+		public static readonly ProgramParameteriEXTDelegate ProgramParameteriEXT;
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteOcclusionQueriesNV( int n, uint ids );
+		public static extern void VertexAttribI1iEXT( uint index, int x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsOcclusionQueryNV( uint id );
+		public static extern void VertexAttribI2iEXT( uint index, int x, int y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BeginOcclusionQueryNV( uint id );
+		public static extern void VertexAttribI3iEXT( uint index, int x, int y, int z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void EndOcclusionQueryNV(  );
+		public static extern void VertexAttribI4iEXT( uint index, int x, int y, int z, int w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetOcclusionQueryivNV( uint id, OcclusionQueryParameterNameNV pname, int @params );
+		public static extern void VertexAttribI1uiEXT( uint index, uint x ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetOcclusionQueryuivNV( uint id, OcclusionQueryParameterNameNV pname, uint @params );
+		public static extern void VertexAttribI2uiEXT( uint index, uint x, uint y ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameteriNV( PointParameterNameARB pname, int param );
+		public static extern void VertexAttribI3uiEXT( uint index, uint x, uint y, uint z ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void PointParameterivNV( PointParameterNameARB pname, int @params );
+		public static extern void VertexAttribI4uiEXT( uint index, uint x, uint y, uint z, uint w ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ActiveStencilFaceEXT( StencilFaceDirection face );
+		public static extern void VertexAttribI1ivEXT( uint index, int[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ElementPointerAPPLE( ElementPointerTypeATI type, void pointer );
+		public static extern void VertexAttribI2ivEXT( uint index, int[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawElementArrayAPPLE( BeginMode mode, int first, int count );
+		public static extern void VertexAttribI3ivEXT( uint index, int[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawRangeElementArrayAPPLE( BeginMode mode, uint start, uint end, int first, int count );
+		public static extern void VertexAttribI4ivEXT( uint index, int[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiDrawElementArrayAPPLE( BeginMode mode, int first, int count, int primcount );
+		public static extern void VertexAttribI1uivEXT( uint index, uint[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void MultiDrawRangeElementArrayAPPLE( BeginMode mode, uint start, uint end, int first, int count, int primcount );
+		public static extern void VertexAttribI2uivEXT( uint index, uint[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenFencesAPPLE( int n, uint fences );
+		public static extern void VertexAttribI3uivEXT( uint index, uint[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteFencesAPPLE( int n, uint fences );
+		public static extern void VertexAttribI4uivEXT( uint index, uint[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void SetFenceAPPLE( uint fence );
+		public static extern void VertexAttribI4bvEXT( uint index, sbyte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsFenceAPPLE( uint fence );
+		public static extern void VertexAttribI4svEXT( uint index, short[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool TestFenceAPPLE( uint fence );
+		public static extern void VertexAttribI4ubvEXT( uint index, byte[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FinishFenceAPPLE( uint fence );
+		public static extern void VertexAttribI4usvEXT( uint index, ushort[] v ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool TestObjectAPPLE( ObjectTypeAPPLE object, uint name );
+		public static extern unsafe void VertexAttribIPointerEXT( uint index, int size, uint type, int stride, void* pointer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void FinishObjectAPPLE( ObjectTypeAPPLE object, int name );
+		public static extern void GetVertexAttribIivEXT( uint index, uint pname, ref int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void BindVertexArrayAPPLE( uint array );
+		public static extern void GetVertexAttribIuivEXT( uint index, uint pname, ref uint[] @params ); //  extension method	
+		public delegate void GetUniformuivEXTDelegate( uint program, int location, ref uint[] @params ); //  extension method
+		public static readonly GetUniformuivEXTDelegate GetUniformuivEXT;
+		public delegate void BindFragDataLocationEXTDelegate( uint program, uint color, string[] name ); //  extension method
+		public static readonly BindFragDataLocationEXTDelegate BindFragDataLocationEXT;
+		public delegate int GetFragDataLocationEXTDelegate( uint program, string[] name ); //  extension method
+		public static readonly GetFragDataLocationEXTDelegate GetFragDataLocationEXT;
+		public delegate void Uniform1uiEXTDelegate( int location, uint v0 ); //  extension method
+		public static readonly Uniform1uiEXTDelegate Uniform1uiEXT;
+		public delegate void Uniform2uiEXTDelegate( int location, uint v0, uint v1 ); //  extension method
+		public static readonly Uniform2uiEXTDelegate Uniform2uiEXT;
+		public delegate void Uniform3uiEXTDelegate( int location, uint v0, uint v1, uint v2 ); //  extension method
+		public static readonly Uniform3uiEXTDelegate Uniform3uiEXT;
+		public delegate void Uniform4uiEXTDelegate( int location, uint v0, uint v1, uint v2, uint v3 ); //  extension method
+		public static readonly Uniform4uiEXTDelegate Uniform4uiEXT;
+		public delegate void Uniform1uivEXTDelegate( int location, int count, uint[] value ); //  extension method
+		public static readonly Uniform1uivEXTDelegate Uniform1uivEXT;
+		public delegate void Uniform2uivEXTDelegate( int location, int count, uint[] value ); //  extension method
+		public static readonly Uniform2uivEXTDelegate Uniform2uivEXT;
+		public delegate void Uniform3uivEXTDelegate( int location, int count, uint[] value ); //  extension method
+		public static readonly Uniform3uivEXTDelegate Uniform3uivEXT;
+		public delegate void Uniform4uivEXTDelegate( int location, int count, uint[] value ); //  extension method
+		public static readonly Uniform4uivEXTDelegate Uniform4uivEXT;
+		public delegate void DrawArraysInstancedEXTDelegate( BeginMode mode, int start, int count, int primcount ); //  extension method
+		public static readonly DrawArraysInstancedEXTDelegate DrawArraysInstancedEXT;
+		public unsafe delegate void DrawElementsInstancedEXTDelegate( BeginMode mode, int count, uint type, void* indices, int primcount ); //  extension method
+		public static readonly DrawElementsInstancedEXTDelegate DrawElementsInstancedEXT;
+		public delegate void TexBufferEXTDelegate( TextureTarget target, uint internalformat, uint buffer ); //  extension method
+		public static readonly TexBufferEXTDelegate TexBufferEXT;
+		public delegate void DepthRangedNVDelegate( double zNear, double zFar ); //  extension method
+		public static readonly DepthRangedNVDelegate DepthRangedNV;
+		public delegate void ClearDepthdNVDelegate( double depth ); //  extension method
+		public static readonly ClearDepthdNVDelegate ClearDepthdNV;
+		public delegate void DepthBoundsdNVDelegate( double zmin, double zmax ); //  extension method
+		public static readonly DepthBoundsdNVDelegate DepthBoundsdNV;
 		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteVertexArraysAPPLE( int n, uint arrays );
+		public static extern void RenderbufferStorageMultisampleCoverageNV( uint target, int coverageSamples, int colorSamples, PixelInternalFormat internalformat, int width, int height ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GenVertexArraysAPPLE( int n, uint arrays );
+		public static extern void ProgramBufferParametersfvNV( uint target, uint buffer, uint index, int count, float[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern bool IsVertexArrayAPPLE( uint array );
+		public static extern void ProgramBufferParametersIivNV( uint target, uint buffer, uint index, int count, int[] @params ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexArrayRangeAPPLE( int length, void pointer );
+		public static extern void ProgramBufferParametersIuivNV( uint target, uint buffer, uint index, int count, uint[] @params ); //  extension method	
+		public delegate void ColorMaskIndexedEXTDelegate( uint index, bool r, bool g, bool b, bool a ); //  extension method
+		public static readonly ColorMaskIndexedEXTDelegate ColorMaskIndexedEXT;
+		public delegate void GetBooleanIndexedvEXTDelegate( uint target, uint index, ref bool[] data ); //  extension method
+		public static readonly GetBooleanIndexedvEXTDelegate GetBooleanIndexedvEXT;
+		public delegate void GetIntegerIndexedvEXTDelegate( uint target, uint index, ref int[] data ); //  extension method
+		public static readonly GetIntegerIndexedvEXTDelegate GetIntegerIndexedvEXT;
+		public delegate void EnableIndexedEXTDelegate( uint target, uint index ); //  extension method
+		public static readonly EnableIndexedEXTDelegate EnableIndexedEXT;
+		public delegate void DisableIndexedEXTDelegate( uint target, uint index ); //  extension method
+		public static readonly DisableIndexedEXTDelegate DisableIndexedEXT;
+		public delegate bool IsEnabledIndexedEXTDelegate( uint target, uint index ); //  extension method
+		public static readonly IsEnabledIndexedEXTDelegate IsEnabledIndexedEXT;
 		[DllImport( "opengl32.dll" )]
-		public static extern void FlushVertexArrayRangeAPPLE( int length, void pointer );
+		public static extern void BeginTransformFeedbackNV( uint primitiveMode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void VertexArrayParameteriAPPLE( VertexArrayPNameAPPLE pname, int param );
+		public static extern void EndTransformFeedbackNV(  ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void DrawBuffersATI( int n, DrawBufferModeATI bufs );
+		public static extern void TransformFeedbackAttribsNV( uint count, int[] attribs, uint bufferMode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramNamedParameter4fNV( uint id, int len, byte name, float x, float y, float z, float w );
+		public static extern void BindBufferRangeNV( uint target, uint index, uint buffer, int offset, int size ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramNamedParameter4dNV( uint id, int len, byte name, double x, double y, double z, double w );
+		public static extern void BindBufferOffsetNV( uint target, uint index, uint buffer, int offset ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramNamedParameter4fvNV( uint id, int len, byte name, float v );
+		public static extern void BindBufferBaseNV( uint target, uint index, uint buffer ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramNamedParameter4dvNV( uint id, int len, byte name, double v );
+		public static extern void TransformFeedbackVaryingsNV( uint program, int count, int[] locations, uint bufferMode ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramNamedParameterfvNV( uint id, int len, byte name, float @params );
+		public static extern void ActiveVaryingNV( uint program, string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramNamedParameterdvNV( uint id, int len, byte name, double @params );
+		public static extern int GetVaryingLocationNV( uint program, string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2hNV( ushort x, ushort y );
+		public static extern void GetActiveVaryingNV( uint program, uint index, int bufSize, ref int[] length, ref int[] size, ref uint[] type, ref string[] name ); //  extension method	
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex2hvNV( ushort v );
+		public static extern void GetTransformFeedbackVaryingNV( uint program, uint index, ref int[] location ); //  extension method	
+		public delegate void UniformBufferEXTDelegate( uint program, int location, uint buffer ); //  extension method
+		public static readonly UniformBufferEXTDelegate UniformBufferEXT;
+		public delegate int GetUniformBufferSizeEXTDelegate( uint program, int location ); //  extension method
+		public static readonly GetUniformBufferSizeEXTDelegate GetUniformBufferSizeEXT;
+		public delegate int GetUniformOffsetEXTDelegate( uint program, int location ); //  extension method
+		public static readonly GetUniformOffsetEXTDelegate GetUniformOffsetEXT;
+		public delegate void TexParameterIivEXTDelegate( TextureTarget target, TextureParameterName pname, int[] @params ); //  extension method
+		public static readonly TexParameterIivEXTDelegate TexParameterIivEXT;
+		public delegate void TexParameterIuivEXTDelegate( TextureTarget target, TextureParameterName pname, uint[] @params ); //  extension method
+		public static readonly TexParameterIuivEXTDelegate TexParameterIuivEXT;
+		public delegate void GetTexParameterIivEXTDelegate( TextureTarget target, GetTextureParameter pname, ref int[] @params ); //  extension method
+		public static readonly GetTexParameterIivEXTDelegate GetTexParameterIivEXT;
+		public delegate void GetTexParameterIuivEXTDelegate( TextureTarget target, GetTextureParameter pname, ref uint[] @params ); //  extension method
+		public static readonly GetTexParameterIuivEXTDelegate GetTexParameterIuivEXT;
+		public delegate void ClearColorIiEXTDelegate( int red, int green, int blue, int alpha ); //  extension method
+		public static readonly ClearColorIiEXTDelegate ClearColorIiEXT;
+		public delegate void ClearColorIuiEXTDelegate( uint red, uint green, uint blue, uint alpha ); //  extension method
+		public static readonly ClearColorIuiEXTDelegate ClearColorIuiEXT;
 		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3hNV( ushort x, ushort y, ushort z );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex3hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4hNV( ushort x, ushort y, ushort z, ushort w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Vertex4hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3hNV( ushort nx, ushort ny, ushort nz );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Normal3hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Color3hNV( ushort red, ushort green, ushort blue );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Color3hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Color4hNV( ushort red, ushort green, ushort blue, ushort alpha );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Color4hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1hNV( ushort s );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord1hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2hNV( ushort s, ushort t );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord2hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3hNV( ushort s, ushort t, ushort r );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord3hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4hNV( ushort s, ushort t, ushort r, ushort q );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexCoord4hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1hNV( TextureUnit target, ushort s );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord1hvNV( TextureUnit target, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2hNV( TextureUnit target, ushort s, ushort t );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord2hvNV( TextureUnit target, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3hNV( TextureUnit target, ushort s, ushort t, ushort r );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord3hvNV( TextureUnit target, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4hNV( TextureUnit target, ushort s, ushort t, ushort r, ushort q );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MultiTexCoord4hvNV( TextureUnit target, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordhNV( ushort fog );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FogCoordhvNV( ushort fog );
-		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3hNV( ushort red, ushort green, ushort blue );
-		[DllImport( "opengl32.dll" )]
-		public static extern void SecondaryColor3hvNV( ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexWeighthNV( ushort weight );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexWeighthvNV( ushort weight );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1hNV( uint index, ushort x );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib1hvNV( uint index, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2hNV( uint index, ushort x, ushort y );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib2hvNV( uint index, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3hNV( uint index, ushort x, ushort y, ushort z );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib3hvNV( uint index, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4hNV( uint index, ushort x, ushort y, ushort z, ushort w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttrib4hvNV( uint index, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs1hvNV( uint index, int n, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs2hvNV( uint index, int n, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs3hvNV( uint index, int n, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribs4hvNV( uint index, int n, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void PixelDataRangeNV( PixelDataRangeTargetNV target, int length, void pointer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FlushPixelDataRangeNV( PixelDataRangeTargetNV target );
-		[DllImport( "opengl32.dll" )]
-		public static extern void PrimitiveRestartNV(  );
-		[DllImport( "opengl32.dll" )]
-		public static extern void PrimitiveRestartIndexNV( uint index );
-		[DllImport( "opengl32.dll" )]
-		public static extern void MapObjectBufferATI( uint buffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void UnmapObjectBufferATI( uint buffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void StencilOpSeparateATI( StencilFaceDirection face, StencilOp sfail, StencilOp dpfail, StencilOp dppass );
-		[DllImport( "opengl32.dll" )]
-		public static extern void StencilFuncSeparateATI( StencilFunction frontfunc, StencilFunction backfunc, int @ref, uint mask );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribArrayObjectATI( uint index, int size, VertexAttribPointerTypeARB type, bool normalized, int stride, uint buffer, uint offset );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribArrayObjectfvATI( uint index, ArrayObjectPNameATI pname, float @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribArrayObjectivATI( uint index, ArrayObjectPNameATI pname, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DepthBoundsEXT( double zmin, double zmax );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BlendEquationSeparateEXT( BlendEquationModeEXT modeRGB, BlendEquationModeEXT modeAlpha );
-		[DllImport( "opengl32.dll" )]
-		public static extern bool IsRenderbufferEXT( uint renderbuffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BindRenderbufferEXT( RenderbufferTarget target, uint renderbuffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteRenderbuffersEXT( int n, uint renderbuffers );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GenRenderbuffersEXT( int n, uint renderbuffers );
-		[DllImport( "opengl32.dll" )]
-		public static extern void RenderbufferStorageEXT( RenderbufferTarget target, GLenum internalformat, int width, int height );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetRenderbufferParameterivEXT( RenderbufferTarget target, GLenum pname, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern bool IsFramebufferEXT( uint framebuffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BindFramebufferEXT( FramebufferTarget target, uint framebuffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DeleteFramebuffersEXT( int n, uint framebuffers );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GenFramebuffersEXT( int n, uint framebuffers );
-		[DllImport( "opengl32.dll" )]
-		public static extern GLenum CheckFramebufferStatusEXT( FramebufferTarget target );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferTexture1DEXT( FramebufferTarget target, FramebufferAttachment attachment, GLenum textarget, uint texture, int level );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferTexture2DEXT( FramebufferTarget target, FramebufferAttachment attachment, GLenum textarget, uint texture, int level );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferTexture3DEXT( FramebufferTarget target, FramebufferAttachment attachment, GLenum textarget, uint texture, int level, int zoffset );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferRenderbufferEXT( FramebufferTarget target, FramebufferAttachment attachment, RenderbufferTarget renderbuffertarget, uint renderbuffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetFramebufferAttachmentParameterivEXT( FramebufferTarget target, FramebufferAttachment attachment, GLenum pname, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GenerateMipmapEXT( GLenum target );
-		[DllImport( "opengl32.dll" )]
-		public static extern void StringMarkerGREMEDY( int len, void string );
-		[DllImport( "opengl32.dll" )]
-		public static extern void StencilClearTagEXT( int stencilTagBits, uint stencilClearTag );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BlitFramebufferEXT( int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, ClearBufferMask mask, GLenum filter );
-		[DllImport( "opengl32.dll" )]
-		public static extern void RenderbufferStorageMultisampleEXT( GLenum target, int samples, GLenum internalformat, int width, int height );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryObjecti64vEXT( uint id, GLenum pname, long @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetQueryObjectui64vEXT( uint id, GLenum pname, ulong @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameters4fvEXT( ProgramTargetARB target, uint index, int count, float @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameters4fvEXT( ProgramTargetARB target, uint index, int count, float @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BufferParameteriAPPLE( GLenum target, GLenum pname, int param );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FlushMappedBufferRangeAPPLE( GLenum target, int offset, int size );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameterI4iNV( ProgramTarget target, uint index, int x, int y, int z, int w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameterI4ivNV( ProgramTarget target, uint index, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParametersI4ivNV( ProgramTarget target, uint index, int count, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameterI4uiNV( ProgramTarget target, uint index, uint x, uint y, uint z, uint w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParameterI4uivNV( ProgramTarget target, uint index, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramLocalParametersI4uivNV( ProgramTarget target, uint index, int count, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameterI4iNV( ProgramTarget target, uint index, int x, int y, int z, int w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameterI4ivNV( ProgramTarget target, uint index, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParametersI4ivNV( ProgramTarget target, uint index, int count, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameterI4uiNV( ProgramTarget target, uint index, uint x, uint y, uint z, uint w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParameterI4uivNV( ProgramTarget target, uint index, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramEnvParametersI4uivNV( ProgramTarget target, uint index, int count, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramLocalParameterIivNV( ProgramTarget target, uint index, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramLocalParameterIuivNV( ProgramTarget target, uint index, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramEnvParameterIivNV( ProgramTarget target, uint index, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetProgramEnvParameterIuivNV( ProgramTarget target, uint index, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramVertexLimitNV( ProgramTarget target, int limit );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferTextureEXT( FramebufferTarget target, FramebufferAttachment attachment, uint texture, int level );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferTextureLayerEXT( FramebufferTarget target, FramebufferAttachment attachment, uint texture, int level, int layer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FramebufferTextureFaceEXT( FramebufferTarget target, FramebufferAttachment attachment, uint texture, int level, TextureTarget face );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramParameteriEXT( uint program, ProgramParameterPName pname, int value );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI1iEXT( uint index, int x );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI2iEXT( uint index, int x, int y );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI3iEXT( uint index, int x, int y, int z );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4iEXT( uint index, int x, int y, int z, int w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI1uiEXT( uint index, uint x );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI2uiEXT( uint index, uint x, uint y );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI3uiEXT( uint index, uint x, uint y, uint z );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4uiEXT( uint index, uint x, uint y, uint z, uint w );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI1ivEXT( uint index, int v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI2ivEXT( uint index, int v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI3ivEXT( uint index, int v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4ivEXT( uint index, int v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI1uivEXT( uint index, uint v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI2uivEXT( uint index, uint v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI3uivEXT( uint index, uint v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4uivEXT( uint index, uint v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4bvEXT( uint index, sbyte v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4svEXT( uint index, short v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4ubvEXT( uint index, byte v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribI4usvEXT( uint index, ushort v );
-		[DllImport( "opengl32.dll" )]
-		public static extern void VertexAttribIPointerEXT( uint index, int size, VertexAttribEnum type, int stride, void pointer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribIivEXT( uint index, VertexAttribEnum pname, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetVertexAttribIuivEXT( uint index, VertexAttribEnum pname, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetUniformuivEXT( uint program, int location, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BindFragDataLocationEXT( uint program, uint color, char name );
-		[DllImport( "opengl32.dll" )]
-		public static extern int GetFragDataLocationEXT( uint program, char name );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1uiEXT( int location, uint v0 );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2uiEXT( int location, uint v0, uint v1 );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3uiEXT( int location, uint v0, uint v1, uint v2 );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4uiEXT( int location, uint v0, uint v1, uint v2, uint v3 );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform1uivEXT( int location, int count, uint value );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform2uivEXT( int location, int count, uint value );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform3uivEXT( int location, int count, uint value );
-		[DllImport( "opengl32.dll" )]
-		public static extern void Uniform4uivEXT( int location, int count, uint value );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DrawArraysInstancedEXT( BeginMode mode, int start, int count, int primcount );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DrawElementsInstancedEXT( BeginMode mode, int count, DrawElementsType type, void indices, int primcount );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexBufferEXT( TextureTarget target, GLenum internalformat, uint buffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DepthRangedNV( double zNear, double zFar );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ClearDepthdNV( double depth );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DepthBoundsdNV( double zmin, double zmax );
-		[DllImport( "opengl32.dll" )]
-		public static extern void RenderbufferStorageMultisampleCoverageNV( RenderbufferTarget target, int coverageSamples, int colorSamples, PixelInternalFormat internalformat, int width, int height );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramBufferParametersfvNV( ProgramTarget target, uint buffer, uint index, int count, float @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramBufferParametersIivNV( ProgramTarget target, uint buffer, uint index, int count, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ProgramBufferParametersIuivNV( ProgramTarget target, uint buffer, uint index, int count, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ColorMaskIndexedEXT( uint index, bool r, bool g, bool b, bool a );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetBooleanIndexedvEXT( GLenum target, uint index, bool data );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetIntegerIndexedvEXT( GLenum target, uint index, int data );
-		[DllImport( "opengl32.dll" )]
-		public static extern void EnableIndexedEXT( GLenum target, uint index );
-		[DllImport( "opengl32.dll" )]
-		public static extern void DisableIndexedEXT( GLenum target, uint index );
-		[DllImport( "opengl32.dll" )]
-		public static extern bool IsEnabledIndexedEXT( GLenum target, uint index );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BeginTransformFeedbackNV( GLenum primitiveMode );
-		[DllImport( "opengl32.dll" )]
-		public static extern void EndTransformFeedbackNV(  );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TransformFeedbackAttribsNV( uint count, int attribs, GLenum bufferMode );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BindBufferRangeNV( GLenum target, uint index, uint buffer, int offset, int size );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BindBufferOffsetNV( GLenum target, uint index, uint buffer, int offset );
-		[DllImport( "opengl32.dll" )]
-		public static extern void BindBufferBaseNV( GLenum target, uint index, uint buffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TransformFeedbackVaryingsNV( uint program, int count, int locations, GLenum bufferMode );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ActiveVaryingNV( uint program, char name );
-		[DllImport( "opengl32.dll" )]
-		public static extern int GetVaryingLocationNV( uint program, char name );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetActiveVaryingNV( uint program, uint index, int bufSize, int length, int size, GLenum type, char name );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetTransformFeedbackVaryingNV( uint program, uint index, int location );
-		[DllImport( "opengl32.dll" )]
-		public static extern void UniformBufferEXT( uint program, int location, uint buffer );
-		[DllImport( "opengl32.dll" )]
-		public static extern int GetUniformBufferSizeEXT( uint program, int location );
-		[DllImport( "opengl32.dll" )]
-		public static extern int GetUniformOffsetEXT( uint program, int location );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexParameterIivEXT( TextureTarget target, TextureParameterName pname, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void TexParameterIuivEXT( TextureTarget target, TextureParameterName pname, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexParameterIivEXT( TextureTarget target, GetTextureParameter pname, int @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void GetTexParameterIuivEXT( TextureTarget target, GetTextureParameter pname, uint @params );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ClearColorIiEXT( int red, int green, int blue, int alpha );
-		[DllImport( "opengl32.dll" )]
-		public static extern void ClearColorIuiEXT( uint red, uint green, uint blue, uint alpha );
-		[DllImport( "opengl32.dll" )]
-		public static extern void FrameTerminatorGREMEDY(  );
+		public static extern void FrameTerminatorGREMEDY(  ); //  extension method	
 	}
 }
 
