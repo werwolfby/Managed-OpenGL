@@ -28,13 +28,13 @@ namespace ManagedOpenGL
 		public static extern IntPtr wglCreateContext( IntPtr hdc );
 
 		[DllImport( "opengl32.dll", SetLastError=true )]
-		public static extern Int32 wglMakeCurrent( IntPtr hdc, IntPtr hglrc );
+		public static extern bool wglMakeCurrent( IntPtr hdc, IntPtr hglrc );
 
 		[DllImport( "opengl32.dll", SetLastError=true )]
 		public static extern Int32 wglDeleteContext( IntPtr hglrc );
 
-		[DllImport( "opengl32.dll", SetLastError=true, CharSet=CharSet.Ansi )]
-		public static extern IntPtr wglGetProcAddress( [MarshalAs(UnmanagedType.LPTStr)]string functionName );
+		[DllImport( "opengl32.dll", SetLastError=true )]
+		public static extern IntPtr wglGetProcAddress( [MarshalAs(UnmanagedType.LPStr)]string functionName );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
 		public static extern Int32 ChoosePixelFormat( IntPtr hdc, ref PixelFormatDescriptor ppfd );
@@ -46,12 +46,15 @@ namespace ManagedOpenGL
 		public static extern Int32 SetPixelFormat( IntPtr hdc, Int32 iPixelFormat, ref PixelFormatDescriptor ppfd );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
-		public static extern Int32 SwapBuffers( IntPtr hdc );
+		public static extern bool SwapBuffers( IntPtr hdc );
 		
 		[DllImport( "user32.dll" )]
 		public static extern IntPtr GetDC( IntPtr hWnd );
 
 		[DllImport( "user32.dll" )]
 		public static extern Int32 ReleaseDC( IntPtr hWnd, IntPtr hDC );
+
+		[DllImport( "glu32.dll" )]
+		public static extern void gluPerspective( double fovy, double aspect, double zNear, double zFar );
 	}
 }

@@ -160,7 +160,7 @@ namespace ManagedOpenGL.CodeGenerator
 			       {
 			       	Name = name,
 			       	MajorVersion = Convert.ToInt32( match.Groups["major"].Value ),
-			       	MinorVersion = Convert.ToInt32( match.Groups["major"].Value ),
+			       	MinorVersion = Convert.ToInt32( match.Groups["minor"].Value ),
 			       };
 		}
 

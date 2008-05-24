@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ManagedOpenGL;
+using System.Windows.Forms;
 
 namespace Test.ManagedOpenGL
 {
 	class Program
 	{
-		static void Main( string[] args )
+		[STAThread]
+		static void Main()
 		{
-			OpenGLNative.BlendEquationSeparate( BlendEquationModeEXT.MinExt, BlendEquationModeEXT.AlphaMaxSgix );
+			Application.Run( new OpenGLForm() );
 		}
 	}
 }

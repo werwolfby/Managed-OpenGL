@@ -53,7 +53,7 @@ public partial class NativeGenerator
 		codeWriter.Append( function.Name );
 		codeWriter.Append( " = GetProcAdress< " );
 		codeWriter.Append( function.Name );
-		codeWriter.Append( "Delegate >( \"" );
+		codeWriter.Append( "Delegate >( \"gl" );
 		codeWriter.Append( function.Name );
 		codeWriter.AppendLine( "\" );" );
 		return codeWriter.ToString();
@@ -61,7 +61,9 @@ public partial class NativeGenerator
 	public string GenerateOpenGLFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )
 	{
 		CodeWriter codeWriter = new CodeWriter();
-		codeWriter.AppendLine( "[DllImport( \"opengl32.dll\" )]" );
+		codeWriter.Append( "[DllImport( \"opengl32.dll\", EntryPoint=\"gl" );
+		codeWriter.Append( function.Name );
+		codeWriter.AppendLine( "\" )]" );
 		codeWriter.Append( "public static extern " );
 		if (function.IsUnsafeMethod(typeMapList, csTypeMapList)){
 		codeWriter.Append( "unsafe " );

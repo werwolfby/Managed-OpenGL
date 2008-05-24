@@ -32,7 +32,7 @@ namespace ManagedOpenGL
 
 <%rule GetFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
 <%%if (function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) return "";%>
-<%= function.Name %> = GetProcAdress< <%= function.Name %>Delegate >( "<%= function.Name %>" );
+<%= function.Name %> = GetProcAdress< <%= function.Name %>Delegate >( "gl<%= function.Name %>" );
 <%end rule%>
 
 <%method string GenerateFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
@@ -42,7 +42,7 @@ return GenerateDelegateFunction( function, typeMapList, csTypeMapList, enumDatas
 <%end method%>
 
 <%rule GenerateOpenGLFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
-[DllImport( "opengl32.dll" )]
+[DllImport( "opengl32.dll", EntryPoint="gl<%= function.Name %>" )]
 public static extern <%%if (function.IsUnsafeMethod(typeMapList, csTypeMapList)){%>unsafe <%%}%><%= function.Return.GetCSName( typeMapList, csTypeMapList, enumDatas ) %> <%= function.Name %>( <%join ", " IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas, Function function%>
 		<%apply GenerateParam( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from function.ParamList%>
 	<%end join%> ); // <%%if (function.Contains( "extension" )){%> extension method<%%}%>
