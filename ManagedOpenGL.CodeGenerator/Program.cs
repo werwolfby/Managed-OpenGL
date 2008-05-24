@@ -20,13 +20,27 @@ namespace ManagedOpenGL.CodeGenerator
 
 			var extEnumDatas = EnumSpecParser.Parse( "Data\\enumext.spec" );
 
-			var enumList = enumDatas.Concat( extEnumDatas ).ToList();
+			var enumList = new List<EnumData>();
+			foreach (var enumData in enumDatas.Concat( extEnumDatas ))
+			{
+				var enumData1 = enumData;
+				var find = enumList.Find( data => data.Name == enumData1.Name );
+				if (find != null)
+				{
+					var notInList = from i in enumData1.ItemList
+					                where find.ItemList.Find( item => item.Name == i.Name ) == null
+					                select i;
+					find.ItemList.AddRange( notInList );
+					continue;
+				}
+				enumList.Add( enumData );
+			}
 
 			var enumGenerator = new EnumGenerator();
 
 			using (var writer = new StreamWriter( "Enums.cs" ))
 			{
-				writer.WriteLine( enumGenerator.Main( enumList ) );
+				writer.WriteLine( enumGenerator.Main( enumList, typeMapList, csTypeMapList ) );
 			}
 		}
 

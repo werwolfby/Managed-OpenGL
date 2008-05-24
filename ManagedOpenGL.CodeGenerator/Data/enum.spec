@@ -1406,9 +1406,9 @@ MaterialParameter enum:
 	SHININESS					= 0x1601
 	AMBIENT_AND_DIFFUSE				= 0x1602
 	COLOR_INDEXES					= 0x1603
-	use LightProperty AMBIENT
-	use LightProperty DIFFUSE
-	use LightProperty SPECULAR
+	use LightParameter AMBIENT
+	use LightParameter DIFFUSE
+	use LightParameter SPECULAR
 
 ###############################################################################
 
@@ -1468,11 +1468,11 @@ PixelFormat enum:
 	use EXT_abgr ABGR_EXT
 	use EXT_cmyka CMYK_EXT
 	use EXT_cmyka CMYKA_EXT
-	use SGIX_icc_texture R5_G6_B5_ICC_SGIX
-	use SGIX_icc_texture R5_G6_B5_A8_ICC_SGIX
-	use SGIX_icc_texture ALPHA16_ICC_SGIX
-	use SGIX_icc_texture LUMINANCE16_ICC_SGIX
-	use SGIX_icc_texture LUMINANCE16_ALPHA8_ICC_SGIX
+	# use SGIX_icc_texture R5_G6_B5_ICC_SGIX
+	# use SGIX_icc_texture R5_G6_B5_A8_ICC_SGIX
+	# use SGIX_icc_texture ALPHA16_ICC_SGIX
+	# use SGIX_icc_texture LUMINANCE16_ICC_SGIX
+	# use SGIX_icc_texture LUMINANCE16_ALPHA8_ICC_SGIX
 	use SGIX_ycrcb YCRCB_422_SGIX
 	use SGIX_ycrcb YCRCB_444_SGIX
 
@@ -1915,18 +1915,18 @@ PixelInternalFormat enum:
 	use SGIX_depth_texture DEPTH_COMPONENT16_SGIX
 	use SGIX_depth_texture DEPTH_COMPONENT24_SGIX
 	use SGIX_depth_texture DEPTH_COMPONENT32_SGIX
-	use SGIX_icc_texture RGB_ICC_SGIX
-	use SGIX_icc_texture RGBA_ICC_SGIX
-	use SGIX_icc_texture ALPHA_ICC_SGIX
-	use SGIX_icc_texture LUMINANCE_ICC_SGIX
-	use SGIX_icc_texture INTENSITY_ICC_SGIX
-	use SGIX_icc_texture LUMINANCE_ALPHA_ICC_SGIX
-	use SGIX_icc_texture R5_G6_B5_ICC_SGIX
-	use SGIX_icc_texture R5_G6_B5_A8_ICC_SGIX
-	use SGIX_icc_texture ALPHA16_ICC_SGIX
-	use SGIX_icc_texture LUMINANCE16_ICC_SGIX
-	use SGIX_icc_texture INTENSITY16_ICC_SGIX
-	use SGIX_icc_texture LUMINANCE16_ALPHA8_ICC_SGIX
+	# use SGIX_icc_texture RGB_ICC_SGIX
+	# use SGIX_icc_texture RGBA_ICC_SGIX
+	# use SGIX_icc_texture ALPHA_ICC_SGIX
+	# use SGIX_icc_texture LUMINANCE_ICC_SGIX
+	# use SGIX_icc_texture INTENSITY_ICC_SGIX
+	# use SGIX_icc_texture LUMINANCE_ALPHA_ICC_SGIX
+	# use SGIX_icc_texture R5_G6_B5_ICC_SGIX
+	# use SGIX_icc_texture R5_G6_B5_A8_ICC_SGIX
+	# use SGIX_icc_texture ALPHA16_ICC_SGIX
+	# use SGIX_icc_texture LUMINANCE16_ICC_SGIX
+	# use SGIX_icc_texture INTENSITY16_ICC_SGIX
+	# use SGIX_icc_texture LUMINANCE16_ALPHA8_ICC_SGIX
 
 ###############################################################################
 

@@ -1,28 +1,42 @@
 ﻿<%ruleclass EnumGenerator%>
 <%inner_method_name EntityConstructors%>
 <%using System%>
+<%using System.Linq%>
 <%using System.Collections.Generic%>
 <%using WolfGenerator.Core%>
 <%using ManagedOpenGL.CodeGenerator%>
 
-<%rule Main( IEnumerable<EnumData> enumList )%>
+<%rule Main( IEnumerable<EnumData> enumList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )%>
+using System;
+
 namespace ManagedOpenGL
 {
-	<%apply GenerateEnum( item ) from enumList%>
+	<%apply GenerateEnum( item, typeMapList, csTypeMapList ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList from enumList%>
 }
 <%end rule%>
 
-<%rule GenerateEnum( EnumData enumData )%>
-public enum <%= enumData.Name %> : uint
+<%rule GenerateEnum( EnumData enumData, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )%>
+<%%		var glTypeMap = typeMapList.FirstOrDefault(map => map.GLName == enumData.Name);
+		if (glTypeMap != null)
+		{
+			var csTypeMap = csTypeMapList.FirstOrDefault( map => map.GLName == glTypeMap.LanguageName );
+			if (csTypeMap != null && csTypeMap.Attributes.Contains( "flags" ))
+			{
+			%>[Flags]
+<%%				
+			}
+		}
+%>
+public enum <%= GetCSName( enumData.Name ) %> : uint
 {
 	<%apply GetValue( item ) from enumData.ItemList%>
 }
 <%end rule%>
 
 <%rule GetValue( EnumItem item )%>
-<%= item.Name %> = <%= item.Value %>,
+<%= ConvertName( item.Name ) %> = <%= item.Value %>,
 <%end rule%>
 
 <%rule GetValue( UseEnumItem item )%>
-<%= item.Value %> = <%= item.Name %>.<%= item.Value %>,
+<%= ConvertName( item.Value ) %> = <%= GetCSName( item.Name ) %>.<%= ConvertName( item.Value ) %>,
 <%end rule%>

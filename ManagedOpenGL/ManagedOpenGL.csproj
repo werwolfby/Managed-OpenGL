@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E647B33D-D320-4C15-9B3C-D87F27C1A89B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{DFE4DE95-D643-4D48-ABA6-2B4303F7493E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ManagedOpenGL.CodeGenerator</RootNamespace>
-    <AssemblyName>ManagedOpenGL.CodeGenerator</AssemblyName>
+    <RootNamespace>ManagedOpenGL</RootNamespace>
+    <AssemblyName>ManagedOpenGL</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,49 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSTypeMap.cs" />
-    <Compile Include="EnumData.cs" />
-    <Compile Include="EnumSpecParser.cs" />
-    <Compile Include="Function.cs" />
-    <Compile Include="FunctionOption.cs" />
-    <Compile Include="GlSpecParser.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rules\EnumGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EnumGenerator.rule</DependentUpon>
+    <Compile Include="Enums.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Rules\EnumGeneratorExt.cs" />
-    <Compile Include="Rules\Helper.cs" />
-    <Compile Include="TypeMap.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\cs.tm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\enum.spec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\enumext.spec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\gl.spec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\gl.tm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Rules\EnumGenerator.rule">
-      <Generator>TemplateCodeGenerator</Generator>
-      <LastGenOutput>EnumGenerator.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Unit.WolfGenerator\WolfGenerator.Core\WolfGenerator.Core.csproj">
-      <Project>{154ACD0B-4A5E-48E7-B14C-40E252202844}</Project>
-      <Name>WolfGenerator.Core</Name>
-    </ProjectReference>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
