@@ -1,0 +1,15 @@
+﻿typedef uint [enum]GLenum;
+typedef bool GLboolean;
+typedef uint [enum,flags]GLbitfield;
+typedef sbyte GLbyte;
+typedef short GLshort;
+typedef int GLint;
+typedef int GLsizei;
+typedef byte GLubyte;
+typedef ushort GLushort;
+typedef uint GLuint;
+typedef float GLfloat;
+typedef float GLclampf;
+typedef double GLdouble;
+typedef double GLclampd;
+typedef void GLvoid;
