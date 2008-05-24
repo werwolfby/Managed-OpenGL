@@ -42,6 +42,13 @@ namespace ManagedOpenGL.CodeGenerator
 			{
 				writer.WriteLine( enumGenerator.Main( enumList, typeMapList, csTypeMapList ) );
 			}
+
+			var nativeGenerator = new NativeGenerator();
+
+			using (var writer = new StreamWriter( "OpenGLNative.cs" ))
+			{
+				writer.WriteLine( nativeGenerator.Main( functions, typeMapList, csTypeMapList ) );
+			}
 		}
 
 		static IList<TypeMap> ParseTypeMapList( string filename )

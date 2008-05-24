@@ -12,6 +12,8 @@
  *******************************************************/
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -44,6 +46,8 @@ namespace ManagedOpenGL.CodeGenerator
 			{
 				case "param":
 					return ParamFunctionOption.Parse( name, tail, lineNumber );
+				case "return":
+					return new ReturnFunctionOption { Name = name, ReturnType = tail.Trim() };
 				default:
 					return new OtherTailFunctionOption
 					       {
@@ -52,6 +56,36 @@ namespace ManagedOpenGL.CodeGenerator
 					       };
 			}
 		}
+	}
+
+	public static class FunctionOptionExtension
+	{
+		public static string GetCSName( this ReturnFunctionOption returnFunctionOption, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
+		{
+			var typeMap = typeMapList.FirstOrDefault( map => map.GLName == returnFunctionOption.ReturnType );
+			if (typeMap == null) throw new Exception( "Unknow return type: " + returnFunctionOption.ReturnType );
+			if (typeMap.LanguageName.Name == "*") return "void";
+			var csTypeMap = csTypeMapList.FirstOrDefault( map1 => map1.GLName == typeMap.LanguageName.Name );
+			if (csTypeMap == null) throw new Exception( "Unknow CS type: " + typeMap.LanguageName.Name );
+			if (csTypeMap.Attributes.Contains( "enum" )) return returnFunctionOption.ReturnType;
+			return csTypeMap.LanguageName;
+		}
+
+		public static string GetCSName( this ParamFunctionOption returnFunctionOption, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
+		{
+			var typeMap = typeMapList.FirstOrDefault( map => map.GLName == returnFunctionOption.ParamType );
+			if (typeMap == null) throw new Exception( "Unknow return type: " + returnFunctionOption.ParamType );
+			var csTypeMap = csTypeMapList.FirstOrDefault( map1 => map1.GLName == typeMap.LanguageName.Name );
+			if (csTypeMap == null) throw new Exception( "Unknow CS type: " + typeMap.LanguageName.Name );
+			if (csTypeMap.Attributes.Contains( "enum" )) return returnFunctionOption.ParamType;
+			return csTypeMap.LanguageName;
+		}
+	}
+
+	[DebuggerDisplay("return {ReturnType,nq}")]
+	public class ReturnFunctionOption : TailFunctionOption
+	{
+		public string ReturnType;
 	}
 
 	[DebuggerDisplay("{Name,nq} {Tail,nq}")]

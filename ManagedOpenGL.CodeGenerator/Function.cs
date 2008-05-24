@@ -27,7 +27,10 @@ namespace ManagedOpenGL.CodeGenerator
 		public string Name;
 		public string[] Params;
 
-		public List<FunctionOption> options = new List<FunctionOption>();
+		public readonly List<ParamFunctionOption> ParamList = new List<ParamFunctionOption>();
+		public ReturnFunctionOption Return;
+
+		private readonly List<FunctionOption> options = new List<FunctionOption>();
 
 		public static bool IsFunctionLine( string line )
 		{
@@ -44,6 +47,14 @@ namespace ManagedOpenGL.CodeGenerator
 			       	Name = match.Groups["name"].Value,
 			       	Params = Array.ConvertAll( match.Groups["params"].Value.Split( ',' ), input => input.Trim() )
 			       };
+		}
+
+		public void Add( FunctionOption functionOption )
+		{
+			if (functionOption is ParamFunctionOption) ParamList.Add( (ParamFunctionOption)functionOption );
+			if (functionOption is ReturnFunctionOption) Return = (ReturnFunctionOption)functionOption;
+
+			options.Add( functionOption );
 		}
 	}
 }

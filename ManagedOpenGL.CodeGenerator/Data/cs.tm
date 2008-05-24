@@ -13,3 +13,16 @@ typedef float GLclampf;
 typedef double GLdouble;
 typedef double GLclampd;
 typedef void GLvoid;
+typedef string GLstring;
+typedef int GLsizeiptr;
+typedef int GLintptr;
+typedef int GLsizeiptrARB;
+typedef int GLintptrARB;
+typedef char GLchar;
+typedef char GLcharARB;
+typedef uint GLhandleARB;
+typedef ushort GLhalfARB;
+typedef ushort GLhalfNV;
+typedef long GLint64EXT;
+typedef ulong GLuint64EXT;
+

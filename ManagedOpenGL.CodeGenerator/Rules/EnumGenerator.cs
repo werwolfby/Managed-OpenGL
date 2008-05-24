@@ -30,7 +30,7 @@ public partial class EnumGenerator
 		var glTypeMap = typeMapList.FirstOrDefault(map => map.GLName == enumData.Name);
 				if (glTypeMap != null)
 				{
-					var csTypeMap = csTypeMapList.FirstOrDefault( map => map.GLName == glTypeMap.LanguageName );
+					var csTypeMap = csTypeMapList.FirstOrDefault( map => map.GLName == glTypeMap.LanguageName.Name );
 					if (csTypeMap != null && csTypeMap.Attributes.Contains( "flags" ))
 					{
 		codeWriter.AppendLine( "[Flags]" );

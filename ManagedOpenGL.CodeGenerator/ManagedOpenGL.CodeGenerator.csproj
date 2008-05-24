@@ -59,6 +59,11 @@
       <DependentUpon>EnumGenerator.rule</DependentUpon>
     </Compile>
     <Compile Include="Rules\EnumGeneratorExt.cs" />
+    <Compile Include="Rules\FunctionGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FunctionGenerator.rule</DependentUpon>
+    </Compile>
     <Compile Include="Rules\Helper.cs" />
     <Compile Include="TypeMap.cs" />
   </ItemGroup>
@@ -81,6 +86,10 @@
     <None Include="Rules\EnumGenerator.rule">
       <Generator>TemplateCodeGenerator</Generator>
       <LastGenOutput>EnumGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="Rules\FunctionGenerator.rule">
+      <Generator>TemplateCodeGenerator</Generator>
+      <LastGenOutput>FunctionGenerator.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

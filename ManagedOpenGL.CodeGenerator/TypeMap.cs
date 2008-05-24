@@ -13,6 +13,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace ManagedOpenGL.CodeGenerator
 {
@@ -20,7 +21,7 @@ namespace ManagedOpenGL.CodeGenerator
 	public class TypeMap
 	{
 		public string GLName;
-		public string LanguageName;
+		public LanguageName LanguageName;
 		public string GLParam1;
 		public string GLParam2;
 		public string LanguageParam1;
@@ -42,9 +43,29 @@ namespace ManagedOpenGL.CodeGenerator
 			       	GLName = typeMapItems[0].Trim(),
 			       	GLParam1 = typeMapItems[1].Trim(),
 			       	GLParam2 = typeMapItems[2].Trim(),
-			       	LanguageName = typeMapItems[3].Trim(),
+			       	LanguageName = LanguageName.Parse( typeMapItems[3].Trim() ),
 			       	LanguageParam1 = typeMapItems[4].Trim(),
 			       	LanguageParam2 = typeMapItems[5].Trim(),
+			       };
+		}
+	}
+
+	public class LanguageName
+	{
+		private static readonly Regex languageNameRegex = new Regex( @"^(?'name'(\*|([_a-zA-Z0-9]*)))\s*(?'pointer'\**)(\s+const)?$" );
+
+		public string Name;
+		public int PointDeep;
+
+		public static LanguageName Parse( string type )
+		{
+			var match = languageNameRegex.Match( type );
+			if (!match.Success) throw new Exception( "Can't parse language name: " + type);
+
+			return new LanguageName
+			       {
+			       	Name = match.Groups["name"].Value,
+			       	PointDeep = match.Groups["pointer"].Value.Length
 			       };
 		}
 	}

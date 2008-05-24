@@ -1,0 +1,27 @@
+﻿<%ruleclass NativeGenerator%>
+<%using System%>
+<%using System.Collections.Generic%>
+<%using WolfGenerator.Core%>
+<%using ManagedOpenGL.CodeGenerator%>
+
+<%rule Main( IList<Function> functionList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )%>
+using System.Runtime.InteropServices;
+
+namespace ManagedOpenGL
+{
+	public static class OpenGLNative
+	{
+		<%apply GenerateFunction( item, typeMapList, csTypeMapList ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList from functionList%>
+	}
+}
+<%end rule%>
+
+<%rule GenerateFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )%>
+[DllImport( "opengl32.dll" )]
+public static extern <%= function.Return.GetCSName( typeMapList, csTypeMapList ) %> <%= function.Name %>( <%join ", " IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, Function function%>
+		<%apply GenerateParam( item, typeMapList, csTypeMapList ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList from function.ParamList%>
+	<%end join%> );
+<%end rule%>
+
+<%rule GenerateParam( ParamFunctionOption p, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )%>
+<%= p.GetCSName( typeMapList, csTypeMapList ) %> <%= p.ParamName %><%end rule%>

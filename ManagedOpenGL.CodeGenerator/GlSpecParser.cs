@@ -48,7 +48,7 @@ namespace ManagedOpenGL.CodeGenerator
 						continue;
 					}
 					if (currentFunction == null) throw new Exception( "Can't parse line: `" + line + "` at line " + lineNumber );
-					currentFunction.options.Add( FunctionOption.Parse( line.Trim(), lineNumber ) );
+					currentFunction.Add( FunctionOption.Parse( line.Trim(), lineNumber ) );
 					lineNumber++;
 				}
 			}
