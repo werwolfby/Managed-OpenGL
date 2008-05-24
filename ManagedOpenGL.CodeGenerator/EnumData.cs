@@ -16,15 +16,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
-	[DebuggerDisplay("{Name,nq} enum[{itemList.Count}]")]
+	[DebuggerDisplay("{Name,nq} enum[{ItemList.Count}]")]
 	public class EnumData
 	{
-		private static readonly Regex enumRegex = new Regex( @"^(?'name'.*)\b+enum:" );
+		private static readonly Regex enumRegex = new Regex( @"^(?'name'[a-zA-Z0-9_]*)\s+enum:" );
 
 		public string Name;
-		public List<EnumItem> itemList = new List<EnumItem>();
+		public List<EnumItem> ItemList = new List<EnumItem>();
 
 		public static bool IsEnumData( string line )
 		{

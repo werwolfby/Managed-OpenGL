@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
 	public static class GlSpecParser
 	{

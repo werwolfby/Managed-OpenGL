@@ -1,0 +1,28 @@
+﻿<%ruleclass EnumGenerator%>
+<%inner_method_name EntityConstructors%>
+<%using System%>
+<%using System.Collections.Generic%>
+<%using WolfGenerator.Core%>
+<%using ManagedOpenGL.CodeGenerator%>
+
+<%rule Main( IEnumerable<EnumData> enumList )%>
+namespace ManagedOpenGL
+{
+	<%apply GenerateEnum( item ) from enumList%>
+}
+<%end rule%>
+
+<%rule GenerateEnum( EnumData enumData )%>
+public enum <%= enumData.Name %> : uint
+{
+	<%apply GetValue( item ) from enumData.ItemList%>
+}
+<%end rule%>
+
+<%rule GetValue( EnumItem item )%>
+<%= item.Name %> = <%= item.Value %>,
+<%end rule%>
+
+<%rule GetValue( UseEnumItem item )%>
+<%= item.Value %> = <%= item.Name %>.<%= item.Value %>,
+<%end rule%>

@@ -14,7 +14,7 @@
 using System;
 using System.Diagnostics;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
 	[DebuggerDisplay("{GLName,nq},{GLParam1,nq},{GLParam2,nq} -> {LanguageName,nq},{LanguageParam1,nq},{LanguageParam2,nq}")]
 	public class TypeMap

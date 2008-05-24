@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
 	public static class EnumSpecParser
 	{
@@ -48,7 +48,7 @@ namespace ManagedOpenGL.CodeGenerator2
 					if (!EnumItem.IsEnumItem( line )) throw new Exception( "Can't parse line `" + line + "` at line " + lineNumber );
 					var enumItem = EnumItem.Parse( line.Trim(), lineNumber );
 					if (currentEnum == null) continue;
-					currentEnum.itemList.Add( enumItem );
+					currentEnum.ItemList.Add( enumItem );
 				}
 			}
 

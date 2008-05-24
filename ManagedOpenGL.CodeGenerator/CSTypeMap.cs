@@ -14,7 +14,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
 	public class CSTypeMap
 	{

@@ -8,8 +8,8 @@
     <ProjectGuid>{E647B33D-D320-4C15-9B3C-D87F27C1A89B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ManagedOpenGL.CodeGenerator2</RootNamespace>
-    <AssemblyName>ManagedOpenGL.CodeGenerator2</AssemblyName>
+    <RootNamespace>ManagedOpenGL.CodeGenerator</RootNamespace>
+    <AssemblyName>ManagedOpenGL.CodeGenerator</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,6 +53,11 @@
     <Compile Include="GlSpecParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\EnumGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumGenerator.rule</DependentUpon>
+    </Compile>
     <Compile Include="TypeMap.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +76,16 @@
     <None Include="Data\gl.tm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Rules\EnumGenerator.rule">
+      <Generator>TemplateCodeGenerator</Generator>
+      <LastGenOutput>EnumGenerator.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Unit.WolfGenerator\WolfGenerator.Core\WolfGenerator.Core.csproj">
+      <Project>{154ACD0B-4A5E-48E7-B14C-40E252202844}</Project>
+      <Name>WolfGenerator.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

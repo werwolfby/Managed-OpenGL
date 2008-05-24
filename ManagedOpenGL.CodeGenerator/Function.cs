@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
 	[DebuggerDisplay("{Name,nq}({System.String.Join(\", \", Params),nq})")]
 	public class Function

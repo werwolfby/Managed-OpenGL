@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace ManagedOpenGL.CodeGenerator2
+namespace ManagedOpenGL.CodeGenerator
 {
 	class Program
 	{
@@ -22,15 +22,11 @@ namespace ManagedOpenGL.CodeGenerator2
 
 			var enumList = enumDatas.Concat( extEnumDatas ).ToList();
 
-			var enumCsTypes = (from csType in csTypeMapList where csType.Attributes.Contains( "enum" ) select csType).ToList();
+			var enumGenerator = new EnumGenerator();
 
-			foreach (var typeMap in typeMapList)
+			using (var writer = new StreamWriter( "Enums.cs" ))
 			{
-				var typeMap1 = typeMap;
-				var csTypeMap = enumCsTypes.FirstOrDefault(map => map.GLName == typeMap1.LanguageName);
-				if (csTypeMap == null) continue;
-				if (csTypeMap.Attributes.Contains( "flags" )) Console.WriteLine("[Flags]");
-				Console.WriteLine( "public enum " + typeMap1.GLName + " : " + csTypeMap.LanguageName );
+				writer.WriteLine( enumGenerator.Main( enumList ) );
 			}
 		}
 
