@@ -28,6 +28,7 @@ namespace Test.ManagedOpenGL
 			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 
 			Init();
+			InitGL();
 		}
 
 		protected override void OnSizeChanged( EventArgs e ) 
@@ -39,8 +40,17 @@ namespace Test.ManagedOpenGL
 
 		private void InitGL()
 		{
+			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, _hRC ))
+			    throw new Win32Exception( Marshal.GetLastWin32Error() );
+
+			OpenGLNative.MatrixMode( MatrixMode.Projection );
+			OpenGLNative.LoadIdentity();
+			WindowsOpenGLNative.gluPerspective( 45, (double)ClientSize.Width / ClientSize.Height, 10, 1000 );
 			OpenGLNative.Viewport( 0, 0, ClientSize.Width, ClientSize.Height );
-			WindowsOpenGLNative.gluPerspective( 45, (Double)ClientSize.Width / ClientSize.Height, 10, 1000 );
+
+			Invalidate();
+
+			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 		}
 
 		private void Init()
@@ -57,16 +67,12 @@ namespace Test.ManagedOpenGL
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			// Set the pixel format
-			if (WindowsOpenGLNative.SetPixelFormat( _hDC, iPixelformat, ref pfd ))
+			if (!WindowsOpenGLNative.SetPixelFormat( _hDC, iPixelformat, ref pfd ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			// Create a new OpenGL rendering context
 			this._hRC = WindowsOpenGLNative.wglCreateContext( this._hDC );
 			if (_hRC == IntPtr.Zero)
-				throw new Win32Exception( Marshal.GetLastWin32Error() );
-
-			// Make _hRC rendering context as a current context
-			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, _hRC ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 		}
 
@@ -75,14 +81,27 @@ namespace Test.ManagedOpenGL
 			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, _hRC ))
 			    throw new Win32Exception( Marshal.GetLastWin32Error() );
 
-			OpenGLNative.ClearColor( 1.0f, 1, 1, 0 );
-			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit );
+			OpenGLNative.ClearColor( 0.3f, 0.3f, 0.3f, 0 );
+			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
-			OpenGLNative.ActiveTexture( (uint)VERSION_1_3.Texture0 );
+			OpenGLNative.CullFace( CullFaceMode.FrontAndBack );
 
-			//if (!WindowsOpenGLNative.SwapBuffers( this._hDC )) throw new Win32Exception( Marshal.GetLastWin32Error() );
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
+			OpenGLNative.LoadIdentity();
+			OpenGLNative.Translatef( 0, 0, -16f );
 
-			//Invalidate();
+			OpenGLNative.Disable( EnableCap.Lighting );
+
+			OpenGLNative.Begin( BeginMode.Triangles );
+			OpenGLNative.Color3f( 1, 1, 1 );
+			OpenGLNative.Vertex3f( -5f, -2f, 0 );
+			OpenGLNative.Color3f( 1, 1, 1 );
+			OpenGLNative.Vertex3f( 5f, -2f, 0 );
+			OpenGLNative.Color3f( 1, 1, 1 );
+			OpenGLNative.Vertex3f( 0, 5f, 0 );
+			OpenGLNative.End();
+
+			WindowsOpenGLNative.SwapBuffers( _hDC );
 
 			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 		}
