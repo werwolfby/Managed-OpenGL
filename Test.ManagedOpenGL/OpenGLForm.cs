@@ -57,7 +57,7 @@ namespace Test.ManagedOpenGL
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			// Set the pixel format
-			if (WindowsOpenGLNative.SetPixelFormat( _hDC, iPixelformat, ref pfd ) == 0)
+			if (WindowsOpenGLNative.SetPixelFormat( _hDC, iPixelformat, ref pfd ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			// Create a new OpenGL rendering context

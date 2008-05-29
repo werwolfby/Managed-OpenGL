@@ -43,14 +43,12 @@ namespace ManagedOpenGL
 		public const uint PFD_GENERIC_ACCELERATED = 0x00001000;
 		public const uint PFD_GENERIC_FORMAT = 0x00000040;
 		public const byte PFD_MAIN_PLANE = 0;
-		public const uint PFD_NEED_PALETTE = 0x00000080,
-			PFD_NEED_SYSTEM_PALETTE = 0x00000100;
+		public const uint PFD_NEED_PALETTE = 0x00000080, PFD_NEED_SYSTEM_PALETTE = 0x00000100;
 		public const sbyte PFD_OVERLAY_PLANE = 1;
 		public const uint PFD_STEREO = 0x00000002;
 		public const uint PFD_STEREO_DONTCARE = 0x80000000;
 		public const uint PFD_SUPPORT_DIRECTDRAW = 0x00002000;
-		public const uint PFD_SUPPORT_GDI = 0x00000010,
-			PFD_SUPPORT_OPENGL = 0x00000020;
+		public const uint PFD_SUPPORT_GDI = 0x00000010, PFD_SUPPORT_OPENGL = 0x00000020;
 		public const uint PFD_SWAP_COPY = 0x00000400;
 		public const uint PFD_SWAP_EXCHANGE = 0x00000200;
 		public const uint PFD_SWAP_LAYER_BUFFERS = 0x00000800;
@@ -58,42 +56,33 @@ namespace ManagedOpenGL
 		public const byte PFD_TYPE_RGBA = 0;
 		public const sbyte PFD_UNDERLAY_PLANE = -1;
 
-		public byte
-			bReserved;
-		public byte
-			cAccumAlphaBits;
-		public byte
-			cAccumBits;
-		public byte
-			cAccumBlueBits;
-		public byte
-			cAccumGreenBits;
-		public byte
-			cAccumRedBits;
-		public byte
-			cAlphaBits, cAlphaShift;
-		public byte
-			cAuxBuffers;
-		public byte
-			cBlueBits, cBlueShift;
-		public byte
-			cColorBits;
-		public byte
-			cDepthBits;
-		public byte
-			cGreenBits, cGreenShift;
-		public byte
-			cRedBits, cRedShift;
-		public byte
-			cStencilBits;
-		public uint dwDamageMask;
-		public PixelFormatDescriptorFlagsEnum dwFlags;
-		public uint dwLayerMask, dwVisibleMask;
-		public byte
-			iLayerType;
-		public byte
-			iPixelType;
-		public ushort nSize, nVersion;
+		public ushort  nSize; 
+		public ushort  nVersion; 
+		public PixelFormatDescriptorFlagsEnum dwFlags; 
+		public byte  iPixelType; 
+		public byte  cColorBits; 
+		public byte  cRedBits; 
+		public byte  cRedShift; 
+		public byte  cGreenBits; 
+		public byte  cGreenShift; 
+		public byte  cBlueBits; 
+		public byte  cBlueShift; 
+		public byte  cAlphaBits; 
+		public byte  cAlphaShift; 
+		public byte  cAccumBits; 
+		public byte  cAccumRedBits; 
+		public byte  cAccumGreenBits; 
+		public byte  cAccumBlueBits; 
+		public byte  cAccumAlphaBits; 
+		public byte  cDepthBits; 
+		public byte  cStencilBits; 
+		public byte  cAuxBuffers; 
+		public byte  iLayerType; 
+		public byte  bReserved; 
+		public int dwLayerMask; 
+		public int dwVisibleMask; 
+		public int dwDamageMask; 
+
 
 		/// <summary>
 		/// Initializes a current instance of the PIXELFORMATDESCRIPTOR
@@ -107,16 +96,16 @@ namespace ManagedOpenGL
 			               PixelFormatDescriptorFlagsEnum.PFD_DOUBLEBUFFER;
 			this.iPixelType = PFD_TYPE_RGBA;
 			this.cColorBits = 24;
-			this.cRedBits = 24;
+			this.cRedBits = 0;
 			this.cRedShift = 0;
-			this.cGreenBits = 24;
+			this.cGreenBits = 0;
 			this.cGreenShift = 0;
-			this.cBlueBits = 24;
+			this.cBlueBits = 0;
 			this.cBlueShift = 0;
 			this.cAlphaBits = 0;
 			this.cAlphaShift = 0;
 			this.cAccumBits = this.cAccumRedBits = this.cAccumGreenBits = this.cAccumBlueBits = this.cAccumAlphaBits = 0;
-			this.cDepthBits = 32;
+			this.cDepthBits = 16;
 			this.cStencilBits = 0;
 			this.cAuxBuffers = 0;
 			this.iLayerType = PFD_MAIN_PLANE;

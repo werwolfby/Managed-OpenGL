@@ -37,13 +37,16 @@ namespace ManagedOpenGL
 		public static extern IntPtr wglGetProcAddress( [MarshalAs(UnmanagedType.LPStr)]string functionName );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
-		public static extern Int32 ChoosePixelFormat( IntPtr hdc, ref PixelFormatDescriptor ppfd );
+		public static extern int ChoosePixelFormat( IntPtr hdc, ref PixelFormatDescriptor ppfd );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
 		public static extern Int32 DescribePixelFormat( IntPtr hdc, int iPixelFormat, uint nbytes, ref PixelFormatDescriptor ppfd );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
-		public static extern Int32 SetPixelFormat( IntPtr hdc, Int32 iPixelFormat, ref PixelFormatDescriptor ppfd );
+		public static extern bool SetPixelFormat( IntPtr hdc, int iPixelFormat, ref PixelFormatDescriptor ppfd );
+
+		[DllImport( "gdi32.dll", SetLastError=true )]
+		public static extern uint GetPixelFormat( IntPtr hdc );
 
 		[DllImport( "gdi32.dll", SetLastError=true )]
 		public static extern bool SwapBuffers( IntPtr hdc );
