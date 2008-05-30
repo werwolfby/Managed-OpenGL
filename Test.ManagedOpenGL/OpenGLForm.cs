@@ -8,9 +8,12 @@ namespace Test.ManagedOpenGL
 {
 	public partial class OpenGLForm : Form
 	{
+		#region Fields
 		private IntPtr _hDC = IntPtr.Zero;
 		private IntPtr _hRC = IntPtr.Zero;
+		#endregion
 
+		#region Constructors
 		public OpenGLForm()
 		{
 			SetStyle( ControlStyles.AllPaintingInWmPaint, true );
@@ -20,7 +23,9 @@ namespace Test.ManagedOpenGL
 
 			InitializeComponent();
 		}
+		#endregion
 
+		#region Override Methods
 		protected override void OnShown( EventArgs e ) 
 		{
 			base.OnShown( e );
@@ -41,12 +46,9 @@ namespace Test.ManagedOpenGL
 		private void InitGL()
 		{
 			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, _hRC ))
-			    throw new Win32Exception( Marshal.GetLastWin32Error() );
+				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
-			OpenGLNative.LoadIdentity();
-			WindowsOpenGLNative.gluPerspective( 45, (double)ClientSize.Width / ClientSize.Height, 10, 1000 );
-			OpenGLNative.Viewport( 0, 0, ClientSize.Width, ClientSize.Height );
+			this.InitPerspective();
 
 			Invalidate();
 
@@ -57,6 +59,8 @@ namespace Test.ManagedOpenGL
 		{
 			var pfd = new PixelFormatDescriptor();
 			pfd.Initialize();
+
+			InitializePixelFormatDescriptor( ref pfd );
 
 			this._hDC = WindowsOpenGLNative.GetDC( Handle );
 			if (this._hDC == IntPtr.Zero)
@@ -76,11 +80,38 @@ namespace Test.ManagedOpenGL
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 		}
 
-		protected override void OnPaint( PaintEventArgs e ) 
+		protected sealed override void OnPaint( PaintEventArgs e ) 
 		{
 			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, _hRC ))
-			    throw new Win32Exception( Marshal.GetLastWin32Error() );
+				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
+			this.Draw();
+
+			WindowsOpenGLNative.SwapBuffers( _hDC );
+
+			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
+		}
+
+		protected sealed override void OnPaintBackground( PaintEventArgs e ) 
+		{
+		}
+		#endregion
+
+		#region Virtual Methods
+		protected virtual void InitializePixelFormatDescriptor( ref PixelFormatDescriptor pfd )
+		{
+		}
+
+		protected virtual void InitPerspective() 
+		{
+			OpenGLNative.MatrixMode( MatrixMode.Projection );
+			OpenGLNative.LoadIdentity();
+			WindowsOpenGLNative.gluPerspective( 45, (double)this.ClientSize.Width / this.ClientSize.Height, 10, 1000 );
+			OpenGLNative.Viewport( 0, 0, this.ClientSize.Width, this.ClientSize.Height );
+		}
+
+		protected virtual void Draw() 
+		{
 			OpenGLNative.ClearColor( 0.3f, 0.3f, 0.3f, 0 );
 			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
@@ -100,14 +131,7 @@ namespace Test.ManagedOpenGL
 			OpenGLNative.Color3f( 1, 1, 1 );
 			OpenGLNative.Vertex3f( 0, 5f, 0 );
 			OpenGLNative.End();
-
-			WindowsOpenGLNative.SwapBuffers( _hDC );
-
-			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 		}
-
-		protected override void OnPaintBackground( PaintEventArgs e ) 
-		{
-		}
+		#endregion
 	}
 }

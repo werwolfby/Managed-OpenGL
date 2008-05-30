@@ -300,6 +300,23 @@ namespace ManagedOpenGL
 			CompressedTexSubImage2DARB = GetProcAdress< CompressedTexSubImage2DARBDelegate >( "glCompressedTexSubImage2DARB" );
 			CompressedTexSubImage1DARB = GetProcAdress< CompressedTexSubImage1DARBDelegate >( "glCompressedTexSubImage1DARB" );
 			GetCompressedTexImageARB = GetProcAdress< GetCompressedTexImageARBDelegate >( "glGetCompressedTexImageARB" );
+			PointParameterfARB = GetProcAdress< PointParameterfARBDelegate >( "glPointParameterfARB" );
+			PointParameterfvARB = GetProcAdress< PointParameterfvARBDelegate >( "glPointParameterfvARB" );
+			WeightbvARB = GetProcAdress< WeightbvARBDelegate >( "glWeightbvARB" );
+			WeightsvARB = GetProcAdress< WeightsvARBDelegate >( "glWeightsvARB" );
+			WeightivARB = GetProcAdress< WeightivARBDelegate >( "glWeightivARB" );
+			WeightfvARB = GetProcAdress< WeightfvARBDelegate >( "glWeightfvARB" );
+			WeightdvARB = GetProcAdress< WeightdvARBDelegate >( "glWeightdvARB" );
+			WeightubvARB = GetProcAdress< WeightubvARBDelegate >( "glWeightubvARB" );
+			WeightusvARB = GetProcAdress< WeightusvARBDelegate >( "glWeightusvARB" );
+			WeightuivARB = GetProcAdress< WeightuivARBDelegate >( "glWeightuivARB" );
+			WeightPointerARB = GetProcAdress< WeightPointerARBDelegate >( "glWeightPointerARB" );
+			VertexBlendARB = GetProcAdress< VertexBlendARBDelegate >( "glVertexBlendARB" );
+			CurrentPaletteMatrixARB = GetProcAdress< CurrentPaletteMatrixARBDelegate >( "glCurrentPaletteMatrixARB" );
+			MatrixIndexubvARB = GetProcAdress< MatrixIndexubvARBDelegate >( "glMatrixIndexubvARB" );
+			MatrixIndexusvARB = GetProcAdress< MatrixIndexusvARBDelegate >( "glMatrixIndexusvARB" );
+			MatrixIndexuivARB = GetProcAdress< MatrixIndexuivARBDelegate >( "glMatrixIndexuivARB" );
+			MatrixIndexPointerARB = GetProcAdress< MatrixIndexPointerARBDelegate >( "glMatrixIndexPointerARB" );
 			VertexAttrib1dARB = GetProcAdress< VertexAttrib1dARBDelegate >( "glVertexAttrib1dARB" );
 			VertexAttrib1dvARB = GetProcAdress< VertexAttrib1dvARBDelegate >( "glVertexAttrib1dvARB" );
 			VertexAttrib1fARB = GetProcAdress< VertexAttrib1fARBDelegate >( "glVertexAttrib1fARB" );
@@ -425,9 +442,168 @@ namespace ManagedOpenGL
 			GetAttribLocationARB = GetProcAdress< GetAttribLocationARBDelegate >( "glGetAttribLocationARB" );
 			DrawBuffersARB = GetProcAdress< DrawBuffersARBDelegate >( "glDrawBuffersARB" );
 			ClampColorARB = GetProcAdress< ClampColorARBDelegate >( "glClampColorARB" );
+			BlendColorEXT = GetProcAdress< BlendColorEXTDelegate >( "glBlendColorEXT" );
+			PolygonOffsetEXT = GetProcAdress< PolygonOffsetEXTDelegate >( "glPolygonOffsetEXT" );
+			TexImage3DEXT = GetProcAdress< TexImage3DEXTDelegate >( "glTexImage3DEXT" );
+			TexSubImage3DEXT = GetProcAdress< TexSubImage3DEXTDelegate >( "glTexSubImage3DEXT" );
+			GetTexFilterFuncSGIS = GetProcAdress< GetTexFilterFuncSGISDelegate >( "glGetTexFilterFuncSGIS" );
+			TexFilterFuncSGIS = GetProcAdress< TexFilterFuncSGISDelegate >( "glTexFilterFuncSGIS" );
+			TexSubImage1DEXT = GetProcAdress< TexSubImage1DEXTDelegate >( "glTexSubImage1DEXT" );
+			TexSubImage2DEXT = GetProcAdress< TexSubImage2DEXTDelegate >( "glTexSubImage2DEXT" );
+			CopyTexImage1DEXT = GetProcAdress< CopyTexImage1DEXTDelegate >( "glCopyTexImage1DEXT" );
+			CopyTexImage2DEXT = GetProcAdress< CopyTexImage2DEXTDelegate >( "glCopyTexImage2DEXT" );
+			CopyTexSubImage1DEXT = GetProcAdress< CopyTexSubImage1DEXTDelegate >( "glCopyTexSubImage1DEXT" );
+			CopyTexSubImage2DEXT = GetProcAdress< CopyTexSubImage2DEXTDelegate >( "glCopyTexSubImage2DEXT" );
+			CopyTexSubImage3DEXT = GetProcAdress< CopyTexSubImage3DEXTDelegate >( "glCopyTexSubImage3DEXT" );
+			GetHistogramEXT = GetProcAdress< GetHistogramEXTDelegate >( "glGetHistogramEXT" );
+			GetHistogramParameterfvEXT = GetProcAdress< GetHistogramParameterfvEXTDelegate >( "glGetHistogramParameterfvEXT" );
+			GetHistogramParameterivEXT = GetProcAdress< GetHistogramParameterivEXTDelegate >( "glGetHistogramParameterivEXT" );
+			GetMinmaxEXT = GetProcAdress< GetMinmaxEXTDelegate >( "glGetMinmaxEXT" );
+			GetMinmaxParameterfvEXT = GetProcAdress< GetMinmaxParameterfvEXTDelegate >( "glGetMinmaxParameterfvEXT" );
+			GetMinmaxParameterivEXT = GetProcAdress< GetMinmaxParameterivEXTDelegate >( "glGetMinmaxParameterivEXT" );
+			HistogramEXT = GetProcAdress< HistogramEXTDelegate >( "glHistogramEXT" );
+			MinmaxEXT = GetProcAdress< MinmaxEXTDelegate >( "glMinmaxEXT" );
+			ResetHistogramEXT = GetProcAdress< ResetHistogramEXTDelegate >( "glResetHistogramEXT" );
+			ResetMinmaxEXT = GetProcAdress< ResetMinmaxEXTDelegate >( "glResetMinmaxEXT" );
+			ConvolutionFilter1DEXT = GetProcAdress< ConvolutionFilter1DEXTDelegate >( "glConvolutionFilter1DEXT" );
+			ConvolutionFilter2DEXT = GetProcAdress< ConvolutionFilter2DEXTDelegate >( "glConvolutionFilter2DEXT" );
+			ConvolutionParameterfEXT = GetProcAdress< ConvolutionParameterfEXTDelegate >( "glConvolutionParameterfEXT" );
+			ConvolutionParameterfvEXT = GetProcAdress< ConvolutionParameterfvEXTDelegate >( "glConvolutionParameterfvEXT" );
+			ConvolutionParameteriEXT = GetProcAdress< ConvolutionParameteriEXTDelegate >( "glConvolutionParameteriEXT" );
+			ConvolutionParameterivEXT = GetProcAdress< ConvolutionParameterivEXTDelegate >( "glConvolutionParameterivEXT" );
+			CopyConvolutionFilter1DEXT = GetProcAdress< CopyConvolutionFilter1DEXTDelegate >( "glCopyConvolutionFilter1DEXT" );
+			CopyConvolutionFilter2DEXT = GetProcAdress< CopyConvolutionFilter2DEXTDelegate >( "glCopyConvolutionFilter2DEXT" );
+			GetConvolutionFilterEXT = GetProcAdress< GetConvolutionFilterEXTDelegate >( "glGetConvolutionFilterEXT" );
+			GetConvolutionParameterfvEXT = GetProcAdress< GetConvolutionParameterfvEXTDelegate >( "glGetConvolutionParameterfvEXT" );
+			GetConvolutionParameterivEXT = GetProcAdress< GetConvolutionParameterivEXTDelegate >( "glGetConvolutionParameterivEXT" );
+			GetSeparableFilterEXT = GetProcAdress< GetSeparableFilterEXTDelegate >( "glGetSeparableFilterEXT" );
+			SeparableFilter2DEXT = GetProcAdress< SeparableFilter2DEXTDelegate >( "glSeparableFilter2DEXT" );
+			ColorTableSGI = GetProcAdress< ColorTableSGIDelegate >( "glColorTableSGI" );
+			ColorTableParameterfvSGI = GetProcAdress< ColorTableParameterfvSGIDelegate >( "glColorTableParameterfvSGI" );
+			ColorTableParameterivSGI = GetProcAdress< ColorTableParameterivSGIDelegate >( "glColorTableParameterivSGI" );
+			CopyColorTableSGI = GetProcAdress< CopyColorTableSGIDelegate >( "glCopyColorTableSGI" );
+			GetColorTableSGI = GetProcAdress< GetColorTableSGIDelegate >( "glGetColorTableSGI" );
+			GetColorTableParameterfvSGI = GetProcAdress< GetColorTableParameterfvSGIDelegate >( "glGetColorTableParameterfvSGI" );
+			GetColorTableParameterivSGI = GetProcAdress< GetColorTableParameterivSGIDelegate >( "glGetColorTableParameterivSGI" );
+			PixelTexGenSGIX = GetProcAdress< PixelTexGenSGIXDelegate >( "glPixelTexGenSGIX" );
+			PixelTexGenParameteriSGIS = GetProcAdress< PixelTexGenParameteriSGISDelegate >( "glPixelTexGenParameteriSGIS" );
+			PixelTexGenParameterivSGIS = GetProcAdress< PixelTexGenParameterivSGISDelegate >( "glPixelTexGenParameterivSGIS" );
+			PixelTexGenParameterfSGIS = GetProcAdress< PixelTexGenParameterfSGISDelegate >( "glPixelTexGenParameterfSGIS" );
+			PixelTexGenParameterfvSGIS = GetProcAdress< PixelTexGenParameterfvSGISDelegate >( "glPixelTexGenParameterfvSGIS" );
+			GetPixelTexGenParameterivSGIS = GetProcAdress< GetPixelTexGenParameterivSGISDelegate >( "glGetPixelTexGenParameterivSGIS" );
+			GetPixelTexGenParameterfvSGIS = GetProcAdress< GetPixelTexGenParameterfvSGISDelegate >( "glGetPixelTexGenParameterfvSGIS" );
+			TexImage4DSGIS = GetProcAdress< TexImage4DSGISDelegate >( "glTexImage4DSGIS" );
+			TexSubImage4DSGIS = GetProcAdress< TexSubImage4DSGISDelegate >( "glTexSubImage4DSGIS" );
+			AreTexturesResidentEXT = GetProcAdress< AreTexturesResidentEXTDelegate >( "glAreTexturesResidentEXT" );
+			BindTextureEXT = GetProcAdress< BindTextureEXTDelegate >( "glBindTextureEXT" );
+			DeleteTexturesEXT = GetProcAdress< DeleteTexturesEXTDelegate >( "glDeleteTexturesEXT" );
+			GenTexturesEXT = GetProcAdress< GenTexturesEXTDelegate >( "glGenTexturesEXT" );
+			IsTextureEXT = GetProcAdress< IsTextureEXTDelegate >( "glIsTextureEXT" );
+			PrioritizeTexturesEXT = GetProcAdress< PrioritizeTexturesEXTDelegate >( "glPrioritizeTexturesEXT" );
+			DetailTexFuncSGIS = GetProcAdress< DetailTexFuncSGISDelegate >( "glDetailTexFuncSGIS" );
+			GetDetailTexFuncSGIS = GetProcAdress< GetDetailTexFuncSGISDelegate >( "glGetDetailTexFuncSGIS" );
+			SharpenTexFuncSGIS = GetProcAdress< SharpenTexFuncSGISDelegate >( "glSharpenTexFuncSGIS" );
+			GetSharpenTexFuncSGIS = GetProcAdress< GetSharpenTexFuncSGISDelegate >( "glGetSharpenTexFuncSGIS" );
+			SampleMaskSGIS = GetProcAdress< SampleMaskSGISDelegate >( "glSampleMaskSGIS" );
+			SamplePatternSGIS = GetProcAdress< SamplePatternSGISDelegate >( "glSamplePatternSGIS" );
+			ArrayElementEXT = GetProcAdress< ArrayElementEXTDelegate >( "glArrayElementEXT" );
+			ColorPointerEXT = GetProcAdress< ColorPointerEXTDelegate >( "glColorPointerEXT" );
+			DrawArraysEXT = GetProcAdress< DrawArraysEXTDelegate >( "glDrawArraysEXT" );
+			EdgeFlagPointerEXT = GetProcAdress< EdgeFlagPointerEXTDelegate >( "glEdgeFlagPointerEXT" );
+			GetPointervEXT = GetProcAdress< GetPointervEXTDelegate >( "glGetPointervEXT" );
+			IndexPointerEXT = GetProcAdress< IndexPointerEXTDelegate >( "glIndexPointerEXT" );
+			NormalPointerEXT = GetProcAdress< NormalPointerEXTDelegate >( "glNormalPointerEXT" );
+			TexCoordPointerEXT = GetProcAdress< TexCoordPointerEXTDelegate >( "glTexCoordPointerEXT" );
+			VertexPointerEXT = GetProcAdress< VertexPointerEXTDelegate >( "glVertexPointerEXT" );
+			BlendEquationEXT = GetProcAdress< BlendEquationEXTDelegate >( "glBlendEquationEXT" );
+			SpriteParameterfSGIX = GetProcAdress< SpriteParameterfSGIXDelegate >( "glSpriteParameterfSGIX" );
+			SpriteParameterfvSGIX = GetProcAdress< SpriteParameterfvSGIXDelegate >( "glSpriteParameterfvSGIX" );
+			SpriteParameteriSGIX = GetProcAdress< SpriteParameteriSGIXDelegate >( "glSpriteParameteriSGIX" );
+			SpriteParameterivSGIX = GetProcAdress< SpriteParameterivSGIXDelegate >( "glSpriteParameterivSGIX" );
+			PointParameterfEXT = GetProcAdress< PointParameterfEXTDelegate >( "glPointParameterfEXT" );
+			PointParameterfvEXT = GetProcAdress< PointParameterfvEXTDelegate >( "glPointParameterfvEXT" );
+			PointParameterfSGIS = GetProcAdress< PointParameterfSGISDelegate >( "glPointParameterfSGIS" );
+			PointParameterfvSGIS = GetProcAdress< PointParameterfvSGISDelegate >( "glPointParameterfvSGIS" );
+			GetInstrumentsSGIX = GetProcAdress< GetInstrumentsSGIXDelegate >( "glGetInstrumentsSGIX" );
+			InstrumentsBufferSGIX = GetProcAdress< InstrumentsBufferSGIXDelegate >( "glInstrumentsBufferSGIX" );
+			PollInstrumentsSGIX = GetProcAdress< PollInstrumentsSGIXDelegate >( "glPollInstrumentsSGIX" );
+			ReadInstrumentsSGIX = GetProcAdress< ReadInstrumentsSGIXDelegate >( "glReadInstrumentsSGIX" );
+			StartInstrumentsSGIX = GetProcAdress< StartInstrumentsSGIXDelegate >( "glStartInstrumentsSGIX" );
+			StopInstrumentsSGIX = GetProcAdress< StopInstrumentsSGIXDelegate >( "glStopInstrumentsSGIX" );
+			FrameZoomSGIX = GetProcAdress< FrameZoomSGIXDelegate >( "glFrameZoomSGIX" );
+			TagSampleBufferSGIX = GetProcAdress< TagSampleBufferSGIXDelegate >( "glTagSampleBufferSGIX" );
+			DeformationMap3dSGIX = GetProcAdress< DeformationMap3dSGIXDelegate >( "glDeformationMap3dSGIX" );
+			DeformationMap3fSGIX = GetProcAdress< DeformationMap3fSGIXDelegate >( "glDeformationMap3fSGIX" );
+			DeformSGIX = GetProcAdress< DeformSGIXDelegate >( "glDeformSGIX" );
+			LoadIdentityDeformationMapSGIX = GetProcAdress< LoadIdentityDeformationMapSGIXDelegate >( "glLoadIdentityDeformationMapSGIX" );
+			ReferencePlaneSGIX = GetProcAdress< ReferencePlaneSGIXDelegate >( "glReferencePlaneSGIX" );
+			FlushRasterSGIX = GetProcAdress< FlushRasterSGIXDelegate >( "glFlushRasterSGIX" );
+			FogFuncSGIS = GetProcAdress< FogFuncSGISDelegate >( "glFogFuncSGIS" );
+			GetFogFuncSGIS = GetProcAdress< GetFogFuncSGISDelegate >( "glGetFogFuncSGIS" );
 			ColorSubTableEXT = GetProcAdress< ColorSubTableEXTDelegate >( "glColorSubTableEXT" );
 			CopyColorSubTableEXT = GetProcAdress< CopyColorSubTableEXTDelegate >( "glCopyColorSubTableEXT" );
+			GetListParameterfvSGIX = GetProcAdress< GetListParameterfvSGIXDelegate >( "glGetListParameterfvSGIX" );
+			GetListParameterivSGIX = GetProcAdress< GetListParameterivSGIXDelegate >( "glGetListParameterivSGIX" );
+			ListParameterfSGIX = GetProcAdress< ListParameterfSGIXDelegate >( "glListParameterfSGIX" );
+			ListParameterfvSGIX = GetProcAdress< ListParameterfvSGIXDelegate >( "glListParameterfvSGIX" );
+			ListParameteriSGIX = GetProcAdress< ListParameteriSGIXDelegate >( "glListParameteriSGIX" );
+			ListParameterivSGIX = GetProcAdress< ListParameterivSGIXDelegate >( "glListParameterivSGIX" );
+			IndexMaterialEXT = GetProcAdress< IndexMaterialEXTDelegate >( "glIndexMaterialEXT" );
+			IndexFuncEXT = GetProcAdress< IndexFuncEXTDelegate >( "glIndexFuncEXT" );
+			LockArraysEXT = GetProcAdress< LockArraysEXTDelegate >( "glLockArraysEXT" );
+			UnlockArraysEXT = GetProcAdress< UnlockArraysEXTDelegate >( "glUnlockArraysEXT" );
+			CullParameterdvEXT = GetProcAdress< CullParameterdvEXTDelegate >( "glCullParameterdvEXT" );
+			CullParameterfvEXT = GetProcAdress< CullParameterfvEXTDelegate >( "glCullParameterfvEXT" );
+			FragmentColorMaterialSGIX = GetProcAdress< FragmentColorMaterialSGIXDelegate >( "glFragmentColorMaterialSGIX" );
+			FragmentLightfSGIX = GetProcAdress< FragmentLightfSGIXDelegate >( "glFragmentLightfSGIX" );
+			FragmentLightfvSGIX = GetProcAdress< FragmentLightfvSGIXDelegate >( "glFragmentLightfvSGIX" );
+			FragmentLightiSGIX = GetProcAdress< FragmentLightiSGIXDelegate >( "glFragmentLightiSGIX" );
+			FragmentLightivSGIX = GetProcAdress< FragmentLightivSGIXDelegate >( "glFragmentLightivSGIX" );
+			FragmentLightModelfSGIX = GetProcAdress< FragmentLightModelfSGIXDelegate >( "glFragmentLightModelfSGIX" );
+			FragmentLightModelfvSGIX = GetProcAdress< FragmentLightModelfvSGIXDelegate >( "glFragmentLightModelfvSGIX" );
+			FragmentLightModeliSGIX = GetProcAdress< FragmentLightModeliSGIXDelegate >( "glFragmentLightModeliSGIX" );
+			FragmentLightModelivSGIX = GetProcAdress< FragmentLightModelivSGIXDelegate >( "glFragmentLightModelivSGIX" );
+			FragmentMaterialfSGIX = GetProcAdress< FragmentMaterialfSGIXDelegate >( "glFragmentMaterialfSGIX" );
+			FragmentMaterialfvSGIX = GetProcAdress< FragmentMaterialfvSGIXDelegate >( "glFragmentMaterialfvSGIX" );
+			FragmentMaterialiSGIX = GetProcAdress< FragmentMaterialiSGIXDelegate >( "glFragmentMaterialiSGIX" );
+			FragmentMaterialivSGIX = GetProcAdress< FragmentMaterialivSGIXDelegate >( "glFragmentMaterialivSGIX" );
+			GetFragmentLightfvSGIX = GetProcAdress< GetFragmentLightfvSGIXDelegate >( "glGetFragmentLightfvSGIX" );
+			GetFragmentLightivSGIX = GetProcAdress< GetFragmentLightivSGIXDelegate >( "glGetFragmentLightivSGIX" );
+			GetFragmentMaterialfvSGIX = GetProcAdress< GetFragmentMaterialfvSGIXDelegate >( "glGetFragmentMaterialfvSGIX" );
+			GetFragmentMaterialivSGIX = GetProcAdress< GetFragmentMaterialivSGIXDelegate >( "glGetFragmentMaterialivSGIX" );
+			LightEnviSGIX = GetProcAdress< LightEnviSGIXDelegate >( "glLightEnviSGIX" );
+			AsyncMarkerSGIX = GetProcAdress< AsyncMarkerSGIXDelegate >( "glAsyncMarkerSGIX" );
+			FinishAsyncSGIX = GetProcAdress< FinishAsyncSGIXDelegate >( "glFinishAsyncSGIX" );
+			PollAsyncSGIX = GetProcAdress< PollAsyncSGIXDelegate >( "glPollAsyncSGIX" );
+			GenAsyncMarkersSGIX = GetProcAdress< GenAsyncMarkersSGIXDelegate >( "glGenAsyncMarkersSGIX" );
+			DeleteAsyncMarkersSGIX = GetProcAdress< DeleteAsyncMarkersSGIXDelegate >( "glDeleteAsyncMarkersSGIX" );
+			IsAsyncMarkerSGIX = GetProcAdress< IsAsyncMarkerSGIXDelegate >( "glIsAsyncMarkerSGIX" );
+			SecondaryColorPointerEXT = GetProcAdress< SecondaryColorPointerEXTDelegate >( "glSecondaryColorPointerEXT" );
+			BlendFuncSeparateEXT = GetProcAdress< BlendFuncSeparateEXTDelegate >( "glBlendFuncSeparateEXT" );
+			BlendFuncSeparateINGR = GetProcAdress< BlendFuncSeparateINGRDelegate >( "glBlendFuncSeparateINGR" );
+			VertexWeightfEXT = GetProcAdress< VertexWeightfEXTDelegate >( "glVertexWeightfEXT" );
+			VertexWeightfvEXT = GetProcAdress< VertexWeightfvEXTDelegate >( "glVertexWeightfvEXT" );
+			VertexWeightPointerEXT = GetProcAdress< VertexWeightPointerEXTDelegate >( "glVertexWeightPointerEXT" );
+			FlushVertexArrayRangeNV = GetProcAdress< FlushVertexArrayRangeNVDelegate >( "glFlushVertexArrayRangeNV" );
+			VertexArrayRangeNV = GetProcAdress< VertexArrayRangeNVDelegate >( "glVertexArrayRangeNV" );
+			CombinerParameterfvNV = GetProcAdress< CombinerParameterfvNVDelegate >( "glCombinerParameterfvNV" );
+			CombinerParameterfNV = GetProcAdress< CombinerParameterfNVDelegate >( "glCombinerParameterfNV" );
+			CombinerParameterivNV = GetProcAdress< CombinerParameterivNVDelegate >( "glCombinerParameterivNV" );
+			CombinerParameteriNV = GetProcAdress< CombinerParameteriNVDelegate >( "glCombinerParameteriNV" );
+			CombinerInputNV = GetProcAdress< CombinerInputNVDelegate >( "glCombinerInputNV" );
+			CombinerOutputNV = GetProcAdress< CombinerOutputNVDelegate >( "glCombinerOutputNV" );
+			FinalCombinerInputNV = GetProcAdress< FinalCombinerInputNVDelegate >( "glFinalCombinerInputNV" );
+			GetCombinerInputParameterfvNV = GetProcAdress< GetCombinerInputParameterfvNVDelegate >( "glGetCombinerInputParameterfvNV" );
+			GetCombinerInputParameterivNV = GetProcAdress< GetCombinerInputParameterivNVDelegate >( "glGetCombinerInputParameterivNV" );
+			GetCombinerOutputParameterfvNV = GetProcAdress< GetCombinerOutputParameterfvNVDelegate >( "glGetCombinerOutputParameterfvNV" );
+			GetCombinerOutputParameterivNV = GetProcAdress< GetCombinerOutputParameterivNVDelegate >( "glGetCombinerOutputParameterivNV" );
+			GetFinalCombinerInputParameterfvNV = GetProcAdress< GetFinalCombinerInputParameterfvNVDelegate >( "glGetFinalCombinerInputParameterfvNV" );
+			GetFinalCombinerInputParameterivNV = GetProcAdress< GetFinalCombinerInputParameterivNVDelegate >( "glGetFinalCombinerInputParameterivNV" );
 			TbufferMask3DFX = GetProcAdress< TbufferMask3DFXDelegate >( "glTbufferMask3DFX" );
+			SampleMaskEXT = GetProcAdress< SampleMaskEXTDelegate >( "glSampleMaskEXT" );
+			SamplePatternEXT = GetProcAdress< SamplePatternEXTDelegate >( "glSamplePatternEXT" );
+			TextureColorMaskSGIS = GetProcAdress< TextureColorMaskSGISDelegate >( "glTextureColorMaskSGIS" );
+			IglooInterfaceSGIX = GetProcAdress< IglooInterfaceSGIXDelegate >( "glIglooInterfaceSGIX" );
 			DeleteFencesNV = GetProcAdress< DeleteFencesNVDelegate >( "glDeleteFencesNV" );
 			GenFencesNV = GetProcAdress< GenFencesNVDelegate >( "glGenFencesNV" );
 			IsFenceNV = GetProcAdress< IsFenceNVDelegate >( "glIsFenceNV" );
@@ -435,6 +611,17 @@ namespace ManagedOpenGL
 			GetFenceivNV = GetProcAdress< GetFenceivNVDelegate >( "glGetFenceivNV" );
 			FinishFenceNV = GetProcAdress< FinishFenceNVDelegate >( "glFinishFenceNV" );
 			SetFenceNV = GetProcAdress< SetFenceNVDelegate >( "glSetFenceNV" );
+			MapControlPointsNV = GetProcAdress< MapControlPointsNVDelegate >( "glMapControlPointsNV" );
+			MapParameterivNV = GetProcAdress< MapParameterivNVDelegate >( "glMapParameterivNV" );
+			MapParameterfvNV = GetProcAdress< MapParameterfvNVDelegate >( "glMapParameterfvNV" );
+			GetMapControlPointsNV = GetProcAdress< GetMapControlPointsNVDelegate >( "glGetMapControlPointsNV" );
+			GetMapParameterivNV = GetProcAdress< GetMapParameterivNVDelegate >( "glGetMapParameterivNV" );
+			GetMapParameterfvNV = GetProcAdress< GetMapParameterfvNVDelegate >( "glGetMapParameterfvNV" );
+			GetMapAttribParameterivNV = GetProcAdress< GetMapAttribParameterivNVDelegate >( "glGetMapAttribParameterivNV" );
+			GetMapAttribParameterfvNV = GetProcAdress< GetMapAttribParameterfvNVDelegate >( "glGetMapAttribParameterfvNV" );
+			EvalMapsNV = GetProcAdress< EvalMapsNVDelegate >( "glEvalMapsNV" );
+			CombinerStageParameterfvNV = GetProcAdress< CombinerStageParameterfvNVDelegate >( "glCombinerStageParameterfvNV" );
+			GetCombinerStageParameterfvNV = GetProcAdress< GetCombinerStageParameterfvNVDelegate >( "glGetCombinerStageParameterfvNV" );
 			AreProgramsResidentNV = GetProcAdress< AreProgramsResidentNVDelegate >( "glAreProgramsResidentNV" );
 			BindProgramNV = GetProcAdress< BindProgramNVDelegate >( "glBindProgramNV" );
 			DeleteProgramsNV = GetProcAdress< DeleteProgramsNVDelegate >( "glDeleteProgramsNV" );
@@ -734,6 +921,7 @@ namespace ManagedOpenGL
 			FramebufferRenderbufferEXT = GetProcAdress< FramebufferRenderbufferEXTDelegate >( "glFramebufferRenderbufferEXT" );
 			GetFramebufferAttachmentParameterivEXT = GetProcAdress< GetFramebufferAttachmentParameterivEXTDelegate >( "glGetFramebufferAttachmentParameterivEXT" );
 			GenerateMipmapEXT = GetProcAdress< GenerateMipmapEXTDelegate >( "glGenerateMipmapEXT" );
+			StringMarkerGREMEDY = GetProcAdress< StringMarkerGREMEDYDelegate >( "glStringMarkerGREMEDY" );
 			StencilClearTagEXT = GetProcAdress< StencilClearTagEXTDelegate >( "glStencilClearTagEXT" );
 			BlitFramebufferEXT = GetProcAdress< BlitFramebufferEXTDelegate >( "glBlitFramebufferEXT" );
 			RenderbufferStorageMultisampleEXT = GetProcAdress< RenderbufferStorageMultisampleEXTDelegate >( "glRenderbufferStorageMultisampleEXT" );
@@ -764,6 +952,29 @@ namespace ManagedOpenGL
 			FramebufferTextureLayerEXT = GetProcAdress< FramebufferTextureLayerEXTDelegate >( "glFramebufferTextureLayerEXT" );
 			FramebufferTextureFaceEXT = GetProcAdress< FramebufferTextureFaceEXTDelegate >( "glFramebufferTextureFaceEXT" );
 			ProgramParameteriEXT = GetProcAdress< ProgramParameteriEXTDelegate >( "glProgramParameteriEXT" );
+			VertexAttribI1iEXT = GetProcAdress< VertexAttribI1iEXTDelegate >( "glVertexAttribI1iEXT" );
+			VertexAttribI2iEXT = GetProcAdress< VertexAttribI2iEXTDelegate >( "glVertexAttribI2iEXT" );
+			VertexAttribI3iEXT = GetProcAdress< VertexAttribI3iEXTDelegate >( "glVertexAttribI3iEXT" );
+			VertexAttribI4iEXT = GetProcAdress< VertexAttribI4iEXTDelegate >( "glVertexAttribI4iEXT" );
+			VertexAttribI1uiEXT = GetProcAdress< VertexAttribI1uiEXTDelegate >( "glVertexAttribI1uiEXT" );
+			VertexAttribI2uiEXT = GetProcAdress< VertexAttribI2uiEXTDelegate >( "glVertexAttribI2uiEXT" );
+			VertexAttribI3uiEXT = GetProcAdress< VertexAttribI3uiEXTDelegate >( "glVertexAttribI3uiEXT" );
+			VertexAttribI4uiEXT = GetProcAdress< VertexAttribI4uiEXTDelegate >( "glVertexAttribI4uiEXT" );
+			VertexAttribI1ivEXT = GetProcAdress< VertexAttribI1ivEXTDelegate >( "glVertexAttribI1ivEXT" );
+			VertexAttribI2ivEXT = GetProcAdress< VertexAttribI2ivEXTDelegate >( "glVertexAttribI2ivEXT" );
+			VertexAttribI3ivEXT = GetProcAdress< VertexAttribI3ivEXTDelegate >( "glVertexAttribI3ivEXT" );
+			VertexAttribI4ivEXT = GetProcAdress< VertexAttribI4ivEXTDelegate >( "glVertexAttribI4ivEXT" );
+			VertexAttribI1uivEXT = GetProcAdress< VertexAttribI1uivEXTDelegate >( "glVertexAttribI1uivEXT" );
+			VertexAttribI2uivEXT = GetProcAdress< VertexAttribI2uivEXTDelegate >( "glVertexAttribI2uivEXT" );
+			VertexAttribI3uivEXT = GetProcAdress< VertexAttribI3uivEXTDelegate >( "glVertexAttribI3uivEXT" );
+			VertexAttribI4uivEXT = GetProcAdress< VertexAttribI4uivEXTDelegate >( "glVertexAttribI4uivEXT" );
+			VertexAttribI4bvEXT = GetProcAdress< VertexAttribI4bvEXTDelegate >( "glVertexAttribI4bvEXT" );
+			VertexAttribI4svEXT = GetProcAdress< VertexAttribI4svEXTDelegate >( "glVertexAttribI4svEXT" );
+			VertexAttribI4ubvEXT = GetProcAdress< VertexAttribI4ubvEXTDelegate >( "glVertexAttribI4ubvEXT" );
+			VertexAttribI4usvEXT = GetProcAdress< VertexAttribI4usvEXTDelegate >( "glVertexAttribI4usvEXT" );
+			VertexAttribIPointerEXT = GetProcAdress< VertexAttribIPointerEXTDelegate >( "glVertexAttribIPointerEXT" );
+			GetVertexAttribIivEXT = GetProcAdress< GetVertexAttribIivEXTDelegate >( "glGetVertexAttribIivEXT" );
+			GetVertexAttribIuivEXT = GetProcAdress< GetVertexAttribIuivEXTDelegate >( "glGetVertexAttribIuivEXT" );
 			GetUniformuivEXT = GetProcAdress< GetUniformuivEXTDelegate >( "glGetUniformuivEXT" );
 			BindFragDataLocationEXT = GetProcAdress< BindFragDataLocationEXTDelegate >( "glBindFragDataLocationEXT" );
 			GetFragDataLocationEXT = GetProcAdress< GetFragDataLocationEXTDelegate >( "glGetFragDataLocationEXT" );
@@ -811,6 +1022,7 @@ namespace ManagedOpenGL
 			GetTexParameterIuivEXT = GetProcAdress< GetTexParameterIuivEXTDelegate >( "glGetTexParameterIuivEXT" );
 			ClearColorIiEXT = GetProcAdress< ClearColorIiEXTDelegate >( "glClearColorIiEXT" );
 			ClearColorIuiEXT = GetProcAdress< ClearColorIuiEXTDelegate >( "glClearColorIuiEXT" );
+			FrameTerminatorGREMEDY = GetProcAdress< FrameTerminatorGREMEDYDelegate >( "glFrameTerminatorGREMEDY" );
 			
 		}
 
@@ -2080,40 +2292,40 @@ namespace ManagedOpenGL
 		public static readonly CompressedTexSubImage1DARBDelegate CompressedTexSubImage1DARB;
 		public unsafe delegate void GetCompressedTexImageARBDelegate( TextureTarget target, int level, ref void* img ); // 
 		public static readonly GetCompressedTexImageARBDelegate GetCompressedTexImageARB;
-		[DllImport( "opengl32.dll", EntryPoint="glPointParameterfARB" )]
-		public static extern void PointParameterfARB( uint pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPointParameterfvARB" )]
-		public static extern void PointParameterfvARB( uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightbvARB" )]
-		public static extern void WeightbvARB( int size, sbyte[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightsvARB" )]
-		public static extern void WeightsvARB( int size, short[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightivARB" )]
-		public static extern void WeightivARB( int size, int[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightfvARB" )]
-		public static extern void WeightfvARB( int size, float[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightdvARB" )]
-		public static extern void WeightdvARB( int size, double[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightubvARB" )]
-		public static extern void WeightubvARB( int size, byte[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightusvARB" )]
-		public static extern void WeightusvARB( int size, ushort[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightuivARB" )]
-		public static extern void WeightuivARB( int size, uint[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glWeightPointerARB" )]
-		public static extern unsafe void WeightPointerARB( int size, uint type, int stride, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexBlendARB" )]
-		public static extern void VertexBlendARB( int count ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCurrentPaletteMatrixARB" )]
-		public static extern void CurrentPaletteMatrixARB( int index ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMatrixIndexubvARB" )]
-		public static extern void MatrixIndexubvARB( int size, byte[] indices ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMatrixIndexusvARB" )]
-		public static extern void MatrixIndexusvARB( int size, ushort[] indices ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMatrixIndexuivARB" )]
-		public static extern void MatrixIndexuivARB( int size, uint[] indices ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMatrixIndexPointerARB" )]
-		public static extern unsafe void MatrixIndexPointerARB( int size, uint type, int stride, void* pointer ); //  extension method	
+		public delegate void PointParameterfARBDelegate( uint pname, float param ); //  extension method
+		public static readonly PointParameterfARBDelegate PointParameterfARB;
+		public delegate void PointParameterfvARBDelegate( uint pname, float[] @params ); //  extension method
+		public static readonly PointParameterfvARBDelegate PointParameterfvARB;
+		public delegate void WeightbvARBDelegate( int size, sbyte[] weights ); //  extension method
+		public static readonly WeightbvARBDelegate WeightbvARB;
+		public delegate void WeightsvARBDelegate( int size, short[] weights ); //  extension method
+		public static readonly WeightsvARBDelegate WeightsvARB;
+		public delegate void WeightivARBDelegate( int size, int[] weights ); //  extension method
+		public static readonly WeightivARBDelegate WeightivARB;
+		public delegate void WeightfvARBDelegate( int size, float[] weights ); //  extension method
+		public static readonly WeightfvARBDelegate WeightfvARB;
+		public delegate void WeightdvARBDelegate( int size, double[] weights ); //  extension method
+		public static readonly WeightdvARBDelegate WeightdvARB;
+		public delegate void WeightubvARBDelegate( int size, byte[] weights ); //  extension method
+		public static readonly WeightubvARBDelegate WeightubvARB;
+		public delegate void WeightusvARBDelegate( int size, ushort[] weights ); //  extension method
+		public static readonly WeightusvARBDelegate WeightusvARB;
+		public delegate void WeightuivARBDelegate( int size, uint[] weights ); //  extension method
+		public static readonly WeightuivARBDelegate WeightuivARB;
+		public unsafe delegate void WeightPointerARBDelegate( int size, uint type, int stride, void* pointer ); //  extension method
+		public static readonly WeightPointerARBDelegate WeightPointerARB;
+		public delegate void VertexBlendARBDelegate( int count ); //  extension method
+		public static readonly VertexBlendARBDelegate VertexBlendARB;
+		public delegate void CurrentPaletteMatrixARBDelegate( int index ); //  extension method
+		public static readonly CurrentPaletteMatrixARBDelegate CurrentPaletteMatrixARB;
+		public delegate void MatrixIndexubvARBDelegate( int size, byte[] indices ); //  extension method
+		public static readonly MatrixIndexubvARBDelegate MatrixIndexubvARB;
+		public delegate void MatrixIndexusvARBDelegate( int size, ushort[] indices ); //  extension method
+		public static readonly MatrixIndexusvARBDelegate MatrixIndexusvARB;
+		public delegate void MatrixIndexuivARBDelegate( int size, uint[] indices ); //  extension method
+		public static readonly MatrixIndexuivARBDelegate MatrixIndexuivARB;
+		public unsafe delegate void MatrixIndexPointerARBDelegate( int size, uint type, int stride, void* pointer ); //  extension method
+		public static readonly MatrixIndexPointerARBDelegate MatrixIndexPointerARB;
 		[DllImport( "opengl32.dll", EntryPoint="glWindowPos2dARB" )]
 		public static extern void WindowPos2dARB( double x, double y ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glWindowPos2dvARB" )]
@@ -2396,202 +2608,202 @@ namespace ManagedOpenGL
 		public static readonly DrawBuffersARBDelegate DrawBuffersARB;
 		public delegate void ClampColorARBDelegate( uint target, uint clamp ); //  extension method
 		public static readonly ClampColorARBDelegate ClampColorARB;
-		[DllImport( "opengl32.dll", EntryPoint="glBlendColorEXT" )]
-		public static extern void BlendColorEXT( float red, float green, float blue, float alpha ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPolygonOffsetEXT" )]
-		public static extern void PolygonOffsetEXT( float factor, float bias ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexImage3DEXT" )]
-		public static extern unsafe void TexImage3DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, PixelFormat format, PixelType type, void* pixels ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexSubImage3DEXT" )]
-		public static extern unsafe void TexSubImage3DEXT( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, PixelType type, void* pixels ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetTexFilterFuncSGIS" )]
-		public static extern void GetTexFilterFuncSGIS( TextureTarget target, uint filter, ref float[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexFilterFuncSGIS" )]
-		public static extern void TexFilterFuncSGIS( TextureTarget target, uint filter, int n, float[] weights ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexSubImage1DEXT" )]
-		public static extern unsafe void TexSubImage1DEXT( TextureTarget target, int level, int xoffset, int width, PixelFormat format, PixelType type, void* pixels ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexSubImage2DEXT" )]
-		public static extern unsafe void TexSubImage2DEXT( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, void* pixels ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyTexImage1DEXT" )]
-		public static extern void CopyTexImage1DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int border ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyTexImage2DEXT" )]
-		public static extern void CopyTexImage2DEXT( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int height, int border ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyTexSubImage1DEXT" )]
-		public static extern void CopyTexSubImage1DEXT( TextureTarget target, int level, int xoffset, int x, int y, int width ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyTexSubImage2DEXT" )]
-		public static extern void CopyTexSubImage2DEXT( TextureTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyTexSubImage3DEXT" )]
-		public static extern void CopyTexSubImage3DEXT( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetHistogramEXT" )]
-		public static extern unsafe void GetHistogramEXT( HistogramTargetEXT target, bool reset, PixelFormat format, PixelType type, ref void* values ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetHistogramParameterfvEXT" )]
-		public static extern void GetHistogramParameterfvEXT( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetHistogramParameterivEXT" )]
-		public static extern void GetHistogramParameterivEXT( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMinmaxEXT" )]
-		public static extern unsafe void GetMinmaxEXT( MinmaxTargetEXT target, bool reset, PixelFormat format, PixelType type, ref void* values ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMinmaxParameterfvEXT" )]
-		public static extern void GetMinmaxParameterfvEXT( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMinmaxParameterivEXT" )]
-		public static extern void GetMinmaxParameterivEXT( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glHistogramEXT" )]
-		public static extern void HistogramEXT( HistogramTargetEXT target, int width, PixelInternalFormat internalformat, bool sink ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMinmaxEXT" )]
-		public static extern void MinmaxEXT( MinmaxTargetEXT target, PixelInternalFormat internalformat, bool sink ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glResetHistogramEXT" )]
-		public static extern void ResetHistogramEXT( HistogramTargetEXT target ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glResetMinmaxEXT" )]
-		public static extern void ResetMinmaxEXT( MinmaxTargetEXT target ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glConvolutionFilter1DEXT" )]
-		public static extern unsafe void ConvolutionFilter1DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* image ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glConvolutionFilter2DEXT" )]
-		public static extern unsafe void ConvolutionFilter2DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* image ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glConvolutionParameterfEXT" )]
-		public static extern void ConvolutionParameterfEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glConvolutionParameterfvEXT" )]
-		public static extern void ConvolutionParameterfvEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glConvolutionParameteriEXT" )]
-		public static extern void ConvolutionParameteriEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glConvolutionParameterivEXT" )]
-		public static extern void ConvolutionParameterivEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyConvolutionFilter1DEXT" )]
-		public static extern void CopyConvolutionFilter1DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyConvolutionFilter2DEXT" )]
-		public static extern void CopyConvolutionFilter2DEXT( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width, int height ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetConvolutionFilterEXT" )]
-		public static extern unsafe void GetConvolutionFilterEXT( ConvolutionTargetEXT target, PixelFormat format, PixelType type, ref void* image ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetConvolutionParameterfvEXT" )]
-		public static extern void GetConvolutionParameterfvEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetConvolutionParameterivEXT" )]
-		public static extern void GetConvolutionParameterivEXT( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetSeparableFilterEXT" )]
-		public static extern unsafe void GetSeparableFilterEXT( SeparableTargetEXT target, PixelFormat format, PixelType type, ref void* row, ref void* column, ref void* span ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSeparableFilter2DEXT" )]
-		public static extern unsafe void SeparableFilter2DEXT( SeparableTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* row, void* column ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glColorTableSGI" )]
-		public static extern unsafe void ColorTableSGI( ColorTableTargetSGI target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* table ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glColorTableParameterfvSGI" )]
-		public static extern void ColorTableParameterfvSGI( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glColorTableParameterivSGI" )]
-		public static extern void ColorTableParameterivSGI( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCopyColorTableSGI" )]
-		public static extern void CopyColorTableSGI( ColorTableTargetSGI target, PixelInternalFormat internalformat, int x, int y, int width ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetColorTableSGI" )]
-		public static extern unsafe void GetColorTableSGI( ColorTableTargetSGI target, PixelFormat format, PixelType type, ref void* table ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetColorTableParameterfvSGI" )]
-		public static extern void GetColorTableParameterfvSGI( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetColorTableParameterivSGI" )]
-		public static extern void GetColorTableParameterivSGI( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPixelTexGenSGIX" )]
-		public static extern void PixelTexGenSGIX( uint mode ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPixelTexGenParameteriSGIS" )]
-		public static extern void PixelTexGenParameteriSGIS( PixelTexGenParameterNameSGIS pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPixelTexGenParameterivSGIS" )]
-		public static extern void PixelTexGenParameterivSGIS( PixelTexGenParameterNameSGIS pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPixelTexGenParameterfSGIS" )]
-		public static extern void PixelTexGenParameterfSGIS( PixelTexGenParameterNameSGIS pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPixelTexGenParameterfvSGIS" )]
-		public static extern void PixelTexGenParameterfvSGIS( PixelTexGenParameterNameSGIS pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetPixelTexGenParameterivSGIS" )]
-		public static extern void GetPixelTexGenParameterivSGIS( PixelTexGenParameterNameSGIS pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetPixelTexGenParameterfvSGIS" )]
-		public static extern void GetPixelTexGenParameterfvSGIS( PixelTexGenParameterNameSGIS pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexImage4DSGIS" )]
-		public static extern unsafe void TexImage4DSGIS( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int size4d, int border, PixelFormat format, PixelType type, void* pixels ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexSubImage4DSGIS" )]
-		public static extern unsafe void TexSubImage4DSGIS( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int woffset, int width, int height, int depth, int size4d, PixelFormat format, PixelType type, void* pixels ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glAreTexturesResidentEXT" )]
-		public static extern bool AreTexturesResidentEXT( int n, uint[] textures, ref bool[] residences ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glBindTextureEXT" )]
-		public static extern void BindTextureEXT( TextureTarget target, uint texture ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDeleteTexturesEXT" )]
-		public static extern void DeleteTexturesEXT( int n, uint[] textures ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGenTexturesEXT" )]
-		public static extern void GenTexturesEXT( int n, ref uint[] textures ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glIsTextureEXT" )]
-		public static extern bool IsTextureEXT( uint texture ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPrioritizeTexturesEXT" )]
-		public static extern void PrioritizeTexturesEXT( int n, uint[] textures, float[] priorities ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDetailTexFuncSGIS" )]
-		public static extern void DetailTexFuncSGIS( TextureTarget target, int n, float[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetDetailTexFuncSGIS" )]
-		public static extern void GetDetailTexFuncSGIS( TextureTarget target, ref float[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSharpenTexFuncSGIS" )]
-		public static extern void SharpenTexFuncSGIS( TextureTarget target, int n, float[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetSharpenTexFuncSGIS" )]
-		public static extern void GetSharpenTexFuncSGIS( TextureTarget target, ref float[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSampleMaskSGIS" )]
-		public static extern void SampleMaskSGIS( float value, bool invert ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSamplePatternSGIS" )]
-		public static extern void SamplePatternSGIS( SamplePatternSGIS pattern ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glArrayElementEXT" )]
-		public static extern void ArrayElementEXT( int i ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glColorPointerEXT" )]
-		public static extern unsafe void ColorPointerEXT( int size, ColorPointerType type, int stride, int count, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDrawArraysEXT" )]
-		public static extern void DrawArraysEXT( BeginMode mode, int first, int count ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glEdgeFlagPointerEXT" )]
-		public static extern void EdgeFlagPointerEXT( int stride, int count, bool[] pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetPointervEXT" )]
-		public static extern unsafe void GetPointervEXT( GetPointervPName pname, ref void** @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glIndexPointerEXT" )]
-		public static extern unsafe void IndexPointerEXT( IndexPointerType type, int stride, int count, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glNormalPointerEXT" )]
-		public static extern unsafe void NormalPointerEXT( NormalPointerType type, int stride, int count, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTexCoordPointerEXT" )]
-		public static extern unsafe void TexCoordPointerEXT( int size, TexCoordPointerType type, int stride, int count, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexPointerEXT" )]
-		public static extern unsafe void VertexPointerEXT( int size, VertexPointerType type, int stride, int count, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glBlendEquationEXT" )]
-		public static extern void BlendEquationEXT( BlendEquationModeEXT mode ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSpriteParameterfSGIX" )]
-		public static extern void SpriteParameterfSGIX( uint pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSpriteParameterfvSGIX" )]
-		public static extern void SpriteParameterfvSGIX( uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSpriteParameteriSGIX" )]
-		public static extern void SpriteParameteriSGIX( uint pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSpriteParameterivSGIX" )]
-		public static extern void SpriteParameterivSGIX( uint pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPointParameterfEXT" )]
-		public static extern void PointParameterfEXT( uint pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPointParameterfvEXT" )]
-		public static extern void PointParameterfvEXT( uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPointParameterfSGIS" )]
-		public static extern void PointParameterfSGIS( uint pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPointParameterfvSGIS" )]
-		public static extern void PointParameterfvSGIS( uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetInstrumentsSGIX" )]
-		public static extern int GetInstrumentsSGIX(  ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glInstrumentsBufferSGIX" )]
-		public static extern void InstrumentsBufferSGIX( int size, ref int[] buffer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPollInstrumentsSGIX" )]
-		public static extern int PollInstrumentsSGIX( ref int[] marker_p ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glReadInstrumentsSGIX" )]
-		public static extern void ReadInstrumentsSGIX( int marker ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glStartInstrumentsSGIX" )]
-		public static extern void StartInstrumentsSGIX(  ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glStopInstrumentsSGIX" )]
-		public static extern void StopInstrumentsSGIX( int marker ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFrameZoomSGIX" )]
-		public static extern void FrameZoomSGIX( int factor ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTagSampleBufferSGIX" )]
-		public static extern void TagSampleBufferSGIX(  ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDeformationMap3dSGIX" )]
-		public static extern void DeformationMap3dSGIX( FfdTargetSGIX target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double w1, double w2, int wstride, int worder, double[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDeformationMap3fSGIX" )]
-		public static extern void DeformationMap3fSGIX( FfdTargetSGIX target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float w1, float w2, int wstride, int worder, float[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDeformSGIX" )]
-		public static extern void DeformSGIX( FfdMaskSGIX mask ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glLoadIdentityDeformationMapSGIX" )]
-		public static extern void LoadIdentityDeformationMapSGIX( FfdMaskSGIX mask ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glReferencePlaneSGIX" )]
-		public static extern void ReferencePlaneSGIX( double[] equation ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFlushRasterSGIX" )]
-		public static extern void FlushRasterSGIX(  ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFogFuncSGIS" )]
-		public static extern void FogFuncSGIS( int n, float[] points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFogFuncSGIS" )]
-		public static extern void GetFogFuncSGIS( ref float[] points ); //  extension method	
+		public delegate void BlendColorEXTDelegate( float red, float green, float blue, float alpha ); //  extension method
+		public static readonly BlendColorEXTDelegate BlendColorEXT;
+		public delegate void PolygonOffsetEXTDelegate( float factor, float bias ); //  extension method
+		public static readonly PolygonOffsetEXTDelegate PolygonOffsetEXT;
+		public unsafe delegate void TexImage3DEXTDelegate( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int border, PixelFormat format, PixelType type, void* pixels ); //  extension method
+		public static readonly TexImage3DEXTDelegate TexImage3DEXT;
+		public unsafe delegate void TexSubImage3DEXTDelegate( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, PixelFormat format, PixelType type, void* pixels ); //  extension method
+		public static readonly TexSubImage3DEXTDelegate TexSubImage3DEXT;
+		public delegate void GetTexFilterFuncSGISDelegate( TextureTarget target, uint filter, ref float[] weights ); //  extension method
+		public static readonly GetTexFilterFuncSGISDelegate GetTexFilterFuncSGIS;
+		public delegate void TexFilterFuncSGISDelegate( TextureTarget target, uint filter, int n, float[] weights ); //  extension method
+		public static readonly TexFilterFuncSGISDelegate TexFilterFuncSGIS;
+		public unsafe delegate void TexSubImage1DEXTDelegate( TextureTarget target, int level, int xoffset, int width, PixelFormat format, PixelType type, void* pixels ); //  extension method
+		public static readonly TexSubImage1DEXTDelegate TexSubImage1DEXT;
+		public unsafe delegate void TexSubImage2DEXTDelegate( TextureTarget target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, void* pixels ); //  extension method
+		public static readonly TexSubImage2DEXTDelegate TexSubImage2DEXT;
+		public delegate void CopyTexImage1DEXTDelegate( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int border ); //  extension method
+		public static readonly CopyTexImage1DEXTDelegate CopyTexImage1DEXT;
+		public delegate void CopyTexImage2DEXTDelegate( TextureTarget target, int level, PixelInternalFormat internalformat, int x, int y, int width, int height, int border ); //  extension method
+		public static readonly CopyTexImage2DEXTDelegate CopyTexImage2DEXT;
+		public delegate void CopyTexSubImage1DEXTDelegate( TextureTarget target, int level, int xoffset, int x, int y, int width ); //  extension method
+		public static readonly CopyTexSubImage1DEXTDelegate CopyTexSubImage1DEXT;
+		public delegate void CopyTexSubImage2DEXTDelegate( TextureTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height ); //  extension method
+		public static readonly CopyTexSubImage2DEXTDelegate CopyTexSubImage2DEXT;
+		public delegate void CopyTexSubImage3DEXTDelegate( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height ); //  extension method
+		public static readonly CopyTexSubImage3DEXTDelegate CopyTexSubImage3DEXT;
+		public unsafe delegate void GetHistogramEXTDelegate( HistogramTargetEXT target, bool reset, PixelFormat format, PixelType type, ref void* values ); //  extension method
+		public static readonly GetHistogramEXTDelegate GetHistogramEXT;
+		public delegate void GetHistogramParameterfvEXTDelegate( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, ref float[] @params ); //  extension method
+		public static readonly GetHistogramParameterfvEXTDelegate GetHistogramParameterfvEXT;
+		public delegate void GetHistogramParameterivEXTDelegate( HistogramTargetEXT target, GetHistogramParameterPNameEXT pname, ref int[] @params ); //  extension method
+		public static readonly GetHistogramParameterivEXTDelegate GetHistogramParameterivEXT;
+		public unsafe delegate void GetMinmaxEXTDelegate( MinmaxTargetEXT target, bool reset, PixelFormat format, PixelType type, ref void* values ); //  extension method
+		public static readonly GetMinmaxEXTDelegate GetMinmaxEXT;
+		public delegate void GetMinmaxParameterfvEXTDelegate( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, ref float[] @params ); //  extension method
+		public static readonly GetMinmaxParameterfvEXTDelegate GetMinmaxParameterfvEXT;
+		public delegate void GetMinmaxParameterivEXTDelegate( MinmaxTargetEXT target, GetMinmaxParameterPNameEXT pname, ref int[] @params ); //  extension method
+		public static readonly GetMinmaxParameterivEXTDelegate GetMinmaxParameterivEXT;
+		public delegate void HistogramEXTDelegate( HistogramTargetEXT target, int width, PixelInternalFormat internalformat, bool sink ); //  extension method
+		public static readonly HistogramEXTDelegate HistogramEXT;
+		public delegate void MinmaxEXTDelegate( MinmaxTargetEXT target, PixelInternalFormat internalformat, bool sink ); //  extension method
+		public static readonly MinmaxEXTDelegate MinmaxEXT;
+		public delegate void ResetHistogramEXTDelegate( HistogramTargetEXT target ); //  extension method
+		public static readonly ResetHistogramEXTDelegate ResetHistogramEXT;
+		public delegate void ResetMinmaxEXTDelegate( MinmaxTargetEXT target ); //  extension method
+		public static readonly ResetMinmaxEXTDelegate ResetMinmaxEXT;
+		public unsafe delegate void ConvolutionFilter1DEXTDelegate( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* image ); //  extension method
+		public static readonly ConvolutionFilter1DEXTDelegate ConvolutionFilter1DEXT;
+		public unsafe delegate void ConvolutionFilter2DEXTDelegate( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* image ); //  extension method
+		public static readonly ConvolutionFilter2DEXTDelegate ConvolutionFilter2DEXT;
+		public delegate void ConvolutionParameterfEXTDelegate( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float @params ); //  extension method
+		public static readonly ConvolutionParameterfEXTDelegate ConvolutionParameterfEXT;
+		public delegate void ConvolutionParameterfvEXTDelegate( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, float[] @params ); //  extension method
+		public static readonly ConvolutionParameterfvEXTDelegate ConvolutionParameterfvEXT;
+		public delegate void ConvolutionParameteriEXTDelegate( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int @params ); //  extension method
+		public static readonly ConvolutionParameteriEXTDelegate ConvolutionParameteriEXT;
+		public delegate void ConvolutionParameterivEXTDelegate( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, int[] @params ); //  extension method
+		public static readonly ConvolutionParameterivEXTDelegate ConvolutionParameterivEXT;
+		public delegate void CopyConvolutionFilter1DEXTDelegate( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width ); //  extension method
+		public static readonly CopyConvolutionFilter1DEXTDelegate CopyConvolutionFilter1DEXT;
+		public delegate void CopyConvolutionFilter2DEXTDelegate( ConvolutionTargetEXT target, PixelInternalFormat internalformat, int x, int y, int width, int height ); //  extension method
+		public static readonly CopyConvolutionFilter2DEXTDelegate CopyConvolutionFilter2DEXT;
+		public unsafe delegate void GetConvolutionFilterEXTDelegate( ConvolutionTargetEXT target, PixelFormat format, PixelType type, ref void* image ); //  extension method
+		public static readonly GetConvolutionFilterEXTDelegate GetConvolutionFilterEXT;
+		public delegate void GetConvolutionParameterfvEXTDelegate( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, ref float[] @params ); //  extension method
+		public static readonly GetConvolutionParameterfvEXTDelegate GetConvolutionParameterfvEXT;
+		public delegate void GetConvolutionParameterivEXTDelegate( ConvolutionTargetEXT target, ConvolutionParameterEXT pname, ref int[] @params ); //  extension method
+		public static readonly GetConvolutionParameterivEXTDelegate GetConvolutionParameterivEXT;
+		public unsafe delegate void GetSeparableFilterEXTDelegate( SeparableTargetEXT target, PixelFormat format, PixelType type, ref void* row, ref void* column, ref void* span ); //  extension method
+		public static readonly GetSeparableFilterEXTDelegate GetSeparableFilterEXT;
+		public unsafe delegate void SeparableFilter2DEXTDelegate( SeparableTargetEXT target, PixelInternalFormat internalformat, int width, int height, PixelFormat format, PixelType type, void* row, void* column ); //  extension method
+		public static readonly SeparableFilter2DEXTDelegate SeparableFilter2DEXT;
+		public unsafe delegate void ColorTableSGIDelegate( ColorTableTargetSGI target, PixelInternalFormat internalformat, int width, PixelFormat format, PixelType type, void* table ); //  extension method
+		public static readonly ColorTableSGIDelegate ColorTableSGI;
+		public delegate void ColorTableParameterfvSGIDelegate( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, float[] @params ); //  extension method
+		public static readonly ColorTableParameterfvSGIDelegate ColorTableParameterfvSGI;
+		public delegate void ColorTableParameterivSGIDelegate( ColorTableTargetSGI target, ColorTableParameterPNameSGI pname, int[] @params ); //  extension method
+		public static readonly ColorTableParameterivSGIDelegate ColorTableParameterivSGI;
+		public delegate void CopyColorTableSGIDelegate( ColorTableTargetSGI target, PixelInternalFormat internalformat, int x, int y, int width ); //  extension method
+		public static readonly CopyColorTableSGIDelegate CopyColorTableSGI;
+		public unsafe delegate void GetColorTableSGIDelegate( ColorTableTargetSGI target, PixelFormat format, PixelType type, ref void* table ); //  extension method
+		public static readonly GetColorTableSGIDelegate GetColorTableSGI;
+		public delegate void GetColorTableParameterfvSGIDelegate( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, ref float[] @params ); //  extension method
+		public static readonly GetColorTableParameterfvSGIDelegate GetColorTableParameterfvSGI;
+		public delegate void GetColorTableParameterivSGIDelegate( ColorTableTargetSGI target, GetColorTableParameterPNameSGI pname, ref int[] @params ); //  extension method
+		public static readonly GetColorTableParameterivSGIDelegate GetColorTableParameterivSGI;
+		public delegate void PixelTexGenSGIXDelegate( uint mode ); //  extension method
+		public static readonly PixelTexGenSGIXDelegate PixelTexGenSGIX;
+		public delegate void PixelTexGenParameteriSGISDelegate( PixelTexGenParameterNameSGIS pname, int param ); //  extension method
+		public static readonly PixelTexGenParameteriSGISDelegate PixelTexGenParameteriSGIS;
+		public delegate void PixelTexGenParameterivSGISDelegate( PixelTexGenParameterNameSGIS pname, int[] @params ); //  extension method
+		public static readonly PixelTexGenParameterivSGISDelegate PixelTexGenParameterivSGIS;
+		public delegate void PixelTexGenParameterfSGISDelegate( PixelTexGenParameterNameSGIS pname, float param ); //  extension method
+		public static readonly PixelTexGenParameterfSGISDelegate PixelTexGenParameterfSGIS;
+		public delegate void PixelTexGenParameterfvSGISDelegate( PixelTexGenParameterNameSGIS pname, float[] @params ); //  extension method
+		public static readonly PixelTexGenParameterfvSGISDelegate PixelTexGenParameterfvSGIS;
+		public delegate void GetPixelTexGenParameterivSGISDelegate( PixelTexGenParameterNameSGIS pname, ref int[] @params ); //  extension method
+		public static readonly GetPixelTexGenParameterivSGISDelegate GetPixelTexGenParameterivSGIS;
+		public delegate void GetPixelTexGenParameterfvSGISDelegate( PixelTexGenParameterNameSGIS pname, ref float[] @params ); //  extension method
+		public static readonly GetPixelTexGenParameterfvSGISDelegate GetPixelTexGenParameterfvSGIS;
+		public unsafe delegate void TexImage4DSGISDelegate( TextureTarget target, int level, PixelInternalFormat internalformat, int width, int height, int depth, int size4d, int border, PixelFormat format, PixelType type, void* pixels ); //  extension method
+		public static readonly TexImage4DSGISDelegate TexImage4DSGIS;
+		public unsafe delegate void TexSubImage4DSGISDelegate( TextureTarget target, int level, int xoffset, int yoffset, int zoffset, int woffset, int width, int height, int depth, int size4d, PixelFormat format, PixelType type, void* pixels ); //  extension method
+		public static readonly TexSubImage4DSGISDelegate TexSubImage4DSGIS;
+		public delegate bool AreTexturesResidentEXTDelegate( int n, uint[] textures, ref bool[] residences ); //  extension method
+		public static readonly AreTexturesResidentEXTDelegate AreTexturesResidentEXT;
+		public delegate void BindTextureEXTDelegate( TextureTarget target, uint texture ); //  extension method
+		public static readonly BindTextureEXTDelegate BindTextureEXT;
+		public delegate void DeleteTexturesEXTDelegate( int n, uint[] textures ); //  extension method
+		public static readonly DeleteTexturesEXTDelegate DeleteTexturesEXT;
+		public delegate void GenTexturesEXTDelegate( int n, ref uint[] textures ); //  extension method
+		public static readonly GenTexturesEXTDelegate GenTexturesEXT;
+		public delegate bool IsTextureEXTDelegate( uint texture ); //  extension method
+		public static readonly IsTextureEXTDelegate IsTextureEXT;
+		public delegate void PrioritizeTexturesEXTDelegate( int n, uint[] textures, float[] priorities ); //  extension method
+		public static readonly PrioritizeTexturesEXTDelegate PrioritizeTexturesEXT;
+		public delegate void DetailTexFuncSGISDelegate( TextureTarget target, int n, float[] points ); //  extension method
+		public static readonly DetailTexFuncSGISDelegate DetailTexFuncSGIS;
+		public delegate void GetDetailTexFuncSGISDelegate( TextureTarget target, ref float[] points ); //  extension method
+		public static readonly GetDetailTexFuncSGISDelegate GetDetailTexFuncSGIS;
+		public delegate void SharpenTexFuncSGISDelegate( TextureTarget target, int n, float[] points ); //  extension method
+		public static readonly SharpenTexFuncSGISDelegate SharpenTexFuncSGIS;
+		public delegate void GetSharpenTexFuncSGISDelegate( TextureTarget target, ref float[] points ); //  extension method
+		public static readonly GetSharpenTexFuncSGISDelegate GetSharpenTexFuncSGIS;
+		public delegate void SampleMaskSGISDelegate( float value, bool invert ); //  extension method
+		public static readonly SampleMaskSGISDelegate SampleMaskSGIS;
+		public delegate void SamplePatternSGISDelegate( SamplePatternSGIS pattern ); //  extension method
+		public static readonly SamplePatternSGISDelegate SamplePatternSGIS;
+		public delegate void ArrayElementEXTDelegate( int i ); //  extension method
+		public static readonly ArrayElementEXTDelegate ArrayElementEXT;
+		public unsafe delegate void ColorPointerEXTDelegate( int size, ColorPointerType type, int stride, int count, void* pointer ); //  extension method
+		public static readonly ColorPointerEXTDelegate ColorPointerEXT;
+		public delegate void DrawArraysEXTDelegate( BeginMode mode, int first, int count ); //  extension method
+		public static readonly DrawArraysEXTDelegate DrawArraysEXT;
+		public delegate void EdgeFlagPointerEXTDelegate( int stride, int count, bool[] pointer ); //  extension method
+		public static readonly EdgeFlagPointerEXTDelegate EdgeFlagPointerEXT;
+		public unsafe delegate void GetPointervEXTDelegate( GetPointervPName pname, ref void** @params ); //  extension method
+		public static readonly GetPointervEXTDelegate GetPointervEXT;
+		public unsafe delegate void IndexPointerEXTDelegate( IndexPointerType type, int stride, int count, void* pointer ); //  extension method
+		public static readonly IndexPointerEXTDelegate IndexPointerEXT;
+		public unsafe delegate void NormalPointerEXTDelegate( NormalPointerType type, int stride, int count, void* pointer ); //  extension method
+		public static readonly NormalPointerEXTDelegate NormalPointerEXT;
+		public unsafe delegate void TexCoordPointerEXTDelegate( int size, TexCoordPointerType type, int stride, int count, void* pointer ); //  extension method
+		public static readonly TexCoordPointerEXTDelegate TexCoordPointerEXT;
+		public unsafe delegate void VertexPointerEXTDelegate( int size, VertexPointerType type, int stride, int count, void* pointer ); //  extension method
+		public static readonly VertexPointerEXTDelegate VertexPointerEXT;
+		public delegate void BlendEquationEXTDelegate( BlendEquationModeEXT mode ); //  extension method
+		public static readonly BlendEquationEXTDelegate BlendEquationEXT;
+		public delegate void SpriteParameterfSGIXDelegate( uint pname, float param ); //  extension method
+		public static readonly SpriteParameterfSGIXDelegate SpriteParameterfSGIX;
+		public delegate void SpriteParameterfvSGIXDelegate( uint pname, float[] @params ); //  extension method
+		public static readonly SpriteParameterfvSGIXDelegate SpriteParameterfvSGIX;
+		public delegate void SpriteParameteriSGIXDelegate( uint pname, int param ); //  extension method
+		public static readonly SpriteParameteriSGIXDelegate SpriteParameteriSGIX;
+		public delegate void SpriteParameterivSGIXDelegate( uint pname, int[] @params ); //  extension method
+		public static readonly SpriteParameterivSGIXDelegate SpriteParameterivSGIX;
+		public delegate void PointParameterfEXTDelegate( uint pname, float param ); //  extension method
+		public static readonly PointParameterfEXTDelegate PointParameterfEXT;
+		public delegate void PointParameterfvEXTDelegate( uint pname, float[] @params ); //  extension method
+		public static readonly PointParameterfvEXTDelegate PointParameterfvEXT;
+		public delegate void PointParameterfSGISDelegate( uint pname, float param ); //  extension method
+		public static readonly PointParameterfSGISDelegate PointParameterfSGIS;
+		public delegate void PointParameterfvSGISDelegate( uint pname, float[] @params ); //  extension method
+		public static readonly PointParameterfvSGISDelegate PointParameterfvSGIS;
+		public delegate int GetInstrumentsSGIXDelegate(  ); //  extension method
+		public static readonly GetInstrumentsSGIXDelegate GetInstrumentsSGIX;
+		public delegate void InstrumentsBufferSGIXDelegate( int size, ref int[] buffer ); //  extension method
+		public static readonly InstrumentsBufferSGIXDelegate InstrumentsBufferSGIX;
+		public delegate int PollInstrumentsSGIXDelegate( ref int[] marker_p ); //  extension method
+		public static readonly PollInstrumentsSGIXDelegate PollInstrumentsSGIX;
+		public delegate void ReadInstrumentsSGIXDelegate( int marker ); //  extension method
+		public static readonly ReadInstrumentsSGIXDelegate ReadInstrumentsSGIX;
+		public delegate void StartInstrumentsSGIXDelegate(  ); //  extension method
+		public static readonly StartInstrumentsSGIXDelegate StartInstrumentsSGIX;
+		public delegate void StopInstrumentsSGIXDelegate( int marker ); //  extension method
+		public static readonly StopInstrumentsSGIXDelegate StopInstrumentsSGIX;
+		public delegate void FrameZoomSGIXDelegate( int factor ); //  extension method
+		public static readonly FrameZoomSGIXDelegate FrameZoomSGIX;
+		public delegate void TagSampleBufferSGIXDelegate(  ); //  extension method
+		public static readonly TagSampleBufferSGIXDelegate TagSampleBufferSGIX;
+		public delegate void DeformationMap3dSGIXDelegate( FfdTargetSGIX target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double w1, double w2, int wstride, int worder, double[] points ); //  extension method
+		public static readonly DeformationMap3dSGIXDelegate DeformationMap3dSGIX;
+		public delegate void DeformationMap3fSGIXDelegate( FfdTargetSGIX target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float w1, float w2, int wstride, int worder, float[] points ); //  extension method
+		public static readonly DeformationMap3fSGIXDelegate DeformationMap3fSGIX;
+		public delegate void DeformSGIXDelegate( FfdMaskSGIX mask ); //  extension method
+		public static readonly DeformSGIXDelegate DeformSGIX;
+		public delegate void LoadIdentityDeformationMapSGIXDelegate( FfdMaskSGIX mask ); //  extension method
+		public static readonly LoadIdentityDeformationMapSGIXDelegate LoadIdentityDeformationMapSGIX;
+		public delegate void ReferencePlaneSGIXDelegate( double[] equation ); //  extension method
+		public static readonly ReferencePlaneSGIXDelegate ReferencePlaneSGIX;
+		public delegate void FlushRasterSGIXDelegate(  ); //  extension method
+		public static readonly FlushRasterSGIXDelegate FlushRasterSGIX;
+		public delegate void FogFuncSGISDelegate( int n, float[] points ); //  extension method
+		public static readonly FogFuncSGISDelegate FogFuncSGIS;
+		public delegate void GetFogFuncSGISDelegate( ref float[] points ); //  extension method
+		public static readonly GetFogFuncSGISDelegate GetFogFuncSGIS;
 		[DllImport( "opengl32.dll", EntryPoint="glImageTransformParameteriHP" )]
 		public static extern void ImageTransformParameteriHP( uint target, uint pname, int param ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glImageTransformParameterfHP" )]
@@ -2618,66 +2830,66 @@ namespace ManagedOpenGL
 		public static extern void GetColorTableParameterivEXT( uint target, uint pname, ref int[] @params ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glGetColorTableParameterfvEXT" )]
 		public static extern void GetColorTableParameterfvEXT( uint target, uint pname, ref float[] @params ); // 	
-		[DllImport( "opengl32.dll", EntryPoint="glGetListParameterfvSGIX" )]
-		public static extern void GetListParameterfvSGIX( uint list, ListParameterName pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetListParameterivSGIX" )]
-		public static extern void GetListParameterivSGIX( uint list, ListParameterName pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glListParameterfSGIX" )]
-		public static extern void ListParameterfSGIX( uint list, ListParameterName pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glListParameterfvSGIX" )]
-		public static extern void ListParameterfvSGIX( uint list, ListParameterName pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glListParameteriSGIX" )]
-		public static extern void ListParameteriSGIX( uint list, ListParameterName pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glListParameterivSGIX" )]
-		public static extern void ListParameterivSGIX( uint list, ListParameterName pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glIndexMaterialEXT" )]
-		public static extern void IndexMaterialEXT( MaterialFace face, uint mode ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glIndexFuncEXT" )]
-		public static extern void IndexFuncEXT( uint func, float @ref ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glLockArraysEXT" )]
-		public static extern void LockArraysEXT( int first, int count ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glUnlockArraysEXT" )]
-		public static extern void UnlockArraysEXT(  ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCullParameterdvEXT" )]
-		public static extern void CullParameterdvEXT( uint pname, ref double[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCullParameterfvEXT" )]
-		public static extern void CullParameterfvEXT( uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentColorMaterialSGIX" )]
-		public static extern void FragmentColorMaterialSGIX( MaterialFace face, MaterialParameter mode ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightfSGIX" )]
-		public static extern void FragmentLightfSGIX( uint light, uint pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightfvSGIX" )]
-		public static extern void FragmentLightfvSGIX( uint light, uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightiSGIX" )]
-		public static extern void FragmentLightiSGIX( uint light, uint pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightivSGIX" )]
-		public static extern void FragmentLightivSGIX( uint light, uint pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightModelfSGIX" )]
-		public static extern void FragmentLightModelfSGIX( FragmentLightModelParameterSGIX pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightModelfvSGIX" )]
-		public static extern void FragmentLightModelfvSGIX( FragmentLightModelParameterSGIX pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightModeliSGIX" )]
-		public static extern void FragmentLightModeliSGIX( FragmentLightModelParameterSGIX pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentLightModelivSGIX" )]
-		public static extern void FragmentLightModelivSGIX( FragmentLightModelParameterSGIX pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentMaterialfSGIX" )]
-		public static extern void FragmentMaterialfSGIX( MaterialFace face, MaterialParameter pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentMaterialfvSGIX" )]
-		public static extern void FragmentMaterialfvSGIX( MaterialFace face, MaterialParameter pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentMaterialiSGIX" )]
-		public static extern void FragmentMaterialiSGIX( MaterialFace face, MaterialParameter pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFragmentMaterialivSGIX" )]
-		public static extern void FragmentMaterialivSGIX( MaterialFace face, MaterialParameter pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFragmentLightfvSGIX" )]
-		public static extern void GetFragmentLightfvSGIX( uint light, uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFragmentLightivSGIX" )]
-		public static extern void GetFragmentLightivSGIX( uint light, uint pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFragmentMaterialfvSGIX" )]
-		public static extern void GetFragmentMaterialfvSGIX( MaterialFace face, MaterialParameter pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFragmentMaterialivSGIX" )]
-		public static extern void GetFragmentMaterialivSGIX( MaterialFace face, MaterialParameter pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glLightEnviSGIX" )]
-		public static extern void LightEnviSGIX( LightEnvParameterSGIX pname, int param ); //  extension method	
+		public delegate void GetListParameterfvSGIXDelegate( uint list, ListParameterName pname, ref float[] @params ); //  extension method
+		public static readonly GetListParameterfvSGIXDelegate GetListParameterfvSGIX;
+		public delegate void GetListParameterivSGIXDelegate( uint list, ListParameterName pname, ref int[] @params ); //  extension method
+		public static readonly GetListParameterivSGIXDelegate GetListParameterivSGIX;
+		public delegate void ListParameterfSGIXDelegate( uint list, ListParameterName pname, float param ); //  extension method
+		public static readonly ListParameterfSGIXDelegate ListParameterfSGIX;
+		public delegate void ListParameterfvSGIXDelegate( uint list, ListParameterName pname, float[] @params ); //  extension method
+		public static readonly ListParameterfvSGIXDelegate ListParameterfvSGIX;
+		public delegate void ListParameteriSGIXDelegate( uint list, ListParameterName pname, int param ); //  extension method
+		public static readonly ListParameteriSGIXDelegate ListParameteriSGIX;
+		public delegate void ListParameterivSGIXDelegate( uint list, ListParameterName pname, int[] @params ); //  extension method
+		public static readonly ListParameterivSGIXDelegate ListParameterivSGIX;
+		public delegate void IndexMaterialEXTDelegate( MaterialFace face, uint mode ); //  extension method
+		public static readonly IndexMaterialEXTDelegate IndexMaterialEXT;
+		public delegate void IndexFuncEXTDelegate( uint func, float @ref ); //  extension method
+		public static readonly IndexFuncEXTDelegate IndexFuncEXT;
+		public delegate void LockArraysEXTDelegate( int first, int count ); //  extension method
+		public static readonly LockArraysEXTDelegate LockArraysEXT;
+		public delegate void UnlockArraysEXTDelegate(  ); //  extension method
+		public static readonly UnlockArraysEXTDelegate UnlockArraysEXT;
+		public delegate void CullParameterdvEXTDelegate( uint pname, ref double[] @params ); //  extension method
+		public static readonly CullParameterdvEXTDelegate CullParameterdvEXT;
+		public delegate void CullParameterfvEXTDelegate( uint pname, ref float[] @params ); //  extension method
+		public static readonly CullParameterfvEXTDelegate CullParameterfvEXT;
+		public delegate void FragmentColorMaterialSGIXDelegate( MaterialFace face, MaterialParameter mode ); //  extension method
+		public static readonly FragmentColorMaterialSGIXDelegate FragmentColorMaterialSGIX;
+		public delegate void FragmentLightfSGIXDelegate( uint light, uint pname, float param ); //  extension method
+		public static readonly FragmentLightfSGIXDelegate FragmentLightfSGIX;
+		public delegate void FragmentLightfvSGIXDelegate( uint light, uint pname, float[] @params ); //  extension method
+		public static readonly FragmentLightfvSGIXDelegate FragmentLightfvSGIX;
+		public delegate void FragmentLightiSGIXDelegate( uint light, uint pname, int param ); //  extension method
+		public static readonly FragmentLightiSGIXDelegate FragmentLightiSGIX;
+		public delegate void FragmentLightivSGIXDelegate( uint light, uint pname, int[] @params ); //  extension method
+		public static readonly FragmentLightivSGIXDelegate FragmentLightivSGIX;
+		public delegate void FragmentLightModelfSGIXDelegate( FragmentLightModelParameterSGIX pname, float param ); //  extension method
+		public static readonly FragmentLightModelfSGIXDelegate FragmentLightModelfSGIX;
+		public delegate void FragmentLightModelfvSGIXDelegate( FragmentLightModelParameterSGIX pname, float[] @params ); //  extension method
+		public static readonly FragmentLightModelfvSGIXDelegate FragmentLightModelfvSGIX;
+		public delegate void FragmentLightModeliSGIXDelegate( FragmentLightModelParameterSGIX pname, int param ); //  extension method
+		public static readonly FragmentLightModeliSGIXDelegate FragmentLightModeliSGIX;
+		public delegate void FragmentLightModelivSGIXDelegate( FragmentLightModelParameterSGIX pname, int[] @params ); //  extension method
+		public static readonly FragmentLightModelivSGIXDelegate FragmentLightModelivSGIX;
+		public delegate void FragmentMaterialfSGIXDelegate( MaterialFace face, MaterialParameter pname, float param ); //  extension method
+		public static readonly FragmentMaterialfSGIXDelegate FragmentMaterialfSGIX;
+		public delegate void FragmentMaterialfvSGIXDelegate( MaterialFace face, MaterialParameter pname, float[] @params ); //  extension method
+		public static readonly FragmentMaterialfvSGIXDelegate FragmentMaterialfvSGIX;
+		public delegate void FragmentMaterialiSGIXDelegate( MaterialFace face, MaterialParameter pname, int param ); //  extension method
+		public static readonly FragmentMaterialiSGIXDelegate FragmentMaterialiSGIX;
+		public delegate void FragmentMaterialivSGIXDelegate( MaterialFace face, MaterialParameter pname, int[] @params ); //  extension method
+		public static readonly FragmentMaterialivSGIXDelegate FragmentMaterialivSGIX;
+		public delegate void GetFragmentLightfvSGIXDelegate( uint light, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetFragmentLightfvSGIXDelegate GetFragmentLightfvSGIX;
+		public delegate void GetFragmentLightivSGIXDelegate( uint light, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetFragmentLightivSGIXDelegate GetFragmentLightivSGIX;
+		public delegate void GetFragmentMaterialfvSGIXDelegate( MaterialFace face, MaterialParameter pname, ref float[] @params ); //  extension method
+		public static readonly GetFragmentMaterialfvSGIXDelegate GetFragmentMaterialfvSGIX;
+		public delegate void GetFragmentMaterialivSGIXDelegate( MaterialFace face, MaterialParameter pname, ref int[] @params ); //  extension method
+		public static readonly GetFragmentMaterialivSGIXDelegate GetFragmentMaterialivSGIX;
+		public delegate void LightEnviSGIXDelegate( LightEnvParameterSGIX pname, int param ); //  extension method
+		public static readonly LightEnviSGIXDelegate LightEnviSGIX;
 		[DllImport( "opengl32.dll", EntryPoint="glDrawRangeElementsEXT" )]
 		public static extern unsafe void DrawRangeElementsEXT( BeginMode mode, uint start, uint end, int count, uint type, void* indices ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glApplyTextureEXT" )]
@@ -2686,18 +2898,18 @@ namespace ManagedOpenGL
 		public static extern void TextureLightEXT( uint pname ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glTextureMaterialEXT" )]
 		public static extern void TextureMaterialEXT( MaterialFace face, MaterialParameter mode ); // 	
-		[DllImport( "opengl32.dll", EntryPoint="glAsyncMarkerSGIX" )]
-		public static extern void AsyncMarkerSGIX( uint marker ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFinishAsyncSGIX" )]
-		public static extern int FinishAsyncSGIX( ref uint[] markerp ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glPollAsyncSGIX" )]
-		public static extern int PollAsyncSGIX( ref uint[] markerp ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGenAsyncMarkersSGIX" )]
-		public static extern uint GenAsyncMarkersSGIX( int range ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glDeleteAsyncMarkersSGIX" )]
-		public static extern void DeleteAsyncMarkersSGIX( uint marker, int range ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glIsAsyncMarkerSGIX" )]
-		public static extern bool IsAsyncMarkerSGIX( uint marker ); //  extension method	
+		public delegate void AsyncMarkerSGIXDelegate( uint marker ); //  extension method
+		public static readonly AsyncMarkerSGIXDelegate AsyncMarkerSGIX;
+		public delegate int FinishAsyncSGIXDelegate( ref uint[] markerp ); //  extension method
+		public static readonly FinishAsyncSGIXDelegate FinishAsyncSGIX;
+		public delegate int PollAsyncSGIXDelegate( ref uint[] markerp ); //  extension method
+		public static readonly PollAsyncSGIXDelegate PollAsyncSGIX;
+		public delegate uint GenAsyncMarkersSGIXDelegate( int range ); //  extension method
+		public static readonly GenAsyncMarkersSGIXDelegate GenAsyncMarkersSGIX;
+		public delegate void DeleteAsyncMarkersSGIXDelegate( uint marker, int range ); //  extension method
+		public static readonly DeleteAsyncMarkersSGIXDelegate DeleteAsyncMarkersSGIX;
+		public delegate bool IsAsyncMarkerSGIXDelegate( uint marker ); //  extension method
+		public static readonly IsAsyncMarkerSGIXDelegate IsAsyncMarkerSGIX;
 		[DllImport( "opengl32.dll", EntryPoint="glVertexPointervINTEL" )]
 		public static extern unsafe void VertexPointervINTEL( int size, VertexPointerType type, void** pointer ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glNormalPointervINTEL" )]
@@ -2746,8 +2958,8 @@ namespace ManagedOpenGL
 		public static extern void SecondaryColor3usEXT( ushort red, ushort green, ushort blue ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glSecondaryColor3usvEXT" )]
 		public static extern void SecondaryColor3usvEXT( ushort[] v ); // 	
-		[DllImport( "opengl32.dll", EntryPoint="glSecondaryColorPointerEXT" )]
-		public static extern unsafe void SecondaryColorPointerEXT( int size, ColorPointerType type, int stride, void* pointer ); //  extension method	
+		public unsafe delegate void SecondaryColorPointerEXTDelegate( int size, ColorPointerType type, int stride, void* pointer ); //  extension method
+		public static readonly SecondaryColorPointerEXTDelegate SecondaryColorPointerEXT;
 		[DllImport( "opengl32.dll", EntryPoint="glTextureNormalEXT" )]
 		public static extern void TextureNormalEXT( uint mode ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glMultiDrawArraysEXT" )]
@@ -2920,46 +3132,46 @@ namespace ManagedOpenGL
 		public static extern void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN( uint rc, float s, float t, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN" )]
 		public static extern void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN( uint[] rc, float[] tc, float[] c, float[] n, float[] v ); // 	
-		[DllImport( "opengl32.dll", EntryPoint="glBlendFuncSeparateEXT" )]
-		public static extern void BlendFuncSeparateEXT( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glBlendFuncSeparateINGR" )]
-		public static extern void BlendFuncSeparateINGR( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexWeightfEXT" )]
-		public static extern void VertexWeightfEXT( float weight ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexWeightfvEXT" )]
-		public static extern void VertexWeightfvEXT( float[] weight ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexWeightPointerEXT" )]
-		public static extern unsafe void VertexWeightPointerEXT( int size, uint type, int stride, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFlushVertexArrayRangeNV" )]
-		public static extern void FlushVertexArrayRangeNV(  ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexArrayRangeNV" )]
-		public static extern unsafe void VertexArrayRangeNV( int length, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerParameterfvNV" )]
-		public static extern void CombinerParameterfvNV( uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerParameterfNV" )]
-		public static extern void CombinerParameterfNV( uint pname, float param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerParameterivNV" )]
-		public static extern void CombinerParameterivNV( uint pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerParameteriNV" )]
-		public static extern void CombinerParameteriNV( uint pname, int param ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerInputNV" )]
-		public static extern void CombinerInputNV( uint stage, uint portion, uint variable, uint input, uint mapping, uint componentUsage ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerOutputNV" )]
-		public static extern void CombinerOutputNV( uint stage, uint portion, uint abOutput, uint cdOutput, uint sumOutput, uint scale, uint bias, bool abDotProduct, bool cdDotProduct, bool muxSum ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glFinalCombinerInputNV" )]
-		public static extern void FinalCombinerInputNV( uint variable, uint input, uint mapping, uint componentUsage ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetCombinerInputParameterfvNV" )]
-		public static extern void GetCombinerInputParameterfvNV( uint stage, uint portion, uint variable, uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetCombinerInputParameterivNV" )]
-		public static extern void GetCombinerInputParameterivNV( uint stage, uint portion, uint variable, uint pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetCombinerOutputParameterfvNV" )]
-		public static extern void GetCombinerOutputParameterfvNV( uint stage, uint portion, uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetCombinerOutputParameterivNV" )]
-		public static extern void GetCombinerOutputParameterivNV( uint stage, uint portion, uint pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFinalCombinerInputParameterfvNV" )]
-		public static extern void GetFinalCombinerInputParameterfvNV( uint variable, uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetFinalCombinerInputParameterivNV" )]
-		public static extern void GetFinalCombinerInputParameterivNV( uint variable, uint pname, ref int[] @params ); //  extension method	
+		public delegate void BlendFuncSeparateEXTDelegate( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method
+		public static readonly BlendFuncSeparateEXTDelegate BlendFuncSeparateEXT;
+		public delegate void BlendFuncSeparateINGRDelegate( uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha ); //  extension method
+		public static readonly BlendFuncSeparateINGRDelegate BlendFuncSeparateINGR;
+		public delegate void VertexWeightfEXTDelegate( float weight ); //  extension method
+		public static readonly VertexWeightfEXTDelegate VertexWeightfEXT;
+		public delegate void VertexWeightfvEXTDelegate( float[] weight ); //  extension method
+		public static readonly VertexWeightfvEXTDelegate VertexWeightfvEXT;
+		public unsafe delegate void VertexWeightPointerEXTDelegate( int size, uint type, int stride, void* pointer ); //  extension method
+		public static readonly VertexWeightPointerEXTDelegate VertexWeightPointerEXT;
+		public delegate void FlushVertexArrayRangeNVDelegate(  ); //  extension method
+		public static readonly FlushVertexArrayRangeNVDelegate FlushVertexArrayRangeNV;
+		public unsafe delegate void VertexArrayRangeNVDelegate( int length, void* pointer ); //  extension method
+		public static readonly VertexArrayRangeNVDelegate VertexArrayRangeNV;
+		public delegate void CombinerParameterfvNVDelegate( uint pname, float[] @params ); //  extension method
+		public static readonly CombinerParameterfvNVDelegate CombinerParameterfvNV;
+		public delegate void CombinerParameterfNVDelegate( uint pname, float param ); //  extension method
+		public static readonly CombinerParameterfNVDelegate CombinerParameterfNV;
+		public delegate void CombinerParameterivNVDelegate( uint pname, int[] @params ); //  extension method
+		public static readonly CombinerParameterivNVDelegate CombinerParameterivNV;
+		public delegate void CombinerParameteriNVDelegate( uint pname, int param ); //  extension method
+		public static readonly CombinerParameteriNVDelegate CombinerParameteriNV;
+		public delegate void CombinerInputNVDelegate( uint stage, uint portion, uint variable, uint input, uint mapping, uint componentUsage ); //  extension method
+		public static readonly CombinerInputNVDelegate CombinerInputNV;
+		public delegate void CombinerOutputNVDelegate( uint stage, uint portion, uint abOutput, uint cdOutput, uint sumOutput, uint scale, uint bias, bool abDotProduct, bool cdDotProduct, bool muxSum ); //  extension method
+		public static readonly CombinerOutputNVDelegate CombinerOutputNV;
+		public delegate void FinalCombinerInputNVDelegate( uint variable, uint input, uint mapping, uint componentUsage ); //  extension method
+		public static readonly FinalCombinerInputNVDelegate FinalCombinerInputNV;
+		public delegate void GetCombinerInputParameterfvNVDelegate( uint stage, uint portion, uint variable, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetCombinerInputParameterfvNVDelegate GetCombinerInputParameterfvNV;
+		public delegate void GetCombinerInputParameterivNVDelegate( uint stage, uint portion, uint variable, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetCombinerInputParameterivNVDelegate GetCombinerInputParameterivNV;
+		public delegate void GetCombinerOutputParameterfvNVDelegate( uint stage, uint portion, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetCombinerOutputParameterfvNVDelegate GetCombinerOutputParameterfvNV;
+		public delegate void GetCombinerOutputParameterivNVDelegate( uint stage, uint portion, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetCombinerOutputParameterivNVDelegate GetCombinerOutputParameterivNV;
+		public delegate void GetFinalCombinerInputParameterfvNVDelegate( uint variable, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetFinalCombinerInputParameterfvNVDelegate GetFinalCombinerInputParameterfvNV;
+		public delegate void GetFinalCombinerInputParameterivNVDelegate( uint variable, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetFinalCombinerInputParameterivNVDelegate GetFinalCombinerInputParameterivNV;
 		[DllImport( "opengl32.dll", EntryPoint="glResizeBuffersMESA" )]
 		public static extern void ResizeBuffersMESA(  ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glWindowPos2dMESA" )]
@@ -3032,14 +3244,14 @@ namespace ManagedOpenGL
 		public static extern unsafe void VertexPointerListIBM( int size, VertexPointerType type, int stride, void** pointer, int ptrstride ); // 	
 		public delegate void TbufferMask3DFXDelegate( uint mask ); // 
 		public static readonly TbufferMask3DFXDelegate TbufferMask3DFX;
-		[DllImport( "opengl32.dll", EntryPoint="glSampleMaskEXT" )]
-		public static extern void SampleMaskEXT( float value, bool invert ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glSamplePatternEXT" )]
-		public static extern void SamplePatternEXT( uint pattern ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glTextureColorMaskSGIS" )]
-		public static extern void TextureColorMaskSGIS( bool red, bool green, bool blue, bool alpha ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glIglooInterfaceSGIX" )]
-		public static extern unsafe void IglooInterfaceSGIX( uint pname, void* @params ); //  extension method	
+		public delegate void SampleMaskEXTDelegate( float value, bool invert ); //  extension method
+		public static readonly SampleMaskEXTDelegate SampleMaskEXT;
+		public delegate void SamplePatternEXTDelegate( uint pattern ); //  extension method
+		public static readonly SamplePatternEXTDelegate SamplePatternEXT;
+		public delegate void TextureColorMaskSGISDelegate( bool red, bool green, bool blue, bool alpha ); //  extension method
+		public static readonly TextureColorMaskSGISDelegate TextureColorMaskSGIS;
+		public unsafe delegate void IglooInterfaceSGIXDelegate( uint pname, void* @params ); //  extension method
+		public static readonly IglooInterfaceSGIXDelegate IglooInterfaceSGIX;
 		public delegate void DeleteFencesNVDelegate( int n, uint[] fences ); //  extension method
 		public static readonly DeleteFencesNVDelegate DeleteFencesNV;
 		public delegate void GenFencesNVDelegate( int n, ref uint[] fences ); //  extension method
@@ -3054,28 +3266,28 @@ namespace ManagedOpenGL
 		public static readonly FinishFenceNVDelegate FinishFenceNV;
 		public delegate void SetFenceNVDelegate( uint fence, uint condition ); //  extension method
 		public static readonly SetFenceNVDelegate SetFenceNV;
-		[DllImport( "opengl32.dll", EntryPoint="glMapControlPointsNV" )]
-		public static extern unsafe void MapControlPointsNV( uint target, uint index, uint type, int ustride, int vstride, int uorder, int vorder, bool packed, void* points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMapParameterivNV" )]
-		public static extern void MapParameterivNV( uint target, uint pname, int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glMapParameterfvNV" )]
-		public static extern void MapParameterfvNV( uint target, uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMapControlPointsNV" )]
-		public static extern unsafe void GetMapControlPointsNV( uint target, uint index, uint type, int ustride, int vstride, bool packed, ref void* points ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMapParameterivNV" )]
-		public static extern void GetMapParameterivNV( uint target, uint pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMapParameterfvNV" )]
-		public static extern void GetMapParameterfvNV( uint target, uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMapAttribParameterivNV" )]
-		public static extern void GetMapAttribParameterivNV( uint target, uint index, uint pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetMapAttribParameterfvNV" )]
-		public static extern void GetMapAttribParameterfvNV( uint target, uint index, uint pname, ref float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glEvalMapsNV" )]
-		public static extern void EvalMapsNV( uint target, uint mode ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glCombinerStageParameterfvNV" )]
-		public static extern void CombinerStageParameterfvNV( uint stage, uint pname, float[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetCombinerStageParameterfvNV" )]
-		public static extern void GetCombinerStageParameterfvNV( uint stage, uint pname, ref float[] @params ); //  extension method	
+		public unsafe delegate void MapControlPointsNVDelegate( uint target, uint index, uint type, int ustride, int vstride, int uorder, int vorder, bool packed, void* points ); //  extension method
+		public static readonly MapControlPointsNVDelegate MapControlPointsNV;
+		public delegate void MapParameterivNVDelegate( uint target, uint pname, int[] @params ); //  extension method
+		public static readonly MapParameterivNVDelegate MapParameterivNV;
+		public delegate void MapParameterfvNVDelegate( uint target, uint pname, float[] @params ); //  extension method
+		public static readonly MapParameterfvNVDelegate MapParameterfvNV;
+		public unsafe delegate void GetMapControlPointsNVDelegate( uint target, uint index, uint type, int ustride, int vstride, bool packed, ref void* points ); //  extension method
+		public static readonly GetMapControlPointsNVDelegate GetMapControlPointsNV;
+		public delegate void GetMapParameterivNVDelegate( uint target, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetMapParameterivNVDelegate GetMapParameterivNV;
+		public delegate void GetMapParameterfvNVDelegate( uint target, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetMapParameterfvNVDelegate GetMapParameterfvNV;
+		public delegate void GetMapAttribParameterivNVDelegate( uint target, uint index, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetMapAttribParameterivNVDelegate GetMapAttribParameterivNV;
+		public delegate void GetMapAttribParameterfvNVDelegate( uint target, uint index, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetMapAttribParameterfvNVDelegate GetMapAttribParameterfvNV;
+		public delegate void EvalMapsNVDelegate( uint target, uint mode ); //  extension method
+		public static readonly EvalMapsNVDelegate EvalMapsNV;
+		public delegate void CombinerStageParameterfvNVDelegate( uint stage, uint pname, float[] @params ); //  extension method
+		public static readonly CombinerStageParameterfvNVDelegate CombinerStageParameterfvNV;
+		public delegate void GetCombinerStageParameterfvNVDelegate( uint stage, uint pname, ref float[] @params ); //  extension method
+		public static readonly GetCombinerStageParameterfvNVDelegate GetCombinerStageParameterfvNV;
 		public delegate bool AreProgramsResidentNVDelegate( int n, uint[] programs, ref bool[] residences ); //  extension method
 		public static readonly AreProgramsResidentNVDelegate AreProgramsResidentNV;
 		public delegate void BindProgramNVDelegate( uint target, uint id ); //  extension method
@@ -3676,8 +3888,8 @@ namespace ManagedOpenGL
 		public static readonly GetFramebufferAttachmentParameterivEXTDelegate GetFramebufferAttachmentParameterivEXT;
 		public delegate void GenerateMipmapEXTDelegate( uint target ); //  extension method
 		public static readonly GenerateMipmapEXTDelegate GenerateMipmapEXT;
-		[DllImport( "opengl32.dll", EntryPoint="glStringMarkerGREMEDY" )]
-		public static extern unsafe void StringMarkerGREMEDY( int len, void* @string ); //  extension method	
+		public unsafe delegate void StringMarkerGREMEDYDelegate( int len, void* @string ); //  extension method
+		public static readonly StringMarkerGREMEDYDelegate StringMarkerGREMEDY;
 		public delegate void StencilClearTagEXTDelegate( int stencilTagBits, uint stencilClearTag ); //  extension method
 		public static readonly StencilClearTagEXTDelegate StencilClearTagEXT;
 		public delegate void BlitFramebufferEXTDelegate( int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, ClearBufferMask mask, uint filter ); // 
@@ -3738,52 +3950,52 @@ namespace ManagedOpenGL
 		public static readonly FramebufferTextureFaceEXTDelegate FramebufferTextureFaceEXT;
 		public delegate void ProgramParameteriEXTDelegate( uint program, uint pname, int value ); //  extension method
 		public static readonly ProgramParameteriEXTDelegate ProgramParameteriEXT;
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI1iEXT" )]
-		public static extern void VertexAttribI1iEXT( uint index, int x ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI2iEXT" )]
-		public static extern void VertexAttribI2iEXT( uint index, int x, int y ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI3iEXT" )]
-		public static extern void VertexAttribI3iEXT( uint index, int x, int y, int z ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4iEXT" )]
-		public static extern void VertexAttribI4iEXT( uint index, int x, int y, int z, int w ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI1uiEXT" )]
-		public static extern void VertexAttribI1uiEXT( uint index, uint x ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI2uiEXT" )]
-		public static extern void VertexAttribI2uiEXT( uint index, uint x, uint y ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI3uiEXT" )]
-		public static extern void VertexAttribI3uiEXT( uint index, uint x, uint y, uint z ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4uiEXT" )]
-		public static extern void VertexAttribI4uiEXT( uint index, uint x, uint y, uint z, uint w ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI1ivEXT" )]
-		public static extern void VertexAttribI1ivEXT( uint index, int[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI2ivEXT" )]
-		public static extern void VertexAttribI2ivEXT( uint index, int[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI3ivEXT" )]
-		public static extern void VertexAttribI3ivEXT( uint index, int[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4ivEXT" )]
-		public static extern void VertexAttribI4ivEXT( uint index, int[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI1uivEXT" )]
-		public static extern void VertexAttribI1uivEXT( uint index, uint[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI2uivEXT" )]
-		public static extern void VertexAttribI2uivEXT( uint index, uint[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI3uivEXT" )]
-		public static extern void VertexAttribI3uivEXT( uint index, uint[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4uivEXT" )]
-		public static extern void VertexAttribI4uivEXT( uint index, uint[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4bvEXT" )]
-		public static extern void VertexAttribI4bvEXT( uint index, sbyte[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4svEXT" )]
-		public static extern void VertexAttribI4svEXT( uint index, short[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4ubvEXT" )]
-		public static extern void VertexAttribI4ubvEXT( uint index, byte[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribI4usvEXT" )]
-		public static extern void VertexAttribI4usvEXT( uint index, ushort[] v ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glVertexAttribIPointerEXT" )]
-		public static extern unsafe void VertexAttribIPointerEXT( uint index, int size, uint type, int stride, void* pointer ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetVertexAttribIivEXT" )]
-		public static extern void GetVertexAttribIivEXT( uint index, uint pname, ref int[] @params ); //  extension method	
-		[DllImport( "opengl32.dll", EntryPoint="glGetVertexAttribIuivEXT" )]
-		public static extern void GetVertexAttribIuivEXT( uint index, uint pname, ref uint[] @params ); //  extension method	
+		public delegate void VertexAttribI1iEXTDelegate( uint index, int x ); //  extension method
+		public static readonly VertexAttribI1iEXTDelegate VertexAttribI1iEXT;
+		public delegate void VertexAttribI2iEXTDelegate( uint index, int x, int y ); //  extension method
+		public static readonly VertexAttribI2iEXTDelegate VertexAttribI2iEXT;
+		public delegate void VertexAttribI3iEXTDelegate( uint index, int x, int y, int z ); //  extension method
+		public static readonly VertexAttribI3iEXTDelegate VertexAttribI3iEXT;
+		public delegate void VertexAttribI4iEXTDelegate( uint index, int x, int y, int z, int w ); //  extension method
+		public static readonly VertexAttribI4iEXTDelegate VertexAttribI4iEXT;
+		public delegate void VertexAttribI1uiEXTDelegate( uint index, uint x ); //  extension method
+		public static readonly VertexAttribI1uiEXTDelegate VertexAttribI1uiEXT;
+		public delegate void VertexAttribI2uiEXTDelegate( uint index, uint x, uint y ); //  extension method
+		public static readonly VertexAttribI2uiEXTDelegate VertexAttribI2uiEXT;
+		public delegate void VertexAttribI3uiEXTDelegate( uint index, uint x, uint y, uint z ); //  extension method
+		public static readonly VertexAttribI3uiEXTDelegate VertexAttribI3uiEXT;
+		public delegate void VertexAttribI4uiEXTDelegate( uint index, uint x, uint y, uint z, uint w ); //  extension method
+		public static readonly VertexAttribI4uiEXTDelegate VertexAttribI4uiEXT;
+		public delegate void VertexAttribI1ivEXTDelegate( uint index, int[] v ); //  extension method
+		public static readonly VertexAttribI1ivEXTDelegate VertexAttribI1ivEXT;
+		public delegate void VertexAttribI2ivEXTDelegate( uint index, int[] v ); //  extension method
+		public static readonly VertexAttribI2ivEXTDelegate VertexAttribI2ivEXT;
+		public delegate void VertexAttribI3ivEXTDelegate( uint index, int[] v ); //  extension method
+		public static readonly VertexAttribI3ivEXTDelegate VertexAttribI3ivEXT;
+		public delegate void VertexAttribI4ivEXTDelegate( uint index, int[] v ); //  extension method
+		public static readonly VertexAttribI4ivEXTDelegate VertexAttribI4ivEXT;
+		public delegate void VertexAttribI1uivEXTDelegate( uint index, uint[] v ); //  extension method
+		public static readonly VertexAttribI1uivEXTDelegate VertexAttribI1uivEXT;
+		public delegate void VertexAttribI2uivEXTDelegate( uint index, uint[] v ); //  extension method
+		public static readonly VertexAttribI2uivEXTDelegate VertexAttribI2uivEXT;
+		public delegate void VertexAttribI3uivEXTDelegate( uint index, uint[] v ); //  extension method
+		public static readonly VertexAttribI3uivEXTDelegate VertexAttribI3uivEXT;
+		public delegate void VertexAttribI4uivEXTDelegate( uint index, uint[] v ); //  extension method
+		public static readonly VertexAttribI4uivEXTDelegate VertexAttribI4uivEXT;
+		public delegate void VertexAttribI4bvEXTDelegate( uint index, sbyte[] v ); //  extension method
+		public static readonly VertexAttribI4bvEXTDelegate VertexAttribI4bvEXT;
+		public delegate void VertexAttribI4svEXTDelegate( uint index, short[] v ); //  extension method
+		public static readonly VertexAttribI4svEXTDelegate VertexAttribI4svEXT;
+		public delegate void VertexAttribI4ubvEXTDelegate( uint index, byte[] v ); //  extension method
+		public static readonly VertexAttribI4ubvEXTDelegate VertexAttribI4ubvEXT;
+		public delegate void VertexAttribI4usvEXTDelegate( uint index, ushort[] v ); //  extension method
+		public static readonly VertexAttribI4usvEXTDelegate VertexAttribI4usvEXT;
+		public unsafe delegate void VertexAttribIPointerEXTDelegate( uint index, int size, uint type, int stride, void* pointer ); //  extension method
+		public static readonly VertexAttribIPointerEXTDelegate VertexAttribIPointerEXT;
+		public delegate void GetVertexAttribIivEXTDelegate( uint index, uint pname, ref int[] @params ); //  extension method
+		public static readonly GetVertexAttribIivEXTDelegate GetVertexAttribIivEXT;
+		public delegate void GetVertexAttribIuivEXTDelegate( uint index, uint pname, ref uint[] @params ); //  extension method
+		public static readonly GetVertexAttribIuivEXTDelegate GetVertexAttribIuivEXT;
 		public delegate void GetUniformuivEXTDelegate( uint program, int location, ref uint[] @params ); //  extension method
 		public static readonly GetUniformuivEXTDelegate GetUniformuivEXT;
 		public delegate void BindFragDataLocationEXTDelegate( uint program, uint color, string[] name ); //  extension method
@@ -3878,8 +4090,8 @@ namespace ManagedOpenGL
 		public static readonly ClearColorIiEXTDelegate ClearColorIiEXT;
 		public delegate void ClearColorIuiEXTDelegate( uint red, uint green, uint blue, uint alpha ); //  extension method
 		public static readonly ClearColorIuiEXTDelegate ClearColorIuiEXT;
-		[DllImport( "opengl32.dll", EntryPoint="glFrameTerminatorGREMEDY" )]
-		public static extern void FrameTerminatorGREMEDY(  ); //  extension method	
+		public delegate void FrameTerminatorGREMEDYDelegate(  ); //  extension method
+		public static readonly FrameTerminatorGREMEDYDelegate FrameTerminatorGREMEDY;
 	}
 }
 

@@ -49,7 +49,8 @@ public partial class NativeGenerator
 	public string GetFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )
 	{
 		CodeWriter codeWriter = new CodeWriter();
-		if (function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) return "";
+		if ((function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) && !function.Contains( "extension" )) 
+			return "";
 		codeWriter.Append( function.Name );
 		codeWriter.Append( " = GetProcAdress< " );
 		codeWriter.Append( function.Name );
@@ -168,7 +169,7 @@ public partial class NativeGenerator
 	#endregion 
 	#region Method
 	public string GenerateFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )
-	{if (function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1))
+	{if ((function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) && !function.Contains( "extension" ))
 		return GenerateOpenGLFunction( function, typeMapList, csTypeMapList, enumDatas );
 	return GenerateDelegateFunction( function, typeMapList, csTypeMapList, enumDatas );
 	}
