@@ -53,6 +53,7 @@
     <Compile Include="Math\EulerAngle.cs" />
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
+    <Compile Include="Windows\Font.cs" />
     <Compile Include="Windows\HiResTimer.cs" />
     <Compile Include="Windows\Keyboard.cs" />
     <Compile Include="Windows\OpenGLApplication.cs" />

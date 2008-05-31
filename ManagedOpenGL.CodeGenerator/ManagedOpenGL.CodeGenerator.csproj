@@ -43,6 +43,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WolfGenerator.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0992c633b20f24d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\.Assemblies\WolfGenerator.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSTypeMap.cs" />
@@ -91,12 +95,6 @@
       <Generator>TemplateCodeGenerator</Generator>
       <LastGenOutput>FunctionGenerator.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Unit.WolfGenerator\WolfGenerator.Core\WolfGenerator.Core.csproj">
-      <Project>{154ACD0B-4A5E-48E7-B14C-40E252202844}</Project>
-      <Name>WolfGenerator.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

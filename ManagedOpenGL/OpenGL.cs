@@ -21,5 +21,13 @@ namespace ManagedOpenGL
 		{
 			OpenGLNative.TexImage2D( target, level, internalformat, width, height, border, format, type, (void*)pixels );
 		}
+
+		public static unsafe void CallLists( byte[] bytes )
+		{
+			fixed (byte *point = &bytes[0])
+			{
+				OpenGLNative.CallLists( bytes.Length, ListNameType.UnsignedByte, point );
+			}
+		}
 	}
 }
