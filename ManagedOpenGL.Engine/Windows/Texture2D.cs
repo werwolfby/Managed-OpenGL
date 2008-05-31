@@ -13,7 +13,6 @@
 
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 
 namespace ManagedOpenGL.Engine.Windows
 {
@@ -21,12 +20,25 @@ namespace ManagedOpenGL.Engine.Windows
 	{
 		private readonly string fileName;
 		private uint id;
-		private static uint[] genTextures = new uint[1] { 0 };
+		private static readonly uint[] genTextures = new uint[1] { 0 };
 
 		public Texture2D( string fileName ) 
 		{
 			this.fileName = fileName;
+
+			this.MinFilter = TextureMinFilter.Linear;
+			this.MagFilter = TextureMagFilter.Linear;
+			this.WrapT = TextureWrapMode.Clamp;
+			this.WrapS = TextureWrapMode.Clamp;
 		}
+
+		public TextureMinFilter MinFilter { get; set; }
+
+		public TextureMagFilter MagFilter { get; set; }
+
+		public TextureWrapMode WrapS { get; set; }
+
+		public TextureWrapMode WrapT { get; set; }
 
 		public bool Loaded { get; private set; }
 
@@ -41,10 +53,6 @@ namespace ManagedOpenGL.Engine.Windows
 				this.id = genTextures[0];
 
 				this.Use();
-				OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear );
-				OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear );
-				OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdgeSgis );
-				OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdgeSgis );
 				OpenGL.TexImage2D( TextureTarget.Texture2d, 0, 4, bitmapData.Width, bitmapData.Height, 0,
 				                   (PixelFormat)(int)EXT_bgra.BgraExt, PixelType.UnsignedByte, bitmapData.Scan0 );
 				bitmap.UnlockBits( bitmapData );
@@ -56,6 +64,10 @@ namespace ManagedOpenGL.Engine.Windows
 		public void Use() 
 		{
 			OpenGLNative.BindTexture( TextureTarget.Texture2d, this.id );
+			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMinFilter, (int)MinFilter );
+			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMagFilter, (int)MagFilter );
+			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapS, (int)WrapS );
+			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapT, (int)WrapT );
 		}
 	}
 }

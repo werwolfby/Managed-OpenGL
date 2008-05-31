@@ -34,6 +34,9 @@ namespace Test.ManagedOpenGL.MultiTextureSample
 
 			texture1.Load();
 			texture2.Load();
+
+			texture2.WrapS = TextureWrapMode.ClampToEdgeSgis;
+			texture2.WrapT = TextureWrapMode.ClampToEdgeSgis;
 		}
 
 		protected override void Draw() 
