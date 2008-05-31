@@ -73,7 +73,11 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public void Update()
 		{
-			if (startValue == -1) return;
+			if (startValue == -1)
+			{
+				startValue = Value;
+				return;
+			}
 			var newValue = Value;
 			Elapsed = (float)(newValue - startValue) / frequency;
 			startValue = newValue;

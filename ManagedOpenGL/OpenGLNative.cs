@@ -1693,7 +1693,7 @@ namespace ManagedOpenGL
 		[DllImport( "opengl32.dll", EntryPoint="glDeleteTextures" )]
 		public static extern void DeleteTextures( int n, uint[] textures ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glGenTextures" )]
-		public static extern void GenTextures( int n, ref uint[] textures ); // 	
+		public static extern void GenTextures( int n, uint[] textures ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glIsTexture" )]
 		public static extern bool IsTexture( uint texture ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glPrioritizeTextures" )]

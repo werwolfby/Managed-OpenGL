@@ -19,13 +19,15 @@ namespace ManagedOpenGL.Engine.Windows
 	{
 		public static void Run( OpenGLForm openGLForm )
 		{
+			if (!openGLForm.Visible) openGLForm.Visible = true;
+
 			var run = true;
 
 			openGLForm.Closed += ( sender, e ) => run = false;
 
 			while (run)
 			{
-				openGLForm.Update();
+				openGLForm.UpdateElapsed();
 				Application.DoEvents();
 			}
 		}

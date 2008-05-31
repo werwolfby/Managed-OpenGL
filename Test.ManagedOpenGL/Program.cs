@@ -8,7 +8,7 @@ namespace Test.ManagedOpenGL
 		[STAThread]
 		static void Main()
 		{
-			Application.Run( new OpenGLForm() );
+			Application.Run( new TestForm() );
 		}
 	}
 }

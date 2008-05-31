@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ManagedOpenGL;
@@ -11,7 +12,7 @@ namespace ManagedOpenGL.Engine.Windows
 		#region Fields
 		private IntPtr _hDC = IntPtr.Zero;
 		private IntPtr _hRC = IntPtr.Zero;
-		private HiResTimer hiResTimer = new HiResTimer();
+		private readonly HiResTimer hiResTimer = new HiResTimer();
 		#endregion
 
 		#region Constructors
@@ -23,17 +24,23 @@ namespace ManagedOpenGL.Engine.Windows
 			this.SetStyle( ControlStyles.OptimizedDoubleBuffer, false );
 
 			this.InitializeComponent();
+
+			this.WindowSize = new Size( 640, 480 );
 		}
 		#endregion
 
+		public Size WindowSize { get; set; }
+
 		#region Override Methods
-		protected override void OnShown( EventArgs e ) 
+		protected override void OnLoad( EventArgs e )
 		{
-			base.OnShown( e );
+			base.OnLoad( e );
 
 			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 
 			this.Init();
+			this.ClientSize = WindowSize;
+			this.AfterInitGL();
 			this.InitGL();
 		}
 
@@ -81,6 +88,16 @@ namespace ManagedOpenGL.Engine.Windows
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 		}
 
+		private void AfterInitGL()
+		{
+			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, this._hRC ))
+				throw new Win32Exception( Marshal.GetLastWin32Error() );
+
+			AfterInitGLOverride();
+
+			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
+		}
+
 		protected sealed override void OnPaint( PaintEventArgs e ) 
 		{
 			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, this._hRC ))
@@ -107,6 +124,10 @@ namespace ManagedOpenGL.Engine.Windows
 
 		#region Virtual Methods
 		protected virtual void InitializePixelFormatDescriptor( ref PixelFormatDescriptor pfd )
+		{
+		}
+
+		protected virtual void AfterInitGLOverride()
 		{
 		}
 

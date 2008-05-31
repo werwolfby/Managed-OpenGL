@@ -49,6 +49,7 @@
     <Compile Include="Enums.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OpenGL.cs" />
     <Compile Include="OpenGLNative.cs" />
     <Compile Include="PixelFormatDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
