@@ -47,7 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cameras\Camera.cs" />
+    <Compile Include="Cameras\FreeCamera.cs" />
+    <Compile Include="Cameras\TwoDirCamera.cs" />
+    <Compile Include="Math\EulerAngle.cs" />
+    <Compile Include="Math\Matrix.cs" />
+    <Compile Include="Math\Vector.cs" />
     <Compile Include="Windows\HiResTimer.cs" />
+    <Compile Include="Windows\Keyboard.cs" />
     <Compile Include="Windows\OpenGLApplication.cs" />
     <Compile Include="Windows\OpenGLForm.cs">
       <SubType>Form</SubType>

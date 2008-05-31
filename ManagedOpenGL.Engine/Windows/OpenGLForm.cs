@@ -51,6 +51,20 @@ namespace ManagedOpenGL.Engine.Windows
 			this.InitGL();
 		}
 
+		protected override void OnKeyDown( KeyEventArgs e ) 
+		{
+			base.OnKeyDown( e );
+
+			Keyboard.SetValue( e.KeyCode, true );
+		}
+
+		protected override void OnKeyUp( KeyEventArgs e ) 
+		{
+			base.OnKeyUp( e );
+
+			Keyboard.SetValue( e.KeyCode, false );
+		}
+
 		private void InitGL()
 		{
 			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, this._hRC ))
