@@ -20,8 +20,8 @@ namespace Test.ManagedOpenGL.MultiTextureSample
 	public class MultiTextureSampleForm : OpenGLForm
 	{
 		private float angle;
-		private readonly Texture2D texture1 = new Texture2D( @"Data\bg.jpg" );
-		private readonly Texture2D texture2 = new Texture2D( @"Data\logo.gif" );
+		private readonly Texture2D texture1 = new Texture2D( @"Data\MultiTexture\bg.jpg" );
+		private readonly Texture2D texture2 = new Texture2D( @"Data\MultiTexture\logo.gif" );
 
 		public MultiTextureSampleForm()
 		{
