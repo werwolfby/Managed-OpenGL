@@ -90,6 +90,8 @@ namespace ManagedOpenGL.Engine.Render
 					OpenGLNative.MatrixMode( MatrixMode.Projection );
 					OpenGLNative.LoadIdentity();
 					OpenGLNative.Ortho( 0, WindowSize.Width, WindowSize.Height, 0, -1, 1 );
+					OpenGLNative.Enable( EnableCap.Blend );
+					OpenGLNative.BlendFunc( BlendingFactorSrc.One, BlendingFactorDest.One );
 					break;
 				case RenderMode.MODE_3D:
 					OpenGLNative.MatrixMode( MatrixMode.Projection );

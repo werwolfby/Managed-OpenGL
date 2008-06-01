@@ -22,6 +22,7 @@ namespace ManagedOpenGL.Engine.Windows
 		private readonly long frequency;
 		private readonly bool isPerfCounterSupported;
 		private long startValue = -1;
+		private bool paused = false;
 
 		public HiResTimer()
 		{
@@ -71,8 +72,20 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public float Elapsed { get; private set; }
 
+		public bool Paused
+		{
+			get { return this.paused; }
+			set
+			{
+				if (this.paused == value) return;
+				this.paused = value;
+				if (!this.paused) startValue = Value;
+			}
+		}
+
 		public void Update()
 		{
+			if (paused) return;
 			if (startValue == -1)
 			{
 				startValue = Value;

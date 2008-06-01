@@ -52,6 +52,27 @@ namespace ManagedOpenGL.Engine.Windows
 			this.InitGL();
 		}
 
+		protected override void OnResize( EventArgs e ) 
+		{
+			base.OnResize( e );
+
+			this.Invalidate();
+		}
+
+		protected override void OnResizeBegin( EventArgs e ) 
+		{
+			base.OnResizeBegin( e );
+
+			hiResTimer.Paused = true;
+		}
+
+		protected override void OnResizeEnd( EventArgs e ) 
+		{
+			base.OnResizeEnd( e );
+
+			hiResTimer.Paused = false;
+		}
+
 		protected override void OnSizeChanged( EventArgs e ) 
 		{
 			base.OnSizeChanged( e );
@@ -144,6 +165,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 		internal void UpdateElapsed()
 		{
+			if (hiResTimer.Paused) return;
 			hiResTimer.Update();
 			Update( hiResTimer.Elapsed );
 			Invalidate();
