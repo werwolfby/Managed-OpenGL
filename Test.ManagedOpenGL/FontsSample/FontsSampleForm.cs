@@ -11,8 +11,11 @@
  *
  *******************************************************/
 
+using System.Drawing;
 using ManagedOpenGL;
+using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
+using Font=ManagedOpenGL.Engine.Windows.Font;
 
 namespace Test.ManagedOpenGL.FontsSample
 {
@@ -53,20 +56,20 @@ namespace Test.ManagedOpenGL.FontsSample
 
 		private float angle;
 
+		public FontsSampleForm()
+		{
+			Renderer.Near = 1;
+			Renderer.Far = 1000;
+		}
+
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
 
 			this.texture2D.Load();
 			this.font.Load();
-		}
 
-		protected override void InitPerspective() 
-		{
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
-			OpenGLNative.LoadIdentity();
-			WindowsOpenGLNative.gluPerspective( 45, (double)this.ClientSize.Width / this.ClientSize.Height, 1, 1000 );
-			OpenGLNative.Viewport( 0, 0, this.ClientSize.Width, this.ClientSize.Height );
+			Renderer.WindowSize = new Size( 640, 480 );
 		}
 
 		protected override void Draw() 
@@ -74,6 +77,8 @@ namespace Test.ManagedOpenGL.FontsSample
 			base.Draw();
 
 			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+
+			Renderer.RenderMode = RenderMode.MODE_3D;
 
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadIdentity();
@@ -99,12 +104,13 @@ namespace Test.ManagedOpenGL.FontsSample
 
 			OpenGLNative.Color3f( 1, 0, 0 );
 
-			global::ManagedOpenGL.Engine.Windows.Font.SetFontRenderMode();
+			Renderer.RenderMode = RenderMode.MODE_2D;
+			font.FontSize = 20;
 			font.WriteLine( "FPS = {0}. Русский текст.", currentFPS );
-			global::ManagedOpenGL.Engine.Windows.Font.ReleaseFontRenderMode();
 		}
 
-		private void DrawCube() {
+		private void DrawCube() 
+		{
 			OpenGLNative.Begin( BeginMode.Quads );
 			for (var i = 0; i < this.indices.Length / 4; i++)
 			{

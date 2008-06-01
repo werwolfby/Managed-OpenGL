@@ -50,9 +50,11 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\FreeCamera.cs" />
     <Compile Include="Cameras\TwoDirCamera.cs" />
+    <Compile Include="Render\Renderer.cs" />
     <Compile Include="Math\EulerAngle.cs" />
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
+    <Compile Include="Render\RenderMode.cs" />
     <Compile Include="Windows\Font.cs" />
     <Compile Include="Windows\HiResTimer.cs" />
     <Compile Include="Windows\Keyboard.cs" />

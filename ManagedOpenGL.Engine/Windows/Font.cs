@@ -23,7 +23,10 @@ namespace ManagedOpenGL.Engine.Windows
 		public Font( string fileName )
 		{
 			texture = new Texture2D( fileName );
+			FontSize = 10;
 		}
+
+		public int FontSize { get; set; }
 
 		public void Load()
 		{
@@ -31,6 +34,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 			this.startListId = OpenGLNative.GenLists( 256 );
 
+			var size = 1;
 			for (var y = 0; y < 16; y++)
 			{
 				for (var x = 0; x < 16; x++)
@@ -40,19 +44,19 @@ namespace ManagedOpenGL.Engine.Windows
 					OpenGLNative.Begin( BeginMode.Quads );
 
 					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 1) / 16.0f );
-					OpenGLNative.Vertex2i( 0, 10 );
+					OpenGLNative.Vertex2i( 0, size );
 
 					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 1) / 16.0f );
-					OpenGLNative.Vertex2i( 10, 10 );
+					OpenGLNative.Vertex2i( size, size );
 
 					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 0) / 16.0f );
-					OpenGLNative.Vertex2i( 10, 0 );
+					OpenGLNative.Vertex2i( size, 0 );
 
 					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 0) / 16.0f );
 					OpenGLNative.Vertex2i( 0, 0 );
 					OpenGLNative.End();
 
-					OpenGLNative.Translatef( 10, 0, 0 );
+					OpenGLNative.Translatef( size, 0, 0 );
 
 					OpenGLNative.EndList();
 				}
@@ -71,6 +75,7 @@ namespace ManagedOpenGL.Engine.Windows
 			var position = 0;
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadIdentity();
+			OpenGLNative.Scalef( FontSize, FontSize, 1 );
 			OpenGLNative.Enable( EnableCap.Texture2d );
 			texture.Use();
 			while (position < totalSymbols)
@@ -84,28 +89,28 @@ namespace ManagedOpenGL.Engine.Windows
 			}
 		}
 
-		public static void SetFontRenderMode()
-		{
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
-			OpenGLNative.PushMatrix();
+		//public static void SetFontRenderMode()
+		//{
+		//    OpenGLNative.MatrixMode( MatrixMode.Projection );
+		//    OpenGLNative.PushMatrix();
 
-			OpenGLNative.LoadIdentity();
-			OpenGLNative.Ortho( 0, 320, 240, 0, -1, 1 );
+		//    OpenGLNative.LoadIdentity();
+		//    OpenGLNative.Ortho( 0, 320, 240, 0, -1, 1 );
 
-			OpenGLNative.PushAttrib( AttribMask.EnableBit | AttribMask.DepthBufferBit );
+		//    OpenGLNative.PushAttrib( AttribMask.EnableBit | AttribMask.DepthBufferBit );
 
-			OpenGLNative.Enable( EnableCap.Blend );
-			OpenGLNative.BlendFunc( BlendingFactorSrc.One, BlendingFactorDest.One );
-			OpenGLNative.DepthMask( false );
-			OpenGLNative.Disable( EnableCap.Lighting );
-		}
+		//    OpenGLNative.Enable( EnableCap.Blend );
+		//    OpenGLNative.BlendFunc( BlendingFactorSrc.One, BlendingFactorDest.One );
+		//    OpenGLNative.DepthMask( false );
+		//    OpenGLNative.Disable( EnableCap.Lighting );
+		//}
 
-		public static void ReleaseFontRenderMode()
-		{
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
-			OpenGLNative.PopMatrix();
+		//public static void ReleaseFontRenderMode()
+		//{
+		//    OpenGLNative.MatrixMode( MatrixMode.Projection );
+		//    OpenGLNative.PopMatrix();
 
-			OpenGLNative.PopAttrib();
-		}
+		//    OpenGLNative.PopAttrib();
+		//}
 	}
 }

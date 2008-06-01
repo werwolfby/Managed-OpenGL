@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ManagedOpenGL;
+using ManagedOpenGL.Engine.Render;
 
 namespace ManagedOpenGL.Engine.Windows
 {
@@ -13,6 +14,7 @@ namespace ManagedOpenGL.Engine.Windows
 		private IntPtr _hDC = IntPtr.Zero;
 		private IntPtr _hRC = IntPtr.Zero;
 		private readonly HiResTimer hiResTimer = new HiResTimer();
+		private bool internalSetWindowSize;
 		#endregion
 
 		#region Constructors
@@ -25,7 +27,13 @@ namespace ManagedOpenGL.Engine.Windows
 
 			this.InitializeComponent();
 
-			this.WindowSize = new Size( 640, 480 );
+			Renderer.WindowSizeChanged += delegate
+			                              {
+											  if (!internalSetWindowSize) this.ClientSize = Renderer.WindowSize;
+			                              };
+			Renderer.Near = 10;
+			Renderer.Far = 1000;
+			Renderer.FOV = 45;
 		}
 		#endregion
 
@@ -47,6 +55,10 @@ namespace ManagedOpenGL.Engine.Windows
 		protected override void OnSizeChanged( EventArgs e ) 
 		{
 			base.OnSizeChanged( e );
+
+			internalSetWindowSize = true;
+			Renderer.WindowSize = ClientSize;
+			internalSetWindowSize = false;
 
 			this.InitGL();
 		}
@@ -109,6 +121,8 @@ namespace ManagedOpenGL.Engine.Windows
 
 			AfterInitGLOverride();
 
+			Renderer.Initialized = true;
+
 			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 		}
 
@@ -147,10 +161,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 		protected virtual void InitPerspective() 
 		{
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
-			OpenGLNative.LoadIdentity();
-			WindowsOpenGLNative.gluPerspective( 45, (double)this.ClientSize.Width / this.ClientSize.Height, 10, 1000 );
-			OpenGLNative.Viewport( 0, 0, this.ClientSize.Width, this.ClientSize.Height );
+			Renderer.SetRenderMode();
 		}
 
 		protected virtual void Draw() 
