@@ -75,15 +75,11 @@ namespace Test.ManagedOpenGL.FontsSample
 
 			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
-			global::ManagedOpenGL.Engine.Windows.Font.SetFontRenderMode();
-			font.WriteLine( "Test String. Русский текст." );
-			global::ManagedOpenGL.Engine.Windows.Font.ReleaseFontRenderMode();
-
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadIdentity();
 			OpenGLNative.Translatef( 0, 0, -10 );
 			OpenGLNative.Rotatef( angle, 1, 2, 3 );
-			OpenGLNative.Scalef( 2, 2, 2 );
+			OpenGLNative.Scalef( 2.3f, 2.3f, 2.3f );
 
 			OpenGLNative.Enable( EnableCap.DepthTest );
 
@@ -100,6 +96,10 @@ namespace Test.ManagedOpenGL.FontsSample
 
 			OpenGLNative.CullFace( CullFaceMode.Back );
 			this.DrawCube();
+
+			global::ManagedOpenGL.Engine.Windows.Font.SetFontRenderMode();
+			font.WriteLine( "Test String. Русский текст." );
+			global::ManagedOpenGL.Engine.Windows.Font.ReleaseFontRenderMode();
 		}
 
 		private void DrawCube() {
@@ -112,19 +112,19 @@ namespace Test.ManagedOpenGL.FontsSample
 				var index3 = this.indices[i * 4 + 3];
 
 				OpenGLNative.TexCoord2i( this.texCoords[0 * 2 + 0], this.texCoords[0 * 2 + 1] );
-				OpenGLNative.Color4f( this.positions[index0 * 3 + 0], this.positions[index0 * 3 + 1], this.positions[index0 * 3 + 2], 0.25f );
+				OpenGLNative.Color3f( this.positions[index0 * 3 + 0], this.positions[index0 * 3 + 1], this.positions[index0 * 3 + 2] );
 				OpenGLNative.Vertex3f( this.positions[index0 * 3 + 0], this.positions[index0 * 3 + 1], this.positions[index0 * 3 + 2] );
 
 				OpenGLNative.TexCoord2i( this.texCoords[1 * 2 + 0], this.texCoords[1 * 2 + 1] );
-				OpenGLNative.Color4f( this.positions[index1 * 3 + 0], this.positions[index1 * 3 + 1], this.positions[index1 * 3 + 2], 0.25f );
+				OpenGLNative.Color3f( this.positions[index1 * 3 + 0], this.positions[index1 * 3 + 1], this.positions[index1 * 3 + 2] );
 				OpenGLNative.Vertex3f( this.positions[index1 * 3 + 0], this.positions[index1 * 3 + 1], this.positions[index1 * 3 + 2] );
 
 				OpenGLNative.TexCoord2i( this.texCoords[2 * 2 + 0], this.texCoords[2 * 2 + 1] );
-				OpenGLNative.Color4f( this.positions[index2 * 3 + 0], this.positions[index2 * 3 + 1], this.positions[index2 * 3 + 2], 0.25f );
+				OpenGLNative.Color3f( this.positions[index2 * 3 + 0], this.positions[index2 * 3 + 1], this.positions[index2 * 3 + 2] );
 				OpenGLNative.Vertex3f( this.positions[index2 * 3 + 0], this.positions[index2 * 3 + 1], this.positions[index2 * 3 + 2] );
 
 				OpenGLNative.TexCoord2i( this.texCoords[3 * 2 + 0], this.texCoords[3 * 2 + 1] );
-				OpenGLNative.Color4f( this.positions[index3 * 3 + 0], this.positions[index3 * 3 + 1], this.positions[index3 * 3 + 2], 0.25f );
+				OpenGLNative.Color3f( this.positions[index3 * 3 + 0], this.positions[index3 * 3 + 1], this.positions[index3 * 3 + 2] );
 				OpenGLNative.Vertex3f( this.positions[index3 * 3 + 0], this.positions[index3 * 3 + 1], this.positions[index3 * 3 + 2] );
 			}
 			OpenGLNative.End();

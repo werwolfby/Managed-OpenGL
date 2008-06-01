@@ -38,17 +38,17 @@ namespace ManagedOpenGL.Engine.Windows
 					OpenGLNative.Begin( BeginMode.Quads );
 					OpenGLNative.Color3f( 1, 1, 1 );
 
-					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 0) / 16.0f );
-					OpenGLNative.Vertex2i( 0, 0 );
-
-					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 0) / 16.0f );
-					OpenGLNative.Vertex2i( 10, 0 );
+					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 1) / 16.0f );
+					OpenGLNative.Vertex2i( 0, 10 );
 
 					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 1) / 16.0f );
 					OpenGLNative.Vertex2i( 10, 10 );
 
-					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 1) / 16.0f );
-					OpenGLNative.Vertex2i( 0, 10 );
+					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 0) / 16.0f );
+					OpenGLNative.Vertex2i( 10, 0 );
+
+					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 0) / 16.0f );
+					OpenGLNative.Vertex2i( 0, 0 );
 					OpenGLNative.End();
 
 					OpenGLNative.Translatef( 10, 0, 0 );
