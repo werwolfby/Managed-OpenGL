@@ -11,6 +11,8 @@
  *
  *******************************************************/
 
+using System.Text;
+
 namespace ManagedOpenGL.Engine.Windows
 {
 	public class Font
@@ -36,7 +38,6 @@ namespace ManagedOpenGL.Engine.Windows
 					OpenGLNative.NewList( (uint)(startListId + y*16 + x), ListMode.Compile );
 
 					OpenGLNative.Begin( BeginMode.Quads );
-					OpenGLNative.Color3f( 1, 1, 1 );
 
 					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 1) / 16.0f );
 					OpenGLNative.Vertex2i( 0, 10 );
@@ -58,16 +59,29 @@ namespace ManagedOpenGL.Engine.Windows
 			}
 		}
 
+		private readonly byte[] textBytes = new byte[256];
+		private readonly char[] textChars = new char[256];
+		private readonly StringBuilder builder = new StringBuilder();
+
 		public void WriteLine( string format, params object[] objs )
 		{
-			var s = string.Format( format, objs );
-			var bytes = System.Text.Encoding.GetEncoding( 1251 ).GetBytes( s );
-			OpenGLNative.Enable( EnableCap.Texture2d );
-			texture.Use();
+			builder.Length = 0;
+			builder.AppendFormat( format, objs );
+			var totalSymbols = builder.Length;
+			var position = 0;
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadIdentity();
-			OpenGLNative.ListBase( startListId );
-			OpenGL.CallLists( bytes );
+			OpenGLNative.Enable( EnableCap.Texture2d );
+			texture.Use();
+			while (position < totalSymbols)
+			{
+				var length = System.Math.Min( textChars.Length, totalSymbols - position );
+				builder.CopyTo( position, textChars, 0, length );
+				Encoding.GetEncoding( 1251 ).GetBytes( textChars, 0, length, textBytes, 0 );
+				OpenGLNative.ListBase( startListId );
+				OpenGL.CallLists( textBytes, length );
+				position += length;
+			}
 		}
 
 		public static void SetFontRenderMode()

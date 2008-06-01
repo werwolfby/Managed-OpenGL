@@ -97,8 +97,10 @@ namespace Test.ManagedOpenGL.FontsSample
 			OpenGLNative.CullFace( CullFaceMode.Back );
 			this.DrawCube();
 
+			OpenGLNative.Color3f( 1, 0, 0 );
+
 			global::ManagedOpenGL.Engine.Windows.Font.SetFontRenderMode();
-			font.WriteLine( "Test String. Русский текст." );
+			font.WriteLine( "FPS = {0}. Русский текст.", currentFPS );
 			global::ManagedOpenGL.Engine.Windows.Font.ReleaseFontRenderMode();
 		}
 
@@ -130,11 +132,24 @@ namespace Test.ManagedOpenGL.FontsSample
 			OpenGLNative.End();
 		}
 
-		protected override void Update( float elapsed ) 
+		private float totalElapsed;
+		private int fps;
+		private int currentFPS;
+
+		protected override void Update( float elapsed )
 		{
 			base.Update( elapsed );
 
 			angle += 360 * elapsed / 3;
+
+			if (totalElapsed >= 1.0f)
+			{
+				currentFPS = fps;
+				fps = 0;
+				totalElapsed -= 1.0f;
+			}
+			totalElapsed += elapsed;
+			fps++;
 		}
 	}
 }
