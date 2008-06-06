@@ -1309,7 +1309,7 @@ namespace ManagedOpenGL
 		[DllImport( "opengl32.dll", EntryPoint="glVertex3f" )]
 		public static extern void Vertex3f( float x, float y, float z ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glVertex3fv" )]
-		public static extern void Vertex3fv( float[] v ); // 	
+		public static extern unsafe void Vertex3fv( float* v ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glVertex3i" )]
 		public static extern void Vertex3i( int x, int y, int z ); // 	
 		[DllImport( "opengl32.dll", EntryPoint="glVertex3iv" )]

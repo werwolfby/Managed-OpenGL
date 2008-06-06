@@ -34,6 +34,11 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		                                       	StreafeSpeed = 20
 		                                       };
 
+		public SkyBoxSampleForm()
+		{
+			WindowSize = new Size( 640, 480 );
+		}
+
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
@@ -79,6 +84,8 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			Cursor.Position = this.PointToScreen( centerPosition );
 		}
 
+		private readonly Skybox skybox = new Skybox( 100, 100, 100 );
+
 		protected override void Draw() 
 		{
 			base.Draw();
@@ -86,12 +93,18 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			OpenGLNative.ClearColor( 0, 0, 0, 0 );
 			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
+			OpenGLNative.LoadMatrixf( camera.Data );
+
+			OpenGLNative.Enable( EnableCap.Texture2d );
+			backTexture.Use();
+			skybox.Draw();
+
+			return;
+
 			var width = 100;
 			var height = 100;
 			var length = 100;
-
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-			OpenGLNative.LoadMatrixf( camera.Data );
 
 			OpenGLNative.Enable( EnableCap.Texture2d );
 			OpenGLNative.Enable( EnableCap.CullFace );
