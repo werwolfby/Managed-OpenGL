@@ -20,45 +20,54 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 	public class Skybox
 	{
 		[StructLayout(LayoutKind.Sequential)]
-		private struct BoxVertex
+		private unsafe struct BoxVertex
 		{
-			public float x;
-			public float y;
-			public float z;
+			public fixed float position[3];
 
 			public BoxVertex( float x, float y, float z )
 			{
-				this.x = x;
-				this.y = y;
-				this.z = z;
+				fixed (float* pos = position)
+				{
+					pos[0] = x;
+					pos[1] = y;
+					pos[2] = z;
+				}
 			}
+
+			public float X { get{ fixed (float* pos = position) { return pos[0]; } } }
+
+			public float Y { get{ fixed (float* pos = position) { return pos[1]; } } }
+
+			public float Z { get{ fixed (float* pos = position) { return pos[2]; } } }
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		private struct SkyboxVertex
+		private unsafe struct SkyboxVertex
 		{
-			public float x;
-			public float y;
-			public float z;
-
-			public float s;
-			public float t;
+			public fixed float position[3];
+			public fixed float texCoords[2];
 
 			public SkyboxVertex( float x, float y, float z, float s, float t )
 			{
-				this.x = x;
-				this.y = y;
-				this.z = z;
-				this.s = s;
-				this.t = t;
+				fixed (float* pos = position)
+				{
+					pos[0] = x;
+					pos[1] = y;
+					pos[2] = z;
+				}
+				fixed (float* tex = texCoords)
+				{
+					tex[0] = s;
+					tex[1] = t;
+				}
 			}
 
-			public SkyboxVertex( BoxVertex boxVertex, float s, float t ) : this( boxVertex.x, boxVertex.y, boxVertex.z, s, t ) {}
+			public SkyboxVertex( BoxVertex boxVertex, float s, float t ) : this( boxVertex.X, boxVertex.Y, boxVertex.Z, s, t ) {}
 		}
 
-		private float x, y, z;
-		private float width, height, length;
-		private Texture2D back, front, left, right, bottom, top;
+		private readonly float x, y, z;
+		private readonly float width, height, length;
+		private readonly Texture2D back, front, left, right, bottom, top;
 		private readonly BoxVertex[] boxVertexes = new BoxVertex[8];
 		private readonly SkyboxVertex[] skyboxVertices = new SkyboxVertex[6*4];
 
@@ -109,6 +118,38 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		}
 		#endregion
 
+		#region Properties
+		public float X
+		{
+			get { return this.x; }
+		}
+
+		public float Y
+		{
+			get { return this.y; }
+		}
+
+		public float Z
+		{
+			get { return this.z; }
+		}
+
+		public float Width
+		{
+			get { return this.width; }
+		}
+
+		public float Height
+		{
+			get { return this.height; }
+		}
+
+		public float Length
+		{
+			get { return this.length; }
+		}
+		#endregion
+
 		private static void Fill( int faceNumber, BoxVertex[] boxVertices, SkyboxVertex[] vertices, int i0, int i1, int i2, int i3 )
 		{
 			vertices[faceNumber*4 + 0] = new SkyboxVertex( boxVertices[i0], 0, 1 );
@@ -123,8 +164,7 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 
 			unsafe
 			{
-				fixed (void* vertices = &this.skyboxVertices[0].x)
-				fixed (void* texVertices = &this.skyboxVertices[0].s)
+				fixed (float* vertices = this.skyboxVertices[0].position, texVertices = this.skyboxVertices[0].texCoords)
 				{
 					OpenGLNative.EnableClientState( EnableCap.VertexArray );
 					OpenGLNative.EnableClientState( EnableCap.TextureCoordArray );
