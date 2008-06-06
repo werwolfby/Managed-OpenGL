@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,6 +51,7 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\FreeCamera.cs" />
     <Compile Include="Cameras\TwoDirCamera.cs" />
+    <Compile Include="Objects\Skybox.cs" />
     <Compile Include="Render\Renderer.cs" />
     <Compile Include="Math\EulerAngle.cs" />
     <Compile Include="Math\Matrix.cs" />

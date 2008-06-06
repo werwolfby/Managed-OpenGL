@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Windows;
 
-namespace Test.ManagedOpenGL.SkyBoxSample
+namespace ManagedOpenGL.Engine.Objects
 {
 	public class Skybox
 	{
@@ -26,7 +26,7 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 
 			public BoxVertex( float x, float y, float z )
 			{
-				fixed (float* pos = position)
+				fixed (float* pos = this.position)
 				{
 					pos[0] = x;
 					pos[1] = y;
@@ -34,11 +34,11 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 				}
 			}
 
-			public float X { get{ fixed (float* pos = position) { return pos[0]; } } }
+			public float X { get{ fixed (float* pos = this.position) { return pos[0]; } } }
 
-			public float Y { get{ fixed (float* pos = position) { return pos[1]; } } }
+			public float Y { get{ fixed (float* pos = this.position) { return pos[1]; } } }
 
-			public float Z { get{ fixed (float* pos = position) { return pos[2]; } } }
+			public float Z { get{ fixed (float* pos = this.position) { return pos[2]; } } }
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -49,13 +49,13 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 
 			public SkyboxVertex( float x, float y, float z, float s, float t )
 			{
-				fixed (float* pos = position)
+				fixed (float* pos = this.position)
 				{
 					pos[0] = x;
 					pos[1] = y;
 					pos[2] = z;
 				}
-				fixed (float* tex = texCoords)
+				fixed (float* tex = this.texCoords)
 				{
 					tex[0] = s;
 					tex[1] = t;
@@ -73,7 +73,7 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 
 		#region Constructors
 		public Skybox( float x, float y, float z, float width, float height, float length, 
-			Texture2D back, Texture2D front, Texture2D left, Texture2D right, Texture2D bottom, Texture2D top )
+		               Texture2D back, Texture2D front, Texture2D left, Texture2D right, Texture2D bottom, Texture2D top )
 		{
 			this.x = x;
 			this.y = y;
@@ -103,17 +103,17 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			this.top    = top;
 
 			
-			Fill( 0, boxVertexes, skyboxVertices, 1, 0, 2, 3 ); // back
-			Fill( 1, boxVertexes, skyboxVertices, 4, 5, 7, 6 ); // front
-			Fill( 2, boxVertexes, skyboxVertices, 0, 4, 6, 2 ); // left
-			Fill( 3, boxVertexes, skyboxVertices, 5, 1, 3, 7 ); // right
-			Fill( 4, boxVertexes, skyboxVertices, 0, 1, 5, 4 ); // bottom
-			Fill( 5, boxVertexes, skyboxVertices, 6, 7, 3, 2 ); // top
+			Fill( 0, this.boxVertexes, this.skyboxVertices, 1, 0, 2, 3 ); // back
+			Fill( 1, this.boxVertexes, this.skyboxVertices, 4, 5, 7, 6 ); // front
+			Fill( 2, this.boxVertexes, this.skyboxVertices, 0, 4, 6, 2 ); // left
+			Fill( 3, this.boxVertexes, this.skyboxVertices, 5, 1, 3, 7 ); // right
+			Fill( 4, this.boxVertexes, this.skyboxVertices, 0, 1, 5, 4 ); // bottom
+			Fill( 5, this.boxVertexes, this.skyboxVertices, 6, 7, 3, 2 ); // top
 		}
 
 		public Skybox( float width, float height, float length,
-			Texture2D back, Texture2D front, Texture2D left, Texture2D right, Texture2D bottom, Texture2D top ) : 
-			this( 0, 0, 0, width, height, length, back, front, left, right, bottom, top )
+		               Texture2D back, Texture2D front, Texture2D left, Texture2D right, Texture2D bottom, Texture2D top ) : 
+		               	this( 0, 0, 0, width, height, length, back, front, left, right, bottom, top )
 		{
 		}
 		#endregion
@@ -171,17 +171,17 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 					OpenGLNative.VertexPointer( 3, VertexPointerType.Float, Marshal.SizeOf( typeof(SkyboxVertex) ), vertices );
 					OpenGLNative.TexCoordPointer( 2, TexCoordPointerType.Float, Marshal.SizeOf( typeof(SkyboxVertex) ), texVertices );
 
-					back.Use();
+					this.back.Use();
 					OpenGLNative.DrawArrays( BeginMode.Quads, 00, 4 );
-					front.Use();
+					this.front.Use();
 					OpenGLNative.DrawArrays( BeginMode.Quads, 04, 4 );
-					left.Use();
+					this.left.Use();
 					OpenGLNative.DrawArrays( BeginMode.Quads, 08, 4 );
-					right.Use();
+					this.right.Use();
 					OpenGLNative.DrawArrays( BeginMode.Quads, 12, 4 );
-					bottom.Use();
+					this.bottom.Use();
 					OpenGLNative.DrawArrays( BeginMode.Quads, 16, 4 );
-					top.Use();
+					this.top.Use();
 					OpenGLNative.DrawArrays( BeginMode.Quads, 20, 4 );
 				}
 			}

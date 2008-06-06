@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
+using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Windows;
 
 namespace Test.ManagedOpenGL.SkyBoxSample
