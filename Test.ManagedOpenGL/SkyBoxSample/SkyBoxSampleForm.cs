@@ -25,8 +25,8 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		private readonly Texture2D frontTexture  = new Texture2D( @"Data\SkyBox\front.jpg" );
 		private readonly Texture2D leftTexture   = new Texture2D( @"Data\SkyBox\left.jpg" );
 		private readonly Texture2D rightTexture  = new Texture2D( @"Data\SkyBox\right.jpg" );
-		private readonly Texture2D topTexture    = new Texture2D( @"Data\SkyBox\top.jpg" );
 		private readonly Texture2D bottomTexture = new Texture2D( @"Data\SkyBox\bottom.jpg" );
+		private readonly Texture2D topTexture    = new Texture2D( @"Data\SkyBox\top.jpg" );
 
 		private readonly TwoDirCamera camera = new TwoDirCamera
 		                                       {
@@ -36,6 +36,7 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 
 		public SkyBoxSampleForm()
 		{
+			this.skybox = new Skybox( 100, 100, 100, backTexture, frontTexture, leftTexture, rightTexture, bottomTexture, topTexture );
 			WindowSize = new Size( 640, 480 );
 		}
 
@@ -50,7 +51,7 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			topTexture.Load();
 			bottomTexture.Load();
 
-			var textures = new[] { backTexture, frontTexture, leftTexture, rightTexture, topTexture, bottomTexture };
+			var textures = new[] { backTexture, frontTexture, leftTexture, rightTexture, bottomTexture, topTexture };
 			foreach (var texture in textures)
 			{
 				texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
@@ -84,7 +85,7 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			Cursor.Position = this.PointToScreen( centerPosition );
 		}
 
-		private readonly Skybox skybox = new Skybox( 100, 100, 100 );
+		private readonly Skybox skybox;
 
 		protected override void Draw() 
 		{

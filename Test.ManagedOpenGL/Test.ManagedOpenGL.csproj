@@ -150,10 +150,10 @@
     <Content Include="Data\SkyBox\Front.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Left.jpg">
+    <Content Include="Data\SkyBox\Right.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Right.jpg">
+    <Content Include="Data\SkyBox\Left.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\SkyBox\Top.jpg">
