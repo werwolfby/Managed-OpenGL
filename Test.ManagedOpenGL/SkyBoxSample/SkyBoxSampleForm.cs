@@ -21,12 +21,19 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 {
 	public class SkyBoxSampleForm : OpenGLForm
 	{
-		private readonly Texture2D backTexture   = new Texture2D( @"Data\SkyBox\back.jpg" );
-		private readonly Texture2D frontTexture  = new Texture2D( @"Data\SkyBox\front.jpg" );
-		private readonly Texture2D leftTexture   = new Texture2D( @"Data\SkyBox\left.jpg" );
-		private readonly Texture2D rightTexture  = new Texture2D( @"Data\SkyBox\right.jpg" );
-		private readonly Texture2D bottomTexture = new Texture2D( @"Data\SkyBox\bottom.jpg" );
-		private readonly Texture2D topTexture    = new Texture2D( @"Data\SkyBox\top.jpg" );
+		private readonly Texture2D back1   = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
+		private readonly Texture2D front1  = new Texture2D( @"Data\SkyBox\CubeMap2\front.png" );
+		private readonly Texture2D left1   = new Texture2D( @"Data\SkyBox\CubeMap2\left.png" );
+		private readonly Texture2D right1  = new Texture2D( @"Data\SkyBox\CubeMap2\right.png" );
+		private readonly Texture2D bottom1 = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
+		private readonly Texture2D top1    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
+
+		private readonly Texture2D back2   = new Texture2D( @"Data\SkyBox\CubeMap1\back.jpg" );
+		private readonly Texture2D front2  = new Texture2D( @"Data\SkyBox\CubeMap1\front.jpg" );
+		private readonly Texture2D left2   = new Texture2D( @"Data\SkyBox\CubeMap1\left.jpg" );
+		private readonly Texture2D right2  = new Texture2D( @"Data\SkyBox\CubeMap1\right.jpg" );
+		private readonly Texture2D bottom2 = new Texture2D( @"Data\SkyBox\CubeMap1\bottom.jpg" );
+		private readonly Texture2D top2    = new Texture2D( @"Data\SkyBox\CubeMap1\top.jpg" );
 
 		private readonly TwoDirCamera camera = new TwoDirCamera
 		                                       {
@@ -34,9 +41,18 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		                                       	StreafeSpeed = 20
 		                                       };
 
+		private readonly Skybox skybox1;
+		private readonly Skybox skybox2;
+
+		private Skybox currentSkybox;
+
 		public SkyBoxSampleForm()
 		{
-			this.skybox = new Skybox( 100, 100, 100, backTexture, frontTexture, leftTexture, rightTexture, bottomTexture, topTexture );
+			this.skybox1 = new Skybox( 200, 200, 200, this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1 );
+			this.skybox2 = new Skybox( 200, 200, 200, this.back2, this.front2, this.left2, this.right2, this.bottom2, this.top2 );
+
+			this.currentSkybox = this.skybox1;
+
 			WindowSize = new Size( 640, 480 );
 		}
 
@@ -44,16 +60,14 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		{
 			base.AfterInitGLOverride();
 
-			backTexture.Load();
-			frontTexture.Load();
-			leftTexture.Load();
-			rightTexture.Load();
-			topTexture.Load();
-			bottomTexture.Load();
-
-			var textures = new[] { backTexture, frontTexture, leftTexture, rightTexture, bottomTexture, topTexture };
+			var textures = new[]
+			               {
+			               	this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1,
+			               	this.back2, this.front2, this.left2, this.right2, this.bottom2, this.top2,
+			               };
 			foreach (var texture in textures)
 			{
+				texture.Load();
 				texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
 				texture.WrapT = TextureWrapMode.ClampToEdgeSgis;
 			}
@@ -85,8 +99,6 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			Cursor.Position = this.PointToScreen( centerPosition );
 		}
 
-		private readonly Skybox skybox;
-
 		protected override void Draw() 
 		{
 			base.Draw();
@@ -98,135 +110,22 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			OpenGLNative.LoadMatrixf( camera.Data );
 
 			OpenGLNative.Enable( EnableCap.Texture2d );
-			backTexture.Use();
-			skybox.Draw();
-
-			return;
-
-			var width = 100;
-			var height = 100;
-			var length = 100;
-
-			OpenGLNative.Enable( EnableCap.Texture2d );
-			OpenGLNative.Enable( EnableCap.CullFace );
-
-			// Back Plane
-			backTexture.Use();
-			OpenGLNative.Begin( BeginMode.Quads );
-
-			OpenGLNative.TexCoord2f( 0, 1 );
-			OpenGLNative.Vertex3f( - width / 2.0f, - height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 1 );
-			OpenGLNative.Vertex3f( + width / 2.0f, - height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 0 );
-			OpenGLNative.Vertex3f( + width / 2.0f, + height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 0 );
-			OpenGLNative.Vertex3f( - width / 2.0f, + height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.End();
-
-			// Front Plane
-			frontTexture.Use();
-			OpenGLNative.Begin( BeginMode.Quads );
-
-			OpenGLNative.TexCoord2f( 0, 1 );
-			OpenGLNative.Vertex3f( + width / 2.0f, - height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 1 );
-			OpenGLNative.Vertex3f( - width / 2.0f, - height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 0 );
-			OpenGLNative.Vertex3f( - width / 2.0f, + height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 0 );
-			OpenGLNative.Vertex3f( + width / 2.0f, + height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.End();
-
-			// Left Plane
-			leftTexture.Use();
-			OpenGLNative.Begin( BeginMode.Quads );
-
-			OpenGLNative.TexCoord2f( 0, 1 );
-			OpenGLNative.Vertex3f( - width / 2.0f, - height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 1 );
-			OpenGLNative.Vertex3f( - width / 2.0f, - height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 0 );
-			OpenGLNative.Vertex3f( - width / 2.0f, + height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 0 );
-			OpenGLNative.Vertex3f( - width / 2.0f, + height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.End();
-
-			// Right Plane
-			rightTexture.Use();
-			OpenGLNative.Begin( BeginMode.Quads );
-
-			OpenGLNative.TexCoord2f( 0, 1 );
-			OpenGLNative.Vertex3f( + width / 2.0f, - height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 1 );
-			OpenGLNative.Vertex3f( + width / 2.0f, - height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 0 );
-			OpenGLNative.Vertex3f( + width / 2.0f, + height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 0 );
-			OpenGLNative.Vertex3f( + width / 2.0f, + height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.End();
-
-			// Top Plane
-			topTexture.Use();
-			OpenGLNative.Begin( BeginMode.Quads );
-
-			OpenGLNative.TexCoord2f( 1, 0 );
-			OpenGLNative.Vertex3f( - width / 2.0f, + height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 0 );
-			OpenGLNative.Vertex3f( + width / 2.0f, + height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 1 );
-			OpenGLNative.Vertex3f( + width / 2.0f, + height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 1 );
-			OpenGLNative.Vertex3f( - width / 2.0f, + height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.End();
-
-			// Bottom Plane
-			bottomTexture.Use();
-			OpenGLNative.Begin( BeginMode.Quads );
-
-			OpenGLNative.TexCoord2f( 1, 0 );
-			OpenGLNative.Vertex3f( - width / 2.0f, - height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 0 );
-			OpenGLNative.Vertex3f( + width / 2.0f, - height / 2.0f, + length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 0, 1 );
-			OpenGLNative.Vertex3f( + width / 2.0f, - height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.TexCoord2f( 1, 1 );
-			OpenGLNative.Vertex3f( - width / 2.0f, - height / 2.0f, - length / 2.0f );
-
-			OpenGLNative.End();
+			this.currentSkybox.Draw();
 		}
 
 		protected override void Update( float elapsed ) 
 		{
 			base.Update( elapsed );
 
+			if (Keyboard.GetValue( Keys.D1 )) currentSkybox = skybox1;
+			if (Keyboard.GetValue( Keys.D2 )) currentSkybox = skybox2;
+
 			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
 			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );
 			if (Keyboard.GetValue( Keys.W )) camera.MoveForward( elapsed );
 			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
+			
+			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
 		}
 	}
 }

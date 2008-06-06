@@ -141,22 +141,40 @@
     <Content Include="Data\MultiTexture\logo.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Back.jpg">
+    <Content Include="Data\SkyBox\CubeMap1\Back.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Bottom.jpg">
+    <Content Include="Data\SkyBox\CubeMap2\Back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Front.jpg">
+    <Content Include="Data\SkyBox\CubeMap1\Bottom.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Right.jpg">
+    <Content Include="Data\SkyBox\CubeMap2\Bottom.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Left.jpg">
+    <Content Include="Data\SkyBox\CubeMap1\Front.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\SkyBox\Top.jpg">
+    <Content Include="Data\SkyBox\CubeMap2\Front.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMap2\Left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMap1\Right.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMap1\Left.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMap2\Right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMap1\Top.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMap2\Top.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

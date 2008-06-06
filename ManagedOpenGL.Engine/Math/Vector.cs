@@ -233,6 +233,15 @@ namespace ManagedOpenGL.Engine.Math
 			this.Y *= value;
 			this.Z *= value;
 		}
+
+		public void Set( float x, float y, float z )
+		{
+			this.X = x;
+			this.Y = y;
+			this.Z = z;
+
+			RaiseChanged( EventArgs.Empty );
+		}
 	}
 	
 	[DebuggerDisplay("({X.ToString(\"F2\"),nq};{Y.ToString(\"F2\"),nq};{Z.ToString(\"F2\"),nq};{W.ToString(\"F2\"),nq})")]
