@@ -16,7 +16,7 @@ using ManagedOpenGL;
 
 namespace ManagedOpenGL.Engine.Objects
 {
-	public class Cube
+	public class Cube : DrawObject
 	{
 		[StructLayout(LayoutKind.Sequential)]
 		private unsafe struct Vertex
@@ -80,7 +80,7 @@ namespace ManagedOpenGL.Engine.Objects
 			vertices[number*4 + 3] = new Vertex( cornerPoints[i3, 0], cornerPoints[i3, 1], cornerPoints[i3, 2], nx, ny, nz, 0, 0 );
 		}
 
-		public void Draw()
+		public override void Draw()
 		{
 			unsafe
 			{

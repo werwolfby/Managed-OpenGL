@@ -24,9 +24,9 @@ namespace Test.ManagedOpenGL.CubeMapSample
 {
 	public class CubeMapSampleForm : OpenGLForm
 	{
-		private const float ShpereRadius = 20;
-		private const int ShpereSlices = 32;
-		private const int ShpereStacks = 32;
+		private const float SphereRadius = 10;
+		private const int SphereSlices = 32;
+		private const int SphereStacks = 32;
 
 		private readonly Texture2D back1   = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
 		private readonly Texture2D front1  = new Texture2D( @"Data\SkyBox\CubeMap2\front.png" );
@@ -47,8 +47,9 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		                                       	VelocitySpeed = 20,
 		                                       	StrafeSpeed = 20,
 		                                       };
-		private readonly Cube cube = new Cube( 20, 20, 20 );
-		private readonly Sphere sphere = new Sphere( ShpereRadius, ShpereSlices, ShpereStacks );
+		private readonly Cube cube = new Cube( SphereRadius*2, SphereRadius*2, SphereRadius*2 );
+		private readonly Sphere sphere = new Sphere( SphereRadius, SphereSlices, SphereStacks );
+		private DrawObject currentObject;
 		private readonly Skybox skybox;
 
 		public CubeMapSampleForm()
@@ -58,6 +59,8 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			Renderer.Far = 1000;
 			Renderer.Near = 1;
 			camera.Position.Set( 0, 0, 50 );
+
+			this.currentObject = sphere;
 		}
 
 		protected override void AfterInitGLOverride() 
@@ -106,7 +109,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			OpenGLNative.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
 			
 			textureCubeMap.Use();
-			sphere.Draw();
+			currentObject.Draw();
 			textureCubeMap.UnUse();
 
 			OpenGLNative.MatrixMode( MatrixMode.Texture );
@@ -135,6 +138,9 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		protected override void Update( float elapsed ) 
 		{
 			base.Update( elapsed );
+
+			if (Keyboard.GetValue( Keys.D1 )) currentObject = sphere;
+			if (Keyboard.GetValue( Keys.D2 )) currentObject = cube;
 
 			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
 			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );

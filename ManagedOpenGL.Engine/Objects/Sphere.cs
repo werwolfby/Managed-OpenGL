@@ -17,7 +17,7 @@ using gl = ManagedOpenGL.OpenGLNative;
 
 namespace ManagedOpenGL.Engine.Objects
 {
-	public class Sphere
+	public class Sphere : DrawObject
 	{
 		private float radius;
 		private int slices, stacks;
@@ -99,7 +99,7 @@ namespace ManagedOpenGL.Engine.Objects
 			return slice * stacks + stack;
 		}
 
-		public void Draw()
+		public override void Draw()
 		{
 			gl.PointSize( 5.0f );
 			gl.LineWidth( 3 );
