@@ -13,6 +13,7 @@
 
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
@@ -34,28 +35,20 @@ namespace Test.ManagedOpenGL.ShaderSample
 		                                       	StrafeSpeed = 20,
 		                                       };
 		private readonly Cube cube = new Cube( 20, 20, 20 );
-		private const string vertexShaderText = @"varying vec4 pos;
+		private const string vertexShaderFileName = @"Data\Shader\sample.vert";
+		private const string fragmentShaderFileName = @"Data\Shader\sample.frag";
 
-void main()
-{
-	gl_Position = pos = ftransform();
-}";
-
-		private const string fragmentShaderText = @"varying vec4 pos;
-
-void main()
-{
-	float z = pos.z / pos.w;
-	z = (z + 1) / 2;
-
-	gl_FragColor = vec4( z, z, z, 0 );
-}";
+		private readonly string vertexShaderText;
+		private readonly string fragmentShaderText;
 
 		public ShaderSampleForm()
 		{
 			WindowSize = new Size( 640, 480 );
 			Renderer.Near = 2;
 			Renderer.Far = 200;
+
+			using (var vertReader = new StreamReader( vertexShaderFileName )) vertexShaderText = vertReader.ReadToEnd();
+			using (var fragReader = new StreamReader( fragmentShaderFileName )) fragmentShaderText = fragReader.ReadToEnd();
 		}
 
 		protected override void AfterInitGLOverride() 
@@ -73,11 +66,11 @@ void main()
 			var results = new int[1];
 			gl.CompileShaderARB( vertexShaderObject );
 			OpenGL.GetObjectParameterivARB( vertexShaderObject, ARB_shader_objects.ObjectCompileStatusArb, results );
-			if (results[0] == 0) throw new Exception( "Vertex shader compile error" + OpenGL.GetInfoLog( vertexShaderObject ) );
+			if (results[0] == 0) throw new Exception( "Vertex shader compile error\n" + OpenGL.GetInfoLog( vertexShaderObject ) );
 
 			gl.CompileShaderARB( fragmentShaderObject );
 			OpenGL.GetObjectParameterivARB( fragmentShaderObject, ARB_shader_objects.ObjectCompileStatusArb, results );
-			if (results[0] == 0) throw new Exception( "Fragment shader compile error" + OpenGL.GetInfoLog( fragmentShaderObject ) );
+			if (results[0] == 0) throw new Exception( "Fragment shader compile error\n" + OpenGL.GetInfoLog( fragmentShaderObject ) );
 
 			this.program = gl.CreateProgram();
 			gl.AttachObjectARB( this.program, vertexShaderObject );
