@@ -12,11 +12,18 @@
  *******************************************************/
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace ManagedOpenGL
 {
-	public class OpenGL
+	public static class OpenGL
 	{
+		static OpenGL()
+		{
+			GetObjectParameterivARB = OpenGLNative.GetProcAdress<GetObjectParameterivARBDelegate>( "glGetObjectParameterivARB" );
+			GetInfoLogARB = OpenGLNative.GetProcAdress<GetInfoLogARBDelegate>( "glGetInfoLogARB" );
+		}
+
 		public static unsafe void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels )
 		{
 			OpenGLNative.TexImage2D( target, level, internalformat, width, height, border, format, type, (void*)pixels );
@@ -43,5 +50,21 @@ namespace ManagedOpenGL
 				OpenGLNative.CallLists( length, ListNameType.UnsignedByte, point );
 			}
 		}
+
+		public static string GetInfoLog( uint obj )
+		{
+			var results = new int[1];
+			GetObjectParameterivARB( obj, ARB_shader_objects.ObjectInfoLogLengthArb, results );
+			var infoLog = new char[results[0]];
+			int length;
+			GetInfoLogARB( obj, infoLog.Length, out length, infoLog );
+			return new string( infoLog, 0, Array.FindIndex( infoLog, c => c == char.MinValue ) );
+		}
+
+		public delegate void GetObjectParameterivARBDelegate( uint obj, ARB_shader_objects pname, [Out]int[] @params ); //  extension method
+		public static readonly GetObjectParameterivARBDelegate GetObjectParameterivARB;
+
+		public delegate void GetInfoLogARBDelegate( uint obj, int maxLength, out int length, [Out]char[] infoLog ); //  extension method
+		public static readonly GetInfoLogARBDelegate GetInfoLogARB;
 	}
 }

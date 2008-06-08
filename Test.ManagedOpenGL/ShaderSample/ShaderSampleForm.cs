@@ -1,0 +1,149 @@
+/*******************************************************
+ *
+ * Created by: Alexander Puzynia aka WerWolf
+ * Created: 08.06.2008 21:10
+ *
+ * File: ShaderSampleForm.cs
+ * Remarks:
+ * 
+ * History:
+ *   08.06.2008 21:10 - Create Wireframe
+ *
+ *******************************************************/
+
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using ManagedOpenGL;
+using ManagedOpenGL.Engine.Cameras;
+using ManagedOpenGL.Engine.Math;
+using ManagedOpenGL.Engine.Objects;
+using ManagedOpenGL.Engine.Render;
+using ManagedOpenGL.Engine.Windows;
+
+namespace Test.ManagedOpenGL.ShaderSample
+{
+	using gl=OpenGLNative;
+
+	public class ShaderSampleForm : OpenGLForm
+	{
+		private uint program;
+		private readonly TwoDirCamera camera = new TwoDirCamera
+		                                       {
+		                                       	VelocitySpeed = 20,
+		                                       	StrafeSpeed = 20,
+		                                       };
+		private readonly Cube cube = new Cube( 20, 20, 20 );
+		private const string vertexShaderText = @"varying vec4 pos;
+
+void main()
+{
+	gl_Position = pos = ftransform();
+}";
+
+		private const string fragmentShaderText = @"varying vec4 pos;
+
+void main()
+{
+	float z = pos.z / pos.w;
+	z = (z + 1) / 2;
+
+	gl_FragColor = vec4( z, z, z, 0 );
+}";
+
+		public ShaderSampleForm()
+		{
+			WindowSize = new Size( 640, 480 );
+			Renderer.Near = 2;
+			Renderer.Far = 200;
+		}
+
+		protected override void AfterInitGLOverride() 
+		{
+			base.AfterInitGLOverride();
+
+			camera.Position.Set( 0, 0, 50 );
+
+			var vertexShaderObject = gl.CreateShaderObjectARB( (uint)VERSION_2_0.VertexShader );
+			var fragmentShaderObject = gl.CreateShaderObjectARB( (uint)VERSION_2_0.FragmentShader );
+
+			gl.ShaderSourceARB( vertexShaderObject, 1, new[] { vertexShaderText }, null );
+			gl.ShaderSourceARB( fragmentShaderObject, 1, new[] { fragmentShaderText }, null );
+
+			var results = new int[1];
+			gl.CompileShaderARB( vertexShaderObject );
+			OpenGL.GetObjectParameterivARB( vertexShaderObject, ARB_shader_objects.ObjectCompileStatusArb, results );
+			if (results[0] == 0) throw new Exception( "Vertex shader compile error" + OpenGL.GetInfoLog( vertexShaderObject ) );
+
+			gl.CompileShaderARB( fragmentShaderObject );
+			OpenGL.GetObjectParameterivARB( fragmentShaderObject, ARB_shader_objects.ObjectCompileStatusArb, results );
+			if (results[0] == 0) throw new Exception( "Fragment shader compile error" + OpenGL.GetInfoLog( fragmentShaderObject ) );
+
+			this.program = gl.CreateProgram();
+			gl.AttachObjectARB( this.program, vertexShaderObject );
+			gl.AttachObjectARB( this.program, fragmentShaderObject );
+			gl.LinkProgramARB( this.program );
+
+			OpenGL.GetObjectParameterivARB( this.program, ARB_shader_objects.ObjectLinkStatusArb, results );
+			if (results[0] == 0) throw new Exception( "Shader link error\n" + OpenGL.GetInfoLog( program ) );
+		}
+
+		protected override void Draw() 
+		{
+			OpenGLNative.ClearColor( 1, 1, 1, 1 );
+			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
+			OpenGLNative.LoadMatrixf( camera.Data );
+
+			OpenGLNative.UseProgramObjectARB( program );
+
+			gl.Enable( EnableCap.DepthTest );
+			gl.Enable( EnableCap.CullFace );
+
+			gl.Color3f( 0, 0, 0 );
+			cube.Draw();
+		}
+
+		protected override void OnMouseMove( MouseEventArgs e ) 
+		{
+			base.OnMouseMove( e );
+
+			var oldPosition = this.PointToClient( Cursor.Position );
+			var centerPosition = new Point( ClientSize.Width / 2, ClientSize.Height / 2 );
+
+			if (oldPosition == centerPosition) return;
+
+			var deltaX = - oldPosition.X + centerPosition.X;
+			var deltaY = - oldPosition.Y + centerPosition.Y;
+
+			camera.TurnLeft( deltaX );
+			camera.LookUp( deltaY );
+
+			Cursor.Position = this.PointToScreen( centerPosition );
+		}
+
+		protected override void Update( float elapsed ) 
+		{
+			base.Update( elapsed );
+
+			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
+			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );
+			if (Keyboard.GetValue( Keys.W )) camera.MoveForward( elapsed );
+			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
+			
+			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
+
+			if (Keyboard.GetValue( Keys.ShiftKey ))
+			{
+				camera.VelocitySpeed = 200;
+				camera.StrafeSpeed = 200;
+			}
+			else
+			{
+				camera.VelocitySpeed = 20;
+				camera.StrafeSpeed = 20;
+			}
+		}
+	}
+}

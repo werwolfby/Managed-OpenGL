@@ -1026,7 +1026,7 @@ namespace ManagedOpenGL
 			
 		}
 
-		private static T GetProcAdress<T>( string functionName )
+		public static T GetProcAdress<T>( string functionName )
 			where T : class
 		{
 			var ptr = WindowsOpenGLNative.wglGetProcAddress( functionName );
@@ -2582,7 +2582,7 @@ namespace ManagedOpenGL
 		public static readonly UniformMatrix4fvARBDelegate UniformMatrix4fvARB;
 		public delegate void GetObjectParameterfvARBDelegate( uint obj, uint pname, ref float[] @params ); //  extension method
 		public static readonly GetObjectParameterfvARBDelegate GetObjectParameterfvARB;
-		public delegate void GetObjectParameterivARBDelegate( uint obj, uint pname, ref int[] @params ); //  extension method
+		public delegate void GetObjectParameterivARBDelegate( uint obj, uint pname, [MarshalAs(UnmanagedType.LPArray)]ref int[] @params ); //  extension method
 		public static readonly GetObjectParameterivARBDelegate GetObjectParameterivARB;
 		public delegate void GetInfoLogARBDelegate( uint obj, int maxLength, ref int[] length, ref string[] infoLog ); //  extension method
 		public static readonly GetInfoLogARBDelegate GetInfoLogARB;
