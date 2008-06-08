@@ -151,8 +151,16 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			
 			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
 
-			if (Keyboard.GetValue( Keys.ShiftKey )) camera.VelocitySpeed = 200;
-			else camera.VelocitySpeed = 20;
+			if (Keyboard.GetValue( Keys.ShiftKey ))
+			{
+				camera.VelocitySpeed = 200;
+				camera.StrafeSpeed = 200;
+			}
+			else
+			{
+				camera.VelocitySpeed = 20;
+				camera.StrafeSpeed = 20;
+			}
 		}
 	}
 }
