@@ -48,9 +48,8 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		                                       	StrafeSpeed = 20,
 		                                       };
 		private readonly Cube cube = new Cube( 20, 20, 20 );
+		private readonly Sphere sphere = new Sphere( ShpereRadius, ShpereSlices, ShpereStacks );
 		private readonly Skybox skybox;
-
-		private IntPtr shereQuadric;
 
 		public CubeMapSampleForm()
 		{
@@ -64,8 +63,6 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
-
-			this.shereQuadric = OpenGLUNative.gluNewQuadric();
 
 			textureCubeMap.Load();
 
@@ -105,9 +102,11 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			OpenGLNative.MultMatrixf( camera.InvertData );
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 
+			OpenGLNative.Disable( EnableCap.Texture2d );
+			OpenGLNative.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
+			
 			textureCubeMap.Use();
-			//cube.Draw();
-			OpenGLUNative.gluSphere( shereQuadric, ShpereRadius, ShpereSlices, ShpereStacks );
+			sphere.Draw();
 			textureCubeMap.UnUse();
 
 			OpenGLNative.MatrixMode( MatrixMode.Texture );
@@ -143,6 +142,9 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
 			
 			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
+
+			if (Keyboard.GetValue( Keys.ShiftKey )) camera.VelocitySpeed = 200;
+			else camera.VelocitySpeed = 20;
 		}
 	}
 }
