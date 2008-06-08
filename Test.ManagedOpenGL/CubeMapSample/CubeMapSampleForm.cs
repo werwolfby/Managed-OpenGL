@@ -1,13 +1,13 @@
 /*******************************************************
  *
  * Created by: Alexander Puzynia aka WerWolf
- * Created: 31.05.2008 11:10
+ * Created: 07.06.2008 11:22
  *
- * File: SkyBoxSampleForm.cs
+ * File: CubeMapSampleForm.cs
  * Remarks:
  * 
  * History:
- *   31.05.2008 11:10 - Create Wireframe
+ *   07.06.2008 11:22 - Create Wireframe
  *
  *******************************************************/
 
@@ -15,12 +15,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
+using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Objects;
+using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
 
-namespace Test.ManagedOpenGL.SkyBoxSample
+namespace Test.ManagedOpenGL.CubeMapSample
 {
-	public class SkyBoxSampleForm : OpenGLForm
+	public class CubeMapSampleForm : OpenGLForm
 	{
 		private readonly Texture2D back1   = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
 		private readonly Texture2D front1  = new Texture2D( @"Data\SkyBox\CubeMap2\front.png" );
@@ -29,42 +31,39 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		private readonly Texture2D bottom1 = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
 		private readonly Texture2D top1    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
 
-		private readonly Texture2D back2   = new Texture2D( @"Data\SkyBox\CubeMap1\back.jpg" );
-		private readonly Texture2D front2  = new Texture2D( @"Data\SkyBox\CubeMap1\front.jpg" );
-		private readonly Texture2D left2   = new Texture2D( @"Data\SkyBox\CubeMap1\left.jpg" );
-		private readonly Texture2D right2  = new Texture2D( @"Data\SkyBox\CubeMap1\right.jpg" );
-		private readonly Texture2D bottom2 = new Texture2D( @"Data\SkyBox\CubeMap1\bottom.jpg" );
-		private readonly Texture2D top2    = new Texture2D( @"Data\SkyBox\CubeMap1\top.jpg" );
+		private readonly TextureCubeMap textureCubeMap = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
+		                                                                     @"Data\SkyBox\CubeMap2\front.png",
+		                                                                     @"Data\SkyBox\CubeMap2\left.png",
+		                                                                     @"Data\SkyBox\CubeMap2\right.png",
+		                                                                     @"Data\SkyBox\CubeMap2\bottom.png",
+		                                                                     @"Data\SkyBox\CubeMap2\top.png" );
 
 		private readonly TwoDirCamera camera = new TwoDirCamera
 		                                       {
 		                                       	VelocitySpeed = 20,
-		                                       	StrafeSpeed = 20
+		                                       	StrafeSpeed = 20,
 		                                       };
+		private readonly Cube cube = new Cube( 20, 20, 20 );
+		private readonly Skybox skybox;
 
-		private readonly Skybox skybox1;
-		private readonly Skybox skybox2;
-
-		private Skybox currentSkybox;
-
-		public SkyBoxSampleForm()
+		public CubeMapSampleForm()
 		{
-			this.skybox1 = new Skybox( 200, 200, 200, this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1 );
-			this.skybox2 = new Skybox( 200, 200, 200, this.back2, this.front2, this.left2, this.right2, this.bottom2, this.top2 );
-
-			this.currentSkybox = this.skybox1;
-
+			this.skybox = new Skybox( 300, 300, 300, this.back1, front1, left1, right1, bottom1, top1 );
 			WindowSize = new Size( 640, 480 );
+			Renderer.Far = 1000;
+			Renderer.Near = 1;
+			camera.Position.Set( 0, 0, 50 );
 		}
 
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
 
+			textureCubeMap.Load();
+
 			var textures = new[]
 			               {
 			               	this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1,
-			               	this.back2, this.front2, this.left2, this.right2, this.bottom2, this.top2,
 			               };
 			foreach (var texture in textures)
 			{
@@ -74,12 +73,37 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			}
 		}
 
-		protected override void InitPerspective() 
+		protected override void Draw() 
 		{
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
+			OpenGLNative.ClearColor( 0, 0, 0, 0 );
+			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
+			OpenGLNative.LoadMatrixf( camera.Data );
+
+			OpenGLNative.Enable( EnableCap.Texture2d );
+			OpenGLNative.Enable( EnableCap.DepthTest );
+			OpenGLNative.Enable( EnableCap.CullFace );
+
+			skybox.Draw();
+
+			OpenGLNative.Disable( EnableCap.Texture2d );
+			OpenGLNative.Enable( (EnableCap)VERSION_1_3.TextureCubeMap );
+
+			OpenGLNative.MatrixMode( MatrixMode.Texture );
+			OpenGLNative.PushMatrix();
 			OpenGLNative.LoadIdentity();
-			WindowsOpenGLNative.gluPerspective( 45, (double)this.ClientSize.Width / this.ClientSize.Height, 1, 250 );
-			OpenGLNative.Viewport( 0, 0, this.ClientSize.Width, this.ClientSize.Height );
+			OpenGLNative.Scalef( 1, 1, -1 );
+			OpenGLNative.MultMatrixf( camera.InvertData );
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
+
+			textureCubeMap.Use();
+			cube.Draw();
+			textureCubeMap.UnUse();
+
+			OpenGLNative.MatrixMode( MatrixMode.Texture );
+			OpenGLNative.PopMatrix();
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 		}
 
 		protected override void OnMouseMove( MouseEventArgs e ) 
@@ -100,26 +124,9 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			Cursor.Position = this.PointToScreen( centerPosition );
 		}
 
-		protected override void Draw() 
-		{
-			base.Draw();
-
-			OpenGLNative.ClearColor( 0, 0, 0, 0 );
-			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
-
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-			OpenGLNative.LoadMatrixf( camera.Data );
-
-			OpenGLNative.Enable( EnableCap.Texture2d );
-			this.currentSkybox.Draw();
-		}
-
 		protected override void Update( float elapsed ) 
 		{
 			base.Update( elapsed );
-
-			if (Keyboard.GetValue( Keys.D1 )) currentSkybox = skybox1;
-			if (Keyboard.GetValue( Keys.D2 )) currentSkybox = skybox2;
 
 			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
 			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );

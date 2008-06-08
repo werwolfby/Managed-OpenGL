@@ -65,6 +65,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CubeMapSample\Cube.cs" />
+    <Compile Include="CubeMapSample\CubeMapSampleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FontsSample\FontsSampleForm.cs">
       <SubType>Form</SubType>
     </Compile>

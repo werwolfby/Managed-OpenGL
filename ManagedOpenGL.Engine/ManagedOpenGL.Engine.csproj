@@ -69,6 +69,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windows\Texture2D.cs" />
+    <Compile Include="Windows\TextureCubeMap.cs" />
+    <Compile Include="Windows\TextureHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Windows\OpenGLForm.resx">

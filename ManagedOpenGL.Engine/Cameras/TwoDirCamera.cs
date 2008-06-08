@@ -19,7 +19,7 @@ namespace ManagedOpenGL.Engine.Cameras
 	public class TwoDirCamera : FreeCamera
 	{
 		protected EulerAngle2F eyeDirection = new EulerAngle2F();
-		protected Matrix3F rotInvert = new Matrix3F();
+		protected Matrix4F rotInvert = new Matrix4F();
 
 		protected float pitchSensitivity = 0.0022f;
 		protected float yawSensitivity = 0.0022f;
@@ -36,6 +36,11 @@ namespace ManagedOpenGL.Engine.Cameras
 			set { this.yawSensitivity = value; }
 		}
 
+		public float[] InvertData
+		{
+			get { return this.rotInvert.Data; }
+		}
+
 		public override void Move( float x, float y, float z )
 		{
 			throw new System.NotImplementedException();
@@ -43,7 +48,7 @@ namespace ManagedOpenGL.Engine.Cameras
 
 		public override void MoveLeft( float delta )
 		{
-			var moveSpeed = -delta * streafeSpeed;
+			var moveSpeed = -delta * this.strafeSpeed;
 
 			this.Position.X += rotInvert[0] * moveSpeed;
 			this.Position.Y += rotInvert[1] * moveSpeed;
@@ -52,7 +57,7 @@ namespace ManagedOpenGL.Engine.Cameras
 
 		public override void MoveRight( float delta )
 		{
-			var moveSpeed = +delta * streafeSpeed;
+			var moveSpeed = +delta * this.strafeSpeed;
 
 			this.Position.X += rotInvert[0] * moveSpeed;
 			this.Position.Y += rotInvert[1] * moveSpeed;
@@ -63,36 +68,36 @@ namespace ManagedOpenGL.Engine.Cameras
 		{
 			var moveSpeed = -delta * velocitySpeed;
 
-			this.Position.X += rotInvert[6] * moveSpeed;
-			this.Position.Y += rotInvert[7] * moveSpeed;
-			this.Position.Z += rotInvert[8] * moveSpeed;
+			this.Position.X += rotInvert[08] * moveSpeed;
+			this.Position.Y += rotInvert[09] * moveSpeed;
+			this.Position.Z += rotInvert[10] * moveSpeed;
 		}
 
 		public override void MoveBack( float delta )
 		{
 			var moveSpeed = +delta * velocitySpeed;
 
-			this.Position.X += rotInvert[6] * moveSpeed;
-			this.Position.Y += rotInvert[7] * moveSpeed;
-			this.Position.Z += rotInvert[8] * moveSpeed;
+			this.Position.X += rotInvert[08] * moveSpeed;
+			this.Position.Y += rotInvert[09] * moveSpeed;
+			this.Position.Z += rotInvert[10] * moveSpeed;
 		}
 
 		public override void MoveUp( float delta )
 		{
 			var moveSpeed = -delta * liftSpeed;
 
-			this.Position.X += rotInvert[3] * moveSpeed;
-			this.Position.Y += rotInvert[4] * moveSpeed;
-			this.Position.Z += rotInvert[5] * moveSpeed;
+			this.Position.X += rotInvert[4] * moveSpeed;
+			this.Position.Y += rotInvert[5] * moveSpeed;
+			this.Position.Z += rotInvert[6] * moveSpeed;
 		}
 
 		public override void MoveDown( float delta )
 		{
 			var moveSpeed =  delta * velocitySpeed;
 
-			this.Position.X += rotInvert[6] * moveSpeed;
-			this.Position.Y += rotInvert[7] * moveSpeed;
-			this.Position.Z += rotInvert[8] * moveSpeed;
+			this.Position.X += rotInvert[4] * moveSpeed;
+			this.Position.Y += rotInvert[5] * moveSpeed;
+			this.Position.Z += rotInvert[6] * moveSpeed;
 		}
 
 		public override void TurnLeft( float delta )

@@ -17,7 +17,7 @@ namespace ManagedOpenGL.Engine.Cameras
 	public abstract class FreeCamera : Camera
 	{
 		protected float velocitySpeed = 1;
-		protected float streafeSpeed = 1;
+		protected float strafeSpeed = 1;
 		protected float liftSpeed = 1;
 
 		public abstract void Move( float x, float y, float z );
@@ -43,10 +43,10 @@ namespace ManagedOpenGL.Engine.Cameras
 			set { this.velocitySpeed = value; }
 		}
 
-		public float StreafeSpeed
+		public float StrafeSpeed
 		{
-			get { return this.streafeSpeed; }
-			set { this.streafeSpeed = value; }
+			get { return this.strafeSpeed; }
+			set { this.strafeSpeed = value; }
 		}
 
 		public float LiftSpeed
