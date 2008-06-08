@@ -51,6 +51,7 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\FreeCamera.cs" />
     <Compile Include="Cameras\TwoDirCamera.cs" />
+    <Compile Include="Objects\Cube.cs" />
     <Compile Include="Objects\Skybox.cs" />
     <Compile Include="Render\Renderer.cs" />
     <Compile Include="Math\EulerAngle.cs" />

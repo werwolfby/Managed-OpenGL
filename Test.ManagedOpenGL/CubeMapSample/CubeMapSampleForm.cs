@@ -11,11 +11,11 @@
  *
  *******************************************************/
 
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
-using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
@@ -24,6 +24,10 @@ namespace Test.ManagedOpenGL.CubeMapSample
 {
 	public class CubeMapSampleForm : OpenGLForm
 	{
+		private const float ShpereRadius = 20;
+		private const int ShpereSlices = 32;
+		private const int ShpereStacks = 32;
+
 		private readonly Texture2D back1   = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
 		private readonly Texture2D front1  = new Texture2D( @"Data\SkyBox\CubeMap2\front.png" );
 		private readonly Texture2D left1   = new Texture2D( @"Data\SkyBox\CubeMap2\left.png" );
@@ -46,6 +50,8 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		private readonly Cube cube = new Cube( 20, 20, 20 );
 		private readonly Skybox skybox;
 
+		private IntPtr shereQuadric;
+
 		public CubeMapSampleForm()
 		{
 			this.skybox = new Skybox( 300, 300, 300, this.back1, front1, left1, right1, bottom1, top1 );
@@ -58,6 +64,8 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
+
+			this.shereQuadric = OpenGLUNative.gluNewQuadric();
 
 			textureCubeMap.Load();
 
@@ -98,7 +106,8 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 
 			textureCubeMap.Use();
-			cube.Draw();
+			//cube.Draw();
+			OpenGLUNative.gluSphere( shereQuadric, ShpereRadius, ShpereSlices, ShpereStacks );
 			textureCubeMap.UnUse();
 
 			OpenGLNative.MatrixMode( MatrixMode.Texture );

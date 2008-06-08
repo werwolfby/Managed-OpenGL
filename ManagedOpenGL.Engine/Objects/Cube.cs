@@ -14,7 +14,7 @@
 using System.Runtime.InteropServices;
 using ManagedOpenGL;
 
-namespace Test.ManagedOpenGL.CubeMapSample
+namespace ManagedOpenGL.Engine.Objects
 {
 	public class Cube
 	{

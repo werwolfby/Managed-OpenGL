@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="OpenGL.cs" />
     <Compile Include="OpenGLNative.cs" />
+    <Compile Include="OpenGLUNative.cs" />
     <Compile Include="PixelFormatDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsOpenGLNative.cs" />
