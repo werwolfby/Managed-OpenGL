@@ -66,12 +66,11 @@ namespace ManagedOpenGL.Engine.Objects
 					var sx = (float)(x * System.Math.Cos( stackAngle ));
 					var sz = (float)(x * System.Math.Sin( stackAngle ));
 
-					var len = (float)System.Math.Sqrt( sx * sx + sz * sz + y * y );
-					var nx = sx / len;
-					var ny =  y / len;
-					var nz = sz / len;
+					var nx = sx / radius;
+					var ny =  y / radius;
+					var nz = sz / radius;
 
-					vertices[this.GetIndex( slice, stack )] = new Vertex( sx, y, sz, nx, ny, nz );
+					this.vertices[this.GetIndex( slice, stack )] = new Vertex( sx, y, sz, nx, ny, nz );
 				}
 			}
 
@@ -81,16 +80,16 @@ namespace ManagedOpenGL.Engine.Objects
 			{
 				for (var stack = 0; stack < stacks - 1; stack++)
 				{
-					quadIndeces[(GetIndex( slice, stack )) * 4 + 0] = GetIndex( slice + 0, stack + 0 );
-					quadIndeces[(GetIndex( slice, stack )) * 4 + 1] = GetIndex( slice + 0, stack + 1 );
-					quadIndeces[(GetIndex( slice, stack )) * 4 + 2] = GetIndex( slice + 1, stack + 1 );
-					quadIndeces[(GetIndex( slice, stack )) * 4 + 3] = GetIndex( slice + 1, stack + 0 );
+					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 0] = this.GetIndex( slice + 0, stack + 0 );
+					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 1] = this.GetIndex( slice + 0, stack + 1 );
+					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 2] = this.GetIndex( slice + 1, stack + 1 );
+					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 3] = this.GetIndex( slice + 1, stack + 0 );
 				}
 
-				quadIndeces[(GetIndex( slice, stacks - 1 )) * 4 + 0] = GetIndex( slice + 0, stacks - 1 );
-				quadIndeces[(GetIndex( slice, stacks - 1 )) * 4 + 1] = GetIndex( slice + 0, 0 );
-				quadIndeces[(GetIndex( slice, stacks - 1 )) * 4 + 2] = GetIndex( slice + 1, 0 );
-				quadIndeces[(GetIndex( slice, stacks - 1 )) * 4 + 3] = GetIndex( slice + 1, stacks - 1 );
+				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 0] = this.GetIndex( slice + 0, stacks - 1 );
+				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 1] = this.GetIndex( slice + 0, 0 );
+				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 2] = this.GetIndex( slice + 1, 0 );
+				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 3] = this.GetIndex( slice + 1, stacks - 1 );
 			}
 		}
 

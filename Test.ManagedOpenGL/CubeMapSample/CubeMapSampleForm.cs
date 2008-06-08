@@ -107,6 +107,8 @@ namespace Test.ManagedOpenGL.CubeMapSample
 
 			OpenGLNative.Disable( EnableCap.Texture2d );
 			OpenGLNative.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
+
+			OpenGLNative.Enable( EnableCap.Normalize );
 			
 			textureCubeMap.Use();
 			currentObject.Draw();
