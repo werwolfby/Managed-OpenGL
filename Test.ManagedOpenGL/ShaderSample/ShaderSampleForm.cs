@@ -29,6 +29,10 @@ namespace Test.ManagedOpenGL.ShaderSample
 	public class ShaderSampleForm : OpenGLForm
 	{
 		private uint program;
+		private int lightPositionLocation;
+		private int BrickColorLocation, MortalColorLocation;
+		private int BrickSizeLocation;
+		private int BrickPctLocation;
 		private readonly TwoDirCamera camera = new TwoDirCamera
 		                                       {
 		                                       	VelocitySpeed = 20,
@@ -79,6 +83,12 @@ namespace Test.ManagedOpenGL.ShaderSample
 
 			OpenGL.GetObjectParameterivARB( this.program, ARB_shader_objects.ObjectLinkStatusArb, results );
 			if (results[0] == 0) throw new Exception( "Shader link error\n" + OpenGL.GetInfoLog( program ) );
+
+			this.lightPositionLocation = OpenGLNative.GetUniformLocationARB( program, "LightPosition" );
+			this.BrickColorLocation = OpenGLNative.GetUniformLocationARB( program, "BrickColor" );
+			this.MortalColorLocation = OpenGLNative.GetUniformLocationARB( program, "MortalColor" );
+			this.BrickSizeLocation = OpenGLNative.GetUniformLocationARB( program, "BrickSize" );
+			this.BrickPctLocation = OpenGLNative.GetUniformLocationARB( program, "BrickPct" );
 		}
 
 		protected override void Draw() 
@@ -90,6 +100,10 @@ namespace Test.ManagedOpenGL.ShaderSample
 			OpenGLNative.LoadMatrixf( camera.Data );
 
 			OpenGLNative.UseProgramObjectARB( program );
+			OpenGLNative.Uniform3fARB( BrickColorLocation, 1, 0, 0 );
+			OpenGLNative.Uniform3fARB( MortalColorLocation, 1, 1, 1 );
+			OpenGLNative.Uniform2fARB( BrickSizeLocation, 0.35f*3, 0.15f*3 );
+			OpenGLNative.Uniform2fARB( BrickPctLocation, 0.90f, 0.85f );
 
 			gl.Enable( EnableCap.DepthTest );
 			gl.Enable( EnableCap.CullFace );

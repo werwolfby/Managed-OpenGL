@@ -2588,7 +2588,7 @@ namespace ManagedOpenGL
 		public static readonly GetInfoLogARBDelegate GetInfoLogARB;
 		public delegate void GetAttachedObjectsARBDelegate( uint containerObj, int maxCount, ref int[] count, ref uint[] obj ); //  extension method
 		public static readonly GetAttachedObjectsARBDelegate GetAttachedObjectsARB;
-		public delegate int GetUniformLocationARBDelegate( uint programObj, string[] name ); //  extension method
+		public delegate int GetUniformLocationARBDelegate( uint programObj, string name ); //  extension method
 		public static readonly GetUniformLocationARBDelegate GetUniformLocationARB;
 		public delegate void GetActiveUniformARBDelegate( uint programObj, uint index, int maxLength, ref int[] length, ref int[] size, ref uint[] type, ref string[] name ); //  extension method
 		public static readonly GetActiveUniformARBDelegate GetActiveUniformARB;
