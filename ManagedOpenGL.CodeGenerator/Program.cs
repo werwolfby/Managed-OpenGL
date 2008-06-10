@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ManagedOpenGL.CodeGenerator
 {
-	class Program
+	static class Program
 	{
 		static void Main( string[] args )
 		{
@@ -45,10 +45,40 @@ namespace ManagedOpenGL.CodeGenerator
 
 			var nativeGenerator = new NativeGenerator();
 
-			using (var writer = new StreamWriter( @"..\..\..\ManagedOpenGL\OpenGLNative.cs" ))
+			var functionCategoryDictionary = new Dictionary<string, List<Function>>();
+
+			foreach (var function in functions)
 			{
-				writer.WriteLine( nativeGenerator.Main( functions, typeMapList, csTypeMapList, enumDatas ) );
+				var category = function.GetValueOptions( "category" );
+				if (string.IsNullOrEmpty( category )) category = "Native";
+				functionCategoryDictionary.GetList( category ).Add( function );
 			}
+
+			var first = true;
+
+			foreach (var keyValuePair in functionCategoryDictionary)
+			{
+				var directory = @"..\..\..\ManagedOpenGL\Native\";
+				if (!Directory.Exists( directory )) Directory.CreateDirectory( directory );
+				using (var writer = new StreamWriter( directory + @"OpenGLNative." + keyValuePair.Key + @".cs" ))
+				{
+					writer.WriteLine( nativeGenerator.Main( keyValuePair.Value, typeMapList, csTypeMapList, enumDatas, first,
+					                                        keyValuePair.Key, functionCategoryDictionary.Keys ) );
+				}
+				first = false;
+			}
+		}
+
+		static List<Function> GetList( this IDictionary<string, List<Function>> dictionary, string category )
+		{
+			List<Function> list;
+			if (!dictionary.TryGetValue( category, out list ))
+			{
+				list = new List<Function>();
+				dictionary.Add( category, list );
+			}
+
+			return list;
 		}
 
 		static IList<TypeMap> ParseTypeMapList( string filename )

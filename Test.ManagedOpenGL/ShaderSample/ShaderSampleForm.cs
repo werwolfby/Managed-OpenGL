@@ -69,11 +69,11 @@ namespace Test.ManagedOpenGL.ShaderSample
 
 			var results = new int[1];
 			gl.CompileShaderARB( vertexShaderObject );
-			OpenGL.GetObjectParameterivARB( vertexShaderObject, ARB_shader_objects.ObjectCompileStatusArb, results );
+			gl.GetObjectParameterivARB( vertexShaderObject, (uint)ARB_shader_objects.ObjectCompileStatusArb, results );
 			if (results[0] == 0) throw new Exception( "Vertex shader compile error\n" + OpenGL.GetInfoLog( vertexShaderObject ) );
 
 			gl.CompileShaderARB( fragmentShaderObject );
-			OpenGL.GetObjectParameterivARB( fragmentShaderObject, ARB_shader_objects.ObjectCompileStatusArb, results );
+			gl.GetObjectParameterivARB( fragmentShaderObject, (uint)ARB_shader_objects.ObjectCompileStatusArb, results );
 			if (results[0] == 0) throw new Exception( "Fragment shader compile error\n" + OpenGL.GetInfoLog( fragmentShaderObject ) );
 
 			this.program = gl.CreateProgram();
@@ -81,8 +81,10 @@ namespace Test.ManagedOpenGL.ShaderSample
 			gl.AttachObjectARB( this.program, fragmentShaderObject );
 			gl.LinkProgramARB( this.program );
 
-			OpenGL.GetObjectParameterivARB( this.program, ARB_shader_objects.ObjectLinkStatusArb, results );
+			gl.GetObjectParameterivARB( this.program, (uint)ARB_shader_objects.ObjectLinkStatusArb, results );
 			if (results[0] == 0) throw new Exception( "Shader link error\n" + OpenGL.GetInfoLog( program ) );
+
+			var log = OpenGL.GetInfoLog( program );
 
 			this.lightPositionLocation = OpenGLNative.GetUniformLocationARB( program, "LightPosition" );
 			this.BrickColorLocation = OpenGLNative.GetUniformLocationARB( program, "BrickColor" );

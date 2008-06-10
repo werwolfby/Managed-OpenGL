@@ -1,39 +1,50 @@
 ﻿<%ruleclass NativeGenerator%>
 <%using System%>
 <%using System.Collections.Generic%>
+<%using ManagedOpenGL.CodeGenerator.Rules%>
 <%using WolfGenerator.Core%>
 <%using ManagedOpenGL.CodeGenerator%>
 
-<%rule Main( IEnumerable<Function> functionList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
+<%rule Main( IEnumerable<Function> functionList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas, bool first, string name, IEnumerable<string> names )%>
 using System;
 using System.Runtime.InteropServices;
 
 namespace ManagedOpenGL
 {
-	public static class OpenGLNative
-	{
-		unsafe static OpenGLNative()
+	public static partial class OpenGLNative
+	{	
+		static void OpenGLNative<%= name.ToCSName() %>Init()
 		{
 			<%apply GetFunction( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from functionList%>			
 		}
+		
+<%% if (first) {%>		
+		static OpenGLNative()
+		{
+			<%apply GenetateCallInit( item ) from names%>
+		}
 
-		private static T GetProcAdress<T>( string functionName )
+		public static T GetProcAdress<T>( string functionName )
 			where T : class
 		{
 			var ptr = WindowsOpenGLNative.wglGetProcAddress( functionName );
 			if (ptr == IntPtr.Zero) return null;
 			return Marshal.GetDelegateForFunctionPointer( ptr, typeof(T) ) as T;
 		}
+<%%}%>
 	
 		<%apply GenerateFunction( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from functionList%>
 	}
 }
 <%end rule%>
 
+<%rule GenetateCallInit( string name )%>
+OpenGLNative<%= name.ToCSName() %>Init();<%end rule%>
+
 <%rule GetFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
 <%%if ((function.Version == null || (function.Version.MajorVersion <= 1 && function.Version.MinorVersion <= 1)) && !function.Contains( "extension" )) 
 	return "";%>
-<%= function.Name %> = GetProcAdress< <%= function.Name %>Delegate >( "gl<%= function.Name %>" );
+_<%= function.Name %> = GetProcAdress< <%= function.Name %>Delegate >( "gl<%= function.Name %>" );
 <%end rule%>
 
 <%method string GenerateFunction( Function function, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
@@ -55,8 +66,27 @@ public <%%if (function.IsUnsafeMethod(typeMapList, csTypeMapList)){%>unsafe <%%}
 		<%apply GenerateParam( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from function.ParamList%>
 	<%end join%> ); // <%%if (function.Contains( "extension" )){%> extension method<%%}%>
 
-public static readonly <%= function.Name %>Delegate <%= function.Name %>;
+private static <%= function.Name %>Delegate _<%= function.Name %>;
+
+public static <%%if (function.IsUnsafeMethod(typeMapList, csTypeMapList)){%>unsafe <%%}%> <%= function.Return.GetCSName( typeMapList, csTypeMapList, enumDatas ) %> <%= function.Name %>( <%join ", " IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas, Function function%>
+		<%apply GenerateParam( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from function.ParamList%>
+	<%end join%> )
+{
+	if (_<%= function.Name %> == null) throw new Exception( "Extension method <%= function.Name %> not found" );
+	<%% if (function.Return.ReturnType != "void"){%>return <%%}%> _<%= function.Name %>( <%join ", " IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas, Function function%>
+		<%apply GenerateParamName( item, typeMapList, csTypeMapList, enumDatas ) IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas from function.ParamList%>
+	<%end join%> );
+}
 <%end rule%>
 
-<%rule GenerateParam( ParamFunctionOption p, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
+<%rule GenerateParamName( ValueParamFunctionOption p, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
+<%%if (p.Direction == "out"){%>ref <%%}%><%= p.ParamName.GetCSName() %><%end rule%>
+
+<%rule GenerateParamName( ArrayParamFunctionOption p, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
+<%= p.ParamName.GetCSName() %><%end rule%>
+
+<%rule GenerateParam( ValueParamFunctionOption p, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
 <%%if (p.Direction == "out"){%>ref <%%}%><%= p.GetCSName( typeMapList, csTypeMapList, enumDatas ) %> <%= p.ParamName.GetCSName() %><%end rule%>
+
+<%rule GenerateParam( ArrayParamFunctionOption p, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IList<EnumData> enumDatas )%>
+<%%if (p.Direction == "out"){%>[Out]<%%}%><%= p.GetCSName( typeMapList, csTypeMapList, enumDatas ) %> <%= p.ParamName.GetCSName() %><%end rule%>

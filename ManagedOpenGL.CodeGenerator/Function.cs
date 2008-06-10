@@ -44,7 +44,7 @@ namespace ManagedOpenGL.CodeGenerator
 				if ((csTypeMap != null && csTypeMap.LanguageName == "void") || typeMap.LanguageName.PointDeep > 0) return true;
 			}
 
-			return false;
+			return this.Return.ReturnType == "VoidPointer";
 		}
 
 		public static bool IsFunctionLine( string line )
@@ -76,6 +76,13 @@ namespace ManagedOpenGL.CodeGenerator
 		public bool Contains( string option )
 		{
 			return options.FirstOrDefault( functionOption => functionOption.Name == option ) != null;
+		}
+
+		public string GetValueOptions( string option )
+		{
+			var optionData = this.options.FirstOrDefault( functionOption => functionOption.Name == option );
+			if (optionData == null || !(optionData is OtherTailFunctionOption)) return null;
+			return ((OtherTailFunctionOption)optionData).Tail;
 		}
 	}
 }

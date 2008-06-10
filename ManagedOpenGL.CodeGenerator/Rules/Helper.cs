@@ -22,5 +22,10 @@ namespace ManagedOpenGL.CodeGenerator.Rules
 			if (text.Length == 0) return text;
 			return Char.ToUpper( text[0] ) + text.Substring( 1 ).ToLower();
 		}
+
+		public static string ToCSName( this string name )
+		{
+			return name.Replace( '-', '_' );
+		}
 	}
 }

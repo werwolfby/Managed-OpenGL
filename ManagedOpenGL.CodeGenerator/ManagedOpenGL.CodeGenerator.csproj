@@ -54,6 +54,7 @@
     <Compile Include="EnumSpecParser.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="FunctionOption.cs" />
+    <Compile Include="FunctionOptionExtension.cs" />
     <Compile Include="GlSpecParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
