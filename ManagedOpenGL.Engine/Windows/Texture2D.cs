@@ -42,6 +42,11 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public bool Loaded { get; private set; }
 
+		public uint Id
+		{
+			get { return this.id; }
+		}
+
 		public void Load()
 		{
 			using (var bitmap = new Bitmap( fileName ))

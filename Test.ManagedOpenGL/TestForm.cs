@@ -4,6 +4,7 @@ using ManagedOpenGL.Engine.Windows;
 using Test.ManagedOpenGL.CubeMapSample;
 using Test.ManagedOpenGL.FontsSample;
 using Test.ManagedOpenGL.MultiTextureSample;
+using Test.ManagedOpenGL.NormalMapSample;
 using Test.ManagedOpenGL.ShaderSample;
 using Test.ManagedOpenGL.SkyBoxSample;
 
@@ -39,6 +40,11 @@ namespace Test.ManagedOpenGL
 		private void button5_Click( object sender, EventArgs e )
 		{
 			RunSample<ShaderSampleForm>();
+		}
+
+		private void button6_Click( object sender, EventArgs e )
+		{
+			RunSample<NormalMapSampleForm>();
 		}
 
 		private void RunSample<T>()
