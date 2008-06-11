@@ -6,10 +6,8 @@ varying vec3 eyeDirection;
 void main()
 {
 	vec3 textureNormal = vec3( texture2D( normalMap, gl_TexCoord[0].st ) );
-	
-	//textureNormal.z *= -1;
 
-	vec3 normal = (textureNormal - vec3(0.5)) * 0.5;
+	vec3 normal = (textureNormal - vec3(0.5)) * 2;
 	
 	float delta = dot( normal, normalize(eyeDirection) );
 
