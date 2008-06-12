@@ -14,6 +14,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
 using ManagedOpenGL.Engine.Math;
@@ -40,6 +41,10 @@ namespace Test.ManagedOpenGL.NormalMapSample
 
 			public Vector3F CamPosition { get; set; }
 
+			public int TangentAttribLocation { get; private set; }
+
+			public int BinormalAttribLocation { get; private set; }
+
 			protected override void AfterLink() 
 			{
 				base.AfterLink();
@@ -47,6 +52,9 @@ namespace Test.ManagedOpenGL.NormalMapSample
 				this.textureSamplerLocation = GetUniformLocation( "texture" );
 				this.normalMapSamplerLocation = GetUniformLocation( "normalMap" );
 				this.camPositionLocation = GetUniformLocation( "camPosition" );
+
+				this.TangentAttribLocation = GetAttribLocation( "tangent" );
+				this.BinormalAttribLocation = GetAttribLocation( "binormal" );
 			}
 
 			public override void Use() 
@@ -55,14 +63,45 @@ namespace Test.ManagedOpenGL.NormalMapSample
 
 				OpenGLNative.Uniform1iARB( this.textureSamplerLocation, this.TextureUnit );
 				OpenGLNative.Uniform1iARB( this.normalMapSamplerLocation, this.NormalMapUnit );
-				OpenGLNative.Uniform3fARB( this.camPositionLocation, this.CamPosition.X, this.CamPosition.Y, this.CamPosition.Z );
+				OpenGLNative.Uniform3fvARB( this.camPositionLocation, 1, this.CamPosition.Data );
+			}
+		}
+
+		private class ExtCube : Cube
+		{
+			public ExtCube( float width, float height, float length ) : base( width, height, length ) {}
+
+			public void Draw( uint tangentAttribLocation, uint binormalAttribLocation )
+			{
+				unsafe
+				{
+					var stride = Marshal.SizeOf( typeof(Vertex) );
+
+					fixed (float* v = this.vertices[0].position, t = this.vertices[0].texCoord, n = this.vertices[0].normal,
+						bn = this.vertices[0].binormal, tn = this.vertices[0].tangent)
+					{
+						OpenGLNative.EnableClientState( EnableCap.VertexArray );
+						OpenGLNative.EnableClientState( EnableCap.TextureCoordArray );
+						OpenGLNative.EnableClientState( EnableCap.NormalArray );
+						OpenGLNative.EnableVertexAttribArrayARB( tangentAttribLocation );
+						OpenGLNative.EnableVertexAttribArrayARB( binormalAttribLocation );
+						
+						OpenGLNative.VertexPointer( 3, VertexPointerType.Float, stride, v );
+						OpenGLNative.TexCoordPointer( 2, TexCoordPointerType.Float, stride, t );
+						OpenGLNative.NormalPointer( NormalPointerType.Float, stride, n );
+                        OpenGLNative.VertexAttribPointerARB( tangentAttribLocation, 3, (uint)DataType.Float, false, stride, tn );
+						OpenGLNative.VertexAttribPointerARB( binormalAttribLocation, 3, (uint)DataType.Float, false, stride, bn );
+
+						OpenGLNative.DrawArrays( BeginMode.Quads, 0, 6 * 4 );
+					}
+				}
 			}
 		}
 
 		private const string vertexShaderFileName = "Data\\NormalMap\\shader.vert";
 		private const string fragmentShaderFileName = "Data\\NormalMap\\shader.frag";
 
-		private readonly Cube cube = new Cube( 20, 20, 20 );
+		private readonly ExtCube cube = new ExtCube( 20, 20, 20 );
 		private readonly Texture2D texture = new Texture2D( "Data\\NormalMap\\Fieldstone.png" );
 		private readonly Texture2D normalMapTexture = new Texture2D( "Data\\NormalMap\\FieldstoneBumpDOT3.png" );
 
@@ -110,6 +149,7 @@ namespace Test.ManagedOpenGL.NormalMapSample
 
 			shaderProgram.TextureUnit = 0;
 			shaderProgram.NormalMapUnit = 1;
+			shaderProgram.CamPosition = camera.Position;
 		}
 
 		protected override void Draw() 
@@ -120,7 +160,7 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			gl.MatrixMode( MatrixMode.Modelview );
 			gl.LoadMatrixf( camera.Data );
 
-			gl.Enable( EnableCap.CullFace );
+			gl.Disable( EnableCap.CullFace );
 			gl.Enable( EnableCap.DepthTest );
 
 			gl.ActiveTextureARB( (uint)ARB_multitexture.Texture0Arb );
@@ -129,9 +169,8 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			normalMapTexture.Use();
 
 			gl.Color3f( 1, 1, 1 );
-			shaderProgram.CamPosition = camera.Position;
 			shaderProgram.Use();
-			cube.Draw();
+			cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
 		}
 	}
 }

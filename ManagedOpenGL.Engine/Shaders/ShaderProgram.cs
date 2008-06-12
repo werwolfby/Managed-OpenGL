@@ -64,5 +64,10 @@ namespace ManagedOpenGL.Engine.Shaders
 		{
 			return OpenGLNative.GetUniformLocationARB( handle, name );
 		}
+
+		protected int GetAttribLocation( string name )
+		{
+			return OpenGLNative.GetAttribLocationARB( handle, name );
+		}
 	}
 }
