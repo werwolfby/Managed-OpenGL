@@ -12,7 +12,7 @@
  *******************************************************/
 
 using System.Runtime.InteropServices;
-
+using ManagedOpenGL.Engine.Math;
 using gl = ManagedOpenGL.OpenGLNative;
 
 namespace ManagedOpenGL.Engine.Objects
@@ -23,14 +23,17 @@ namespace ManagedOpenGL.Engine.Objects
 		private int slices, stacks;
 
 		[StructLayout(LayoutKind.Sequential)]
-		private unsafe struct Vertex
+		protected unsafe struct Vertex
 		{
 			public fixed float position [3];
 			public fixed float normal [3];
+			public fixed float binormal [3];
+			public fixed float tangent [3];
 
-			public Vertex( float x, float y, float z, float nx, float ny, float nz )
+			public Vertex( float x, float y, float z, float nx, float ny, float nz, float bnx, float bny, float bnz, 
+				float tx, float ty, float tz )
 			{
-				fixed (float* pos = this.position, norm = this.normal)
+				fixed (float* pos = this.position, norm = this.normal, b = binormal, tn = tangent)
 				{
 					pos[0] = x;
 					pos[1] = y;
@@ -39,12 +42,20 @@ namespace ManagedOpenGL.Engine.Objects
 					norm[0] = nx;
 					norm[1] = ny;
 					norm[2] = nz;
+
+					b[0] = bnx;
+					b[1] = bny;
+					b[2] = bnz;
+
+					tn[0] = tx;
+					tn[1] = ty;
+					tn[2] = tz;
 				}
 			}
 		}
 
-		private readonly Vertex[] vertices;
-		private readonly int[] quadIndeces;
+		protected readonly Vertex[] vertices;
+		protected readonly int[] quadIndeces;
 
 		public Sphere( float radius, int slices, int stacks )
 		{
@@ -57,8 +68,11 @@ namespace ManagedOpenGL.Engine.Objects
 			for (var slice = 0; slice <= slices; slice++)
 			{
 				var sliceAngle =  - slice * System.Math.PI / slices + System.Math.PI / 2;
-				var y = (float)(radius * System.Math.Sin( sliceAngle ));
 				var x = (float)(radius * System.Math.Cos( sliceAngle ));
+				var y = (float)(radius * System.Math.Sin( sliceAngle ));
+
+				var sliceNormalX = -y / radius;
+				var sliceNormalY = x / radius;
 
 				for (var stack = 0; stack < stacks; stack++)
 				{
@@ -66,11 +80,22 @@ namespace ManagedOpenGL.Engine.Objects
 					var sx = (float)(x * System.Math.Cos( stackAngle ));
 					var sz = (float)(x * System.Math.Sin( stackAngle ));
 
+					var rotSliceNormalX = (float)(sliceNormalX * System.Math.Cos( stackAngle ));
+					var rotSliceNormalY = sliceNormalY;
+					var rotSliceNormalZ = (float)(sliceNormalX * System.Math.Sin( stackAngle ));
+
 					var nx = sx / radius;
 					var ny =  y / radius;
 					var nz = sz / radius;
 
-					this.vertices[this.GetIndex( slice, stack )] = new Vertex( sx, y, sz, nx, ny, nz );
+					var binormal = new Vector3F( rotSliceNormalX, rotSliceNormalY, rotSliceNormalZ );
+					var normal = new Vector3F( nx, ny, nz );
+					var tangent = normal ^ binormal;
+
+					this.vertices[this.GetIndex( slice, stack )] =
+						new Vertex( sx, y, sz, nx, ny, nz,
+						            rotSliceNormalX, rotSliceNormalY, rotSliceNormalZ,
+						            tangent.X, tangent.Y, tangent.Z );
 				}
 			}
 
