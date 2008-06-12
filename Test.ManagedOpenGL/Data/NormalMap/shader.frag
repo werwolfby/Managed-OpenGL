@@ -9,7 +9,9 @@ void main()
 
 	vec3 normal = (textureNormal - vec3(0.5)) * 2;
 	
-	float delta = dot( normal, normalize(eyeDirection) );
+	float delta = max( dot( normal, normalize(eyeDirection) ), 0.05 );
 
 	gl_FragColor = texture2D( texture, gl_TexCoord[0].st ) * delta;
+	//gl_FragColor = vec4( vec3( delta ), 1 );
+	//gl_FragColor = vec4( textureNormal, 1 );
 }

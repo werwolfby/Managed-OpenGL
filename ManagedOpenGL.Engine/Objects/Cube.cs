@@ -76,10 +76,10 @@ namespace ManagedOpenGL.Engine.Objects
 			                   	{ + width / 2, + height / 2, - length / 2 },
 			                   };
 
-			Fill( 0, cornerPoints, 0, 1, 3, 2, 0, 0, +1, 0, 0, +1, -1, 0, 0 ); // back
-			Fill( 1, cornerPoints, 5, 4, 6, 7, 0, 0, -1, 0, 0, +1, +1, 0, 0 ); // front
-			Fill( 2, cornerPoints, 4, 0, 2, 6, -1, 0, 0, 0, 0, +1, 0, 0, -1 ); // left
-			Fill( 3, cornerPoints, 1, 5, 7, 3, +1, 0, 0, 0, 0, +1, 0, 0, +1 ); // right
+			Fill( 0, cornerPoints, 0, 1, 3, 2, 0, 0, +1, 0, +1, 0, -1, 0, 0 ); // back
+			Fill( 1, cornerPoints, 5, 4, 6, 7, 0, 0, -1, 0, +1, 0, +1, 0, 0 ); // front
+			Fill( 2, cornerPoints, 4, 0, 2, 6, -1, 0, 0, 0, +1, 0, 0, 0, -1 ); // left
+			Fill( 3, cornerPoints, 1, 5, 7, 3, +1, 0, 0, 0, +1, 0, 0, 0, +1 ); // right
 			Fill( 4, cornerPoints, 1, 0, 4, 5, 0, -1, 0, 0, 0, -1, +1, 0, 0 ); // bottom
 			Fill( 5, cornerPoints, 7, 6, 2, 3, 0, +1, 0, 0, 0, +1, +1, 0, 0 ); // top
 		}

@@ -14,13 +14,13 @@ void main()
 	vec3 t = normalize( gl_NormalMatrix * tangent );
 	vec3 b = normalize( gl_NormalMatrix * binormal );
 	
-	vec3 eyeD = vec3( gl_ModelViewMatrix * gl_Vertex );
+	vec3 eyeD = normalize( vec3( gl_ModelViewMatrix * gl_Vertex ) );
 	
 	eyeDirection.x = dot( eyeD, t );
 	eyeDirection.y = dot( eyeD, b );
 	eyeDirection.z = dot( eyeD, n );
 	
-	eyeDirection *= -1;
+	eyeDirection.z *= -1;
 	
 	//eyeDirection = normalize( camPosition - vec3( gl_Vertex ) );
 }

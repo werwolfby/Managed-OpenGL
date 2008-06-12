@@ -169,6 +169,7 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			normalMapTexture.Use();
 
 			gl.Color3f( 1, 1, 1 );
+			shaderProgram.CamPosition = camera.Position;
 			shaderProgram.Use();
 			cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
 		}
