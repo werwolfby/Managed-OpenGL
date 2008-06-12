@@ -98,12 +98,55 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			}
 		}
 
+		private class ExtSphere : Sphere
+		{
+			public ExtSphere( float radius, int slices, int stacks ) : base( radius, slices, stacks ) {}
+
+			public void Draw( uint tangentAttribLocation, uint binormalAttribLocation )
+			{
+				var stride = Marshal.SizeOf( typeof(Vertex) );
+
+				unsafe
+				{
+					fixed (Vertex* v = &this.vertices[0])
+					fixed (int* ind = this.quadIndeces)
+					{
+						var b = (byte*)v;
+
+						gl.EnableClientState( EnableCap.VertexArray );
+						gl.EnableClientState( EnableCap.TextureCoordArray );
+						gl.EnableClientState( EnableCap.NormalArray );
+						gl.EnableVertexAttribArrayARB( tangentAttribLocation );
+						gl.EnableVertexAttribArrayARB( binormalAttribLocation );
+
+						gl.VertexPointer( 3, VertexPointerType.Float, stride, b + Vertex.PositionOffset );
+						gl.NormalPointer( NormalPointerType.Float, stride, b + Vertex.NormalOffset );
+						gl.TexCoordPointer( 3, TexCoordPointerType.Float, stride, b + Vertex.TexCoordOffset );
+                        gl.VertexAttribPointerARB( tangentAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.TangentOffset );
+						gl.VertexAttribPointerARB( binormalAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.BinormalOffset );
+
+						gl.DrawElements( BeginMode.Quads, quadIndeces.Length, (uint)DataType.UnsignedInt, ind );
+					}
+				}
+			}
+		}
+
 		private const string vertexShaderFileName = "Data\\NormalMap\\shader.vert";
 		private const string fragmentShaderFileName = "Data\\NormalMap\\shader.frag";
 
 		private readonly ExtCube cube = new ExtCube( 20, 20, 20 );
-		private readonly Texture2D texture = new Texture2D( "Data\\NormalMap\\Fieldstone.png" );
-		private readonly Texture2D normalMapTexture = new Texture2D( "Data\\NormalMap\\FieldstoneBumpDOT3.png" );
+		private readonly ExtSphere sphere = new ExtSphere( 20, 24, 24 );
+
+		private readonly Texture2D texture = new Texture2D( "Data\\NormalMap\\Fieldstone.png" )
+		                                     {
+		                                     	WrapS = TextureWrapMode.Repeat,
+		                                     	WrapT = TextureWrapMode.Repeat
+		                                     };
+		private readonly Texture2D normalMapTexture = new Texture2D( "Data\\NormalMap\\FieldstoneBumpDOT3.png" )
+		                                     {
+		                                     	WrapS = TextureWrapMode.Repeat,
+		                                     	WrapT = TextureWrapMode.Repeat
+		                                     };
 
 		private readonly VertexShader vertexShader = VertexShader.Load( vertexShaderFileName );
 		private readonly FragmentShader fragmentShader = FragmentShader.Load( fragmentShaderFileName );
@@ -152,26 +195,40 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			shaderProgram.CamPosition = camera.Position;
 		}
 
+		private double alpha = 0.0;
+
 		protected override void Draw() 
 		{
 			gl.ClearColor( 0, 0, 0, 0 );
 			gl.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
-			gl.MatrixMode( MatrixMode.Modelview );
-			gl.LoadMatrixf( camera.Data );
-
 			gl.Disable( EnableCap.CullFace );
 			gl.Enable( EnableCap.DepthTest );
 
 			gl.ActiveTextureARB( (uint)ARB_multitexture.Texture0Arb );
+			gl.MatrixMode( MatrixMode.Texture );
+			gl.LoadIdentity();
+			gl.Scalef( 3, 3, 1 );
 			texture.Use();
 			gl.ActiveTextureARB( (uint)ARB_multitexture.Texture1Arb );
 			normalMapTexture.Use();
 
+			gl.MatrixMode( MatrixMode.Modelview );
+			gl.LoadMatrixf( camera.Data );
+			gl.Rotated( alpha, 0, 1, 0 );
+
 			gl.Color3f( 1, 1, 1 );
 			shaderProgram.CamPosition = camera.Position;
 			shaderProgram.Use();
-			cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
+			sphere.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
+			//cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
+		}
+
+		protected override void Update( float elapsed ) 
+		{
+			alpha += 1 * 90 * elapsed;
+
+			base.Update( elapsed );
 		}
 	}
 }

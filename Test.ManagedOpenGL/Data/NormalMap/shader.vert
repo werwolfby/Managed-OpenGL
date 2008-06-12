@@ -8,7 +8,7 @@ attribute vec3 binormal;
 void main()
 {
 	gl_Position = ftransform();
-	gl_TexCoord[0] = gl_MultiTexCoord0;
+	gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
 	
 	vec3 n = normalize( gl_NormalMatrix * gl_Normal );
 	vec3 t = normalize( gl_NormalMatrix * tangent );
