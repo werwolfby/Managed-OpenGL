@@ -60,6 +60,10 @@
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
     <Compile Include="Render\RenderMode.cs" />
+    <Compile Include="Shaders\FragmentShader.cs" />
+    <Compile Include="Shaders\ShaderProgram.cs" />
+    <Compile Include="Shaders\Shader.cs" />
+    <Compile Include="Shaders\VertexShader.cs" />
     <Compile Include="Windows\Font.cs" />
     <Compile Include="Windows\HiResTimer.cs" />
     <Compile Include="Windows\Keyboard.cs" />
