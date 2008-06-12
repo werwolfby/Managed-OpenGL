@@ -25,19 +25,29 @@ namespace ManagedOpenGL.Engine.Objects
 		[StructLayout(LayoutKind.Sequential)]
 		protected unsafe struct Vertex
 		{
+			public const int PositionOffset = 0;
+			public const int NormalOffset = PositionOffset + 3*sizeof(float);
+			public const int BinormalOffset = NormalOffset + 3*sizeof(float);
+			public const int TangentOffset = BinormalOffset + 3*sizeof(float);
+			public const int TexCoordOffset = TangentOffset + 3*sizeof(float);
+
 			public fixed float position [3];
 			public fixed float normal [3];
 			public fixed float binormal [3];
 			public fixed float tangent [3];
+			public fixed float texCoord [2];
 
 			public Vertex( float x, float y, float z, float nx, float ny, float nz, float bnx, float bny, float bnz, 
-				float tx, float ty, float tz )
+				float tx, float ty, float tz, float s, float t )
 			{
-				fixed (float* pos = this.position, norm = this.normal, b = binormal, tn = tangent)
+				fixed (float* pos = this.position, tex = texCoord, norm = this.normal, b = binormal, tn = tangent)
 				{
 					pos[0] = x;
 					pos[1] = y;
 					pos[2] = z;
+
+					tex[0] = s;
+					tex[1] = t;
 
 					norm[0] = nx;
 					norm[1] = ny;
@@ -95,7 +105,7 @@ namespace ManagedOpenGL.Engine.Objects
 					this.vertices[this.GetIndex( slice, stack )] =
 						new Vertex( sx, y, sz, nx, ny, nz,
 						            rotSliceNormalX, rotSliceNormalY, rotSliceNormalZ,
-						            tangent.X, tangent.Y, tangent.Z );
+						            tangent.X, tangent.Y, tangent.Z, (float)stack / (stacks - 1), (float)slice / slices );
 				}
 			}
 
@@ -130,16 +140,21 @@ namespace ManagedOpenGL.Engine.Objects
 			gl.Enable( EnableCap.PointSmooth );
 			gl.Enable( EnableCap.LineSmooth );
 
+			var stride = Marshal.SizeOf( typeof(Vertex) );
+
 			unsafe
 			{
 				fixed (Vertex* v = &this.vertices[0])
 				fixed (int* ind = this.quadIndeces)
 				{
+					var b = (byte*)v;
+
 					gl.EnableClientState( EnableCap.VertexArray );
-					gl.DisableClientState( EnableCap.TextureCoordArray );
+					gl.EnableClientState( EnableCap.TextureCoordArray );
 					gl.EnableClientState( EnableCap.NormalArray );
-					gl.VertexPointer( 3, VertexPointerType.Float, Marshal.SizeOf( typeof(Vertex) ), v );
-					gl.NormalPointer( NormalPointerType.Float, Marshal.SizeOf( typeof(Vertex) ), ((byte*)v) + 3*sizeof(float) );
+					gl.VertexPointer( 3, VertexPointerType.Float, stride, b + Vertex.PositionOffset );
+					gl.NormalPointer( NormalPointerType.Float, stride, b + Vertex.NormalOffset );
+					gl.TexCoordPointer( 3, TexCoordPointerType.Float, stride, b + Vertex.TexCoordOffset );
 
 					gl.DrawElements( BeginMode.Quads, quadIndeces.Length, (uint)DataType.UnsignedInt, ind );
 				}
