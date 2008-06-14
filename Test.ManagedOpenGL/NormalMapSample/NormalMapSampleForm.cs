@@ -165,8 +165,6 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			gl.LoadMatrixf( camera.Data );
 			gl.Rotated( alpha, 0, 1, 0 );
 
-			gl.PolygonMode( MaterialFace.FrontAndBack, PolygonMode.Line );
-
 			gl.Color3f( 1, 1, 1 );
 			shaderProgram.CamPosition = camera.Position;
 			shaderProgram.Use();
