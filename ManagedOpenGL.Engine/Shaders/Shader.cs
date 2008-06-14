@@ -12,6 +12,8 @@
  *
  *******************************************************/
 
+using System;
+
 namespace ManagedOpenGL.Engine.Shaders
 {
 	public abstract class Shader 
@@ -53,6 +55,12 @@ namespace ManagedOpenGL.Engine.Shaders
 			var result = new int[1];
 			OpenGLNative.GetObjectParameterivARB( this.Handle, (uint)ARB_shader_objects.ObjectCompileStatusArb, result );
 			this.Compiled = result[0] != 0;
+		}
+
+		public void TryCompile()
+		{
+			Compile();
+			if (!Compiled) throw new Exception( "Error compile shader: " + InfoLog );
 		}
 	}
 }

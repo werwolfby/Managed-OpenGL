@@ -102,6 +102,11 @@ namespace ManagedOpenGL.Engine.Objects
 			this.bottom = bottom;
 			this.top    = top;
 
+			foreach (var texture in new [] {back, front, left, right, bottom, top})
+			{
+				texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
+				texture.WrapT = TextureWrapMode.ClampToEdgeSgis;
+			}
 			
 			Fill( 0, this.boxVertexes, this.skyboxVertices, 1, 0, 2, 3 ); // back
 			Fill( 1, this.boxVertexes, this.skyboxVertices, 4, 5, 7, 6 ); // front
@@ -185,6 +190,16 @@ namespace ManagedOpenGL.Engine.Objects
 					OpenGLNative.DrawArrays( BeginMode.Quads, 20, 4 );
 				}
 			}
+		}
+
+		public void Load()
+		{
+			back.Load();
+			front.Load();
+			left.Load();
+			right.Load();
+			top.Load();
+			bottom.Load();
 		}
 	}
 }

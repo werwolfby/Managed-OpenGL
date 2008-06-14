@@ -11,6 +11,8 @@
  *
  *******************************************************/
 
+using System;
+
 namespace ManagedOpenGL.Engine.Shaders
 {
 	public class ShaderProgram
@@ -48,7 +50,13 @@ namespace ManagedOpenGL.Engine.Shaders
 			var result = new int[1];
 			OpenGLNative.GetObjectParameterivARB( handle, (uint)VERSION_2_0.LinkStatus, result );
 			Linked = result[0] != 0;
-			AfterLink();
+			if (Linked) AfterLink();
+		}
+
+		public void TryLink()
+		{
+			Link();
+			if (!Linked) throw new Exception( "Error link progrma: " + InfoLog );
 		}
 
 		protected virtual void AfterLink()
@@ -68,6 +76,11 @@ namespace ManagedOpenGL.Engine.Shaders
 		protected int GetAttribLocation( string name )
 		{
 			return OpenGLNative.GetAttribLocationARB( handle, name );
+		}
+
+		public static void UnUse()
+		{
+			OpenGLNative.UseProgramObjectARB( 0 );
 		}
 	}
 }

@@ -4,6 +4,7 @@ using ManagedOpenGL.Engine.Windows;
 using Test.ManagedOpenGL.CubeMapSample;
 using Test.ManagedOpenGL.FontsSample;
 using Test.ManagedOpenGL.MultiTextureSample;
+using Test.ManagedOpenGL.NormalizeCubeMapSample;
 using Test.ManagedOpenGL.NormalMapSample;
 using Test.ManagedOpenGL.ShaderSample;
 using Test.ManagedOpenGL.SkyBoxSample;
@@ -47,13 +48,25 @@ namespace Test.ManagedOpenGL
 			RunSample<NormalMapSampleForm>();
 		}
 
+		private void button7_Click( object sender, EventArgs e )
+		{
+			RunSample<NormalizeCubeMapForm>();
+		}
+
 		private void RunSample<T>()
 			where T : OpenGLForm, new()
 		{
-			var form = new T();
-			this.Visible = false;
-			OpenGLApplication.Run( form );
-			this.Visible = true;
+			try
+			{
+				var form = new T();
+				this.Visible = false;
+				OpenGLApplication.Run( form );
+				this.Visible = true;
+			}
+			catch (Exception e)
+			{
+				throw e.InnerException;
+			}
 		}
 	}
 }

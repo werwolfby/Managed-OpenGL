@@ -13,7 +13,9 @@
 
 using System.Drawing;
 using System.Windows.Forms;
+using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
+using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
 
 namespace Test.ManagedOpenGL
@@ -25,6 +27,13 @@ namespace Test.ManagedOpenGL
 		                                         	VelocitySpeed = 20,
 		                                         	StrafeSpeed = 20,
 		                                         };
+
+		public SampleOpenGLForm()
+		{
+			WindowSize = new Size( 640, 480 );
+			Renderer.Near = 1;
+			Renderer.Far = 400;
+		}
 
 		protected override void OnMouseMove( MouseEventArgs e ) 
 		{
@@ -42,6 +51,17 @@ namespace Test.ManagedOpenGL
 			camera.LookUp( deltaY );
 
 			Cursor.Position = this.PointToScreen( centerPosition );
+		}
+
+		protected override void Draw() 
+		{
+			base.Draw();
+
+			OpenGLNative.ClearColor( 0, 0, 0, 1 );
+			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+
+			OpenGLNative.MatrixMode( MatrixMode.Modelview );
+			OpenGLNative.LoadMatrixf( camera.Data );
 		}
 
 		protected override void Update( float elapsed ) 
