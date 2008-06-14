@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ManagedOpenGL.Engine.Windows;
 using Test.ManagedOpenGL.CubeMapSample;
+using Test.ManagedOpenGL.EnviromentCubeMapSample;
 using Test.ManagedOpenGL.FontsSample;
 using Test.ManagedOpenGL.MultiTextureSample;
 using Test.ManagedOpenGL.NormalizeCubeMapSample;
@@ -51,6 +52,11 @@ namespace Test.ManagedOpenGL
 		private void button7_Click( object sender, EventArgs e )
 		{
 			RunSample<NormalizeCubeMapForm>();
+		}
+
+		private void button8_Click( object sender, EventArgs e )
+		{
+			RunSample<EnviromentCubeMapForm>();
 		}
 
 		private void RunSample<T>()
