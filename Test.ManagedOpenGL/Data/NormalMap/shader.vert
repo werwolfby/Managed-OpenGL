@@ -16,11 +16,7 @@ void main()
 	
 	vec3 eyeD = normalize( vec3( gl_ModelViewMatrix * gl_Vertex ) );
 	
-	eyeDirection.x = dot( eyeD, t );
-	eyeDirection.y = dot( eyeD, b );
-	eyeDirection.z = dot( eyeD, n );
-	
-	eyeDirection.z *= -1;
-	
-	//eyeDirection = normalize( camPosition - vec3( gl_Vertex ) );
+	eyeDirection.x = +dot( eyeD, t );
+	eyeDirection.y = +dot( eyeD, b );
+	eyeDirection.z = -dot( eyeD, n );
 }

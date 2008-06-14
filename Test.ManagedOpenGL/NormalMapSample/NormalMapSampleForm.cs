@@ -222,8 +222,8 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			gl.Color3f( 1, 1, 1 );
 			shaderProgram.CamPosition = camera.Position;
 			shaderProgram.Use();
-			sphere.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
-			//cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
+			//sphere.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
+			cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
 		}
 
 		private bool pause = true;
