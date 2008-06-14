@@ -1,6 +1,4 @@
-﻿uniform vec3 camPosition;
-
-varying vec3 eyeDirection;
+﻿varying vec3 eyeDirection;
 
 attribute vec3 tangent;
 attribute vec3 binormal;

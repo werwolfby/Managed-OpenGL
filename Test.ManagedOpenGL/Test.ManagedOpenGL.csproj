@@ -158,6 +158,9 @@
     <Content Include="Data\MultiTexture\logo.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\EnviromentCubeMap\FieldstoneBumpDOT3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\NormalMap\Fieldstone.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -202,10 +205,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\EnviromentCubeMap\normalized_cube_map.frag">
+    <None Include="Data\EnviromentCubeMap\enviroment_cube_map.frag">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\EnviromentCubeMap\normalized_cube_map.vert">
+    <None Include="Data\EnviromentCubeMap\enviroment_cube_map.vert">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\NormalizeCubeMap\normalized_cube_map.frag">

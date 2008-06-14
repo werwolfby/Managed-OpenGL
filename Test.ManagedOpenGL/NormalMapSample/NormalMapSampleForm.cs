@@ -81,11 +81,12 @@ namespace Test.ManagedOpenGL.NormalMapSample
 		                                     	WrapS = TextureWrapMode.Repeat,
 		                                     	WrapT = TextureWrapMode.Repeat
 		                                     };
+
 		private readonly Texture2D normalMapTexture = new Texture2D( "Data\\NormalMap\\FieldstoneBumpDOT3.png" )
-		                                     {
-		                                     	WrapS = TextureWrapMode.Repeat,
-		                                     	WrapT = TextureWrapMode.Repeat
-		                                     };
+		                                              {
+		                                              	WrapS = TextureWrapMode.Repeat,
+		                                              	WrapT = TextureWrapMode.Repeat
+		                                              };
 
 		private readonly VertexShader vertexShader = VertexShader.Load( vertexShaderFileName );
 		private readonly FragmentShader fragmentShader = FragmentShader.Load( fragmentShaderFileName );
