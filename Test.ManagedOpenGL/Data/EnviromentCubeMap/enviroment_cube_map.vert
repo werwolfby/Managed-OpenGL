@@ -1,5 +1,4 @@
 ﻿varying vec3 eyeDirection;
-varying vec3 normal;
 
 varying mat3 tSpace;
 varying mat3 inverseTSpace;
@@ -44,7 +43,7 @@ mat3 inverse( mat3 A )
 
 void main()
 {
-	normal = ( gl_NormalMatrix * gl_Normal );
+	vec3 normal = gl_NormalMatrix * gl_Normal;
 	vec3 eyeD = ( vec3( gl_ModelViewMatrix * gl_Vertex ) );
 	
 	vec3 t = gl_NormalMatrix * tangent;
