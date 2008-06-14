@@ -52,23 +52,14 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 		private class NormalizedShader : ShaderProgram
 		{
 			private int cubeMapSamplerLocation;
-			private int isNormalizeLocation;
-
-			public NormalizedShader()
-			{
-				IsNormalize = true;
-			}
 
 			public int CubeMapSamplerUnit { get; set; }
-
-			public bool IsNormalize { get; set; }
 
 			protected override void AfterLink() 
 			{
 				base.AfterLink();
 
 				this.cubeMapSamplerLocation = GetUniformLocation( "cubeMapTexture" );
-				this.isNormalizeLocation = GetUniformLocation( "isNormalize" );
 			}
 
 			public override void Use() 
@@ -76,16 +67,20 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 				base.Use();
 
 				OpenGLNative.Uniform1iARB( this.cubeMapSamplerLocation, this.CubeMapSamplerUnit );
-				OpenGLNative.Uniform1iARB( this.isNormalizeLocation, this.IsNormalize ? 1 : 0 );
 			}
 		}
 
 		private readonly Cube cube = new Cube( 20, 20, 20 );
+		private readonly Sphere sphere = new Sphere( 20, 64, 64 );
+
+		private DrawObject currentDrawObject;
 
 		public NormalizeCubeMapForm()
 		{
 			this.skybox = new Skybox( 300, 300, 300, this.back1, front1, left1, right1, bottom1, top1 );
 			camera.Position.Set( 0, 0, 50 );
+
+			currentDrawObject = cube;
 		}
 
 		protected override void AfterInitGLOverride() 
@@ -129,7 +124,7 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 			textureCubeMap.Use();
 
 			shader.Use();
-			cube.Draw();
+			currentDrawObject.Draw();
 			textureCubeMap.UnUse();
 		}
 
@@ -137,8 +132,8 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 		{
 			base.Update( elapsed );
 
-			if (Keyboard.GetValue( Keys.D1 )) shader.IsNormalize = true;
-			if (Keyboard.GetValue( Keys.D2 )) shader.IsNormalize = false;
+			if (Keyboard.GetValue( Keys.D1 )) currentDrawObject = cube;
+			if (Keyboard.GetValue( Keys.D2 )) currentDrawObject = sphere;
 		}
 	}
 }

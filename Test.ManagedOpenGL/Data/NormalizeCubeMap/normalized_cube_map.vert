@@ -1,11 +1,8 @@
-﻿varying vec3 normal;
-varying vec3 eyeDirection;
-
-void main()
+﻿void main()
 {
-	normal = normalize( gl_NormalMatrix * gl_Normal );
-	eyeDirection = normalize( gl_ModelViewMatrix * gl_Vertex ).xyz;
+	vec3 normal = ( gl_NormalMatrix * gl_Normal );
+	vec3 eyeDirection = ( vec3( gl_ModelViewMatrix * gl_Vertex ) );
 	
-	//gl_TexCoord[0] = gl_TextureMatrix[0] * vec4( reflect( eyeDirection, normal ), 1 );
+	gl_TexCoord[0] = gl_TextureMatrix[0] * vec4( reflect( eyeDirection, normal ), 1 );
 	gl_Position = ftransform();
 }
