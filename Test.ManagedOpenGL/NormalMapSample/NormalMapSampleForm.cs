@@ -15,6 +15,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
 using ManagedOpenGL.Engine.Math;
@@ -122,9 +123,10 @@ namespace Test.ManagedOpenGL.NormalMapSample
 						gl.VertexPointer( 3, VertexPointerType.Float, stride, b + Vertex.PositionOffset );
 						gl.NormalPointer( NormalPointerType.Float, stride, b + Vertex.NormalOffset );
 						gl.TexCoordPointer( 3, TexCoordPointerType.Float, stride, b + Vertex.TexCoordOffset );
-                        gl.VertexAttribPointerARB( tangentAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.TangentOffset );
+						gl.VertexAttribPointerARB( tangentAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.TangentOffset );
 						gl.VertexAttribPointerARB( binormalAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.BinormalOffset );
 
+						gl.PolygonMode( MaterialFace.Front, PolygonMode.Fill );
 						gl.DrawElements( BeginMode.Quads, quadIndeces.Length, (uint)DataType.UnsignedInt, ind );
 					}
 				}
@@ -224,9 +226,13 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			//cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
 		}
 
+		private bool pause = true;
+
 		protected override void Update( float elapsed ) 
 		{
-			alpha += 1 * 90 * elapsed;
+			if (Keyboard.GetValue( Keys.Space )) pause ^= true;
+
+			if (!pause) alpha += 1 * 90 * elapsed;
 
 			base.Update( elapsed );
 		}

@@ -19,8 +19,8 @@ namespace ManagedOpenGL.Engine.Objects
 {
 	public class Sphere : DrawObject
 	{
-		private float radius;
-		private int slices, stacks;
+		protected readonly float radius;
+		protected readonly int slices, stacks;
 
 		[StructLayout(LayoutKind.Sequential)]
 		protected unsafe struct Vertex
@@ -73,7 +73,7 @@ namespace ManagedOpenGL.Engine.Objects
 			this.slices = slices;
 			this.stacks = stacks;
 
-			this.vertices = new Vertex[(slices + 1) * stacks];
+			this.vertices = new Vertex[(slices + 1) * (stacks + 1)];
 
 			for (var slice = 0; slice <= slices; slice++)
 			{
@@ -84,7 +84,7 @@ namespace ManagedOpenGL.Engine.Objects
 				var sliceNormalX = -y / radius;
 				var sliceNormalY = x / radius;
 
-				for (var stack = 0; stack < stacks; stack++)
+				for (var stack = 0; stack <= stacks; stack++)
 				{
 					var stackAngle = 2 * stack * System.Math.PI / stacks;
 					var sx = (float)(x * System.Math.Cos( stackAngle ));
@@ -105,32 +105,27 @@ namespace ManagedOpenGL.Engine.Objects
 					this.vertices[this.GetIndex( slice, stack )] =
 						new Vertex( sx, y, sz, nx, ny, nz,
 						            rotSliceNormalX, rotSliceNormalY, rotSliceNormalZ,
-						            -tangent.X, -tangent.Y, -tangent.Z, (float)stack / (stacks - 1), (float)slice / slices );
+						            -tangent.X, -tangent.Y, -tangent.Z, (float)stack / stacks, (float)slice / slices );
 				}
 			}
 
-			this.quadIndeces = new int[slices * stacks * 4];
+			this.quadIndeces = new int[slices * (stacks + 1) * 4];
 
 			for (var slice = 0; slice < slices; slice++)
 			{
-				for (var stack = 0; stack < stacks - 1; stack++)
+				for (var stack = 0; stack < stacks; stack++)
 				{
 					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 0] = this.GetIndex( slice + 0, stack + 0 );
 					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 1] = this.GetIndex( slice + 0, stack + 1 );
 					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 2] = this.GetIndex( slice + 1, stack + 1 );
 					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 3] = this.GetIndex( slice + 1, stack + 0 );
 				}
-
-				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 0] = this.GetIndex( slice + 0, stacks - 1 );
-				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 1] = this.GetIndex( slice + 0, 0 );
-				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 2] = this.GetIndex( slice + 1, 0 );
-				this.quadIndeces[(this.GetIndex( slice, stacks - 1 )) * 4 + 3] = this.GetIndex( slice + 1, stacks - 1 );
 			}
 		}
 
 		private int GetIndex( int slice, int stack )
 		{
-			return slice * stacks + stack;
+			return slice * (stacks + 1) + stack;
 		}
 
 		public override void Draw()
