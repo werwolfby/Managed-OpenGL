@@ -25,11 +25,11 @@ namespace ManagedOpenGL.Engine.Objects
 		[StructLayout(LayoutKind.Sequential)]
 		protected unsafe struct Vertex
 		{
-			public const int PositionOffset = 0;
-			public const int NormalOffset = PositionOffset + 3*sizeof(float);
-			public const int BinormalOffset = NormalOffset + 3*sizeof(float);
-			public const int TangentOffset = BinormalOffset + 3*sizeof(float);
-			public const int TexCoordOffset = TangentOffset + 3*sizeof(float);
+			public const int PositionByteOffset = 0;
+			public const int NormalByteOffset = PositionByteOffset + 3*sizeof(float);
+			public const int BinormalByteOffset = NormalByteOffset + 3*sizeof(float);
+			public const int TangentByteOffset = BinormalByteOffset + 3*sizeof(float);
+			public const int TexCoordByteOffset = TangentByteOffset + 3*sizeof(float);
 
 			public fixed float position [3];
 			public fixed float normal [3];
@@ -121,7 +121,14 @@ namespace ManagedOpenGL.Engine.Objects
 					this.quadIndeces[(this.GetIndex( slice, stack )) * 4 + 3] = this.GetIndex( slice + 1, stack + 0 );
 				}
 			}
+
+			TangentVectorAttributeIndex = -1;
+			BinormalVectorAttributeIndex = -1;
 		}
+
+		public int TangentVectorAttributeIndex { get; set; }
+
+		public int BinormalVectorAttributeIndex { get; set; }
 
 		private int GetIndex( int slice, int stack )
 		{
@@ -147,9 +154,24 @@ namespace ManagedOpenGL.Engine.Objects
 					gl.EnableClientState( EnableCap.VertexArray );
 					gl.EnableClientState( EnableCap.TextureCoordArray );
 					gl.EnableClientState( EnableCap.NormalArray );
-					gl.VertexPointer( 3, VertexPointerType.Float, stride, b + Vertex.PositionOffset );
-					gl.NormalPointer( NormalPointerType.Float, stride, b + Vertex.NormalOffset );
-					gl.TexCoordPointer( 3, TexCoordPointerType.Float, stride, b + Vertex.TexCoordOffset );
+
+					if (TangentVectorAttributeIndex >= 0)
+					{
+						OpenGLNative.EnableVertexAttribArray( (uint)this.TangentVectorAttributeIndex );
+						OpenGLNative.VertexAttribPointerARB( (uint)this.TangentVectorAttributeIndex, 3, (uint)DataType.Float, false,
+						                                     stride, b + Vertex.TangentByteOffset );
+					}
+
+					if ( BinormalVectorAttributeIndex >= 0)
+					{
+						OpenGLNative.EnableVertexAttribArray( (uint)this.BinormalVectorAttributeIndex );
+						OpenGLNative.VertexAttribPointerARB( (uint)this.BinormalVectorAttributeIndex, 3, (uint)DataType.Float, false,
+						                                     stride, b + Vertex.BinormalByteOffset );
+					}
+
+					gl.VertexPointer( 3, VertexPointerType.Float, stride, b + Vertex.PositionByteOffset );
+					gl.NormalPointer( NormalPointerType.Float, stride, b + Vertex.NormalByteOffset );
+					gl.TexCoordPointer( 3, TexCoordPointerType.Float, stride, b + Vertex.TexCoordByteOffset );
 
 					gl.DrawElements( BeginMode.Quads, quadIndeces.Length, (uint)DataType.UnsignedInt, ind );
 				}

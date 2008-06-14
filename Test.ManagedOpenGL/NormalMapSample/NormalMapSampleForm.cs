@@ -13,11 +13,9 @@
 
 using System;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ManagedOpenGL;
-using ManagedOpenGL.Engine.Cameras;
 using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Render;
@@ -68,76 +66,15 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			}
 		}
 
-		private class ExtCube : Cube
-		{
-			public ExtCube( float width, float height, float length ) : base( width, height, length ) {}
-
-			public void Draw( uint tangentAttribLocation, uint binormalAttribLocation )
-			{
-				unsafe
-				{
-					var stride = Marshal.SizeOf( typeof(Vertex) );
-
-					fixed (float* v = this.vertices[0].position, t = this.vertices[0].texCoord, n = this.vertices[0].normal,
-						bn = this.vertices[0].binormal, tn = this.vertices[0].tangent)
-					{
-						OpenGLNative.EnableClientState( EnableCap.VertexArray );
-						OpenGLNative.EnableClientState( EnableCap.TextureCoordArray );
-						OpenGLNative.EnableClientState( EnableCap.NormalArray );
-						OpenGLNative.EnableVertexAttribArrayARB( tangentAttribLocation );
-						OpenGLNative.EnableVertexAttribArrayARB( binormalAttribLocation );
-						
-						OpenGLNative.VertexPointer( 3, VertexPointerType.Float, stride, v );
-						OpenGLNative.TexCoordPointer( 2, TexCoordPointerType.Float, stride, t );
-						OpenGLNative.NormalPointer( NormalPointerType.Float, stride, n );
-                        OpenGLNative.VertexAttribPointerARB( tangentAttribLocation, 3, (uint)DataType.Float, false, stride, tn );
-						OpenGLNative.VertexAttribPointerARB( binormalAttribLocation, 3, (uint)DataType.Float, false, stride, bn );
-
-						OpenGLNative.DrawArrays( BeginMode.Quads, 0, 6 * 4 );
-					}
-				}
-			}
-		}
-
-		private class ExtSphere : Sphere
-		{
-			public ExtSphere( float radius, int slices, int stacks ) : base( radius, slices, stacks ) {}
-
-			public void Draw( uint tangentAttribLocation, uint binormalAttribLocation )
-			{
-				var stride = Marshal.SizeOf( typeof(Vertex) );
-
-				unsafe
-				{
-					fixed (Vertex* v = &this.vertices[0])
-					fixed (int* ind = this.quadIndeces)
-					{
-						var b = (byte*)v;
-
-						gl.EnableClientState( EnableCap.VertexArray );
-						gl.EnableClientState( EnableCap.TextureCoordArray );
-						gl.EnableClientState( EnableCap.NormalArray );
-						gl.EnableVertexAttribArrayARB( tangentAttribLocation );
-						gl.EnableVertexAttribArrayARB( binormalAttribLocation );
-
-						gl.VertexPointer( 3, VertexPointerType.Float, stride, b + Vertex.PositionOffset );
-						gl.NormalPointer( NormalPointerType.Float, stride, b + Vertex.NormalOffset );
-						gl.TexCoordPointer( 3, TexCoordPointerType.Float, stride, b + Vertex.TexCoordOffset );
-						gl.VertexAttribPointerARB( tangentAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.TangentOffset );
-						gl.VertexAttribPointerARB( binormalAttribLocation, 3, (uint)DataType.Float, false, stride, b + Vertex.BinormalOffset );
-
-						gl.PolygonMode( MaterialFace.Front, PolygonMode.Fill );
-						gl.DrawElements( BeginMode.Quads, quadIndeces.Length, (uint)DataType.UnsignedInt, ind );
-					}
-				}
-			}
-		}
-
 		private const string vertexShaderFileName = "Data\\NormalMap\\shader.vert";
 		private const string fragmentShaderFileName = "Data\\NormalMap\\shader.frag";
 
-		private readonly ExtCube cube = new ExtCube( 20, 20, 20 );
-		private readonly ExtSphere sphere = new ExtSphere( 20, 24, 24 );
+		private const float size = 20;
+		private const int devide = 24;
+
+		private readonly Cube cube = new Cube( size, size, size );
+		private readonly Sphere sphere = new Sphere( (float)(size * Math.Sqrt( 3 ) / 2.0f), devide, devide );
+		private DrawObject drawObject;
 
 		private readonly Texture2D texture = new Texture2D( "Data\\NormalMap\\Fieldstone.png" )
 		                                     {
@@ -162,6 +99,8 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			Renderer.Near = 1;
 
 			camera.Position.Set( 0, 0, 50 );
+
+			drawObject = cube;
 		}
 
 		protected override void AfterInitGLOverride() 
@@ -195,6 +134,12 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			shaderProgram.TextureUnit = 0;
 			shaderProgram.NormalMapUnit = 1;
 			shaderProgram.CamPosition = camera.Position;
+
+			cube.TangentVectorAttributeIndex = shaderProgram.TangentAttribLocation;
+			cube.BinormalVectorAttributeIndex = shaderProgram.BinormalAttribLocation;
+
+			sphere.TangentVectorAttributeIndex = shaderProgram.TangentAttribLocation;
+			sphere.BinormalVectorAttributeIndex = shaderProgram.BinormalAttribLocation;
 		}
 
 		private double alpha = 0.0;
@@ -219,11 +164,12 @@ namespace Test.ManagedOpenGL.NormalMapSample
 			gl.LoadMatrixf( camera.Data );
 			gl.Rotated( alpha, 0, 1, 0 );
 
+			gl.PolygonMode( MaterialFace.FrontAndBack, PolygonMode.Line );
+
 			gl.Color3f( 1, 1, 1 );
 			shaderProgram.CamPosition = camera.Position;
 			shaderProgram.Use();
-			//sphere.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
-			cube.Draw( (uint)this.shaderProgram.TangentAttribLocation, (uint)this.shaderProgram.BinormalAttribLocation );
+			drawObject.Draw();
 		}
 
 		private bool pause = true;
@@ -231,6 +177,9 @@ namespace Test.ManagedOpenGL.NormalMapSample
 		protected override void Update( float elapsed ) 
 		{
 			if (Keyboard.GetValue( Keys.Space )) pause ^= true;
+
+			if (Keyboard.GetValue( Keys.D1 )) drawObject = cube;
+			if (Keyboard.GetValue( Keys.D2 )) drawObject = sphere;
 
 			if (!pause) alpha += 1 * 90 * elapsed;
 

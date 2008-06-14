@@ -11,6 +11,7 @@
  *
  *******************************************************/
 
+using System;
 using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Objects;
@@ -70,8 +71,11 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 			}
 		}
 
-		private readonly Cube cube = new Cube( 20, 20, 20 );
-		private readonly Sphere sphere = new Sphere( 20, 64, 64 );
+		private const float size = 20;
+		private const int devide = 24;
+
+		private readonly Cube cube = new Cube( size, size, size );
+		private readonly Sphere sphere = new Sphere( (float)(size * Math.Sqrt( 3 ) / 2.0f), devide, devide );
 
 		private DrawObject currentDrawObject;
 
@@ -107,7 +111,6 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 		{
 			base.Draw();
 
-			//gl.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
 			gl.Enable( EnableCap.Texture2d );
 			
 			gl.MatrixMode( MatrixMode.Texture );
