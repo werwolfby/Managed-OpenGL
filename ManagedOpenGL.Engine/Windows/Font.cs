@@ -69,6 +69,11 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public void WriteLine( string format, params object[] objs )
 		{
+			WriteLine( 0, 0, format, objs );
+		}
+
+		public void WriteLine( float x, float y, string format, params object[] objs )
+		{
 			builder.Length = 0;
 			builder.AppendFormat( format, objs );
 			var totalSymbols = builder.Length;

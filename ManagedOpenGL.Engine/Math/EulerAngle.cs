@@ -12,6 +12,8 @@
  *
  *******************************************************/
 
+using System;
+
 namespace ManagedOpenGL.Engine.Math
 {
 	public class EulerAngle2F
@@ -24,6 +26,10 @@ namespace ManagedOpenGL.Engine.Math
 			this.cosPitch = this.cosYaw = 1;
 		}
 
+		public event EventHandler PitchChanged;
+		public event EventHandler YawChanged;
+		public event EventHandler Changed;
+
 		public float Pitch
 		{
 			get { return this.pitch; }
@@ -32,6 +38,9 @@ namespace ManagedOpenGL.Engine.Math
 				this.pitch = value;
 				this.sinPitch = (float)System.Math.Sin( this.pitch );
 				this.cosPitch = (float)System.Math.Cos( this.pitch );
+
+				RaisePitchChanged( EventArgs.Empty );
+				RaiseChanged( EventArgs.Empty );
 			}
 		}
 
@@ -47,6 +56,9 @@ namespace ManagedOpenGL.Engine.Math
 
 				this.sinYaw = (float)System.Math.Sin( this.yaw );
 				this.cosYaw = (float)System.Math.Cos( this.yaw );
+
+				RaiseYawChanged( EventArgs.Empty );
+				RaiseChanged( EventArgs.Empty );
 			}
 		}
 
@@ -76,6 +88,21 @@ namespace ManagedOpenGL.Engine.Math
 			matrix[0] = cosPitch;           matrix[1] = 0;       matrix[02] = sinPitch;
 			matrix[4] = -sinPitch * sinYaw; matrix[5] = cosYaw;  matrix[06] = sinYaw * cosPitch;
 			matrix[8] = -sinPitch * cosYaw; matrix[9] = -sinYaw; matrix[10] = cosYaw * cosPitch;
+		}
+
+		private void RaisePitchChanged( EventArgs e )
+		{
+			if (PitchChanged != null) PitchChanged( this, e );
+		}
+
+		private void RaiseYawChanged( EventArgs e )
+		{
+			if (YawChanged != null) YawChanged( this, e );
+		}
+
+		private void RaiseChanged( EventArgs e )
+		{
+			if (Changed != null) Changed( this, e );
 		}
 	}
 }

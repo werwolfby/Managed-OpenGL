@@ -12,21 +12,22 @@
  *******************************************************/
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace ManagedOpenGL
 {
 	public static class OpenGL
 	{
-		static OpenGL()
-		{
-			//GetObjectParameterivARB = OpenGLNative.GetProcAdress<GetObjectParameterivARBDelegate>( "glGetObjectParameterivARB" );
-			//GetInfoLogARB = OpenGLNative.GetProcAdress<GetInfoLogARBDelegate>( "glGetInfoLogARB" );
-		}
-
 		public static unsafe void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels )
 		{
 			OpenGLNative.TexImage2D( target, level, internalformat, width, height, border, format, type, (void*)pixels );
+		}
+
+		public static unsafe void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, PixelType type, byte[] pixels )
+		{
+			fixed (byte* bytes = &pixels[0])
+			{
+				OpenGLNative.TexImage2D( target, level, internalformat, width, height, border, format, type, bytes );
+			}
 		}
 
 		public static unsafe void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, byte[] pixels )

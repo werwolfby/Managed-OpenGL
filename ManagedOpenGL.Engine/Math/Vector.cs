@@ -234,6 +234,11 @@ namespace ManagedOpenGL.Engine.Math
 			this.Z *= value;
 		}
 
+		public void Set( Vector3F pos )
+		{
+			Set( pos.X, pos.Y, pos.Z );
+		}
+
 		public void Set( float x, float y, float z )
 		{
 			this.X = x;

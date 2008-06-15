@@ -11,25 +11,24 @@
  *
  *******************************************************/
 
-using System.Drawing;
-using System.Drawing.Imaging;
-
 namespace ManagedOpenGL.Engine.Windows
 {
 	public class Texture2D
 	{
 		private readonly string fileName;
-		private uint id;
 		private static readonly uint[] genTextures = new uint[1] { 0 };
 
-		public Texture2D( string fileName ) 
+		protected Texture2D()
 		{
-			this.fileName = fileName;
-
 			this.MinFilter = TextureMinFilter.Linear;
 			this.MagFilter = TextureMagFilter.Linear;
 			this.WrapT = TextureWrapMode.Clamp;
 			this.WrapS = TextureWrapMode.Clamp;
+		}
+
+		public Texture2D( string fileName ) : this()
+		{
+			this.fileName = fileName;
 		}
 
 		public TextureMinFilter MinFilter { get; set; }
@@ -40,39 +39,42 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public TextureWrapMode WrapT { get; set; }
 
-		public bool Loaded { get; private set; }
+		public bool Loaded { get; protected set; }
 
-		public uint Id
+		public uint Id { get; protected set; }
+
+		public virtual void Load()
 		{
-			get { return this.id; }
-		}
+			if (Loaded) return;
 
-		public void Load()
-		{
-			using (var bitmap = new Bitmap( fileName ))
-			{
-				var bitmapData = bitmap.LockBits( new Rectangle( 0, 0, bitmap.Width, bitmap.Height ), ImageLockMode.ReadOnly,
-				                                  System.Drawing.Imaging.PixelFormat.Format32bppArgb );
+			this.Id = GetNextTextureId();
 
-				OpenGLNative.GenTextures( 1, genTextures );
-				this.id = genTextures[0];
+			int stride;
+			int width;
+			int height;
+			var bytes = TextureHelper.LoadImageData( fileName, System.Drawing.Imaging.PixelFormat.Format32bppArgb,
+			                                         out stride, out width, out height );
 
-				this.Use();
-				OpenGL.TexImage2D( TextureTarget.Texture2d, 0, 4, bitmapData.Width, bitmapData.Height, 0,
-				                   (PixelFormat)(int)EXT_bgra.BgraExt, PixelType.UnsignedByte, bitmapData.Scan0 );
-				bitmap.UnlockBits( bitmapData );
-			}
+			this.Use();
+			OpenGL.TexImage2D( TextureTarget.Texture2d, 0, 4, width, height, 0,
+			                   (PixelFormat)(int)EXT_bgra.BgraExt, PixelType.UnsignedByte, bytes );
 
 			Loaded = true;
 		}
 
 		public void Use() 
 		{
-			OpenGLNative.BindTexture( TextureTarget.Texture2d, this.id );
+			OpenGLNative.BindTexture( TextureTarget.Texture2d, this.Id );
 			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMinFilter, (int)MinFilter );
 			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMagFilter, (int)MagFilter );
 			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapS, (int)WrapS );
 			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapT, (int)WrapT );
+		}
+
+		protected static uint GetNextTextureId()
+		{
+			OpenGLNative.GenTextures( 1, genTextures );
+			return genTextures[0];
 		}
 	}
 }

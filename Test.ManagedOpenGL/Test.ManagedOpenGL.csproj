@@ -68,6 +68,9 @@
     <Compile Include="CubeMapSample\CubeMapSampleForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DepthReflectionExample\DepthReflectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EnviromentCubeMapSample\EnviromentCubeMapForm.cs">
       <SubType>Form</SubType>
     </Compile>

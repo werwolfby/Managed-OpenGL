@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ManagedOpenGL.Engine.Windows;
 using Test.ManagedOpenGL.CubeMapSample;
+using Test.ManagedOpenGL.DepthReflectionExample;
 using Test.ManagedOpenGL.EnviromentCubeMapSample;
 using Test.ManagedOpenGL.FontsSample;
 using Test.ManagedOpenGL.MultiTextureSample;
@@ -57,6 +58,11 @@ namespace Test.ManagedOpenGL
 		private void button8_Click( object sender, EventArgs e )
 		{
 			RunSample<EnviromentCubeMapForm>();
+		}
+
+		private void button9_Click( object sender, EventArgs e )
+		{
+			RunSample<DepthReflectionForm>();
 		}
 
 		private void RunSample<T>()

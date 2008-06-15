@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cameras\Camera.cs" />
+    <Compile Include="Cameras\CubeMapCamera.cs" />
     <Compile Include="Cameras\FreeCamera.cs" />
     <Compile Include="Cameras\TwoDirCamera.cs" />
     <Compile Include="Objects\Cube.cs" />
     <Compile Include="Objects\DrawObject.cs" />
+    <Compile Include="Objects\PositionedSphere.cs" />
     <Compile Include="Objects\Skybox.cs" />
     <Compile Include="Objects\Sphere.cs" />
     <Compile Include="Render\Renderer.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="Shaders\VertexShader.cs" />
+    <Compile Include="Windows\EmptyTexture2D.cs" />
     <Compile Include="Windows\Font.cs" />
     <Compile Include="Windows\HiResTimer.cs" />
     <Compile Include="Windows\Keyboard.cs" />

@@ -17,12 +17,12 @@ using ManagedOpenGL.Engine.Math;
 
 namespace ManagedOpenGL.Engine.Cameras
 {
-	public class Camera
+	public abstract class Camera
 	{
 		protected Matrix4F modelViewMatrix = new Matrix4F();
 		protected Vector3F position = new Vector3F( 0, 0, 0 );
 
-		public Camera()
+		protected Camera()
 		{
 			position.Changed += Position_OnChanged;
 		}
@@ -31,6 +31,8 @@ namespace ManagedOpenGL.Engine.Cameras
 		{
 			get { return this.modelViewMatrix.Data; }
 		}
+
+		public abstract float[] InvertData { get; }
 
 		public Matrix4F Matrix
 		{

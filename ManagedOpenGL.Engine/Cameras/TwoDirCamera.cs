@@ -12,6 +12,7 @@
  *
  *******************************************************/
 
+using System;
 using ManagedOpenGL.Engine.Math;
 
 namespace ManagedOpenGL.Engine.Cameras
@@ -23,6 +24,15 @@ namespace ManagedOpenGL.Engine.Cameras
 
 		protected float pitchSensitivity = 0.0022f;
 		protected float yawSensitivity = 0.0022f;
+
+		public TwoDirCamera()
+		{
+			eyeDirection.Changed += delegate
+			                        {
+			                        	eyeDirection.SetToMatrix( Matrix );
+										eyeDirection.SetInvertToMatrix( rotInvert );
+			                        };
+		}
 
 		public float PitchSensitivity
 		{
@@ -36,14 +46,30 @@ namespace ManagedOpenGL.Engine.Cameras
 			set { this.yawSensitivity = value; }
 		}
 
-		public float[] InvertData
+		public float Pitch
+		{
+			get { return this.eyeDirection.Pitch; }
+			set { this.eyeDirection.Pitch = value; }
+		}
+
+		public float Yaw
+		{
+			get { return this.eyeDirection.Yaw; }
+			set { this.eyeDirection.Yaw = value; }
+		}
+
+		public override float[] InvertData
 		{
 			get { return this.rotInvert.Data; }
 		}
 
 		public override void Move( float x, float y, float z )
 		{
-			throw new System.NotImplementedException();
+			this.Position.X = x;
+			this.Position.Y = y;
+			this.Position.Z = z;
+
+			SetPosition();
 		}
 
 		public override void MoveLeft( float delta )
@@ -103,8 +129,8 @@ namespace ManagedOpenGL.Engine.Cameras
 		public override void TurnLeft( float delta )
 		{
 			eyeDirection.Pitch += -delta * pitchSensitivity;
-			eyeDirection.SetToMatrix( modelViewMatrix );
-			eyeDirection.SetInvertToMatrix( rotInvert );
+			//eyeDirection.SetToMatrix( modelViewMatrix );
+			//eyeDirection.SetInvertToMatrix( rotInvert );
 
 			SetPosition();
 		}
@@ -112,8 +138,8 @@ namespace ManagedOpenGL.Engine.Cameras
 		public override void TurnRight( float delta )
 		{
 			eyeDirection.Pitch += +delta * pitchSensitivity;
-			eyeDirection.SetToMatrix( modelViewMatrix );
-			eyeDirection.SetInvertToMatrix( rotInvert );
+			//eyeDirection.SetToMatrix( modelViewMatrix );
+			//eyeDirection.SetInvertToMatrix( rotInvert );
 
 			SetPosition();
 		}
@@ -121,8 +147,8 @@ namespace ManagedOpenGL.Engine.Cameras
 		public override void LookDown( float delta )
 		{
 			eyeDirection.Yaw += -delta * yawSensitivity;
-			eyeDirection.SetToMatrix( modelViewMatrix );
-			eyeDirection.SetInvertToMatrix( rotInvert );
+			//eyeDirection.SetToMatrix( modelViewMatrix );
+			//eyeDirection.SetInvertToMatrix( rotInvert );
 
 			SetPosition();
 		}
@@ -130,8 +156,8 @@ namespace ManagedOpenGL.Engine.Cameras
 		public override void LookUp( float delta )
 		{
 			eyeDirection.Yaw += +delta * yawSensitivity;
-			eyeDirection.SetToMatrix( modelViewMatrix );
-			eyeDirection.SetInvertToMatrix( rotInvert );
+			//eyeDirection.SetToMatrix( modelViewMatrix );
+			//eyeDirection.SetInvertToMatrix( rotInvert );
 
 			SetPosition();
 		}
