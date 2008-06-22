@@ -115,6 +115,8 @@ namespace ManagedOpenGL.Engine.Math
 	public class Vector3F
 	{
 		private readonly float[] data = new float[3];
+		private bool beginChanging;
+		private bool raiseChanged = false;
 
 		public event EventHandler Changed;
 
@@ -171,6 +173,21 @@ namespace ManagedOpenGL.Engine.Math
 			}
 		}
 
+		public bool BeginChanging
+		{
+			get { return this.beginChanging; }
+			set
+			{
+				if (beginChanging == value) return;
+				this.beginChanging = value;
+				
+				if (this.beginChanging || !this.raiseChanged) return;
+
+				this.RaiseChanged( EventArgs.Empty );
+				this.raiseChanged = false;
+			}
+		}
+
 		public void Normalize()
 		{
 			this.X /= Length;
@@ -212,6 +229,11 @@ namespace ManagedOpenGL.Engine.Math
 
 		private void RaiseChanged( EventArgs e )
 		{
+			if (BeginChanging)
+			{
+				raiseChanged = true;
+				return;
+			}
 			if (Changed != null) Changed( this, e );
 		}
 
@@ -229,9 +251,13 @@ namespace ManagedOpenGL.Engine.Math
 
 		public void MultiplyOn( float value )
 		{
+			BeginChanging = true;
+
 			this.X *= value;
 			this.Y *= value;
 			this.Z *= value;
+
+			BeginChanging = false;
 		}
 
 		public void Set( Vector3F pos )
@@ -241,11 +267,13 @@ namespace ManagedOpenGL.Engine.Math
 
 		public void Set( float x, float y, float z )
 		{
+			this.BeginChanging = true;
+
 			this.X = x;
 			this.Y = y;
 			this.Z = z;
 
-			RaiseChanged( EventArgs.Empty );
+			this.BeginChanging = false;
 		}
 	}
 	

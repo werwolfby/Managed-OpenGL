@@ -23,17 +23,19 @@ namespace ManagedOpenGL.Engine.Windows
 		private const int PositiveY = 5;
 
 		private readonly string[] fileNames;
-		private uint id;
-		private static readonly uint[] genTextures = new uint[1] { 0 };
+		protected uint id;
 
-		public TextureCubeMap( string back, string front, string left, string right, string bottom, string top ) 
+		protected TextureCubeMap()
 		{
-			this.fileNames = new[] { back, front, left, right, bottom, top };
-
 			this.MinFilter = TextureMinFilter.Linear;
 			this.MagFilter = TextureMagFilter.Linear;
 			this.WrapT = TextureWrapMode.ClampToEdgeSgis;
 			this.WrapS = TextureWrapMode.ClampToEdgeSgis;
+		}
+
+		public TextureCubeMap( string back, string front, string left, string right, string bottom, string top ) : this()
+		{
+			this.fileNames = new[] { back, front, left, right, bottom, top };
 		}
 
 		public TextureMinFilter MinFilter { get; set; }
@@ -44,10 +46,9 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public TextureWrapMode WrapT { get; set; }
 
-		public void Load()
+		public virtual void Load()
 		{
-			OpenGLNative.GenTextures( 1, genTextures );
-			this.id = genTextures[0];
+			this.id = TextureHelper.GetNextTextureId();
 
 			this.Use();
 			int stride;
@@ -111,13 +112,43 @@ namespace ManagedOpenGL.Engine.Windows
 			OpenGLNative.TexGeni( TextureCoordName.R, TextureGenParameter.TextureGenMode, (int)VERSION_1_3.ReflectionMap );
 		}
 
-		public void UnUse()
+		public static void UnUse()
 		{
 			OpenGLNative.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
 
 			OpenGLNative.Disable( EnableCap.TextureGenS );
 			OpenGLNative.Disable( EnableCap.TextureGenT );
 			OpenGLNative.Disable( EnableCap.TextureGenR );
+		}
+
+		public void CopyToLeft( int x, int y, int w, int h )
+		{
+			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeX, x, y, w, h );
+		}
+
+		public void CopyToRight( int x, int y, int w, int h )
+		{
+			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapPositiveX, x, y, w, h );
+		}
+
+		public void CopyToBottom( int x, int y, int w, int h )
+		{
+			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeY, x, y, w, h );
+		}
+
+		public void CopyToTop( int x, int y, int w, int h )
+		{
+			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapPositiveY, x, y, w, h );
+		}
+
+		public void CopyToBack( int x, int y, int w, int h )
+		{
+			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapPositiveZ, x, y, w, h );
+		}
+
+		public void CopyToFront( int x, int y, int w, int h )
+		{
+			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeZ, x, y, w, h );
 		}
 	}
 }

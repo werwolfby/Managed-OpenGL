@@ -165,7 +165,7 @@ namespace Test.ManagedOpenGL.EnviromentCubeMapSample
 			this.shader.Use();
 			this.currentDrawObject.Draw();
 			gl.ActiveTextureARB( (uint)ARB_multitexture.Texture0Arb );
-			this.textureCubeMap.UnUse();
+			TextureCubeMap.UnUse();
 		}
 
 		protected override void Update( float elapsed ) 

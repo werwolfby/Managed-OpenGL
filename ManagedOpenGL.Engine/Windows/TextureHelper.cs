@@ -19,6 +19,8 @@ namespace ManagedOpenGL.Engine.Windows
 {
 	public static class TextureHelper
 	{
+		private static readonly uint[] genTextures = new uint[1] { 0 };
+		
 		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height )
 		{
 			byte[] imageData;
@@ -38,6 +40,24 @@ namespace ManagedOpenGL.Engine.Windows
 			}
 
 			return imageData;
+		}
+
+		public static uint GetNextTextureId()
+		{
+			OpenGLNative.GenTextures( 1, genTextures );
+			return genTextures[0];
+		}
+
+		public static void CopySubImage( TextureTarget target, int x, int y, int w, int h )
+		{
+			OpenGLNative.CopyTexImage2D( target, 0, PixelInternalFormat.Rgb8, x, y, w, h, 0 );
+			OpenGL.Assert();
+		}
+
+		public static void CopySubImage2( TextureTarget target, int x, int y, int w, int h )
+		{
+			OpenGLNative.CopyTexSubImage2D( target, 0, 0, 0, x, y, w, h );
+			OpenGL.Assert();
 		}
 	}
 }

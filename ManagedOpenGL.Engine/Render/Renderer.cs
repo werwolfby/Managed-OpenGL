@@ -94,6 +94,7 @@ namespace ManagedOpenGL.Engine.Render
 					OpenGLNative.BlendFunc( BlendingFactorSrc.One, BlendingFactorDest.One );
 					break;
 				case RenderMode.MODE_3D:
+					OpenGLNative.Disable( EnableCap.Blend );
 					OpenGLNative.MatrixMode( MatrixMode.Projection );
 					OpenGLNative.LoadIdentity();
 					WindowsOpenGLNative.gluPerspective( FOV, (double)WindowSize.Width / WindowSize.Height, Near, Far );

@@ -16,7 +16,6 @@ namespace ManagedOpenGL.Engine.Windows
 	public class Texture2D
 	{
 		private readonly string fileName;
-		private static readonly uint[] genTextures = new uint[1] { 0 };
 
 		protected Texture2D()
 		{
@@ -47,7 +46,7 @@ namespace ManagedOpenGL.Engine.Windows
 		{
 			if (Loaded) return;
 
-			this.Id = GetNextTextureId();
+			this.Id = TextureHelper.GetNextTextureId();
 
 			int stride;
 			int width;
@@ -65,16 +64,10 @@ namespace ManagedOpenGL.Engine.Windows
 		public void Use() 
 		{
 			OpenGLNative.BindTexture( TextureTarget.Texture2d, this.Id );
-			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMinFilter, (int)MinFilter );
-			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMagFilter, (int)MagFilter );
 			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapS, (int)WrapS );
 			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureWrapT, (int)WrapT );
-		}
-
-		protected static uint GetNextTextureId()
-		{
-			OpenGLNative.GenTextures( 1, genTextures );
-			return genTextures[0];
+			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMinFilter, (int)MinFilter );
+			OpenGLNative.TexParameteri( TextureTarget.Texture2d, TextureParameterName.TextureMagFilter, (int)MagFilter );
 		}
 	}
 }

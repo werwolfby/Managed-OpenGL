@@ -39,12 +39,28 @@ namespace Test.ManagedOpenGL.DepthReflectionExample
 		                                                                     @"Data\SkyBox\CubeMap2\bottom.png",
 		                                                                     @"Data\SkyBox\CubeMap2\top.png" );
 
+		private readonly TextureCubeMap cubeMap1 = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
+		                                                               @"Data\SkyBox\CubeMap2\front.png",
+		                                                               @"Data\SkyBox\CubeMap2\left.png",
+		                                                               @"Data\SkyBox\CubeMap2\right.png",
+		                                                               @"Data\SkyBox\CubeMap2\bottom.png",
+		                                                               @"Data\SkyBox\CubeMap2\top.png" );
+
+		private readonly TextureCubeMap cubeMap2 = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
+		                                                               @"Data\SkyBox\CubeMap2\front.png",
+		                                                               @"Data\SkyBox\CubeMap2\left.png",
+		                                                               @"Data\SkyBox\CubeMap2\right.png",
+		                                                               @"Data\SkyBox\CubeMap2\bottom.png",
+		                                                               @"Data\SkyBox\CubeMap2\top.png" );
+
 		private readonly Font font = new Font( @"Data\Fonts\LC_B.jpg" );
 
-		private readonly PositionedSphere sphere1 = new PositionedSphere( 20, 32, 32, +100, 0, 0 );
-		private readonly PositionedSphere sphere2 = new PositionedSphere( 20, 32, 32, -100, 0, 0 );
+		private readonly PositionedSphere sphere1 = new PositionedSphere( 20, 32, 32, +30, 0, 0 );
+		private readonly PositionedSphere sphere2 = new PositionedSphere( 20, 32, 32, -30, 0, 0 );
 
 		private readonly CubeMapCamera cubeMapCamera = new CubeMapCamera();
+
+		private readonly EmptyTexture2D emptyTexture2D = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
 
 		public DepthReflectionForm()
 		{
@@ -62,11 +78,65 @@ namespace Test.ManagedOpenGL.DepthReflectionExample
 			this.skybox.Load();
 
 			this.font.Load();
+
+			this.cubeMap1.Load();
+			this.cubeMap2.Load();
+
+			this.LoadSphere2CubeMap();
+
+			emptyTexture2D.Load();
+		}
+
+		private void LoadSphere2CubeMap() 
+		{
+			var width = 256;
+			var height = 256;
+			this.PrepareRenderToTexture( width, height );
+
+			this.cubeMapCamera.Position.Set( this.sphere2.X, this.sphere2.Y, this.sphere2.Z );
+
+			gl.ClearColor( 0, 0, 0, 1 );
+
+			this.RenderScene( this.cubeMapCamera.LeftCamera, true );
+			this.cubeMap2.Use();
+			this.cubeMap2.CopyToLeft( 0, 0, width, height );
+
+			this.RenderScene( this.cubeMapCamera.RightCamera, true );
+			this.cubeMap2.Use();
+			this.cubeMap2.CopyToRight( 0, 0, width, height );
+
+			this.RenderScene( this.cubeMapCamera.BottomCamera, true );
+			this.cubeMap2.Use();
+			this.cubeMap2.CopyToBottom( 0, 0, width, height );
+
+			this.RenderScene( this.cubeMapCamera.TopCamera, true );
+			this.cubeMap2.Use();
+			this.cubeMap2.CopyToTop( 0, 0, width, height );
+
+			this.RenderScene( this.cubeMapCamera.FarCamera, true );
+			this.cubeMap2.Use();
+			this.cubeMap2.CopyToFront( 0, 0, width, height );
+
+			this.RenderScene( this.cubeMapCamera.NearCamera, true );
+			this.cubeMap2.Use();
+			this.cubeMap2.CopyToBack( 0, 0, width, height );
+
+			this.RestoreRenderToTexture();
 		}
 
 		protected override void Draw() 
 		{
 			base.Draw();
+
+			//cubeMapCamera.Position.Set( sphere2.X, sphere2.Y, sphere2.Z );
+
+			//LoadSphere2CubeMap();
+			//PrepareRenderToTexture( 256, 256 );
+			//cubeMap1.Use();
+			//RenderScene( cubeMapCamera.RightCamera, true );
+			//RestoreRenderToTexture();
+
+			//return;
 
 			Renderer.RenderMode = RenderMode.MODE_3D;
 
@@ -75,49 +145,89 @@ namespace Test.ManagedOpenGL.DepthReflectionExample
 			gl.Enable( EnableCap.DepthTest );
 			gl.Disable( EnableCap.CullFace );
 
-			//this.PrepareRenderToTexture( 256, 256 );
-			//this.RestoreRenderToTexture();
+			cubeMapCamera.Position.Set( sphere2.X, sphere2.Y, sphere2.Z );
 
-			//cubeMapCamera.Position.Set( sphere1.X, sphere1.Y, sphere1.Z );
-			RenderScene( camera );
+			PrepareRenderToTexture( 256, 256 );
+			RenderScene( cubeMapCamera.LeftCamera, true );
+			RestoreRenderToTexture();
 
-			Renderer.RenderMode = RenderMode.MODE_2D;
+			gl.Viewport( 0, 0, WindowSize.Width, WindowSize.Height );
+			//RenderScene( camera, false );
 
-			gl.MatrixMode( MatrixMode.Texture );
+			gl.MatrixMode( MatrixMode.Modelview );
 			gl.LoadIdentity();
+			gl.Translatef( 0, 0, -50 );
 
-			font.WriteLine( 0, 10, "Pitch: {0}, Yaw: {0}", camera.Pitch, camera.Yaw );
+			gl.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+
+			RenderScene( camera, false );
+
+			//PrepareRenderToTexture( 256, 256 );
+			//RenderScene( camera, false );
+			//emptyTexture2D.Copy( 0, 0, 256, 256 );
+			//RestoreRenderToTexture();
+
+
+			//gl.Begin( BeginMode.Quads );
+
+			//gl.TexCoord2f( 0, 0 );
+			//gl.Vertex3f( -10, -10, 0 );
+
+			//gl.TexCoord2f( 1, 0 );
+			//gl.Vertex3f( +10, -10, 0 );
+
+			//gl.TexCoord2f( 1, 1 );
+			//gl.Vertex3f( +10, +10, 0 );
+
+			//gl.TexCoord2f( 0, 1 );
+			//gl.Vertex3f( -10, +10, 0 );
+
+			//gl.End();
 		}
 
-		public void RenderScene( Camera renderCamera )
+		public void RenderScene( Camera renderCamera, bool invert )
 		{
+			gl.ClearColor( 0, 0, 0, 1 );
+			gl.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+
 			gl.MatrixMode( MatrixMode.Modelview );
-			gl.LoadMatrixf( renderCamera.Data );
+			gl.LoadIdentity();
+			gl.MultMatrixf( renderCamera.Data );
+			//if (invert) gl.Scalef( -1, -1, 1 );
 
 			gl.MatrixMode( MatrixMode.Texture );
 			gl.LoadIdentity();
 
+			gl.Enable( EnableCap.Texture2d );
+			gl.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
+			TextureCubeMap.UnUse();
 			this.skybox.Draw();
 
-			textureCubeMap.Use();
-
 			gl.MatrixMode( MatrixMode.Texture );
+			gl.LoadIdentity();
 			gl.Scalef( 1, 1, -1 );
 			gl.MultMatrixf( renderCamera.InvertData );
 
+			gl.Disable( EnableCap.Texture2d );
+			gl.Enable( (EnableCap)VERSION_1_3.TextureCubeMap );
+
+			cubeMap1.Use();
 			sphere1.Draw();
 
+			cubeMap2.Use();
 			sphere2.Draw();
 
-			textureCubeMap.UnUse();
+			TextureCubeMap.UnUse();
 		}
 
 		public void PrepareRenderToTexture( int width, int height )
 		{
 			gl.Viewport( 0, 0, width, height );
 			gl.MatrixMode( MatrixMode.Projection );
-			//gl.PushMatrix();
-			gl.Frustum( -1, 1, -1, 1, 1, Renderer.Far );
+			gl.PushMatrix();
+			gl.LoadIdentity();
+			gl.Frustum( -1, 1, -1, 1, 1, 10000 );
+			//gl.Scalef( -1, -1, -1 );
 		}
 
 		public void RestoreRenderToTexture()

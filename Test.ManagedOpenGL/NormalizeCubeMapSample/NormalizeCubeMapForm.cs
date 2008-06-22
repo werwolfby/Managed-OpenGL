@@ -128,7 +128,7 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 
 			shader.Use();
 			currentDrawObject.Draw();
-			textureCubeMap.UnUse();
+			TextureCubeMap.UnUse();
 		}
 
 		protected override void Update( float elapsed ) 

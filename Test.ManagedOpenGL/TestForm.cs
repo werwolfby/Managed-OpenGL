@@ -8,6 +8,7 @@ using Test.ManagedOpenGL.FontsSample;
 using Test.ManagedOpenGL.MultiTextureSample;
 using Test.ManagedOpenGL.NormalizeCubeMapSample;
 using Test.ManagedOpenGL.NormalMapSample;
+using Test.ManagedOpenGL.RenderToTextureSample;
 using Test.ManagedOpenGL.ShaderSample;
 using Test.ManagedOpenGL.SkyBoxSample;
 
@@ -62,7 +63,12 @@ namespace Test.ManagedOpenGL
 
 		private void button9_Click( object sender, EventArgs e )
 		{
-			RunSample<DepthReflectionForm>();
+			this.RunSample<RenderToTextureForm>();
+		}
+
+		private void button10_Click( object sender, EventArgs e )
+		{
+			this.RunSample<DepthReflectionForm>();
 		}
 
 		private void RunSample<T>()

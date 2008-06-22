@@ -32,7 +32,7 @@ namespace ManagedOpenGL.Engine.Windows
 		{
 			if (Loaded) return;
 
-			this.Id = GetNextTextureId();
+			this.Id = TextureHelper.GetNextTextureId();
 
 			var bytes = new byte[width*height*channels];
 
@@ -41,6 +41,12 @@ namespace ManagedOpenGL.Engine.Windows
 			                   format, PixelType.UnsignedByte, bytes );
 
 			Loaded = true;
+		}
+
+		public void Copy( int x, int y, int w, int h )
+		{
+			Use();
+			TextureHelper.CopySubImage2( TextureTarget.Texture2d, x, y, w, h );
 		}
 	}
 }

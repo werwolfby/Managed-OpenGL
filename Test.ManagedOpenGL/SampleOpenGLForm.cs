@@ -62,6 +62,9 @@ namespace Test.ManagedOpenGL
 
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadMatrixf( camera.Data );
+
+			OpenGLNative.Enable( EnableCap.DepthTest );
+			OpenGLNative.Enable( EnableCap.CullFace );
 		}
 
 		protected override void Update( float elapsed ) 

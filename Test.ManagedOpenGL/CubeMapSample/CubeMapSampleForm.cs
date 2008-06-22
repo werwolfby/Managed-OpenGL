@@ -112,7 +112,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			
 			textureCubeMap.Use();
 			currentObject.Draw();
-			textureCubeMap.UnUse();
+			TextureCubeMap.UnUse();
 
 			OpenGLNative.MatrixMode( MatrixMode.Texture );
 			OpenGLNative.PopMatrix();

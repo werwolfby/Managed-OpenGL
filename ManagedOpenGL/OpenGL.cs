@@ -24,7 +24,8 @@ namespace ManagedOpenGL
 
 		public static unsafe void TexImage2D( TextureTarget target, int level, int internalformat, int width, int height, int border, PixelFormat format, PixelType type, byte[] pixels )
 		{
-			fixed (byte* bytes = &pixels[0])
+			if (pixels == null) OpenGLNative.TexImage2D( target, level, internalformat, width, height, border, format, type, null );
+			else fixed (byte* bytes = &pixels[0])
 			{
 				OpenGLNative.TexImage2D( target, level, internalformat, width, height, border, format, type, bytes );
 			}
@@ -63,10 +64,10 @@ namespace ManagedOpenGL
 			//return infoLog;
 		}
 
-		//public delegate void GetObjectParameterivARBDelegate( uint obj, ARB_shader_objects pname, [Out]int[] @params ); //  extension method
-		//public static readonly GetObjectParameterivARBDelegate GetObjectParameterivARB;
-
-		//public delegate void GetInfoLogARBDelegate( uint obj, int maxLength, out int length, [Out]char[] infoLog ); //  extension method
-		//public static readonly GetInfoLogARBDelegate GetInfoLogARB;
+		public static void Assert()
+		{
+			var errorCode = OpenGLNative.GetError();
+			if (errorCode != ErrorCode.NoError) throw new Exception( errorCode.ToString() );
+		}
 	}
 }
