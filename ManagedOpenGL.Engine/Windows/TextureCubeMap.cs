@@ -150,5 +150,30 @@ namespace ManagedOpenGL.Engine.Windows
 		{
 			TextureHelper.CopySubImage( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeZ, x, y, w, h );
 		}
+
+		public void CopyTo( int i, int x, int y, int w, int h )
+		{
+			switch (i)
+			{
+				case 0:
+					CopyToLeft( x, y, w, h );
+					break;
+				case 1:
+					CopyToRight( x, y, w, h );
+					break;
+				case 2:
+					CopyToBottom( x, y, w, h );
+					break;
+				case 3:
+					CopyToTop( x, y, w, h );
+					break;
+				case 4:
+					CopyToBack( x, y, w, h );
+					break;
+				case 5:
+					CopyToFront( x, y, w, h );
+					break;
+			}
+		}
 	}
 }

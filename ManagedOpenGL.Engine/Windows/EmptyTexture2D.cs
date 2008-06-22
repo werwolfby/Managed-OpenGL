@@ -48,5 +48,10 @@ namespace ManagedOpenGL.Engine.Windows
 			Use();
 			TextureHelper.CopySubImage2( TextureTarget.Texture2d, x, y, w, h );
 		}
+
+		public void Copy( int w, int h )
+		{
+			Copy( 0, 0, w, h );
+		}
 	}
 }

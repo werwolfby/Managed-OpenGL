@@ -18,12 +18,15 @@ namespace ManagedOpenGL.Engine.Cameras
 	public class CubeMapCamera
 	{
 		private readonly Vector3F position = new Vector3F( 0, 0, 0 );
-		private readonly TwoDirCamera leftCamera = new TwoDirCamera   { Pitch = -(float)System.Math.PI / 2, Yaw = 0 };
-		private readonly TwoDirCamera rightCamera = new TwoDirCamera  { Pitch = (float)System.Math.PI / 2, Yaw = 0 };
-		private readonly TwoDirCamera bottomCamera = new TwoDirCamera { Pitch = 0, Yaw = (float)-System.Math.PI / 2 };
-		private readonly TwoDirCamera topCamera = new TwoDirCamera    { Pitch = 0, Yaw = (float)System.Math.PI / 2 };
+		private readonly TwoDirCamera leftCamera = new TwoDirCamera   { Pitch = +(float)System.Math.PI / 2, Yaw = 0 };
+		private readonly TwoDirCamera rightCamera = new TwoDirCamera  { Pitch = -(float)System.Math.PI / 2, Yaw = 0 };
+		private readonly TwoDirCamera bottomCamera = new TwoDirCamera { Pitch = 0, Yaw = -(float)System.Math.PI / 2 };
+		private readonly TwoDirCamera topCamera = new TwoDirCamera    { Pitch = 0, Yaw = +(float)System.Math.PI / 2 };
 		private readonly TwoDirCamera nearCamera = new TwoDirCamera   { Pitch = (float)System.Math.PI, Yaw = 0 };
 		private readonly TwoDirCamera farCamera = new TwoDirCamera    { Pitch = 0, Yaw = 0 };
+
+		private readonly TwoDirCamera[] cameras;
+		private readonly TwoDirCamera[] invertCameras;
 
 		public CubeMapCamera()
 		{
@@ -36,6 +39,18 @@ namespace ManagedOpenGL.Engine.Cameras
 									nearCamera.Position.Set( position );
 									farCamera.Position.Set( position );
 			                    };
+			cameras = new[]
+			          {
+			          	leftCamera, rightCamera,
+			          	bottomCamera, topCamera,
+			          	farCamera, nearCamera,
+			          };
+			invertCameras = new[]
+			                {
+			                	rightCamera, leftCamera,
+			                	topCamera, bottomCamera,
+			                	nearCamera, farCamera,
+			                };
 		}
 
 		public Vector3F Position
@@ -71,6 +86,16 @@ namespace ManagedOpenGL.Engine.Cameras
 		public Camera FarCamera
 		{
 			get { return this.farCamera; }
+		}
+
+		public TwoDirCamera[] Cameras
+		{
+			get { return this.cameras; }
+		}
+
+		public TwoDirCamera[] InvertCameras
+		{
+			get { return this.invertCameras; }
 		}
 	}
 }
