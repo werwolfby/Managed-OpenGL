@@ -8,14 +8,17 @@
  * 
  * History:
  *   12.06.2008 15:16 - Create Wireframe
+ *   22.06.2008 19:13 - Test positive camera
  *
  *******************************************************/
 
+using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using ManagedOpenGL;
+using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Render;
+using ManagedOpenGL.Engine.Windows;
 using Test.ManagedOpenGL;
 
 using gl=ManagedOpenGL.OpenGLNative;
@@ -24,59 +27,69 @@ namespace Test.Temp
 {
 	public class TestForm : SampleOpenGLForm
 	{
-		private class SphereExt : Sphere
+		private const TextureWrapMode clamp = TextureWrapMode.Clamp;
+		private const int size = 2400;
+
+		private readonly Skybox skybox = new Skybox( size, size, size,
+		                                             new Texture2D( @"Data\SkyBox\CubeMap2\back.png" )   { WrapS = clamp, WrapT = clamp },
+		                                             new Texture2D( @"Data\SkyBox\CubeMap2\front.png" )  { WrapS = clamp, WrapT = clamp },
+		                                             new Texture2D( @"Data\SkyBox\CubeMap2\left.png" )   { WrapS = clamp, WrapT = clamp },
+		                                             new Texture2D( @"Data\SkyBox\CubeMap2\right.png" )  { WrapS = clamp, WrapT = clamp },
+		                                             new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" ) { WrapS = clamp, WrapT = clamp },
+		                                             new Texture2D( @"Data\SkyBox\CubeMap2\top.png" )    { WrapS = clamp, WrapT = clamp } );
+
+		private class PositiveCamera
 		{
-			public SphereExt( float radius, int slices, int stacks ) : base( radius, slices, stacks ) {}
+			private float cosPitch = 1, sinPitch;
+			private float cosYaw   = 1, sinYaw;
+			private float pitch, yaw;
 
-			public override void Draw()
+			private readonly Matrix4F matrix = new Matrix4F();
+
+			public float Pitch
 			{
-				gl.PointSize( 5.0f );
-				gl.LineWidth( 3 );
-				gl.Enable( EnableCap.PointSmooth );
-				gl.Enable( EnableCap.LineSmooth );
-
-				unsafe
+				get { return this.pitch; }
+				set
 				{
-					fixed (Vertex* v = &this.vertices[0])
-					fixed (int* ind = this.quadIndeces)
-					{
-						gl.EnableClientState( EnableCap.VertexArray );
-						gl.DisableClientState( EnableCap.TextureCoordArray );
-						gl.EnableClientState( EnableCap.NormalArray );
-						gl.VertexPointer( 3, VertexPointerType.Float, Marshal.SizeOf( typeof(Vertex) ), v );
-						gl.NormalPointer( NormalPointerType.Float, Marshal.SizeOf( typeof(Vertex) ), ((byte*)v) + 3 * sizeof(float) );
+					if (this.pitch == value) return;
+					this.pitch = value;
+					this.cosPitch = (float)Math.Cos( this.pitch );
+					this.sinPitch = (float)Math.Sin( this.pitch );
 
-						gl.DrawElements( BeginMode.Quads, quadIndeces.Length, (uint)DataType.UnsignedInt, ind );
-
-						gl.Begin( BeginMode.Lines );
-						for (var i = 0; i < vertices.Length; i++)
-						{
-							var vertex = (v + i);
-							gl.Color3f( 0, 0, 1 );
-							gl.Vertex3f( vertex->position[0], vertex->position[1], vertex->position[2] );
-							gl.Vertex3f( vertex->position[0] + vertex->normal[0],
-							             vertex->position[1] + vertex->normal[1],
-							             vertex->position[2] + vertex->normal[2] );
-
-							gl.Color3f( 0, 1, 0 );
-							gl.Vertex3f( vertex->position[0], vertex->position[1], vertex->position[2] );
-							gl.Vertex3f( vertex->position[0] + vertex->tangent[0],
-							             vertex->position[1] + vertex->tangent[1],
-							             vertex->position[2] + vertex->tangent[2] );
-
-							gl.Color3f( 1, 0, 0 );
-							gl.Vertex3f( vertex->position[0], vertex->position[1], vertex->position[2] );
-							gl.Vertex3f( vertex->position[0] + vertex->binormal[0],
-							             vertex->position[1] + vertex->binormal[1],
-							             vertex->position[2] + vertex->binormal[2] );
-						}
-						gl.End();
-					}
+					UpdateMatrix();
 				}
+			}
+
+			public float Yaw
+			{
+				get { return this.yaw; }
+				set
+				{
+					if (value > +Math.PI / 2) value = (float)(+Math.PI / 2);
+					if (value < -Math.PI / 2) value = (float)(-Math.PI / 2);
+					if (this.yaw == value) return;
+					this.yaw = value;
+					this.cosYaw = (float)Math.Cos( this.yaw );
+					this.sinYaw = (float)Math.Sin( this.yaw );
+
+					UpdateMatrix();
+				}
+			}
+
+			public float[] Data
+			{
+				get { return this.matrix.Data; }
+			}
+
+			private void UpdateMatrix()
+			{
+				matrix[0] = +cosPitch;          matrix[4] = 0;       matrix[08] = sinPitch;
+				matrix[1] = -sinPitch * sinYaw; matrix[5] = +cosYaw; matrix[09] = cosPitch*sinYaw;
+				matrix[2] = -sinPitch * cosYaw; matrix[6] = -sinYaw; matrix[10] = cosPitch*cosYaw;
 			}
 		}
 
-		private readonly SphereExt sphere = new SphereExt( 20, 24, 24 );
+		private readonly PositiveCamera positiveCamera = new PositiveCamera();
 
 		public TestForm()
 		{
@@ -85,26 +98,33 @@ namespace Test.Temp
 			camera.Position.Set( 0, 0, 50 );
 
 			Renderer.Near = 1;
+			Renderer.Far = 5000;
+		}
+
+		protected override void AfterInitGLOverride()
+		{
+			base.AfterInitGLOverride();
+
+			skybox.Load();
 		}
 
 		protected override void Draw() 
 		{
+			camera.Pitch += 0.0001f;
+			camera.Yaw   += 0.0001f;
+
 			base.Draw();
 
-			gl.ClearColor( 0, 0, 0, 1 );
-			gl.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+			//positiveCamera.Pitch += 0.0001f;
+			//positiveCamera.Yaw += 0.0001f;
 
-			gl.Enable( EnableCap.DepthTest );
+			//gl.MatrixMode( MatrixMode.Modelview );
+			//gl.LoadIdentity();
+			//gl.LoadMatrixf( positiveCamera.Data );
 
-			gl.MatrixMode( MatrixMode.Modelview );
-			gl.LoadMatrixf( camera.Data );
-
-			gl.Enable( EnableCap.CullFace );
-
-			gl.PolygonMode( MaterialFace.Front, PolygonMode.Line );
-
-			gl.Color3f( 1, 1, 1 );
-			sphere.Draw();
+			gl.Enable( EnableCap.Texture2d );
+			skybox.Draw();
+			gl.Disable( EnableCap.Texture2d );
 		}
 	}
 }

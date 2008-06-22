@@ -104,8 +104,8 @@ namespace ManagedOpenGL.Engine.Objects
 
 			foreach (var texture in new [] {back, front, left, right, bottom, top})
 			{
-				texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
-				texture.WrapT = TextureWrapMode.ClampToEdgeSgis;
+			    texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
+			    texture.WrapT = TextureWrapMode.ClampToEdgeSgis;
 			}
 			
 			Fill( 0, this.boxVertexes, this.skyboxVertices, 1, 0, 2, 3 ); // back
