@@ -27,6 +27,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 			using (var bmp = new Bitmap( fileName ))
 			{
+				bmp.RotateFlip( RotateFlipType.RotateNoneFlipY );
 				var bmpData = bmp.LockBits( new Rectangle( 0, 0, bmp.Width, bmp.Height ), ImageLockMode.ReadOnly, pixelFormat );
 
 				stride = bmpData.Stride;

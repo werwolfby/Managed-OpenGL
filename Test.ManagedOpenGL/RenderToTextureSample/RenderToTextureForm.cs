@@ -36,11 +36,13 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 
 		private readonly Cube cube = new Cube( 20, 20, 20 );
 		private float angle;
+		private Texture2D back;
 
 		public RenderToTextureForm()
 		{
 			camera.Position.Set( 0, 0, 50 );
 			Renderer.Far = 10000;
+			this.back = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
 		}
 
 		protected override void AfterInitGLOverride() 
@@ -51,6 +53,8 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 			this.skybox.Load();
 
 			this.emptyTexture2D.Load();
+
+			back.Load();
 		}
 
 		protected override void Draw()
@@ -85,7 +89,7 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 			this.skybox.Draw();
 			gl.Rotatef( -this.angle, 0, 1, 0 );
 
-			texture2D.Use();
+			back.Use();
 
 			gl.Translatef( 0, 0, -50 );
 			gl.Rotatef( this.angle, 1, 0, 0 );

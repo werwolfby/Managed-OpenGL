@@ -157,10 +157,10 @@ namespace ManagedOpenGL.Engine.Objects
 
 		private static void Fill( int faceNumber, BoxVertex[] boxVertices, SkyboxVertex[] vertices, int i0, int i1, int i2, int i3 )
 		{
-			vertices[faceNumber*4 + 0] = new SkyboxVertex( boxVertices[i0], 0, 1 );
-			vertices[faceNumber*4 + 1] = new SkyboxVertex( boxVertices[i1], 1, 1 );
-			vertices[faceNumber*4 + 2] = new SkyboxVertex( boxVertices[i2], 1, 0 );
-			vertices[faceNumber*4 + 3] = new SkyboxVertex( boxVertices[i3], 0, 0 );
+			vertices[faceNumber*4 + 0] = new SkyboxVertex( boxVertices[i0], 0, 0 );
+			vertices[faceNumber*4 + 1] = new SkyboxVertex( boxVertices[i1], 1, 0 );
+			vertices[faceNumber*4 + 2] = new SkyboxVertex( boxVertices[i2], 1, 1 );
+			vertices[faceNumber*4 + 3] = new SkyboxVertex( boxVertices[i3], 0, 1 );
 		}
 
 		public void Draw()

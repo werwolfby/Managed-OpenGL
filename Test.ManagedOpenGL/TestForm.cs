@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ManagedOpenGL.Engine.Windows;
+using Test.ManagedOpenGL.CubeMap2Sample;
 using Test.ManagedOpenGL.CubeMapSample;
 using Test.ManagedOpenGL.DepthReflectionExample;
 using Test.ManagedOpenGL.EnviromentCubeMapSample;
@@ -69,6 +70,11 @@ namespace Test.ManagedOpenGL
 		private void button10_Click( object sender, EventArgs e )
 		{
 			this.RunSample<DepthReflectionForm>();
+		}
+
+		private void button11_Click( object sender, EventArgs e )
+		{
+			this.RunSample<CubeMap2Form>();
 		}
 
 		private void RunSample<T>()
