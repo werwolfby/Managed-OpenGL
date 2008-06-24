@@ -20,14 +20,14 @@ namespace ManagedOpenGL.Engine.Math
 	public static class MatrixHelper
 	{
 		public static float Determinant2F( float a00, float a01,
-		                                   float a10, float a11 )
+										   float a10, float a11 )
 		{
 			return a00 * a11 - a10 * a01;
 		}
 
 		public static float Determinant3F( float a00, float a01, float a02,
-		                                   float a10, float a11, float a12,
-		                                   float a20, float a21, float a22 )
+										   float a10, float a11, float a12,
+										   float a20, float a21, float a22 )
 		{
 			return a00 * Determinant2F( a11, a12, a21, a22 ) +
 			       a01 * Determinant2F( a10, a12, a20, a22 ) -
@@ -35,22 +35,22 @@ namespace ManagedOpenGL.Engine.Math
 		}
 
 		public static float Determinant4F( float a00, float a01, float a02, float a03,
-		                                   float a10, float a11, float a12, float a13,
-		                                   float a20, float a21, float a22, float a23,
-		                                   float a30, float a31, float a32, float a33 )
+										   float a10, float a11, float a12, float a13,
+										   float a20, float a21, float a22, float a23,
+										   float a30, float a31, float a32, float a33 )
 		{
 			return a00 * Determinant3F( a11, a12, a13,
-			                            a21, a22, a23,
-			                            a31, a32, a33 ) -
+										a21, a22, a23,
+										a31, a32, a33 ) -
 			       a01 * Determinant3F( a10, a12, a13,
-			                            a20, a22, a23,
-			                            a30, a32, a33 ) +
+										a20, a22, a23,
+										a30, a32, a33 ) +
 			       a02 * Determinant3F( a10, a11, a13,
-			                            a20, a21, a23,
-			                            a30, a31, a33 ) -
+										a20, a21, a23,
+										a30, a31, a33 ) -
 			       a03 * Determinant3F( a10, a12, a12,
-			                            a20, a22, a22,
-			                            a30, a32, a32 );
+										a20, a22, a22,
+										a30, a32, a32 );
 		}
 	}
 
@@ -150,7 +150,7 @@ namespace ManagedOpenGL.Engine.Math
 			}
 		}
 
-		private static void CheckIndex( int row, int column ) 
+		private static void CheckIndex( int row, int column )
 		{
 			if (row    < 0 || row    > 3) throw new ArgumentOutOfRangeException( "row" );
 			if (column < 0 || column > 3) throw new ArgumentOutOfRangeException( "column" );
@@ -167,48 +167,48 @@ namespace ManagedOpenGL.Engine.Math
 
 		public void Transpose()
 		{
-			var tmp = this.data[1]; data[1] = data[3]; data[3] = tmp; 
-			tmp = data[2]; data[2] = data[6]; data[6] = tmp; 
+			var tmp = this.data[1]; data[1] = data[3]; data[3] = tmp;
+			tmp = data[2]; data[2] = data[6]; data[6] = tmp;
 			tmp = data[5]; data[5] = data[7]; data[7] = tmp;
 		}
 
-		public static Matrix3F operator + (Matrix3F a, Matrix3F b)
+		public static Matrix3F operator+( Matrix3F a, Matrix3F b )
 		{
 			var sumMatrix = new Matrix3F
-			                {
-			                	A00 = (a.A00 + b.A00),
-			                	A01 = (a.A01 + b.A01),
-			                	A02 = (a.A02 + b.A02),
-			                	A10 = (a.A10 + b.A10),
-			                	A11 = (a.A11 + b.A11),
-			                	A12 = (a.A12 + b.A12),
-			                	A20 = (a.A20 + b.A20),
-			                	A21 = (a.A21 + b.A21),
-			                	A22 = (a.A22 + b.A22)
-			                };
+							{
+								A00 = (a.A00 + b.A00),
+								A01 = (a.A01 + b.A01),
+								A02 = (a.A02 + b.A02),
+								A10 = (a.A10 + b.A10),
+								A11 = (a.A11 + b.A11),
+								A12 = (a.A12 + b.A12),
+								A20 = (a.A20 + b.A20),
+								A21 = (a.A21 + b.A21),
+								A22 = (a.A22 + b.A22)
+							};
 
 			return sumMatrix;
 		}
 
-		public static Matrix3F operator - (Matrix3F a, Matrix3F b)
+		public static Matrix3F operator-( Matrix3F a, Matrix3F b )
 		{
 			var sumMatrix = new Matrix3F
-			                {
-			                	A00 = (a.A00 - b.A00),
-			                	A01 = (a.A01 - b.A01),
-			                	A02 = (a.A02 - b.A02),
-			                	A10 = (a.A10 - b.A10),
-			                	A11 = (a.A11 - b.A11),
-			                	A12 = (a.A12 - b.A12),
-			                	A20 = (a.A20 - b.A20),
-			                	A21 = (a.A21 - b.A21),
-			                	A22 = (a.A22 - b.A22)
-			                };
+							{
+								A00 = (a.A00 - b.A00),
+								A01 = (a.A01 - b.A01),
+								A02 = (a.A02 - b.A02),
+								A10 = (a.A10 - b.A10),
+								A11 = (a.A11 - b.A11),
+								A12 = (a.A12 - b.A12),
+								A20 = (a.A20 - b.A20),
+								A21 = (a.A21 - b.A21),
+								A22 = (a.A22 - b.A22)
+							};
 
 			return sumMatrix;
 		}
 
-		public static Matrix3F operator * (Matrix3F a, float value)
+		public static Matrix3F operator*( Matrix3F a, float value )
 		{
 			var mulMatrix = new Matrix3F();
 
@@ -218,29 +218,29 @@ namespace ManagedOpenGL.Engine.Math
 			return mulMatrix;
 		}
 
-		public static Matrix3F operator * (Matrix3F a, Matrix3F b)
+		public static Matrix3F operator*( Matrix3F a, Matrix3F b )
 		{
 			var sumMatrix = new Matrix3F
-			                {
-			                	A00 = (a[0, 0] * b[0, 0] + a[0, 1] * b[1, 0] + a[0, 2] * b[2, 0]),
-			                	A01 = (a[0, 0] * b[0, 1] + a[0, 1] * b[1, 1] + a[0, 2] * b[2, 1]),
-			                	A02 = (a[0, 0] * b[0, 2] + a[0, 1] * b[1, 2] + a[0, 2] * b[2, 2]),
-			                	A10 = (a[1, 0] * b[0, 0] + a[1, 1] * b[1, 0] + a[1, 2] * b[2, 0]),
-			                	A11 = (a[1, 0] * b[0, 1] + a[1, 1] * b[1, 1] + a[1, 2] * b[2, 1]),
-			                	A12 = (a[1, 0] * b[0, 2] + a[1, 1] * b[1, 2] + a[1, 2] * b[2, 2]),
-			                	A20 = (a[2, 0] * b[0, 0] + a[2, 1] * b[1, 0] + a[2, 2] * b[2, 0]),
-			                	A21 = (a[2, 0] * b[0, 1] + a[2, 1] * b[1, 1] + a[2, 2] * b[2, 1]),
-			                	A22 = (a[2, 0] * b[0, 2] + a[2, 1] * b[1, 2] + a[2, 2] * b[2, 2]),
-			                };
+							{
+								A00 = (a[0, 0] * b[0, 0] + a[0, 1] * b[1, 0] + a[0, 2] * b[2, 0]),
+								A01 = (a[0, 0] * b[0, 1] + a[0, 1] * b[1, 1] + a[0, 2] * b[2, 1]),
+								A02 = (a[0, 0] * b[0, 2] + a[0, 1] * b[1, 2] + a[0, 2] * b[2, 2]),
+								A10 = (a[1, 0] * b[0, 0] + a[1, 1] * b[1, 0] + a[1, 2] * b[2, 0]),
+								A11 = (a[1, 0] * b[0, 1] + a[1, 1] * b[1, 1] + a[1, 2] * b[2, 1]),
+								A12 = (a[1, 0] * b[0, 2] + a[1, 1] * b[1, 2] + a[1, 2] * b[2, 2]),
+								A20 = (a[2, 0] * b[0, 0] + a[2, 1] * b[1, 0] + a[2, 2] * b[2, 0]),
+								A21 = (a[2, 0] * b[0, 1] + a[2, 1] * b[1, 1] + a[2, 2] * b[2, 1]),
+								A22 = (a[2, 0] * b[0, 2] + a[2, 1] * b[1, 2] + a[2, 2] * b[2, 2]),
+							};
 
 			return sumMatrix;
 		}
 	}
 
-	[DebuggerDisplay("(({data[0].ToString(\"F2\"),nq};{data[4].ToString(\"F2\"),nq};{data[08].ToString(\"F2\"),nq};{data[12].ToString(\"F2\"),nq});" +
+	[DebuggerDisplay( "(({data[0].ToString(\"F2\"),nq};{data[4].ToString(\"F2\"),nq};{data[08].ToString(\"F2\"),nq};{data[12].ToString(\"F2\"),nq});" +
 	                 " ({data[1].ToString(\"F2\"),nq};{data[5].ToString(\"F2\"),nq};{data[09].ToString(\"F2\"),nq};{data[13].ToString(\"F2\"),nq});" +
 					 " ({data[2].ToString(\"F2\"),nq};{data[6].ToString(\"F2\"),nq};{data[10].ToString(\"F2\"),nq};{data[14].ToString(\"F2\"),nq});" +
-					 " ({data[3].ToString(\"F2\"),nq};{data[7].ToString(\"F2\"),nq};{data[11].ToString(\"F2\"),nq};{data[15].ToString(\"F2\"),nq}))")]
+					 " ({data[3].ToString(\"F2\"),nq};{data[7].ToString(\"F2\"),nq};{data[11].ToString(\"F2\"),nq};{data[15].ToString(\"F2\"),nq}))" )]
 	public class Matrix4F
 	{
 		private readonly float[] data = new float[4*4];
@@ -254,6 +254,15 @@ namespace ManagedOpenGL.Engine.Math
 		{
 			this.Set( data );
 		}
+
+		public Matrix4F( float a00, float a10, float a20, float a30,
+		                 float a01, float a11, float a21, float a31,
+		                 float a02, float a12, float a22, float a32,
+		                 float a03, float a13, float a23, float a33 ) :
+			this (new [] { a00,  a01,  a02,  a03,
+		                   a10,  a11,  a12,  a13,
+		                   a20,  a21,  a22,  a23,
+		                   a30,  a31,  a32,  a33 }) {}
 
 		#region Properties
 
@@ -406,7 +415,8 @@ namespace ManagedOpenGL.Engine.Math
 			}
 		}
 
-		private static void CheckIndex( int row, int column ) {
+		private static void CheckIndex( int row, int column )
+		{
 			if (row    < 0 || row    > 4) throw new ArgumentOutOfRangeException( "row" );
 			if (column < 0 || column > 4) throw new ArgumentOutOfRangeException( "column" );
 		}
@@ -435,7 +445,7 @@ namespace ManagedOpenGL.Engine.Math
 		}
 
 		// ReSharper disable SuggestBaseTypeForParameter
-		private static void CheckArray( float[] value ) 
+		private static void CheckArray( float[] value )
 		{
 			if (value == null) throw new ArgumentNullException( "value" );
 			if (value.Length != 16) throw new ArgumentOutOfRangeException( "value", "must be 16 elements" );
@@ -465,63 +475,63 @@ namespace ManagedOpenGL.Engine.Math
 			SetPosition( position.X, position.Y, position.Z );
 		}
 
-		public static Matrix4F operator + (Matrix4F a, Matrix4F b)
+		public static Matrix4F operator+( Matrix4F a, Matrix4F b )
 		{
 			var sumMatrix = new Matrix4F
-			                {
-			                	A00 = (a.A00 + b.A00),
-			                	A01 = (a.A01 + b.A01),
-			                	A02 = (a.A02 + b.A02),
-			                	A03 = (a.A03 + b.A03),
+							{
+								A00 = (a.A00 + b.A00),
+								A01 = (a.A01 + b.A01),
+								A02 = (a.A02 + b.A02),
+								A03 = (a.A03 + b.A03),
 
-			                	A10 = (a.A10 + b.A10),
-			                	A11 = (a.A11 + b.A11),
-			                	A12 = (a.A12 + b.A12),
-			                	A13 = (a.A13 + b.A13),
+								A10 = (a.A10 + b.A10),
+								A11 = (a.A11 + b.A11),
+								A12 = (a.A12 + b.A12),
+								A13 = (a.A13 + b.A13),
 
-			                	A20 = (a.A20 + b.A20),
-			                	A21 = (a.A21 + b.A21),
-			                	A22 = (a.A22 + b.A22),
-			                	A23 = (a.A23 + b.A23),
+								A20 = (a.A20 + b.A20),
+								A21 = (a.A21 + b.A21),
+								A22 = (a.A22 + b.A22),
+								A23 = (a.A23 + b.A23),
 
-			                	A30 = (a.A30 + b.A30),
-			                	A31 = (a.A31 + b.A31),
-			                	A32 = (a.A32 + b.A32),
-			                	A33 = (a.A33 + b.A33),
-			                };
+								A30 = (a.A30 + b.A30),
+								A31 = (a.A31 + b.A31),
+								A32 = (a.A32 + b.A32),
+								A33 = (a.A33 + b.A33),
+							};
 
 			return sumMatrix;
 		}
 
-		public static Matrix4F operator - (Matrix4F a, Matrix4F b)
+		public static Matrix4F operator-( Matrix4F a, Matrix4F b )
 		{
 			var sumMatrix = new Matrix4F
-			                {
-			                	A00 = (a.A00 - b.A00),
-			                	A01 = (a.A01 - b.A01),
-			                	A02 = (a.A02 - b.A02),
-			                	A03 = (a.A03 - b.A03),
+							{
+								A00 = (a.A00 - b.A00),
+								A01 = (a.A01 - b.A01),
+								A02 = (a.A02 - b.A02),
+								A03 = (a.A03 - b.A03),
 
-			                	A10 = (a.A10 - b.A10),
-			                	A11 = (a.A11 - b.A11),
-			                	A12 = (a.A12 - b.A12),
-			                	A13 = (a.A13 - b.A13),
+								A10 = (a.A10 - b.A10),
+								A11 = (a.A11 - b.A11),
+								A12 = (a.A12 - b.A12),
+								A13 = (a.A13 - b.A13),
 
-			                	A20 = (a.A20 - b.A20),
-			                	A21 = (a.A21 - b.A21),
-			                	A22 = (a.A22 - b.A22),
-			                	A23 = (a.A23 - b.A23),
+								A20 = (a.A20 - b.A20),
+								A21 = (a.A21 - b.A21),
+								A22 = (a.A22 - b.A22),
+								A23 = (a.A23 - b.A23),
 
-			                	A30 = (a.A30 - b.A30),
-			                	A31 = (a.A31 - b.A31),
-			                	A32 = (a.A32 - b.A32),
-			                	A33 = (a.A33 - b.A33),
-			                };
+								A30 = (a.A30 - b.A30),
+								A31 = (a.A31 - b.A31),
+								A32 = (a.A32 - b.A32),
+								A33 = (a.A33 - b.A33),
+							};
 
 			return sumMatrix;
 		}
 
-		public static Matrix4F operator * (Matrix4F a, float value)
+		public static Matrix4F operator*( Matrix4F a, float value )
 		{
 			var mulMatrix = new Matrix4F();
 
@@ -531,11 +541,11 @@ namespace ManagedOpenGL.Engine.Math
 			return mulMatrix;
 		}
 
-		public static Matrix4F operator * (Matrix4F a, Matrix4F b)
+		public static Matrix4F operator*( Matrix4F a, Matrix4F b )
 		{
 			var sumMatrix = new Matrix4F();
 
-            Multiply( a.data, b.data, sumMatrix.data );
+			Multiply( a.data, b.data, sumMatrix.data );
 
 			return sumMatrix;
 		}
@@ -560,19 +570,55 @@ namespace ManagedOpenGL.Engine.Math
 			}
 		}
 
-		public static Vector4F operator * (Matrix4F a, Vector4F v)
+		public static Vector4F operator*( Matrix4F a, Vector4F v )
 		{
 			return new Vector4F( a[0] * v.X + a[4] * v.Y + a[08] * v.Z + a[12] * v.W,
-			                     a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13] * v.W,
-			                     a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] * v.W,
-			                     a[3] * v.X + a[7] * v.Y + a[11] * v.Z + a[15] * v.W );
+								 a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13] * v.W,
+								 a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] * v.W,
+								 a[3] * v.X + a[7] * v.Y + a[11] * v.Z + a[15] * v.W );
 		}
 
-		public static Vector3F operator * (Matrix4F a, Vector3F v)
+		public static Vector3F operator*( Matrix4F a, Vector3F v )
 		{
 			return new Vector3F( a[0] * v.X + a[4] * v.Y + a[08] * v.Z + a[12],
-			                     a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13],
-			                     a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] );
+								 a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13],
+								 a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] );
+		}
+
+		public static Matrix4F RotateX( float angle )
+		{
+			var radians = angle.ToRadian();
+			var cosA = MathHelper.CosR( radians );
+			var sinA = MathHelper.SinR( radians );
+
+			return new Matrix4F( 1,     0,     0, 0,
+			                     0, +cosA, -sinA, 0,
+			                     0, +sinA, +cosA, 0,
+			                     0,     0,     0, 1 );
+		}
+
+		public static Matrix4F RotateY( float angle )
+		{
+			var radians = angle.ToRadian();
+			var cosA = MathHelper.CosR( radians );
+			var sinA = MathHelper.SinR( radians );
+
+			return new Matrix4F( +cosA, 0, -sinA, 0,
+			                     0,     1,     0, 0,
+			                     +sinA, 0, +cosA, 0,
+			                     0,     0,     0, 1 );
+		}
+
+		public static Matrix4F RotateZ( float angle )
+		{
+			var radians = angle.ToRadian();
+			var cosA = MathHelper.CosR( radians );
+			var sinA = MathHelper.SinR( radians );
+
+			return new Matrix4F( +cosA, -sinA, 0, 0,
+			                     +sinA, +cosA, 0, 0,
+			                     0,     0,     1, 0,
+			                     0,     0,     0, 1 );
 		}
 	}
 }

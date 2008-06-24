@@ -15,14 +15,8 @@ namespace ManagedOpenGL.Engine.Windows
 {
 	public class TextureCubeMap
 	{
-		private const int NegativeZ = 0;
-		private const int PositiveZ = 1;
-		private const int NegativeX = 2;
-		private const int PositiveX = 3;
-		private const int NegativeY = 4;
-		private const int PositiveY = 5;
-
 		private readonly string[] fileNames;
+		private readonly VERSION_1_3[] planes;
 		protected uint id;
 
 		protected TextureCubeMap()
@@ -35,7 +29,18 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public TextureCubeMap( string back, string front, string left, string right, string bottom, string top ) : this()
 		{
-			this.fileNames = new[] { back, front, left, right, bottom, top };
+			this.fileNames = new[]
+			                 {
+			                 	right, left,
+			                 	bottom, top,
+			                 	front, back
+			                 };
+			this.planes = new[]
+			              {
+			              	VERSION_1_3.TextureCubeMapNegativeX, VERSION_1_3.TextureCubeMapPositiveX,
+			              	VERSION_1_3.TextureCubeMapNegativeY, VERSION_1_3.TextureCubeMapPositiveY,
+			              	VERSION_1_3.TextureCubeMapNegativeZ, VERSION_1_3.TextureCubeMapPositiveZ
+			              };
 		}
 
 		public TextureMinFilter MinFilter { get; set; }
@@ -51,46 +56,17 @@ namespace ManagedOpenGL.Engine.Windows
 			this.id = TextureHelper.GetNextTextureId();
 
 			this.Use();
-			int stride;
-			int width;
-			int height;
-			byte[] imageData;
-			// NegativeZ
-			imageData = TextureHelper.LoadImageData( this.fileNames[NegativeZ],
-			                                         System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-			                                         out stride, out width, out height );
-			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeZ, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, imageData );
-			// PositiveZ
-			imageData = TextureHelper.LoadImageData( this.fileNames[PositiveZ],
-			                                         System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-			                                         out stride, out width, out height );
-			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapPositiveZ, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, imageData );
-			// NegativeX
-			imageData = TextureHelper.LoadImageData( this.fileNames[NegativeX],
-			                                         System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-			                                         out stride, out width, out height );
-			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeX, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, imageData );
-			// PositiveX
-			imageData = TextureHelper.LoadImageData( this.fileNames[PositiveX],
-			                                         System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-			                                         out stride, out width, out height );
-			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapPositiveX, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, imageData );
-			// NegativeY
-			imageData = TextureHelper.LoadImageData( this.fileNames[NegativeY],
-			                                         System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-			                                         out stride, out width, out height );
-			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeY, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, imageData );
-			// PositiveY
-			imageData = TextureHelper.LoadImageData( this.fileNames[PositiveY],
-			                                         System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-			                                         out stride, out width, out height );
-			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapPositiveY, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, imageData );
+			for (var i = 0; i < this.fileNames.Length; i++)
+			{
+				int stride;
+				int width;
+				int height;
+				var imageData = TextureHelper.LoadImageData( this.fileNames[i],
+				                                             System.Drawing.Imaging.PixelFormat.Format32bppArgb,
+				                                             out stride, out width, out height, false );
+				OpenGL.TexImage2D( (TextureTarget)planes[i], 0, 4, width, height, 0,
+								   (PixelFormat)EXT_bgra.BgraExt, imageData );
+			}
 		}
 
 		public void Use() 

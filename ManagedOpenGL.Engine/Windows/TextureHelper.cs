@@ -20,14 +20,19 @@ namespace ManagedOpenGL.Engine.Windows
 	public static class TextureHelper
 	{
 		private static readonly uint[] genTextures = new uint[1] { 0 };
-		
+
 		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height )
+		{
+			return LoadImageData( fileName, pixelFormat, out stride, out width, out height, true );
+		}
+		
+		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height, bool flip )
 		{
 			byte[] imageData;
 
 			using (var bmp = new Bitmap( fileName ))
 			{
-				bmp.RotateFlip( RotateFlipType.RotateNoneFlipY );
+				if (flip) bmp.RotateFlip( RotateFlipType.RotateNoneFlipY );
 				var bmpData = bmp.LockBits( new Rectangle( 0, 0, bmp.Width, bmp.Height ), ImageLockMode.ReadOnly, pixelFormat );
 
 				stride = bmpData.Stride;

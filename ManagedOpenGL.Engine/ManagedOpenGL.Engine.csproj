@@ -52,6 +52,7 @@
     <Compile Include="Cameras\CubeMapCamera.cs" />
     <Compile Include="Cameras\FreeCamera.cs" />
     <Compile Include="Cameras\TwoDirCamera.cs" />
+    <Compile Include="Math\MathHelper.cs" />
     <Compile Include="Objects\Cube.cs" />
     <Compile Include="Objects\DrawObject.cs" />
     <Compile Include="Objects\PositionedSphere.cs" />

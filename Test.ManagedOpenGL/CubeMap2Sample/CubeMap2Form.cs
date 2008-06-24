@@ -12,6 +12,7 @@
  *******************************************************/
 
 using ManagedOpenGL;
+using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
@@ -29,11 +30,19 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 		private readonly Texture2D bottom = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
 		private readonly Texture2D top    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
 
+		private readonly TextureCubeMap cubeMap = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
+		                                                              @"Data\SkyBox\CubeMap2\front.png",
+		                                                              @"Data\SkyBox\CubeMap2\left.png",
+		                                                              @"Data\SkyBox\CubeMap2\right.png",
+		                                                              @"Data\SkyBox\CubeMap2\bottom.png",
+		                                                              @"Data\SkyBox\CubeMap2\top.png" );
+
 		private readonly Texture2D[] textures;
 		private readonly Skybox skybox;
-		private readonly Cube cube = new Cube( 100, 100, 100 );
 
-		private readonly float[,] rotates;
+		private readonly Matrix4F[] rotates;
+
+		private readonly Sphere sphere = new Sphere( 30, 32, 32 );
 
 		public CubeMap2Form()
 		{
@@ -43,11 +52,11 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 								bottom, top, 
 								front, back
 			                };
-			this.rotates = new float[,]
+			this.rotates = new []
 			               {
-			               	{ 0, +90, 0 }, { 0, -90, 0 },
-			               	{ -90, 0, 0 }, { +90, 0, 0 },
-			               	{ 0, 0, 0 },   { 0, 180, 0 },
+			               	Matrix4F.RotateY( -90 ), Matrix4F.RotateY( +90 ),
+			               	Matrix4F.RotateX( -90 ), Matrix4F.RotateX( +90 ),
+			               	Matrix4F.RotateZ(   0 ), Matrix4F.RotateY( +180 ),
 			               };
 
 			this.skybox = new Skybox( 1000, 1000, 1000, back, front, left, right, bottom, top );
@@ -66,6 +75,8 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 			{
 				texture.Load();
 			}
+
+			cubeMap.Load();
 		}
 
 		protected override void Draw()
@@ -76,17 +87,21 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 
 			this.skybox.Draw();
 
-			back.Use();
-			//cube.Draw();
+			cubeMap.Use();
 
+			gl.MatrixMode( MatrixMode.Texture );
+			gl.PushMatrix();
+			gl.LoadMatrixf( camera.InvertData );
+			sphere.Draw();
+			gl.PopMatrix();
+			TextureCubeMap.UnUse();
+
+			gl.MatrixMode( MatrixMode.Modelview );
 			for (var i = 0; i < this.textures.Length; i++)
 			{
 				gl.PushMatrix();
 
-				gl.Rotatef( rotates[i,0], 1, 0, 0 );
-				gl.Rotatef( rotates[i,1], 0, 1, 0 );
-				gl.Rotatef( rotates[i,2], 0, 0, 1 );
-				
+				gl.MultMatrixf( rotates[i].Data );
 				gl.Translatef( 0, 0, -50 );
 
 				var texture = this.textures[i];

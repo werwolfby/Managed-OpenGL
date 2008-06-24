@@ -105,7 +105,7 @@ namespace ManagedOpenGL.Engine.Objects
 					this.vertices[this.GetIndex( slice, stack )] =
 						new Vertex( sx, y, sz, nx, ny, nz,
 						            rotSliceNormalX, rotSliceNormalY, rotSliceNormalZ,
-						            -tangent.X, -tangent.Y, -tangent.Z, 1.0f -(float)stack / stacks, (float)slice / slices );
+						            -tangent.X, -tangent.Y, -tangent.Z, (float)stack / stacks, 1.0f - (float)slice / slices );
 				}
 			}
 
