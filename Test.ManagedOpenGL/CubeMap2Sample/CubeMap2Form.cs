@@ -89,7 +89,7 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 			gl.LoadIdentity();
 			gl.Scalef( 1, 1, - 1 );
 			gl.MultMatrixf( camera.InvertData );
-			sphere.Draw();
+			//sphere.Draw();
 			gl.PopMatrix();
 			TextureCubeMap.UnUse();
 

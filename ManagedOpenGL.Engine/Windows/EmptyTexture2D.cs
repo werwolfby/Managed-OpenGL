@@ -13,39 +13,36 @@
 
 namespace ManagedOpenGL.Engine.Windows
 {
-	public class EmptyTexture2D : Texture2D
+	public class EmptyTexture2D : TextureBase
 	{
-		private readonly int width;
-		private readonly int height;
-		private readonly int channels;
-		private readonly PixelFormat format;
-
 		public EmptyTexture2D( int width, int height, int channels, PixelFormat format )
 		{
-			this.width = width;
-			this.height = height;
-			this.channels = channels;
-			this.format = format;
+			this.Width = width;
+			this.Height = height;
+			this.Channels = channels;
+			this.Format = format;
 		}
 
-		public override void Load() 
+		public int Width { get; private set; }
+
+		public int Height { get; private set; }
+
+		public int Channels { get; private set; }
+
+		public PixelFormat Format { get; private set; }
+
+		public override void LoadOverride() 
 		{
-			if (Loaded) return;
-
-			this.Id = TextureHelper.GetNextTextureId();
-
-			var bytes = new byte[width*height*channels];
+			var bytes = new byte[this.Width*this.Height*this.Channels];
 
 			this.Use();
-			OpenGL.TexImage2D( TextureTarget.Texture2d, 0, channels, width, height, 0,
-			                   format, PixelType.UnsignedByte, bytes );
-
-			Loaded = true;
+			OpenGL.TexImage2D( TextureTarget.Texture2d, 0, this.Channels, this.Width, this.Height, 0,
+			                   this.Format, PixelType.UnsignedByte, bytes );
 		}
 
 		public void Copy( int x, int y, int w, int h )
 		{
-			Use();
+			this.Use();
 			TextureHelper.CopySubImage2( TextureTarget.Texture2d, x, y, w, h );
 		}
 

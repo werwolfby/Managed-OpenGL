@@ -35,12 +35,7 @@ namespace Test.ManagedOpenGL.NormalizeCubeMapSample
 		private readonly Texture2D top1    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
 
 		private readonly Skybox skybox;
-		private readonly TextureCubeMap textureCubeMap = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
-		                                                                     @"Data\SkyBox\CubeMap2\front.png",
-		                                                                     @"Data\SkyBox\CubeMap2\left.png",
-		                                                                     @"Data\SkyBox\CubeMap2\right.png",
-		                                                                     @"Data\SkyBox\CubeMap2\bottom.png",
-		                                                                     @"Data\SkyBox\CubeMap2\top.png" );
+		private readonly TextureCubeMap textureCubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
 
 		private readonly VertexShader vertexShader = VertexShader.Load( vertexShaderFileName );
 		private readonly FragmentShader fragmentShader = FragmentShader.Load( fragmentShaderFileName );

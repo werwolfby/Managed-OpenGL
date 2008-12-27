@@ -84,8 +84,6 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			gl.MultMatrixf( camera.InvertData );
 
 			gl.MatrixMode( MatrixMode.Modelview );
-
-			//gl.Enable( EnableCap.Normalize );
 			
 			this.cubeMap.Use();
 			currentObject.Draw();

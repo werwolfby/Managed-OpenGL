@@ -64,6 +64,7 @@
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
     <Compile Include="Render\RenderMode.cs" />
+    <Compile Include="Render\RenderTexture.cs" />
     <Compile Include="Shaders\FragmentShader.cs" />
     <Compile Include="Shaders\ShaderProgram.cs" />
     <Compile Include="Shaders\Shader.cs" />

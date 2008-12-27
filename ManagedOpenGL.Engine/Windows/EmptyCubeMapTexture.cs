@@ -13,7 +13,7 @@
 
 namespace ManagedOpenGL.Engine.Windows
 {
-	public class EmptyCubeMapTexture : TextureCubeMap
+	public class EmptyCubeMapTexture : TextureCubeMapBase
 	{
 		private readonly int width, height, channels;
 
@@ -34,10 +34,8 @@ namespace ManagedOpenGL.Engine.Windows
 			get { return this.height; }
 		}
 
-		public override void Load()
+		public override void LoadOverride()
 		{
-			this.id = TextureHelper.GetNextTextureId();
-
 			this.Use();
 			var imageData = new byte[width*height*channels];
 			OpenGL.TexImage2D( (TextureTarget)VERSION_1_3.TextureCubeMapNegativeX, 0, channels, width, height, 0,

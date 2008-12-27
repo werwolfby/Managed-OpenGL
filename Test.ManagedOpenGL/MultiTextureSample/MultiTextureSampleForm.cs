@@ -17,16 +17,11 @@ using ManagedOpenGL.Engine.Windows;
 
 namespace Test.ManagedOpenGL.MultiTextureSample
 {
-	public class MultiTextureSampleForm : OpenGLForm
+	public class MultiTextureSampleForm : SampleOpenGLForm
 	{
 		private float angle;
 		private readonly Texture2D texture1 = new Texture2D( @"Data\MultiTexture\bg.jpg" );
 		private readonly Texture2D texture2 = new Texture2D( @"Data\MultiTexture\logo.gif" );
-
-		public MultiTextureSampleForm()
-		{
-			WindowSize = new Size( 800, 600 );
-		}
 
 		protected override void AfterInitGLOverride() 
 		{
@@ -41,6 +36,8 @@ namespace Test.ManagedOpenGL.MultiTextureSample
 
 		protected override void Draw() 
 		{
+            base.Draw();
+
 			OpenGLNative.ClearColor( 0.1f, 0.1f, 0.1f, 0.0f );
 			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 

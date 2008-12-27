@@ -22,37 +22,27 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 {
 	public class RenderToTextureForm : SampleOpenGLForm
 	{
-		private readonly Skybox skybox = new Skybox( 100, 100, 100,
-		                                             new Texture2D( @"Data\SkyBox\CubeMap2\back.png" ),
-		                                             new Texture2D( @"Data\SkyBox\CubeMap2\front.png" ),
-		                                             new Texture2D( @"Data\SkyBox\CubeMap2\left.png" ),
-		                                             new Texture2D( @"Data\SkyBox\CubeMap2\right.png" ),
-		                                             new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" ),
-		                                             new Texture2D( @"Data\SkyBox\CubeMap2\top.png" ) );
+		private readonly Skybox skybox = Skybox.CreateFromFolder( 100, 100, 100, @"Data\SkyBox\CubeMap2", "png" );
 
-		private readonly EmptyTexture2D emptyTexture2D = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-
-		private readonly Texture2D texture2D = new Texture2D( @"Data\Fonts\Simple.jpg" );
+		private readonly RenderTexture renderTexture = new RenderTexture( 256, 256 );
 
 		private readonly Cube cube = new Cube( 20, 20, 20 );
 		private float angle;
-		private readonly Texture2D back;
+		private readonly Texture2D back  = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
 
 		public RenderToTextureForm()
 		{
 			camera.Position.Set( 0, 0, 50 );
-			Renderer.Far = 10000;
-			this.back = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
+			Renderer.Far = 1000;
 		}
 
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
 
-			this.texture2D.Load();
 			this.skybox.Load();
 
-			this.emptyTexture2D.Load();
+			this.renderTexture.Load();
 
 			back.Load();
 		}
@@ -61,16 +51,16 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 		{
 			base.Draw();
 
-			PrepareRenderToTexture( 0, 0, 256, 256 );
+			renderTexture.PrepareForRender();
 			this.DrawCube();
-			emptyTexture2D.Copy( 0, 0, 256, 256 );
-			RestoreRenderToTexture();
+			renderTexture.Copy();
+			renderTexture.RestoreRenderToTexture();
 
 			gl.ClearColor( 0, 0, 0, 1 );
 			gl.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
 			gl.Enable( EnableCap.Texture2d );
-			emptyTexture2D.Use();
+			renderTexture.Use();
 			cube.Draw();
 			gl.Disable( EnableCap.Texture2d );
 		}
@@ -102,22 +92,6 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 			base.Update( elapsed );
 
 			angle += 30 * elapsed;
-		}
-
-		private static void PrepareRenderToTexture( int x, int y, int w, int h )
-		{
-			gl.Viewport( x, y, w, h );
-			gl.MatrixMode( MatrixMode.Projection );
-			gl.PushMatrix();
-			gl.LoadIdentity();
-			gl.Frustum( -1, 1, -1, 1, 1, 1000 );
-		}
-
-		private static void RestoreRenderToTexture()
-		{
-			gl.Viewport( 0, 0, Renderer.WindowSize.Width, Renderer.WindowSize.Height );
-			gl.MatrixMode( MatrixMode.Projection );
-			gl.PopMatrix();
 		}
 	}
 }
