@@ -17,6 +17,7 @@ using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
 
 using gl=ManagedOpenGL.OpenGLNative;
+using PixelFormat=System.Drawing.Imaging.PixelFormat;
 
 namespace Test.ManagedOpenGL.TestSample
 {
@@ -31,9 +32,16 @@ namespace Test.ManagedOpenGL.TestSample
 
 		private readonly Texture2D logo = new Texture2D( @"Data\Test\Test.bmp" );
 
+		private readonly byte[] pixels;
+		private int width;
+		private int height;
+
 		public TestSampleForm()
 		{
 			this.camera.Move( 0, 0, 50 );
+
+			int stride;
+			this.pixels = TextureHelper.LoadImageData( @"Data\Test\Test.bmp", PixelFormat.Format32bppArgb, out stride, out this.width, out this.height, true );
 		}
 
 		protected override void AfterInitGLOverride()
@@ -53,15 +61,23 @@ namespace Test.ManagedOpenGL.TestSample
 		{
 			base.Draw();
 
-            Renderer.RenderMode = RenderMode.MODE_3D;
+			Renderer.RenderMode = RenderMode.MODE_3D;
 
 			TextureCubeMapBase.UnUse();
 
 			gl.TexEnvi( TextureEnvTarget.TextureEnv, TextureEnvParameter.TextureEnvMode, (int)TextureEnvMode.Decal );
 
-			gl.Enable( EnableCap.Texture2d );
-			logo.Use();
-			cube.Draw();
+			unsafe
+			{
+				fixed (byte* p = &pixels[0])
+				{
+					gl.DrawPixels( width, height, (global::ManagedOpenGL.PixelFormat)(int)EXT_bgra.BgraExt, PixelType.UnsignedByte, p );
+				}
+			}
+
+			//gl.Enable( EnableCap.Texture2d );
+			//logo.Use();
+			//cube.Draw();
 
 			//gl.Begin( BeginMode.Quads );
 
