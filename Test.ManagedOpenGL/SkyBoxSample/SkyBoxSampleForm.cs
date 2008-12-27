@@ -126,7 +126,12 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			if (Keyboard.GetValue( Keys.W )) camera.MoveForward( elapsed );
 			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
 			
-			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
+			if (Keyboard.GetValue( Keys.C ))
+			{
+				camera.Position.Set( 0, 0, 0 );
+				camera.Pitch = 0;
+				camera.Yaw = 0;
+			}
 		}
 	}
 }

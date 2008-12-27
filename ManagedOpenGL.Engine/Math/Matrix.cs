@@ -14,6 +14,7 @@
 
 using System;
 using System.Diagnostics;
+using Microsoft.DirectX;
 
 namespace ManagedOpenGL.Engine.Math
 {
@@ -54,6 +55,9 @@ namespace ManagedOpenGL.Engine.Math
 		}
 	}
 
+	[DebuggerDisplay( "(({data[0].ToString(\"F2\"),nq};{data[3].ToString(\"F2\"),nq};{data[6].ToString(\"F2\"),nq});" +
+	                  " ({data[1].ToString(\"F2\"),nq};{data[4].ToString(\"F2\"),nq};{data[7].ToString(\"F2\"),nq});" +
+	                  " ({data[2].ToString(\"F2\"),nq};{data[5].ToString(\"F2\"),nq};{data[8].ToString(\"F2\"),nq});" )]
 	public class Matrix3F
 	{
 		private readonly float[] data = new float[9];
@@ -222,15 +226,15 @@ namespace ManagedOpenGL.Engine.Math
 		{
 			var sumMatrix = new Matrix3F
 							{
-								A00 = (a[0, 0] * b[0, 0] + a[0, 1] * b[1, 0] + a[0, 2] * b[2, 0]),
-								A01 = (a[0, 0] * b[0, 1] + a[0, 1] * b[1, 1] + a[0, 2] * b[2, 1]),
-								A02 = (a[0, 0] * b[0, 2] + a[0, 1] * b[1, 2] + a[0, 2] * b[2, 2]),
-								A10 = (a[1, 0] * b[0, 0] + a[1, 1] * b[1, 0] + a[1, 2] * b[2, 0]),
-								A11 = (a[1, 0] * b[0, 1] + a[1, 1] * b[1, 1] + a[1, 2] * b[2, 1]),
-								A12 = (a[1, 0] * b[0, 2] + a[1, 1] * b[1, 2] + a[1, 2] * b[2, 2]),
-								A20 = (a[2, 0] * b[0, 0] + a[2, 1] * b[1, 0] + a[2, 2] * b[2, 0]),
-								A21 = (a[2, 0] * b[0, 1] + a[2, 1] * b[1, 1] + a[2, 2] * b[2, 1]),
-								A22 = (a[2, 0] * b[0, 2] + a[2, 1] * b[1, 2] + a[2, 2] * b[2, 2]),
+								A00 = (a[0, 0]*b[0, 0] + a[0, 1]*b[1, 0] + a[0, 2]*b[2, 0]),
+								A01 = (a[0, 0]*b[0, 1] + a[0, 1]*b[1, 1] + a[0, 2]*b[2, 1]),
+								A02 = (a[0, 0]*b[0, 2] + a[0, 1]*b[1, 2] + a[0, 2]*b[2, 2]),
+								A10 = (a[1, 0]*b[0, 0] + a[1, 1]*b[1, 0] + a[1, 2]*b[2, 0]),
+								A11 = (a[1, 0]*b[0, 1] + a[1, 1]*b[1, 1] + a[1, 2]*b[2, 1]),
+								A12 = (a[1, 0]*b[0, 2] + a[1, 1]*b[1, 2] + a[1, 2]*b[2, 2]),
+								A20 = (a[2, 0]*b[0, 0] + a[2, 1]*b[1, 0] + a[2, 2]*b[2, 0]),
+								A21 = (a[2, 0]*b[0, 1] + a[2, 1]*b[1, 1] + a[2, 2]*b[2, 1]),
+								A22 = (a[2, 0]*b[0, 2] + a[2, 1]*b[1, 2] + a[2, 2]*b[2, 2]),
 							};
 
 			return sumMatrix;
@@ -238,9 +242,9 @@ namespace ManagedOpenGL.Engine.Math
 	}
 
 	[DebuggerDisplay( "(({data[0].ToString(\"F2\"),nq};{data[4].ToString(\"F2\"),nq};{data[08].ToString(\"F2\"),nq};{data[12].ToString(\"F2\"),nq});" +
-	                 " ({data[1].ToString(\"F2\"),nq};{data[5].ToString(\"F2\"),nq};{data[09].ToString(\"F2\"),nq};{data[13].ToString(\"F2\"),nq});" +
-					 " ({data[2].ToString(\"F2\"),nq};{data[6].ToString(\"F2\"),nq};{data[10].ToString(\"F2\"),nq};{data[14].ToString(\"F2\"),nq});" +
-					 " ({data[3].ToString(\"F2\"),nq};{data[7].ToString(\"F2\"),nq};{data[11].ToString(\"F2\"),nq};{data[15].ToString(\"F2\"),nq}))" )]
+	                  " ({data[1].ToString(\"F2\"),nq};{data[5].ToString(\"F2\"),nq};{data[09].ToString(\"F2\"),nq};{data[13].ToString(\"F2\"),nq});" +
+	                  " ({data[2].ToString(\"F2\"),nq};{data[6].ToString(\"F2\"),nq};{data[10].ToString(\"F2\"),nq};{data[14].ToString(\"F2\"),nq});" +
+	                  " ({data[3].ToString(\"F2\"),nq};{data[7].ToString(\"F2\"),nq};{data[11].ToString(\"F2\"),nq};{data[15].ToString(\"F2\"),nq}))" )]
 	public class Matrix4F
 	{
 		private readonly float[] data = new float[4*4];
@@ -444,6 +448,29 @@ namespace ManagedOpenGL.Engine.Math
 			Array.Copy( value, this.data, this.data.Length );
 		}
 
+		public void Set( Matrix matrix )
+		{
+			this.A00 = matrix.M11;
+			this.A01 = matrix.M21;
+			this.A02 = matrix.M31;
+			this.A03 = matrix.M41;
+
+			this.A10 = matrix.M12;
+			this.A11 = matrix.M22;
+			this.A12 = matrix.M32;
+			this.A13 = matrix.M42;
+
+			this.A20 = matrix.M13;
+			this.A21 = matrix.M23;
+			this.A22 = matrix.M33;
+			this.A23 = matrix.M43;
+
+			this.A30 = matrix.M14;
+			this.A31 = matrix.M24;
+			this.A32 = matrix.M34;
+			this.A33 = matrix.M44;
+		}
+
 		// ReSharper disable SuggestBaseTypeForParameter
 		private static void CheckArray( float[] value )
 		{
@@ -475,30 +502,31 @@ namespace ManagedOpenGL.Engine.Math
 			SetPosition( position.X, position.Y, position.Z );
 		}
 
+		#region Operators
 		public static Matrix4F operator+( Matrix4F a, Matrix4F b )
 		{
 			var sumMatrix = new Matrix4F
-							{
-								A00 = (a.A00 + b.A00),
-								A01 = (a.A01 + b.A01),
-								A02 = (a.A02 + b.A02),
-								A03 = (a.A03 + b.A03),
+			                {
+			                	A00 = (a.A00 + b.A00),
+			                	A01 = (a.A01 + b.A01),
+			                	A02 = (a.A02 + b.A02),
+			                	A03 = (a.A03 + b.A03),
 
-								A10 = (a.A10 + b.A10),
-								A11 = (a.A11 + b.A11),
-								A12 = (a.A12 + b.A12),
-								A13 = (a.A13 + b.A13),
+			                	A10 = (a.A10 + b.A10),
+			                	A11 = (a.A11 + b.A11),
+			                	A12 = (a.A12 + b.A12),
+			                	A13 = (a.A13 + b.A13),
 
-								A20 = (a.A20 + b.A20),
-								A21 = (a.A21 + b.A21),
-								A22 = (a.A22 + b.A22),
-								A23 = (a.A23 + b.A23),
+			                	A20 = (a.A20 + b.A20),
+			                	A21 = (a.A21 + b.A21),
+			                	A22 = (a.A22 + b.A22),
+			                	A23 = (a.A23 + b.A23),
 
-								A30 = (a.A30 + b.A30),
-								A31 = (a.A31 + b.A31),
-								A32 = (a.A32 + b.A32),
-								A33 = (a.A33 + b.A33),
-							};
+			                	A30 = (a.A30 + b.A30),
+			                	A31 = (a.A31 + b.A31),
+			                	A32 = (a.A32 + b.A32),
+			                	A33 = (a.A33 + b.A33),
+			                };
 
 			return sumMatrix;
 		}
@@ -506,27 +534,27 @@ namespace ManagedOpenGL.Engine.Math
 		public static Matrix4F operator-( Matrix4F a, Matrix4F b )
 		{
 			var sumMatrix = new Matrix4F
-							{
-								A00 = (a.A00 - b.A00),
-								A01 = (a.A01 - b.A01),
-								A02 = (a.A02 - b.A02),
-								A03 = (a.A03 - b.A03),
+			                {
+			                	A00 = (a.A00 - b.A00),
+			                	A01 = (a.A01 - b.A01),
+			                	A02 = (a.A02 - b.A02),
+			                	A03 = (a.A03 - b.A03),
 
-								A10 = (a.A10 - b.A10),
-								A11 = (a.A11 - b.A11),
-								A12 = (a.A12 - b.A12),
-								A13 = (a.A13 - b.A13),
+			                	A10 = (a.A10 - b.A10),
+			                	A11 = (a.A11 - b.A11),
+			                	A12 = (a.A12 - b.A12),
+			                	A13 = (a.A13 - b.A13),
 
-								A20 = (a.A20 - b.A20),
-								A21 = (a.A21 - b.A21),
-								A22 = (a.A22 - b.A22),
-								A23 = (a.A23 - b.A23),
+			                	A20 = (a.A20 - b.A20),
+			                	A21 = (a.A21 - b.A21),
+			                	A22 = (a.A22 - b.A22),
+			                	A23 = (a.A23 - b.A23),
 
-								A30 = (a.A30 - b.A30),
-								A31 = (a.A31 - b.A31),
-								A32 = (a.A32 - b.A32),
-								A33 = (a.A33 - b.A33),
-							};
+			                	A30 = (a.A30 - b.A30),
+			                	A31 = (a.A31 - b.A31),
+			                	A32 = (a.A32 - b.A32),
+			                	A33 = (a.A33 - b.A33),
+			                };
 
 			return sumMatrix;
 		}
@@ -550,41 +578,51 @@ namespace ManagedOpenGL.Engine.Math
 			return sumMatrix;
 		}
 
-		public static void Multiply( float[] a, float[] b, float[] o )
-		{
-			for (var i = 0; i < 4; i++)
-			{
-				var a0 = a[0 * 4 + i] * b[0 * 4 + 0] + a[1 * 4 + i] * b[0 * 4 + 1] + a[2 * 4 + i] * b[0 * 4 + 2] +
-				         a[3 * 4 + i] * b[0 * 4 + 3];
-				var a1 = a[0 * 4 + i] * b[1 * 4 + 0] + a[1 * 4 + i] * b[1 * 4 + 1] + a[2 * 4 + i] * b[1 * 4 + 2] +
-				         a[3 * 4 + i] * b[1 * 4 + 3];
-				var a2 = a[0 * 4 + i] * b[2 * 4 + 0] + a[1 * 4 + i] * b[2 * 4 + 1] + a[2 * 4 + i] * b[2 * 4 + 2] +
-				         a[3 * 4 + i] * b[2 * 4 + 3];
-				var a3 = a[0 * 4 + i] * b[3 * 4 + 0] + a[1 * 4 + i] * b[3 * 4 + 1] + a[2 * 4 + i] * b[3 * 4 + 2] +
-				         a[3 * 4 + i] * b[3 * 4 + 3];
-
-				o[0 * 4 + i] = a0;
-				o[1 * 4 + i] = a1;
-				o[2 * 4 + i] = a2;
-				o[3 * 4 + i] = a3;
-			}
-		}
-
 		public static Vector4F operator*( Matrix4F a, Vector4F v )
 		{
 			return new Vector4F( a[0] * v.X + a[4] * v.Y + a[08] * v.Z + a[12] * v.W,
-								 a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13] * v.W,
-								 a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] * v.W,
-								 a[3] * v.X + a[7] * v.Y + a[11] * v.Z + a[15] * v.W );
+			                     a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13] * v.W,
+			                     a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] * v.W,
+			                     a[3] * v.X + a[7] * v.Y + a[11] * v.Z + a[15] * v.W );
 		}
 
 		public static Vector3F operator*( Matrix4F a, Vector3F v )
 		{
 			return new Vector3F( a[0] * v.X + a[4] * v.Y + a[08] * v.Z + a[12],
-								 a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13],
-								 a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] );
+			                     a[1] * v.X + a[5] * v.Y + a[09] * v.Z + a[13],
+			                     a[2] * v.X + a[6] * v.Y + a[10] * v.Z + a[14] );
+		}
+		#endregion
+
+		public static explicit operator Matrix ( Matrix4F value )
+		{
+			return new Matrix
+			       {
+			       	M11 = value.A00,
+					M12 = value.A10,
+					M13 = value.A20,
+					M14 = value.A30,
+
+			       	M21 = value.A01,
+					M22 = value.A11,
+					M23 = value.A21,
+					M24 = value.A31,
+
+			       	M31 = value.A02,
+					M32 = value.A12,
+					M33 = value.A22,
+					M34 = value.A32,
+
+			       	M41 = value.A03,
+					M42 = value.A13,
+					M43 = value.A23,
+					M44 = value.A33,
+			       };
 		}
 
+		#region Create Methods
+
+		#region Rotate Methods
 		public static Matrix4F RotateX( float angle )
 		{
 			var radians = angle.ToRadian();
@@ -620,5 +658,45 @@ namespace ManagedOpenGL.Engine.Math
 			                     0,     0,     1, 0,
 			                     0,     0,     0, 1 );
 		}
+		#endregion
+
+		#region Translate Methods
+		public static Matrix4F Translate( float x, float y, float z )
+		{
+			return new Matrix4F( 1, 0, 0, x,
+			                     0, 1, 0, y,
+			                     0, 0, 1, z,
+			                     0, 0, 0, 1 );
+		}
+
+		public static Matrix4F Translate( Vector3F position )
+		{
+			return Translate( position.X, position.Y, position.Z );
+		}
+		#endregion
+
+		#endregion
+
+        #region Helper Methods
+		public static void Multiply( float[] a, float[] b, float[] o )
+		{
+			for (var i = 0; i < 4; i++)
+			{
+				var a0 = a[0 * 4 + i] * b[0 * 4 + 0] + a[1 * 4 + i] * b[0 * 4 + 1] + a[2 * 4 + i] * b[0 * 4 + 2] +
+				         a[3 * 4 + i] * b[0 * 4 + 3];
+				var a1 = a[0 * 4 + i] * b[1 * 4 + 0] + a[1 * 4 + i] * b[1 * 4 + 1] + a[2 * 4 + i] * b[1 * 4 + 2] +
+				         a[3 * 4 + i] * b[1 * 4 + 3];
+				var a2 = a[0 * 4 + i] * b[2 * 4 + 0] + a[1 * 4 + i] * b[2 * 4 + 1] + a[2 * 4 + i] * b[2 * 4 + 2] +
+				         a[3 * 4 + i] * b[2 * 4 + 3];
+				var a3 = a[0 * 4 + i] * b[3 * 4 + 0] + a[1 * 4 + i] * b[3 * 4 + 1] + a[2 * 4 + i] * b[3 * 4 + 2] +
+				         a[3 * 4 + i] * b[3 * 4 + 3];
+
+				o[0 * 4 + i] = a0;
+				o[1 * 4 + i] = a1;
+				o[2 * 4 + i] = a2;
+				o[3 * 4 + i] = a3;
+			}
+		}
+		#endregion
 	}
 }

@@ -11,18 +11,18 @@
  *
  *******************************************************/
 
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 using ManagedOpenGL;
-using ManagedOpenGL.Engine.Cameras;
 using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
 
+using gl=ManagedOpenGL.OpenGLNative;
+
 namespace Test.ManagedOpenGL.CubeMapSample
 {
-	public class CubeMapSampleForm : OpenGLForm
+	public class CubeMapSampleForm : SampleOpenGLForm
 	{
 		private const float SphereRadius = 10;
 		private const int SphereSlices = 32;
@@ -35,18 +35,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		private readonly Texture2D bottom1 = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
 		private readonly Texture2D top1    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
 
-		private readonly TextureCubeMap textureCubeMap = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
-		                                                                     @"Data\SkyBox\CubeMap2\front.png",
-		                                                                     @"Data\SkyBox\CubeMap2\left.png",
-		                                                                     @"Data\SkyBox\CubeMap2\right.png",
-		                                                                     @"Data\SkyBox\CubeMap2\bottom.png",
-		                                                                     @"Data\SkyBox\CubeMap2\top.png" );
-
-		private readonly TwoDirCamera camera = new TwoDirCamera
-		                                       {
-		                                       	VelocitySpeed = 20,
-		                                       	StrafeSpeed = 20,
-		                                       };
+		private readonly TextureCubeMap textureCubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
 		private readonly Cube cube = new Cube( SphereRadius*2, SphereRadius*2, SphereRadius*2 );
 		private readonly Sphere sphere = new Sphere( SphereRadius, SphereSlices, SphereStacks );
 		private DrawObject currentObject;
@@ -61,19 +50,18 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			camera.Position.Set( 0, 0, 50 );
 
 			this.currentObject = sphere;
+
+			this.RegisterPressed( Keys.D1, elapsed => currentObject = cube );
+			this.RegisterPressed( Keys.D2, elapsed => currentObject = sphere );
 		}
 
 		protected override void AfterInitGLOverride() 
 		{
 			base.AfterInitGLOverride();
 
-			textureCubeMap.Load();
+			this.textureCubeMap.Load();
 
-			var textures = new[]
-			               {
-			               	this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1,
-			               };
-			foreach (var texture in textures)
+			foreach (var texture in new[] { this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1 })
 			{
 				texture.Load();
 				texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
@@ -83,84 +71,29 @@ namespace Test.ManagedOpenGL.CubeMapSample
 
 		protected override void Draw() 
 		{
-			OpenGLNative.ClearColor( 0, 0, 0, 0 );
-			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+			base.Draw();
 
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-			OpenGLNative.LoadMatrixf( camera.Data );
+			gl.Enable( EnableCap.Texture2d );
+			TextureCubeMap.UnUse();
+            skybox.Draw();
+            OpenGLNative.Disable( EnableCap.Texture2d );
 
-			OpenGLNative.Enable( EnableCap.Texture2d );
-			OpenGLNative.Enable( EnableCap.DepthTest );
-			OpenGLNative.Enable( EnableCap.CullFace );
+			gl.MatrixMode( MatrixMode.Texture );
+			gl.PushMatrix();
+			gl.LoadIdentity();
+			gl.Scalef( 1, 1, -1 );
+			gl.MultMatrixf( camera.InvertData );
+			gl.MatrixMode( MatrixMode.Modelview );
 
-			skybox.Draw();
-
-			OpenGLNative.Disable( EnableCap.Texture2d );
-			OpenGLNative.Enable( (EnableCap)VERSION_1_3.TextureCubeMap );
-
-			OpenGLNative.MatrixMode( MatrixMode.Texture );
-			OpenGLNative.PushMatrix();
-			OpenGLNative.LoadIdentity();
-			OpenGLNative.Scalef( 1, 1, -1 );
-			OpenGLNative.MultMatrixf( camera.InvertData );
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-
-			OpenGLNative.Disable( EnableCap.Texture2d );
-			OpenGLNative.Disable( (EnableCap)VERSION_1_3.TextureCubeMap );
-
-			OpenGLNative.Enable( EnableCap.Normalize );
+			gl.Enable( EnableCap.Normalize );
 			
 			textureCubeMap.Use();
 			currentObject.Draw();
 			TextureCubeMap.UnUse();
 
-			OpenGLNative.MatrixMode( MatrixMode.Texture );
-			OpenGLNative.PopMatrix();
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-		}
-
-		protected override void OnMouseMove( MouseEventArgs e ) 
-		{
-			base.OnMouseMove( e );
-
-			var oldPosition = this.PointToClient( Cursor.Position );
-			var centerPosition = new Point( ClientSize.Width / 2, ClientSize.Height / 2 );
-
-			if (oldPosition == centerPosition) return;
-
-			var deltaX = - oldPosition.X + centerPosition.X;
-			var deltaY = - oldPosition.Y + centerPosition.Y;
-
-			camera.TurnLeft( deltaX );
-			camera.LookUp( deltaY );
-
-			Cursor.Position = this.PointToScreen( centerPosition );
-		}
-
-		protected override void Update( float elapsed ) 
-		{
-			base.Update( elapsed );
-
-			if (Keyboard.GetValue( Keys.D1 )) currentObject = sphere;
-			if (Keyboard.GetValue( Keys.D2 )) currentObject = cube;
-
-			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
-			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );
-			if (Keyboard.GetValue( Keys.W )) camera.MoveForward( elapsed );
-			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
-			
-			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
-
-			if (Keyboard.GetValue( Keys.ShiftKey ))
-			{
-				camera.VelocitySpeed = 200;
-				camera.StrafeSpeed = 200;
-			}
-			else
-			{
-				camera.VelocitySpeed = 20;
-				camera.StrafeSpeed = 20;
-			}
+			gl.MatrixMode( MatrixMode.Texture );
+			gl.PopMatrix();
+			gl.MatrixMode( MatrixMode.Modelview );
 		}
 	}
 }

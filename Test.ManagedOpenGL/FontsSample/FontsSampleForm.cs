@@ -52,7 +52,7 @@ namespace Test.ManagedOpenGL.FontsSample
 		                          };
 		private readonly Texture2D texture2D = new Texture2D( @"Data\Fonts\Simple.jpg" );
 
-		private readonly Font font = new Font( @"Data\Fonts\LC_B.jpg" );
+		private readonly Font font = new Font( @"Data\Fonts\Verdana.jpg" );
 
 		private float angle;
 

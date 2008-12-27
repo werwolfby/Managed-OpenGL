@@ -37,9 +37,7 @@
 			this.Name = "OpenGLForm";
 			this.Text = "OpenGLForm";
 			this.ResumeLayout( false );
-
 		}
-
 		#endregion
 	}
 }

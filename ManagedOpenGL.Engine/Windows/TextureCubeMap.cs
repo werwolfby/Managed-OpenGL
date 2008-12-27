@@ -11,6 +11,9 @@
  *
  *******************************************************/
 
+using System;
+using System.IO;
+
 namespace ManagedOpenGL.Engine.Windows
 {
 	public class TextureCubeMap
@@ -31,7 +34,7 @@ namespace ManagedOpenGL.Engine.Windows
 		{
 			this.fileNames = new[]
 			                 {
-			                 	right, left,
+			                 	left, right,
 			                 	bottom, top,
 			                 	front, back
 			                 };
@@ -150,6 +153,26 @@ namespace ManagedOpenGL.Engine.Windows
 					CopyToFront( x, y, w, h );
 					break;
 			}
+		}
+
+		public static TextureCubeMap CreateFromFolder( string folderPath, string extension )
+		{
+			var fileNames = new []
+			                {
+			                	Path.Combine( folderPath, "front." + extension ),
+			                	Path.Combine( folderPath, "back." + extension ),
+			                	Path.Combine( folderPath, "left." + extension ),
+			                	Path.Combine( folderPath, "right." + extension ),
+			                	Path.Combine( folderPath, "bottom." + extension ),
+			                	Path.Combine( folderPath, "top." + extension ),
+			                };
+
+			foreach (var fileName in fileNames)
+			{
+				if (!File.Exists( fileName )) throw new Exception( "File : `" + fileName + "` don't exists" );
+			}
+
+			return new TextureCubeMap( fileNames[0], fileNames[1], fileNames[2], fileNames[3], fileNames[4], fileNames[5] );
 		}
 	}
 }

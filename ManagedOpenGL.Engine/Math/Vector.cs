@@ -275,6 +275,11 @@ namespace ManagedOpenGL.Engine.Math
 
 			this.BeginChanging = false;
 		}
+
+		public Vector3F Clone()
+		{
+			return new Vector3F( X, Y, Z );
+		}
 	}
 	
 	[DebuggerDisplay("({X.ToString(\"F2\"),nq};{Y.ToString(\"F2\"),nq};{Z.ToString(\"F2\"),nq};{W.ToString(\"F2\"),nq})")]

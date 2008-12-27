@@ -12,11 +12,10 @@
  *******************************************************/
 
 using System.Runtime.InteropServices;
-using ManagedOpenGL;
 
 namespace ManagedOpenGL.Engine.Objects
 {
-	public class Cube : DrawObject
+	public class Cube : PositionedObject
 	{
 		[StructLayout(LayoutKind.Sequential)]
 		protected unsafe struct Vertex
@@ -116,7 +115,7 @@ namespace ManagedOpenGL.Engine.Objects
 			                                       bnx, bny, bnz, tx, ty, tz, 0, 1 );
 		}
 
-		public override void Draw()
+		public override void DrawOverride()
 		{
 			unsafe
 			{

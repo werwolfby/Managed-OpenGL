@@ -11,6 +11,7 @@
  *
  *******************************************************/
 
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ManagedOpenGL;
@@ -22,17 +23,67 @@ namespace Test.ManagedOpenGL
 {
 	public class SampleOpenGLForm : OpenGLForm
 	{
+		protected delegate void KeyPressedProcessDelegate( float elapsed );
+
 		protected readonly TwoDirCamera camera = new TwoDirCamera
 		                                         {
 		                                         	VelocitySpeed = 20,
 		                                         	StrafeSpeed = 20,
 		                                         };
 
+		private readonly Dictionary<Keys, KeyPressedProcessDelegate> keyPressedProcessor = new Dictionary<Keys, KeyPressedProcessDelegate>();
+		private readonly Dictionary<Keys, KeyPressedProcessDelegate> keyUnpressedProcessor = new Dictionary<Keys, KeyPressedProcessDelegate>();
+
+		protected readonly ItemsManager itemsManager = new ItemsManager();
+
 		public SampleOpenGLForm()
 		{
-			WindowSize = new Size( 640, 480 );
+			this.WindowSize = new Size( 640, 480 );
 			Renderer.Near = 1;
 			Renderer.Far = 400;
+
+			Cursor.Position = this.PointToScreen( new Point( this.ClientSize.Width / 2, this.ClientSize.Height / 2 ) );
+
+			this.RegisterPressed( Keys.A, elapsed => camera.MoveLeft( elapsed ) );
+			this.RegisterPressed( Keys.D, elapsed => camera.MoveRight( elapsed ) );
+			this.RegisterPressed( Keys.W, elapsed => camera.MoveForward( elapsed ) );
+			this.RegisterPressed( Keys.S, elapsed => camera.MoveBack( elapsed ) );
+
+			this.RegisterPressed( Keys.Space, elapsed => camera.MoveUp( elapsed ) );
+			this.RegisterPressed( Keys.ControlKey, elapsed => camera.MoveDown( elapsed ) );
+			
+			this.RegisterPressed( Keys.C, elapsed => camera.Position.Set( 0, 0, 0 ) );
+
+			this.RegisterPressed( Keys.ShiftKey, elapsed =>
+			                                     {
+			                                     	camera.VelocitySpeed = 200;
+			                                     	camera.StrafeSpeed = 200;
+			                                     	camera.LiftSpeed = 200;
+			                                     }
+				);
+			this.RegisterUnpressed( Keys.ShiftKey, elapsed =>
+			                                       {
+			                                       	camera.VelocitySpeed = 20;
+			                                       	camera.StrafeSpeed = 20;
+			                                     	camera.LiftSpeed = 20;
+			                                       } );
+		}
+
+		protected void RegisterPressed( Keys key, KeyPressedProcessDelegate processDelegate )
+		{
+			this.keyPressedProcessor[key] = processDelegate;
+		}
+
+		protected void RegisterUnpressed( Keys key, KeyPressedProcessDelegate processDelegate )
+		{
+			this.keyUnpressedProcessor[key] = processDelegate;
+		}
+
+		protected override void AfterInitGLOverride()
+		{
+			base.AfterInitGLOverride();
+
+			itemsManager.Load();
 		}
 
 		protected override void OnMouseMove( MouseEventArgs e ) 
@@ -71,22 +122,14 @@ namespace Test.ManagedOpenGL
 		{
 			base.Update( elapsed );
 
-			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
-			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );
-			if (Keyboard.GetValue( Keys.W )) camera.MoveForward( elapsed );
-			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
-			
-			if (Keyboard.GetValue( Keys.C )) camera.Position.Set( 0, 0, 0 );
-
-			if (Keyboard.GetValue( Keys.ShiftKey ))
+			foreach (var keyValuePair in keyPressedProcessor)
 			{
-				camera.VelocitySpeed = 200;
-				camera.StrafeSpeed = 200;
+				if (Keyboard.GetValue( keyValuePair.Key )) keyValuePair.Value( elapsed );
 			}
-			else
+
+			foreach (var keyValuePair in keyUnpressedProcessor)
 			{
-				camera.VelocitySpeed = 20;
-				camera.StrafeSpeed = 20;
+				if (!Keyboard.GetValue( keyValuePair.Key )) keyValuePair.Value( elapsed );
 			}
 		}
 	}

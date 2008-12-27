@@ -110,7 +110,7 @@ namespace ManagedOpenGL.Engine.Cameras
 
 		public override void MoveUp( float delta )
 		{
-			var moveSpeed = -delta * liftSpeed;
+			var moveSpeed = delta * liftSpeed;
 
 			this.Position.X += rotInvert[4] * moveSpeed;
 			this.Position.Y += rotInvert[5] * moveSpeed;
@@ -119,7 +119,7 @@ namespace ManagedOpenGL.Engine.Cameras
 
 		public override void MoveDown( float delta )
 		{
-			var moveSpeed =  delta * velocitySpeed;
+			var moveSpeed =  -delta * liftSpeed;
 
 			this.Position.X += rotInvert[4] * moveSpeed;
 			this.Position.Y += rotInvert[5] * moveSpeed;

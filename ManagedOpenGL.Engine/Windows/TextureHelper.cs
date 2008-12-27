@@ -23,7 +23,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height )
 		{
-			return LoadImageData( fileName, pixelFormat, out stride, out width, out height, true );
+			return LoadImageData( fileName, pixelFormat, out stride, out width, out height, false );
 		}
 		
 		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height, bool flip )

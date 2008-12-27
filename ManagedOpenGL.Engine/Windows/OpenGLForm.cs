@@ -88,14 +88,14 @@ namespace ManagedOpenGL.Engine.Windows
 		{
 			base.OnKeyDown( e );
 
-			Keyboard.SetValue( e.KeyCode, true );
+			Keyboard.OnKeyDown( e );
 		}
 
 		protected override void OnKeyUp( KeyEventArgs e ) 
 		{
 			base.OnKeyUp( e );
 
-			Keyboard.SetValue( e.KeyCode, false );
+			Keyboard.OnKeyUp( e );
 		}
 
 		private void InitGL()

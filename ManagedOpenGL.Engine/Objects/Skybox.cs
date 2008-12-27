@@ -11,8 +11,9 @@
  *
  *******************************************************/
 
+using System;
+using System.IO;
 using System.Runtime.InteropServices;
-using ManagedOpenGL;
 using ManagedOpenGL.Engine.Windows;
 
 namespace ManagedOpenGL.Engine.Objects
@@ -157,10 +158,10 @@ namespace ManagedOpenGL.Engine.Objects
 
 		private static void Fill( int faceNumber, BoxVertex[] boxVertices, SkyboxVertex[] vertices, int i0, int i1, int i2, int i3 )
 		{
-			vertices[faceNumber*4 + 0] = new SkyboxVertex( boxVertices[i0], 0, 0 );
-			vertices[faceNumber*4 + 1] = new SkyboxVertex( boxVertices[i1], 1, 0 );
-			vertices[faceNumber*4 + 2] = new SkyboxVertex( boxVertices[i2], 1, 1 );
-			vertices[faceNumber*4 + 3] = new SkyboxVertex( boxVertices[i3], 0, 1 );
+			vertices[faceNumber*4 + 0] = new SkyboxVertex( boxVertices[i0], 0, 1 );
+			vertices[faceNumber*4 + 1] = new SkyboxVertex( boxVertices[i1], 1, 1 );
+			vertices[faceNumber*4 + 2] = new SkyboxVertex( boxVertices[i2], 1, 0 );
+			vertices[faceNumber*4 + 3] = new SkyboxVertex( boxVertices[i3], 0, 0 );
 		}
 
 		public void Draw()
@@ -200,6 +201,29 @@ namespace ManagedOpenGL.Engine.Objects
 			right.Load();
 			top.Load();
 			bottom.Load();
+		}
+
+		public static Skybox CreateFromFolder( int width, int height, int length, string folderPath, string extension )
+		{
+			var fileNames = new []
+			                {
+			                	Path.Combine( folderPath, "front." + extension ),
+			                	Path.Combine( folderPath, "back." + extension ),
+			                	Path.Combine( folderPath, "left." + extension ),
+			                	Path.Combine( folderPath, "right." + extension ),
+			                	Path.Combine( folderPath, "bottom." + extension ),
+			                	Path.Combine( folderPath, "top." + extension ),
+			                };
+
+			foreach (var fileName in fileNames)
+			{
+				if (!File.Exists( fileName )) throw new Exception( "File : `" + fileName + "` don't exists" );
+			}
+
+			return new Skybox( width, height, length,
+			                   new Texture2D( fileNames[1] ), new Texture2D( fileNames[0] ),
+			                   new Texture2D( fileNames[2] ), new Texture2D( fileNames[3] ),
+			                   new Texture2D( fileNames[4] ), new Texture2D( fileNames[5] ) );
 		}
 	}
 }

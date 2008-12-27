@@ -36,7 +36,7 @@ namespace Test.ManagedOpenGL.RenderToTextureSample
 
 		private readonly Cube cube = new Cube( 20, 20, 20 );
 		private float angle;
-		private Texture2D back;
+		private readonly Texture2D back;
 
 		public RenderToTextureForm()
 		{

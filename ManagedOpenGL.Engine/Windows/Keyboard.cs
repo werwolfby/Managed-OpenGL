@@ -21,6 +21,9 @@ namespace ManagedOpenGL.Engine.Windows
 	{
 		private static readonly bool[] keys = new bool[Enum.GetValues( typeof(Keys) ).Length];
 
+		public static event KeyEventHandler KeyDown;
+		public static event KeyEventHandler KeyUp;
+
 		public static bool GetValue( Keys key )
 		{
 			return keys[(int)key];
@@ -29,6 +32,28 @@ namespace ManagedOpenGL.Engine.Windows
 		public static void SetValue( Keys key, bool value )
 		{
 			keys[(int)key] = value;
+		}
+
+		public static void OnKeyDown( KeyEventArgs e )
+		{
+			SetValue( e.KeyCode, true );
+			RaiseKeyDown( e );
+		}
+
+		public static void OnKeyUp( KeyEventArgs e )
+		{
+			SetValue( e.KeyCode, false );
+			RaiseKeyUp( e );
+		}
+
+		private static void RaiseKeyDown( KeyEventArgs e )
+		{
+			if (KeyDown != null) KeyDown( null, e );
+		}
+
+		private static void RaiseKeyUp( KeyEventArgs e )
+		{
+			if (KeyUp != null) KeyUp( null, e );
 		}
 	}
 }

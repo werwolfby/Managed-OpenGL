@@ -49,6 +49,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="StillDesign.PhysX.Net, Version=0.10.1.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\.Assemblies\StillDesign.PhysX.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -80,6 +86,7 @@
     <Compile Include="FontsSample\FontsSampleForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ItemsManager.cs" />
     <Compile Include="MultiTextureSample\MultiTextureSampleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +96,14 @@
     <Compile Include="NormalMapSample\NormalMapSampleForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ParallaxMappingSample\ParallaxMappingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhysXSample\PhysXBox.cs" />
+    <Compile Include="PhysXSample\PhysXForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhysXSample\PhysXSphere.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderToTextureSample\RenderToTextureForm.cs">
@@ -108,6 +123,9 @@
     </Compile>
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestSample\TestSampleForm.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +194,15 @@
     <Content Include="Data\NormalMap\FieldstoneBumpDOT3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\ParallaxMapping\Maps\rockwall.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ParallaxMapping\Maps\rockwall_height.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ParallaxMapping\Maps\rockwall_normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\SkyBox\CubeMap1\Back.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -212,6 +239,33 @@
     <Content Include="Data\SkyBox\CubeMap2\Top.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\SkyBox\CubeMapTest\Back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMapTest\Bottom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMapTest\Front.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMapTest\Left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMapTest\Right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\SkyBox\CubeMapTest\Top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Test\Test.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Test\Test.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Test\Test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EnviromentCubeMap\enviroment_cube_map.frag">
@@ -230,6 +284,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\NormalMap\shader.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ParallaxMapping\relief1.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ParallaxMapping\parallax1.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ParallaxMapping\parallax.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ParallaxMapping\parallax.vert">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Shader\sample.frag">

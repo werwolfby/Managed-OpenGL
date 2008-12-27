@@ -12,17 +12,15 @@
  *******************************************************/
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ManagedOpenGL.Engine.Shaders
 {
-	public class ShaderProgram
+	public class ShaderProgram : IEnumerable<Shader>
 	{
 		private uint handle;
-
-		//~ShaderProgram()
-		//{
-		//    OpenGLNative.DeleteProgramsARB( 1, new[] { handle } );
-		//}
+		private readonly List<Shader> shaders = new List<Shader>();
 
 		public bool Linked { get; private set; }
 
@@ -34,14 +32,32 @@ namespace ManagedOpenGL.Engine.Shaders
 			}
 		}
 
+		public void Add( Shader shader )
+		{
+			this.shaders.Add( shader );
+		}
+
 		public void Load()
 		{
 			this.handle = OpenGLNative.CreateProgramObjectARB();
+			foreach (var shader in this)
+			{
+				shader.Load();
+				Attach( shader );
+			}
 		}
 
 		public void Attach( Shader shader )
 		{
 			OpenGLNative.AttachObjectARB( handle, shader.Handle );
+		}
+
+		public void Compile()
+		{
+			foreach (var shader in shaders)
+			{
+				shader.TryCompile();
+			}
 		}
 
 		public void Link()
@@ -81,6 +97,22 @@ namespace ManagedOpenGL.Engine.Shaders
 		public static void UnUse()
 		{
 			OpenGLNative.UseProgramObjectARB( 0 );
+		}
+
+		public IEnumerator<Shader> GetEnumerator()
+		{
+			return this.shaders.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return this.GetEnumerator();
+		}
+
+		public static T Create<T>( string vertFileName, string fragFileName )
+			where T : ShaderProgram, new()
+		{
+			return new T { VertexShader.Load( vertFileName ), FragmentShader.Load( fragFileName ) };
 		}
 	}
 }

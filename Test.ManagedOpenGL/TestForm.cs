@@ -9,9 +9,12 @@ using Test.ManagedOpenGL.FontsSample;
 using Test.ManagedOpenGL.MultiTextureSample;
 using Test.ManagedOpenGL.NormalizeCubeMapSample;
 using Test.ManagedOpenGL.NormalMapSample;
+using Test.ManagedOpenGL.ParallaxMappingSample;
+using Test.ManagedOpenGL.PhysXSample;
 using Test.ManagedOpenGL.RenderToTextureSample;
 using Test.ManagedOpenGL.ShaderSample;
 using Test.ManagedOpenGL.SkyBoxSample;
+using Test.ManagedOpenGL.TestSample;
 
 namespace Test.ManagedOpenGL
 {
@@ -75,6 +78,21 @@ namespace Test.ManagedOpenGL
 		private void button11_Click( object sender, EventArgs e )
 		{
 			this.RunSample<CubeMap2Form>();
+		}
+
+		private void button12_Click( object sender, EventArgs e )
+		{
+			this.RunSample<ParallaxMappingForm>();
+		}
+
+		private void button13_Click( object sender, EventArgs e )
+		{
+			this.RunSample<PhysXForm>();
+		}
+
+		private void button14_Click( object sender, EventArgs e )
+		{
+			this.RunSample<TestSampleForm>();
 		}
 
 		private void RunSample<T>()

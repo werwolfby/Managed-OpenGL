@@ -30,12 +30,7 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 		private readonly Texture2D bottom = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
 		private readonly Texture2D top    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
 
-		private readonly TextureCubeMap cubeMap = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
-		                                                              @"Data\SkyBox\CubeMap2\front.png",
-		                                                              @"Data\SkyBox\CubeMap2\left.png",
-		                                                              @"Data\SkyBox\CubeMap2\right.png",
-		                                                              @"Data\SkyBox\CubeMap2\bottom.png",
-		                                                              @"Data\SkyBox\CubeMap2\top.png" );
+		private readonly TextureCubeMap cubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
 
 		private readonly Texture2D[] textures;
 		private readonly Skybox skybox;
@@ -91,7 +86,9 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 
 			gl.MatrixMode( MatrixMode.Texture );
 			gl.PushMatrix();
-			gl.LoadMatrixf( camera.InvertData );
+			gl.LoadIdentity();
+			gl.Scalef( 1, 1, - 1 );
+			gl.MultMatrixf( camera.InvertData );
 			sphere.Draw();
 			gl.PopMatrix();
 			TextureCubeMap.UnUse();
@@ -113,16 +110,16 @@ namespace Test.ManagedOpenGL.CubeMap2Sample
 
 				gl.Begin( BeginMode.Quads );
 				
-				gl.TexCoord2f( 0, 0 );
+				gl.TexCoord2f( 0, 1 );
 				gl.Vertex3f( -20, -20, 0 );
 				
-				gl.TexCoord2f( 1, 0 );
+				gl.TexCoord2f( 1, 1 );
 				gl.Vertex3f( +20, -20, 0 );
 				
-				gl.TexCoord2f( 1, 1 );
+				gl.TexCoord2f( 1, 0 );
 				gl.Vertex3f( +20, +20, 0 );
 				
-				gl.TexCoord2f( 0, 1 );
+				gl.TexCoord2f( 0, 0 );
 				gl.Vertex3f( -20, +20, 0 );
 
 				gl.End();
