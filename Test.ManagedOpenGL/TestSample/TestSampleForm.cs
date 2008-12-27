@@ -29,6 +29,8 @@ namespace Test.ManagedOpenGL.TestSample
 		private readonly Skybox skybox = Skybox.CreateFromFolder( 100, 100, 100, @"Data\SkyBox\CubeMapTest", "png" );
 		private readonly Cube cube = new Cube( 10, 10, 10 );
 
+		private readonly Texture2D logo = new Texture2D( @"Data\Test\Test.bmp" );
+
 		public TestSampleForm()
 		{
 			this.camera.Move( 0, 0, 50 );
@@ -42,6 +44,8 @@ namespace Test.ManagedOpenGL.TestSample
 
 			skybox.Load();
 
+			logo.Load();
+
 			font.Load();
 		}
 
@@ -51,26 +55,29 @@ namespace Test.ManagedOpenGL.TestSample
 
             Renderer.RenderMode = RenderMode.MODE_3D;
 
+			TextureCubeMapBase.UnUse();
+
 			gl.TexEnvi( TextureEnvTarget.TextureEnv, TextureEnvParameter.TextureEnvMode, (int)TextureEnvMode.Decal );
-            
-			cubeMap.Use();
-			OpenGLNative.MatrixMode( MatrixMode.Texture );
-			OpenGLNative.PushMatrix();
-			OpenGLNative.LoadIdentity();
-			OpenGLNative.Scalef( 1, 1, -1 );
-			OpenGLNative.MultMatrixf( camera.InvertData );
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-			cube.Draw();
-			OpenGLNative.MatrixMode( MatrixMode.Texture );
-			OpenGLNative.PopMatrix();
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-			TextureCubeMap.UnUse();
 
 			gl.Enable( EnableCap.Texture2d );
-			gl.TexEnvi( TextureEnvTarget.TextureEnv, TextureEnvParameter.TextureEnvMode, (int)TextureEnvMode.Modulate );
-			gl.Color3f( 0.5f, 0.5f, 0.5f );
-			skybox.Draw();
-			gl.Disable( EnableCap.Texture2d );
+			logo.Use();
+			cube.Draw();
+
+			//gl.Begin( BeginMode.Quads );
+
+			//gl.TexCoord2i( 0, 1 );
+			//gl.Vertex2f( -20, -20 );
+
+			//gl.TexCoord2i( 1, 1 );
+			//gl.Vertex2f( +20, -20 );
+
+			//gl.TexCoord2i( 1, 0 );
+			//gl.Vertex2f( +20, +20 );
+
+			//gl.TexCoord2i( 0, 0 );
+			//gl.Vertex2f( -20, +20 );
+
+			//gl.End();
 
 			Renderer.RenderMode = RenderMode.MODE_2D;
 

@@ -247,8 +247,10 @@ namespace ManagedOpenGL.Engine.Math
 	                  " ({data[3].ToString(\"F2\"),nq};{data[7].ToString(\"F2\"),nq};{data[11].ToString(\"F2\"),nq};{data[15].ToString(\"F2\"),nq}))" )]
 	public class Matrix4F
 	{
-		private readonly float[] data = new float[4*4];
+		public static readonly Matrix4F IdentityMatrix = new Matrix4F();
 
+		private readonly float[] data = new float[4*4];
+        
 		public Matrix4F()
 		{
 			Identity();
