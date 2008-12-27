@@ -42,12 +42,7 @@ namespace Test.ManagedOpenGL.EnviromentCubeMapSample
 		                                              };
 
 		private readonly Skybox skybox;
-		private readonly TextureCubeMap textureCubeMap = new TextureCubeMap( @"Data\SkyBox\CubeMap2\back.png",
-		                                                                     @"Data\SkyBox\CubeMap2\front.png",
-		                                                                     @"Data\SkyBox\CubeMap2\left.png",
-		                                                                     @"Data\SkyBox\CubeMap2\right.png",
-		                                                                     @"Data\SkyBox\CubeMap2\bottom.png",
-		                                                                     @"Data\SkyBox\CubeMap2\top.png" );
+		private readonly TextureCubeMap textureCubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
 
 		private readonly VertexShader vertexShader = VertexShader.Load( vertexShaderFileName );
 		private readonly FragmentShader fragmentShader = FragmentShader.Load( fragmentShaderFileName );
@@ -154,7 +149,7 @@ namespace Test.ManagedOpenGL.EnviromentCubeMapSample
 			gl.ActiveTextureARB( (uint)ARB_multitexture.Texture0Arb );
 			this.textureCubeMap.Use();
 			gl.MatrixMode( MatrixMode.Texture );
-			gl.Scalef( 1, 1, - 1 );
+			gl.Scalef( 1, 1, -1 );
 			gl.MultMatrixf( this.camera.InvertData );
 
 			gl.ActiveTextureARB( (uint)ARB_multitexture.Texture1Arb );
