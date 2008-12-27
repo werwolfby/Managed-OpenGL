@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using ManagedOpenGL;
 using ManagedOpenGL.Engine.Render;
 
 namespace ManagedOpenGL.Engine.Windows
@@ -11,8 +10,8 @@ namespace ManagedOpenGL.Engine.Windows
 	public partial class OpenGLForm : Form
 	{
 		#region Fields
-		private IntPtr _hDC = IntPtr.Zero;
-		private IntPtr _hRC = IntPtr.Zero;
+		private IntPtr hDC = IntPtr.Zero;
+		private IntPtr hRC = IntPtr.Zero;
 		private readonly HiResTimer hiResTimer = new HiResTimer();
 		private bool internalSetWindowSize;
 		#endregion
@@ -26,6 +25,8 @@ namespace ManagedOpenGL.Engine.Windows
 			this.SetStyle( ControlStyles.OptimizedDoubleBuffer, false );
 
 			this.InitializeComponent();
+
+			Renderer.WindowSize = this.WindowSize = new Size( 640, 480 );
 
 			Renderer.WindowSizeChanged += delegate
 			                              {
@@ -50,6 +51,15 @@ namespace ManagedOpenGL.Engine.Windows
 			this.ClientSize = WindowSize;
 			this.AfterInitGL();
 			this.InitGL();
+		}
+
+		protected override void OnClosed( EventArgs e )
+		{
+			base.OnClosed( e );
+		
+			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
+
+			this.DeInit();
 		}
 
 		protected override void OnResize( EventArgs e ) 
@@ -100,7 +110,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 		private void InitGL()
 		{
-			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, this._hRC ))
+			if (!WindowsOpenGLNative.wglMakeCurrent( this.hDC, this.hRC ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			this.InitPerspective();
@@ -117,27 +127,36 @@ namespace ManagedOpenGL.Engine.Windows
 
 			this.InitializePixelFormatDescriptor( ref pfd );
 
-			this._hDC = WindowsOpenGLNative.GetDC( this.Handle );
-			if (this._hDC == IntPtr.Zero)
+			this.hDC = WindowsOpenGLNative.GetDC( this.Handle );
+			if (this.hDC == IntPtr.Zero)
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
-			var iPixelformat = WindowsOpenGLNative.ChoosePixelFormat( this._hDC, ref pfd );
+			var iPixelformat = WindowsOpenGLNative.ChoosePixelFormat( this.hDC, ref pfd );
 			if (iPixelformat == 0)
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			// Set the pixel format
-			if (!WindowsOpenGLNative.SetPixelFormat( this._hDC, iPixelformat, ref pfd ))
+			if (!WindowsOpenGLNative.SetPixelFormat( this.hDC, iPixelformat, ref pfd ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			// Create a new OpenGL rendering context
-			this._hRC = WindowsOpenGLNative.wglCreateContext( this._hDC );
-			if (this._hRC == IntPtr.Zero)
+			this.hRC = WindowsOpenGLNative.wglCreateContext( this.hDC );
+			if (this.hRC == IntPtr.Zero)
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
+		}
+
+		private void DeInit()
+		{
+			if (this.hRC != IntPtr.Zero)
+				WindowsOpenGLNative.wglDeleteContext( this.hRC );
+
+			if (this.hDC != IntPtr.Zero)
+				WindowsOpenGLNative.ReleaseDC( this.Handle, this.hDC );
 		}
 
 		private void AfterInitGL()
 		{
-			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, this._hRC ))
+			if (!WindowsOpenGLNative.wglMakeCurrent( this.hDC, this.hRC ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			AfterInitGLOverride();
@@ -149,12 +168,12 @@ namespace ManagedOpenGL.Engine.Windows
 
 		protected sealed override void OnPaint( PaintEventArgs e ) 
 		{
-			if (!WindowsOpenGLNative.wglMakeCurrent( this._hDC, this._hRC ))
+			if (!WindowsOpenGLNative.wglMakeCurrent( this.hDC, this.hRC ))
 				throw new Win32Exception( Marshal.GetLastWin32Error() );
 
 			this.Draw();
 
-			WindowsOpenGLNative.SwapBuffers( this._hDC );
+			WindowsOpenGLNative.SwapBuffers( this.hDC );
 
 			WindowsOpenGLNative.wglMakeCurrent( IntPtr.Zero, IntPtr.Zero );
 		}

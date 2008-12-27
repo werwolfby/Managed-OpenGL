@@ -14,13 +14,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 using ManagedOpenGL;
-using ManagedOpenGL.Engine.Cameras;
 using ManagedOpenGL.Engine.Objects;
 using ManagedOpenGL.Engine.Windows;
 
 namespace Test.ManagedOpenGL.SkyBoxSample
 {
-	public class SkyBoxSampleForm : OpenGLForm
+	public class SkyBoxSampleForm : SampleOpenGLForm
 	{
 		private readonly Texture2D back1   = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
 		private readonly Texture2D front1  = new Texture2D( @"Data\SkyBox\CubeMap2\front.png" );
@@ -36,12 +35,6 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 		private readonly Texture2D bottom2 = new Texture2D( @"Data\SkyBox\CubeMap1\bottom.jpg" );
 		private readonly Texture2D top2    = new Texture2D( @"Data\SkyBox\CubeMap1\top.jpg" );
 
-		private readonly TwoDirCamera camera = new TwoDirCamera
-		                                       {
-		                                       	VelocitySpeed = 20,
-		                                       	StrafeSpeed = 20
-		                                       };
-
 		private readonly Skybox skybox1;
 		private readonly Skybox skybox2;
 
@@ -55,6 +48,9 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			this.currentSkybox = this.skybox1;
 
 			WindowSize = new Size( 640, 480 );
+
+			this.RegisterPressed( Keys.D1, elapsed => currentSkybox = skybox1 );
+			this.RegisterPressed( Keys.D2, elapsed => currentSkybox = skybox2 );
 		}
 
 		protected override void AfterInitGLOverride() 
@@ -74,64 +70,12 @@ namespace Test.ManagedOpenGL.SkyBoxSample
 			}
 		}
 
-		protected override void InitPerspective() 
-		{
-			OpenGLNative.MatrixMode( MatrixMode.Projection );
-			OpenGLNative.LoadIdentity();
-			WindowsOpenGLNative.gluPerspective( 45, (double)this.ClientSize.Width / this.ClientSize.Height, 1, 250 );
-			OpenGLNative.Viewport( 0, 0, this.ClientSize.Width, this.ClientSize.Height );
-		}
-
-		protected override void OnMouseMove( MouseEventArgs e ) 
-		{
-			base.OnMouseMove( e );
-
-			var oldPosition = this.PointToClient( Cursor.Position );
-			var centerPosition = new Point( ClientSize.Width / 2, ClientSize.Height / 2 );
-
-			if (oldPosition == centerPosition) return;
-
-			var deltaX = - oldPosition.X + centerPosition.X;
-			var deltaY = - oldPosition.Y + centerPosition.Y;
-
-			camera.TurnLeft( deltaX );
-			camera.LookUp( deltaY );
-
-			Cursor.Position = this.PointToScreen( centerPosition );
-		}
-
 		protected override void Draw() 
 		{
 			base.Draw();
 
-			OpenGLNative.ClearColor( 0, 0, 0, 0 );
-			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
-
-			OpenGLNative.MatrixMode( MatrixMode.Modelview );
-			OpenGLNative.LoadMatrixf( camera.Data );
-
 			OpenGLNative.Enable( EnableCap.Texture2d );
 			this.currentSkybox.Draw();
-		}
-
-		protected override void Update( float elapsed ) 
-		{
-			base.Update( elapsed );
-
-			if (Keyboard.GetValue( Keys.D1 )) currentSkybox = skybox1;
-			if (Keyboard.GetValue( Keys.D2 )) currentSkybox = skybox2;
-
-			if (Keyboard.GetValue( Keys.A )) camera.MoveLeft( elapsed );
-			if (Keyboard.GetValue( Keys.D )) camera.MoveRight( elapsed );
-			if (Keyboard.GetValue( Keys.W )) camera.MoveForward( elapsed );
-			if (Keyboard.GetValue( Keys.S )) camera.MoveBack( elapsed );
-			
-			if (Keyboard.GetValue( Keys.C ))
-			{
-				camera.Position.Set( 0, 0, 0 );
-				camera.Pitch = 0;
-				camera.Yaw = 0;
-			}
 		}
 	}
 }

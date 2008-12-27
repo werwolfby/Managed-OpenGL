@@ -51,8 +51,14 @@ namespace Test.ManagedOpenGL
 
 			this.RegisterPressed( Keys.Space, elapsed => camera.MoveUp( elapsed ) );
 			this.RegisterPressed( Keys.ControlKey, elapsed => camera.MoveDown( elapsed ) );
-			
-			this.RegisterPressed( Keys.C, elapsed => camera.Position.Set( 0, 0, 0 ) );
+
+			this.RegisterPressed( Keys.C, elapsed =>
+			                              {
+			                              	camera.Position.Set( 0, 0, 0 );
+			                              	camera.Pitch = 0;
+			                              	camera.Yaw = 0;
+			                              } );
+
 
 			this.RegisterPressed( Keys.ShiftKey, elapsed =>
 			                                     {
@@ -107,6 +113,8 @@ namespace Test.ManagedOpenGL
 		protected override void Draw() 
 		{
 			base.Draw();
+
+			Renderer.RenderMode = RenderMode.MODE_3D;
 
 			OpenGLNative.ClearColor( 0, 0, 0, 1 );
 			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );

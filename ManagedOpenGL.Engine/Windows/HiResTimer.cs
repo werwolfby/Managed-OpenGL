@@ -22,7 +22,7 @@ namespace ManagedOpenGL.Engine.Windows
 		private readonly long frequency;
 		private readonly bool isPerfCounterSupported;
 		private long startValue = -1;
-		private bool paused = false;
+		private bool paused;
 
 		public HiResTimer()
 		{

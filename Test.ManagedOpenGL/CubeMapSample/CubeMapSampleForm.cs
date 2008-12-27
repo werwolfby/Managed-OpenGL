@@ -35,7 +35,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		private readonly Texture2D bottom1 = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
 		private readonly Texture2D top1    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
 
-		private readonly TextureCubeMap textureCubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
+		private readonly TextureCubeMap cubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
 		private readonly Cube cube = new Cube( SphereRadius*2, SphereRadius*2, SphereRadius*2 );
 		private readonly Sphere sphere = new Sphere( SphereRadius, SphereSlices, SphereStacks );
 		private DrawObject currentObject;
@@ -59,7 +59,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		{
 			base.AfterInitGLOverride();
 
-			this.textureCubeMap.Load();
+			this.cubeMap.Load();
 
 			foreach (var texture in new[] { this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1 })
 			{
@@ -74,20 +74,20 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			base.Draw();
 
 			gl.Enable( EnableCap.Texture2d );
-			TextureCubeMap.UnUse();
             skybox.Draw();
-            OpenGLNative.Disable( EnableCap.Texture2d );
+            gl.Disable( EnableCap.Texture2d );
 
 			gl.MatrixMode( MatrixMode.Texture );
 			gl.PushMatrix();
 			gl.LoadIdentity();
 			gl.Scalef( 1, 1, -1 );
 			gl.MultMatrixf( camera.InvertData );
+
 			gl.MatrixMode( MatrixMode.Modelview );
 
-			gl.Enable( EnableCap.Normalize );
+			//gl.Enable( EnableCap.Normalize );
 			
-			textureCubeMap.Use();
+			this.cubeMap.Use();
 			currentObject.Draw();
 			TextureCubeMap.UnUse();
 
