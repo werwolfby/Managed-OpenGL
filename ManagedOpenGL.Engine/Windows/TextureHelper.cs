@@ -5,6 +5,16 @@
  *
  * File: TextureHelper.cs
  * Remarks:
+ *  Точка отсчёта системы координа GDI+ находится в левом-верхнем углу.  o--->x
+ *  Ось X направлена вправ а ось Y вниз                                  |
+ *                                                                      \|/ y
+ *  
+ *  В OpenGL система координат текстуры выглядит наоборот               /|\ y
+ *  Точка отсчёта в левом-нижнем углу, ось X также направлена вправо,    |
+ *  а ось Y вверх в отличии от GDI+                                      o--->x
+ *                                                                      
+ *  Поэтому после загрузки изображения поумолчанию мы всегда 
+ *  переворачиваем изображение
  * 
  * History:
  *   07.06.2008 12:15 - Create Wireframe
@@ -23,7 +33,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height )
 		{
-			return LoadImageData( fileName, pixelFormat, out stride, out width, out height, false );
+			return LoadImageData( fileName, pixelFormat, out stride, out width, out height, true );
 		}
 		
 		public static byte[] LoadImageData( string fileName, System.Drawing.Imaging.PixelFormat pixelFormat, out int stride, out int width, out int height, bool flip )

@@ -108,13 +108,13 @@ namespace ManagedOpenGL.Engine.Objects
 			float bnx, float bny, float bnz, float tx, float ty, float tz )
 		{
 			vertices[number * 4 + 0] = new Vertex( cornerPoints[i0, 0], cornerPoints[i0, 1], cornerPoints[i0, 2], nx, ny, nz,
-			                                       bnx, bny, bnz, tx, ty, tz, 0, 1 );
-			vertices[number * 4 + 1] = new Vertex( cornerPoints[i1, 0], cornerPoints[i1, 1], cornerPoints[i1, 2], nx, ny, nz,
-			                                       bnx, bny, bnz, tx, ty, tz, 1, 1 );
-			vertices[number * 4 + 2] = new Vertex( cornerPoints[i2, 0], cornerPoints[i2, 1], cornerPoints[i2, 2], nx, ny, nz,
-			                                       bnx, bny, bnz, tx, ty, tz, 1, 0 );
-			vertices[number * 4 + 3] = new Vertex( cornerPoints[i3, 0], cornerPoints[i3, 1], cornerPoints[i3, 2], nx, ny, nz,
 			                                       bnx, bny, bnz, tx, ty, tz, 0, 0 );
+			vertices[number * 4 + 1] = new Vertex( cornerPoints[i1, 0], cornerPoints[i1, 1], cornerPoints[i1, 2], nx, ny, nz,
+			                                       bnx, bny, bnz, tx, ty, tz, 1, 0 );
+			vertices[number * 4 + 2] = new Vertex( cornerPoints[i2, 0], cornerPoints[i2, 1], cornerPoints[i2, 2], nx, ny, nz,
+			                                       bnx, bny, bnz, tx, ty, tz, 1, 1 );
+			vertices[number * 4 + 3] = new Vertex( cornerPoints[i3, 0], cornerPoints[i3, 1], cornerPoints[i3, 2], nx, ny, nz,
+			                                       bnx, bny, bnz, tx, ty, tz, 0, 1 );
 		}
 
 		public override void DrawOverride()

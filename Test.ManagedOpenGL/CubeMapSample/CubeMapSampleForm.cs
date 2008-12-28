@@ -27,23 +27,17 @@ namespace Test.ManagedOpenGL.CubeMapSample
 		private const float SphereRadius = 10;
 		private const int SphereSlices = 32;
 		private const int SphereStacks = 32;
+		private const string folderPath = @"Data\SkyBox\CubeMap1";
+		private const string extension = "jpg";
 
-		private readonly Texture2D back1   = new Texture2D( @"Data\SkyBox\CubeMap2\back.png" );
-		private readonly Texture2D front1  = new Texture2D( @"Data\SkyBox\CubeMap2\front.png" );
-		private readonly Texture2D left1   = new Texture2D( @"Data\SkyBox\CubeMap2\left.png" );
-		private readonly Texture2D right1  = new Texture2D( @"Data\SkyBox\CubeMap2\right.png" );
-		private readonly Texture2D bottom1 = new Texture2D( @"Data\SkyBox\CubeMap2\bottom.png" );
-		private readonly Texture2D top1    = new Texture2D( @"Data\SkyBox\CubeMap2\top.png" );
-
-		private readonly TextureCubeMap cubeMap = TextureCubeMap.CreateFromFolder( @"Data\SkyBox\CubeMap2", "png" );
+		private readonly TextureCubeMap cubeMap = TextureCubeMap.CreateFromFolder( folderPath, extension );
 		private readonly Cube cube = new Cube( SphereRadius*2, SphereRadius*2, SphereRadius*2 );
 		private readonly Sphere sphere = new Sphere( SphereRadius, SphereSlices, SphereStacks );
 		private DrawObject currentObject;
-		private readonly Skybox skybox;
+		private readonly Skybox skybox = Skybox.CreateFromFolder( 300, 300, 300, folderPath, extension );
 
 		public CubeMapSampleForm()
 		{
-			this.skybox = new Skybox( 300, 300, 300, this.back1, front1, left1, right1, bottom1, top1 );
 			WindowSize = new Size( 640, 480 );
 			Renderer.Far = 1000;
 			Renderer.Near = 1;
@@ -60,13 +54,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			base.AfterInitGLOverride();
 
 			this.cubeMap.Load();
-
-			foreach (var texture in new[] { this.back1, this.front1, this.left1, this.right1, this.bottom1, this.top1 })
-			{
-				texture.Load();
-				texture.WrapS = TextureWrapMode.ClampToEdgeSgis;
-				texture.WrapT = TextureWrapMode.ClampToEdgeSgis;
-			}
+            this.skybox.Load();
 		}
 
 		protected override void Draw() 
@@ -87,7 +75,7 @@ namespace Test.ManagedOpenGL.CubeMapSample
 			
 			this.cubeMap.Use();
 			currentObject.Draw();
-			TextureCubeMap.UnUse();
+			TextureCubeMapBase.UnUse();
 
 			gl.MatrixMode( MatrixMode.Texture );
 			gl.PopMatrix();

@@ -33,16 +33,9 @@ namespace Test.ManagedOpenGL.DepthReflectionExample
 		private readonly PositionedSphere sphere1 = new PositionedSphere( 20, 32, 32, +30, 0, 0 );
 		private readonly PositionedSphere sphere2 = new PositionedSphere( 20, 32, 32, -30, 0, 0 );
 
-		private readonly EmptyTexture2D emptyTexture2D = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-		
-		private readonly EmptyTexture2D emptyTexture2DLeft = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-		private readonly EmptyTexture2D emptyTexture2DRight = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-		private readonly EmptyTexture2D emptyTexture2DBottom = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-		private readonly EmptyTexture2D emptyTexture2DTop = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-		private readonly EmptyTexture2D emptyTexture2DFar = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-		private readonly EmptyTexture2D emptyTexture2DNear = new EmptyTexture2D( 256, 256, 4, PixelFormat.Rgb );
-
 		private readonly MatrixRenderTexture leftRenderTexture;
+
+		private readonly EmptyCubeMapTexture emptyCubeMapTexture = new EmptyCubeMapTexture( 256, 256, 4 );
 
 		public DepthReflectionForm()
 		{
@@ -64,16 +57,9 @@ namespace Test.ManagedOpenGL.DepthReflectionExample
 			this.cubeMap1.Load();
 			this.cubeMap2.Load();
 
-			this.emptyTexture2D.Load();
-
-			this.emptyTexture2DLeft.Load();
-			this.emptyTexture2DRight.Load();
-			this.emptyTexture2DBottom.Load();
-			this.emptyTexture2DTop.Load();
-			this.emptyTexture2DFar.Load();
-			this.emptyTexture2DNear.Load();
-
 			this.leftRenderTexture.Load();
+
+			this.emptyCubeMapTexture.Load();
 		}
 
 		protected override void Draw()
@@ -83,31 +69,56 @@ namespace Test.ManagedOpenGL.DepthReflectionExample
 			leftRenderTexture.PrepareForRender();
 			this.DrawScene();
 			leftRenderTexture.Copy();
+			gl.PixelStorei( PixelStoreParameter.UnpackAlignment, 1 );
+			emptyCubeMapTexture.Use();
+			emptyCubeMapTexture.CopyToLeft( 0, 0, 256, 256 );
+			emptyCubeMapTexture.CopyToRight( 0, 0, 256, 256 );
+			emptyCubeMapTexture.CopyToBottom( 0, 0, 256, 256 );
+			emptyCubeMapTexture.CopyToTop( 0, 0, 256, 256 );
+			emptyCubeMapTexture.CopyToFront( 0, 0, 256, 256 );
+			emptyCubeMapTexture.CopyToBack( 0, 0, 256, 256 );
 			leftRenderTexture.RestoreRenderToTexture();
 
 			gl.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
 
 			TextureCubeMapBase.UnUse();
-
 			gl.Enable( EnableCap.Texture2d );
+			skybox.Draw();
 
-			leftRenderTexture.Use();
+			emptyCubeMapTexture.Use();
 
-			gl.Begin( BeginMode.Quads );
+			gl.MatrixMode( MatrixMode.Texture );
+			gl.PushMatrix();
+			gl.LoadIdentity();
+			gl.Scalef( 1, 1, -1 );
+			gl.MultMatrixf( camera.InvertData );
 
-			gl.TexCoord2f( 0, 1 );
-			gl.Vertex2f( -20, -20 );
+            gl.MatrixMode( MatrixMode.Modelview );
+            sphere1.Draw();
+			TextureCubeMapBase.UnUse();
+			gl.MatrixMode( MatrixMode.Texture );
+			gl.PopMatrix();
+			gl.MatrixMode( MatrixMode.Modelview );
 
-			gl.TexCoord2f( 1, 1 );
-			gl.Vertex2f( +20, -20 );
+			//gl.Enable( EnableCap.Texture2d );
 
-			gl.TexCoord2f( 1, 0 );
-			gl.Vertex2f( +20, +20 );
+			//leftRenderTexture.Use();
 
-			gl.TexCoord2f( 0, 0 );
-			gl.Vertex2f( -20, +20 );
+			//gl.Begin( BeginMode.Quads );
 
-			gl.End();
+			//gl.TexCoord2f( 0, 0 );
+			//gl.Vertex2f( -20, -20 );
+
+			//gl.TexCoord2f( 1, 0 );
+			//gl.Vertex2f( +20, -20 );
+
+			//gl.TexCoord2f( 1, 1 );
+			//gl.Vertex2f( +20, +20 );
+
+			//gl.TexCoord2f( 0, 1 );
+			//gl.Vertex2f( -20, +20 );
+
+			//gl.End();
 		}
 
 		private void DrawScene() 

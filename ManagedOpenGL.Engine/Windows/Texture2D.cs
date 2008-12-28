@@ -75,7 +75,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 			this.Use();
 			OpenGL.TexImage2D( TextureTarget.Texture2d, 0, 4, width, height, 0,
-			                   (PixelFormat)(int)EXT_bgra.BgraExt, PixelType.UnsignedByte, bytes );
+			                   (PixelFormat)EXT_bgra.BgraExt, PixelType.UnsignedByte, bytes );
 		}
 	}
 }

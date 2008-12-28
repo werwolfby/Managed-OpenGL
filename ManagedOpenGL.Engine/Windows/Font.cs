@@ -43,16 +43,16 @@ namespace ManagedOpenGL.Engine.Windows
 
 					OpenGLNative.Begin( BeginMode.Quads );
 
-					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 1) / 16.0f );
+					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, 1 - (y + 1) / 16.0f );
 					OpenGLNative.Vertex2i( 0, size );
 
-					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 1) / 16.0f );
+					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, 1 - (y + 1) / 16.0f );
 					OpenGLNative.Vertex2i( size, size );
 
-					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, (y + 0) / 16.0f );
+					OpenGLNative.TexCoord2f( (x + 1) / 16.0f, 1 - (y + 0) / 16.0f );
 					OpenGLNative.Vertex2i( size, 0 );
 
-					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, (y + 0) / 16.0f );
+					OpenGLNative.TexCoord2f( (x + 0) / 16.0f, 1 - (y + 0) / 16.0f );
 					OpenGLNative.Vertex2i( 0, 0 );
 					OpenGLNative.End();
 

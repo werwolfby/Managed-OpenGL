@@ -131,6 +131,7 @@ namespace ManagedOpenGL.Engine.Windows
 
 		public override void LoadOverride()
 		{
+			OpenGLNative.PixelStorei( PixelStoreParameter.UnpackAlignment, 1 );
 			this.Use();
 			for (var i = 0; i < this.fileNames.Length; i++)
 			{
@@ -141,7 +142,7 @@ namespace ManagedOpenGL.Engine.Windows
 				                                             System.Drawing.Imaging.PixelFormat.Format32bppArgb,
 				                                             out stride, out width, out height, false );
 				OpenGL.TexImage2D( (TextureTarget)planes[i], 0, 4, width, height, 0,
-				                   (PixelFormat)EXT_bgra.BgraExt, imageData );
+				                   (PixelFormat)EXT_bgra.BgraExt, PixelType.UnsignedByte, imageData );
 			}
 		}
 
