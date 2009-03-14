@@ -8,18 +8,17 @@ namespace ManagedOpenGL
 		static void OpenGLNativeEXT_blend_colorInit()
 		{
 			_BlendColorEXT = GetProcAdress< BlendColorEXTDelegate >( "glBlendColorEXT" );
-			
 		}
-		
-	
+
+
 		public delegate void BlendColorEXTDelegate( float red, float green, float blue, float alpha ); //  extension method
+
 		private static BlendColorEXTDelegate _BlendColorEXT;
-		
+
 		public static  void BlendColorEXT( float red, float green, float blue, float alpha )
 		{
 			if (_BlendColorEXT == null) throw new Exception( "Extension method BlendColorEXT not found" );
-			 _BlendColorEXT( red, green, blue, alpha );
+		 _BlendColorEXT( red, green, blue, alpha );
 		}
 	}
 }
-

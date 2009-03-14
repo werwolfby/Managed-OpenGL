@@ -9,26 +9,26 @@ namespace ManagedOpenGL
 		{
 			_PrimitiveRestartNV = GetProcAdress< PrimitiveRestartNVDelegate >( "glPrimitiveRestartNV" );
 			_PrimitiveRestartIndexNV = GetProcAdress< PrimitiveRestartIndexNVDelegate >( "glPrimitiveRestartIndexNV" );
-			
 		}
-		
-	
+
+
 		public delegate void PrimitiveRestartNVDelegate(  ); //  extension method
+
 		private static PrimitiveRestartNVDelegate _PrimitiveRestartNV;
-		
+
 		public static  void PrimitiveRestartNV(  )
 		{
 			if (_PrimitiveRestartNV == null) throw new Exception( "Extension method PrimitiveRestartNV not found" );
-			 _PrimitiveRestartNV(  );
+		 _PrimitiveRestartNV(  );
 		}
 		public delegate void PrimitiveRestartIndexNVDelegate( uint index ); //  extension method
+
 		private static PrimitiveRestartIndexNVDelegate _PrimitiveRestartIndexNV;
-		
+
 		public static  void PrimitiveRestartIndexNV( uint index )
 		{
 			if (_PrimitiveRestartIndexNV == null) throw new Exception( "Extension method PrimitiveRestartIndexNV not found" );
-			 _PrimitiveRestartIndexNV( index );
+		 _PrimitiveRestartIndexNV( index );
 		}
 	}
 }
-

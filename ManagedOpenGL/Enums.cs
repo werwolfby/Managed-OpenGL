@@ -42,11 +42,13 @@ namespace ManagedOpenGL
 		ClientVertexArrayBit = 0x00000002,
 		ClientAllAttribBits = 0xFFFFFFFF,
 	}
+
 	public enum Boolean : uint
 	{
 		False = 0,
 		True = 1,
 	}
+
 	public enum BeginMode : uint
 	{
 		Points = 0x0000,
@@ -60,6 +62,7 @@ namespace ManagedOpenGL
 		QuadStrip = 0x0008,
 		Polygon = 0x0009,
 	}
+
 	public enum AccumOp : uint
 	{
 		Accum = 0x0100,
@@ -68,6 +71,7 @@ namespace ManagedOpenGL
 		Mult = 0x0103,
 		Add = 0x0104,
 	}
+
 	public enum AlphaFunction : uint
 	{
 		Never = 0x0200,
@@ -79,6 +83,7 @@ namespace ManagedOpenGL
 		Gequal = 0x0206,
 		Always = 0x0207,
 	}
+
 	public enum BlendingFactorDest : uint
 	{
 		Zero = 0,
@@ -94,6 +99,7 @@ namespace ManagedOpenGL
 		ConstantAlphaExt = EXT_blend_color.ConstantAlphaExt,
 		OneMinusConstantAlphaExt = EXT_blend_color.OneMinusConstantAlphaExt,
 	}
+
 	public enum BlendingFactorSrc : uint
 	{
 		Zero = BlendingFactorDest.Zero,
@@ -110,6 +116,7 @@ namespace ManagedOpenGL
 		ConstantAlphaExt = EXT_blend_color.ConstantAlphaExt,
 		OneMinusConstantAlphaExt = EXT_blend_color.OneMinusConstantAlphaExt,
 	}
+
 	public enum BlendEquationModeEXT : uint
 	{
 		LogicOp = GetPName.LogicOp,
@@ -121,12 +128,14 @@ namespace ManagedOpenGL
 		AlphaMinSgix = SGIX_blend_alpha_minmax.AlphaMinSgix,
 		AlphaMaxSgix = SGIX_blend_alpha_minmax.AlphaMaxSgix,
 	}
+
 	public enum ColorMaterialFace : uint
 	{
 		Front = DrawBufferMode.Front,
 		Back = DrawBufferMode.Back,
 		FrontAndBack = DrawBufferMode.FrontAndBack,
 	}
+
 	public enum ColorMaterialParameter : uint
 	{
 		Ambient = LightParameter.Ambient,
@@ -135,6 +144,7 @@ namespace ManagedOpenGL
 		Emission = MaterialParameter.Emission,
 		AmbientAndDiffuse = MaterialParameter.AmbientAndDiffuse,
 	}
+
 	public enum ColorPointerType : uint
 	{
 		Byte = DataType.Byte,
@@ -146,11 +156,13 @@ namespace ManagedOpenGL
 		Float = DataType.Float,
 		Double = DataType.Double,
 	}
+
 	public enum ColorTableParameterPNameSGI : uint
 	{
 		ColorTableScaleSgi = SGI_color_table.ColorTableScaleSgi,
 		ColorTableBiasSgi = SGI_color_table.ColorTableBiasSgi,
 	}
+
 	public enum ColorTableTargetSGI : uint
 	{
 		ColorTableSgi = SGI_color_table.ColorTableSgi,
@@ -162,27 +174,32 @@ namespace ManagedOpenGL
 		TextureColorTableSgi = SGI_texture_color_table.TextureColorTableSgi,
 		ProxyTextureColorTableSgi = SGI_texture_color_table.ProxyTextureColorTableSgi,
 	}
+
 	public enum ConvolutionBorderModeEXT : uint
 	{
 		ReduceExt = EXT_convolution.ReduceExt,
 	}
+
 	public enum ConvolutionParameterEXT : uint
 	{
 		ConvolutionBorderModeExt = EXT_convolution.ConvolutionBorderModeExt,
 		ConvolutionFilterScaleExt = EXT_convolution.ConvolutionFilterScaleExt,
 		ConvolutionFilterBiasExt = EXT_convolution.ConvolutionFilterBiasExt,
 	}
+
 	public enum ConvolutionTargetEXT : uint
 	{
 		Convolution1dExt = EXT_convolution.Convolution1dExt,
 		Convolution2dExt = EXT_convolution.Convolution2dExt,
 	}
+
 	public enum CullFaceMode : uint
 	{
 		Front = DrawBufferMode.Front,
 		Back = DrawBufferMode.Back,
 		FrontAndBack = DrawBufferMode.FrontAndBack,
 	}
+
 	public enum DepthFunction : uint
 	{
 		Never = AlphaFunction.Never,
@@ -194,6 +211,7 @@ namespace ManagedOpenGL
 		Gequal = AlphaFunction.Gequal,
 		Always = AlphaFunction.Always,
 	}
+
 	public enum DrawBufferMode : uint
 	{
 		None = 0,
@@ -211,6 +229,7 @@ namespace ManagedOpenGL
 		Aux2 = 0x040B,
 		Aux3 = 0x040C,
 	}
+
 	public enum EnableCap : uint
 	{
 		Fog = GetPName.Fog,
@@ -320,6 +339,7 @@ namespace ManagedOpenGL
 		PostColorMatrixColorTableSgi = SGI_color_table.PostColorMatrixColorTableSgi,
 		TextureColorTableSgi = SGI_texture_color_table.TextureColorTableSgi,
 	}
+
 	public enum ErrorCode : uint
 	{
 		NoError = 0,
@@ -332,6 +352,7 @@ namespace ManagedOpenGL
 		TableTooLargeExt = EXT_histogram.TableTooLargeExt,
 		TextureTooLargeExt = EXT_texture.TextureTooLargeExt,
 	}
+
 	public enum FeedbackType : uint
 	{
 		gl2d = 0x0600,
@@ -340,6 +361,7 @@ namespace ManagedOpenGL
 		gl3dColorTexture = 0x0603,
 		gl4dColorTexture = 0x0604,
 	}
+
 	public enum FeedBackToken : uint
 	{
 		PassThroughToken = 0x0700,
@@ -357,11 +379,13 @@ namespace ManagedOpenGL
 		TextureDeformationBitSgix = 0x00000001,
 		GeometryDeformationBitSgix = 0x00000002,
 	}
+
 	public enum FfdTargetSGIX : uint
 	{
 		GeometryDeformationSgix = SGIX_polynomial_ffd.GeometryDeformationSgix,
 		TextureDeformationSgix = SGIX_polynomial_ffd.TextureDeformationSgix,
 	}
+
 	public enum FogMode : uint
 	{
 		Linear = TextureMagFilter.Linear,
@@ -369,6 +393,7 @@ namespace ManagedOpenGL
 		Exp2 = 0x0801,
 		FogFuncSgis = SGIS_fog_function.FogFuncSgis,
 	}
+
 	public enum FogParameter : uint
 	{
 		FogColor = GetPName.FogColor,
@@ -379,6 +404,7 @@ namespace ManagedOpenGL
 		FogStart = GetPName.FogStart,
 		FogOffsetValueSgix = SGIX_fog_offset.FogOffsetValueSgix,
 	}
+
 	public enum FragmentLightModelParameterSGIX : uint
 	{
 		FragmentLightModelLocalViewerSgix = SGIX_fragment_lighting.FragmentLightModelLocalViewerSgix,
@@ -386,11 +412,13 @@ namespace ManagedOpenGL
 		FragmentLightModelAmbientSgix = SGIX_fragment_lighting.FragmentLightModelAmbientSgix,
 		FragmentLightModelNormalInterpolationSgix = SGIX_fragment_lighting.FragmentLightModelNormalInterpolationSgix,
 	}
+
 	public enum FrontFaceDirection : uint
 	{
 		Cw = 0x0900,
 		Ccw = 0x0901,
 	}
+
 	public enum GetColorTableParameterPNameSGI : uint
 	{
 		ColorTableScaleSgi = SGI_color_table.ColorTableScaleSgi,
@@ -404,6 +432,7 @@ namespace ManagedOpenGL
 		ColorTableLuminanceSizeSgi = SGI_color_table.ColorTableLuminanceSizeSgi,
 		ColorTableIntensitySizeSgi = SGI_color_table.ColorTableIntensitySizeSgi,
 	}
+
 	public enum GetConvolutionParameter : uint
 	{
 		ConvolutionBorderModeExt = EXT_convolution.ConvolutionBorderModeExt,
@@ -415,6 +444,7 @@ namespace ManagedOpenGL
 		MaxConvolutionWidthExt = EXT_convolution.MaxConvolutionWidthExt,
 		MaxConvolutionHeightExt = EXT_convolution.MaxConvolutionHeightExt,
 	}
+
 	public enum GetHistogramParameterPNameEXT : uint
 	{
 		HistogramWidthExt = EXT_histogram.HistogramWidthExt,
@@ -426,17 +456,20 @@ namespace ManagedOpenGL
 		HistogramLuminanceSizeExt = EXT_histogram.HistogramLuminanceSizeExt,
 		HistogramSinkExt = EXT_histogram.HistogramSinkExt,
 	}
+
 	public enum GetMapQuery : uint
 	{
 		Coeff = 0x0A00,
 		Order = 0x0A01,
 		Domain = 0x0A02,
 	}
+
 	public enum GetMinmaxParameterPNameEXT : uint
 	{
 		MinmaxFormatExt = EXT_histogram.MinmaxFormatExt,
 		MinmaxSinkExt = EXT_histogram.MinmaxSinkExt,
 	}
+
 	public enum GetPixelMap : uint
 	{
 		PixelMapIToI = 0x0C70,
@@ -450,6 +483,7 @@ namespace ManagedOpenGL
 		PixelMapBToB = 0x0C78,
 		PixelMapAToA = 0x0C79,
 	}
+
 	public enum GetPointervPName : uint
 	{
 		VertexArrayPointer = 0x808E,
@@ -462,6 +496,7 @@ namespace ManagedOpenGL
 		SelectionBufferPointer = 0x0DF3,
 		InstrumentBufferPointerSgix = SGIX_instruments.InstrumentBufferPointerSgix,
 	}
+
 	public enum GetPName : uint
 	{
 		CurrentColor = 0x0B00,
@@ -843,6 +878,7 @@ namespace ManagedOpenGL
 		PostColorMatrixColorTableSgi = SGI_color_table.PostColorMatrixColorTableSgi,
 		TextureColorTableSgi = SGI_texture_color_table.TextureColorTableSgi,
 	}
+
 	public enum GetTextureParameter : uint
 	{
 		TextureMagFilter = TextureParameterName.TextureMagFilter,
@@ -899,12 +935,14 @@ namespace ManagedOpenGL
 		PostTextureFilterBiasSgix = SGIX_texture_scale_bias.PostTextureFilterBiasSgix,
 		PostTextureFilterScaleSgix = SGIX_texture_scale_bias.PostTextureFilterScaleSgix,
 	}
+
 	public enum HintMode : uint
 	{
 		DontCare = 0x1100,
 		Fastest = 0x1101,
 		Nicest = 0x1102,
 	}
+
 	public enum HintTarget : uint
 	{
 		PerspectiveCorrectionHint = GetPName.PerspectiveCorrectionHint,
@@ -919,11 +957,13 @@ namespace ManagedOpenGL
 		TextureMultiBufferHintSgix = SGIX_texture_multi_buffer.TextureMultiBufferHintSgix,
 		VertexPreclipHintSgix = SGIX_vertex_preclip.VertexPreclipHintSgix,
 	}
+
 	public enum HistogramTargetEXT : uint
 	{
 		HistogramExt = EXT_histogram.HistogramExt,
 		ProxyHistogramExt = EXT_histogram.ProxyHistogramExt,
 	}
+
 	public enum IndexPointerType : uint
 	{
 		Short = DataType.Short,
@@ -931,21 +971,25 @@ namespace ManagedOpenGL
 		Float = DataType.Float,
 		Double = DataType.Double,
 	}
+
 	public enum LightEnvModeSGIX : uint
 	{
 		Replace = StencilOp.Replace,
 		Modulate = TextureEnvMode.Modulate,
 		Add = AccumOp.Add,
 	}
+
 	public enum LightEnvParameterSGIX : uint
 	{
 		LightEnvModeSgix = SGIX_fragment_lighting.LightEnvModeSgix,
 	}
+
 	public enum LightModelColorControl : uint
 	{
 		SingleColor = VERSION_1_2.SingleColor,
 		SeparateSpecularColor = VERSION_1_2.SeparateSpecularColor,
 	}
+
 	public enum LightModelParameter : uint
 	{
 		LightModelAmbient = GetPName.LightModelAmbient,
@@ -953,6 +997,7 @@ namespace ManagedOpenGL
 		LightModelTwoSide = GetPName.LightModelTwoSide,
 		LightModelColorControl = VERSION_1_2.LightModelColorControl,
 	}
+
 	public enum LightParameter : uint
 	{
 		Ambient = 0x1200,
@@ -966,11 +1011,13 @@ namespace ManagedOpenGL
 		LinearAttenuation = 0x1208,
 		QuadraticAttenuation = 0x1209,
 	}
+
 	public enum ListMode : uint
 	{
 		Compile = 0x1300,
 		CompileAndExecute = 0x1301,
 	}
+
 	public enum DataType : uint
 	{
 		Byte = 0x1400,
@@ -986,6 +1033,7 @@ namespace ManagedOpenGL
 		Double = 0x140A,
 		DoubleExt = 0x140A,
 	}
+
 	public enum ListNameType : uint
 	{
 		Byte = DataType.Byte,
@@ -999,10 +1047,12 @@ namespace ManagedOpenGL
 		gl3Bytes = DataType.gl3Bytes,
 		gl4Bytes = DataType.gl4Bytes,
 	}
+
 	public enum ListParameterName : uint
 	{
 		ListPrioritySgix = SGIX_list_priority.ListPrioritySgix,
 	}
+
 	public enum LogicOp : uint
 	{
 		Clear = 0x1500,
@@ -1022,6 +1072,7 @@ namespace ManagedOpenGL
 		Nand = 0x150E,
 		Set = 0x150F,
 	}
+
 	public enum MapTarget : uint
 	{
 		Map1Color4 = GetPName.Map1Color4,
@@ -1045,12 +1096,14 @@ namespace ManagedOpenGL
 		GeometryDeformationSgix = SGIX_polynomial_ffd.GeometryDeformationSgix,
 		TextureDeformationSgix = SGIX_polynomial_ffd.TextureDeformationSgix,
 	}
+
 	public enum MaterialFace : uint
 	{
 		Front = DrawBufferMode.Front,
 		Back = DrawBufferMode.Back,
 		FrontAndBack = DrawBufferMode.FrontAndBack,
 	}
+
 	public enum MaterialParameter : uint
 	{
 		Emission = 0x1600,
@@ -1061,27 +1114,32 @@ namespace ManagedOpenGL
 		Diffuse = LightParameter.Diffuse,
 		Specular = LightParameter.Specular,
 	}
+
 	public enum MatrixMode : uint
 	{
 		Modelview = 0x1700,
 		Projection = 0x1701,
 		Texture = 0x1702,
 	}
+
 	public enum MeshMode1 : uint
 	{
 		Point = PolygonMode.Point,
 		Line = PolygonMode.Line,
 	}
+
 	public enum MeshMode2 : uint
 	{
 		Point = PolygonMode.Point,
 		Line = PolygonMode.Line,
 		Fill = PolygonMode.Fill,
 	}
+
 	public enum MinmaxTargetEXT : uint
 	{
 		MinmaxExt = EXT_histogram.MinmaxExt,
 	}
+
 	public enum NormalPointerType : uint
 	{
 		Byte = DataType.Byte,
@@ -1090,12 +1148,14 @@ namespace ManagedOpenGL
 		Float = DataType.Float,
 		Double = DataType.Double,
 	}
+
 	public enum PixelCopyType : uint
 	{
 		Color = 0x1800,
 		Depth = 0x1801,
 		Stencil = 0x1802,
 	}
+
 	public enum PixelFormat : uint
 	{
 		ColorIndex = 0x1900,
@@ -1115,6 +1175,7 @@ namespace ManagedOpenGL
 		Ycrcb422Sgix = SGIX_ycrcb.Ycrcb422Sgix,
 		Ycrcb444Sgix = SGIX_ycrcb.Ycrcb444Sgix,
 	}
+
 	public enum PixelMap : uint
 	{
 		PixelMapIToI = GetPixelMap.PixelMapIToI,
@@ -1128,6 +1189,7 @@ namespace ManagedOpenGL
 		PixelMapBToB = GetPixelMap.PixelMapBToB,
 		PixelMapAToA = GetPixelMap.PixelMapAToA,
 	}
+
 	public enum PixelStoreParameter : uint
 	{
 		UnpackSwapBytes = GetPName.UnpackSwapBytes,
@@ -1161,18 +1223,21 @@ namespace ManagedOpenGL
 		PackResampleSgix = SGIX_resample.PackResampleSgix,
 		UnpackResampleSgix = SGIX_resample.UnpackResampleSgix,
 	}
+
 	public enum PixelStoreResampleMode : uint
 	{
 		ResampleReplicateSgix = SGIX_resample.ResampleReplicateSgix,
 		ResampleZeroFillSgix = SGIX_resample.ResampleZeroFillSgix,
 		ResampleDecimateSgix = SGIX_resample.ResampleDecimateSgix,
 	}
+
 	public enum PixelStoreSubsampleRate : uint
 	{
 		PixelSubsample4444Sgix = SGIX_subsample.PixelSubsample4444Sgix,
 		PixelSubsample2424Sgix = SGIX_subsample.PixelSubsample2424Sgix,
 		PixelSubsample4242Sgix = SGIX_subsample.PixelSubsample4242Sgix,
 	}
+
 	public enum PixelTexGenMode : uint
 	{
 		None = DrawBufferMode.None,
@@ -1185,11 +1250,13 @@ namespace ManagedOpenGL
 		PixelTexGenAlphaMsSgix = SGIX_impact_pixel_texture.PixelTexGenAlphaMsSgix,
 		PixelTexGenAlphaLsSgix = SGIX_impact_pixel_texture.PixelTexGenAlphaLsSgix,
 	}
+
 	public enum PixelTexGenParameterNameSGIS : uint
 	{
 		PixelFragmentRgbSourceSgis = SGIS_pixel_texture.PixelFragmentRgbSourceSgis,
 		PixelFragmentAlphaSourceSgis = SGIS_pixel_texture.PixelFragmentAlphaSourceSgis,
 	}
+
 	public enum PixelTransferParameter : uint
 	{
 		MapColor = GetPName.MapColor,
@@ -1223,6 +1290,7 @@ namespace ManagedOpenGL
 		PostColorMatrixBlueBiasSgi = SGI_color_matrix.PostColorMatrixBlueBiasSgi,
 		PostColorMatrixAlphaBiasSgi = SGI_color_matrix.PostColorMatrixAlphaBiasSgi,
 	}
+
 	public enum PixelType : uint
 	{
 		Bitmap = 0x1A00,
@@ -1239,6 +1307,7 @@ namespace ManagedOpenGL
 		UnsignedInt8888Ext = EXT_packed_pixels.UnsignedInt8888Ext,
 		UnsignedInt1010102Ext = EXT_packed_pixels.UnsignedInt1010102Ext,
 	}
+
 	public enum PointParameterNameSGIS : uint
 	{
 		PointSizeMinSgis = SGIS_point_parameters.PointSizeMinSgis,
@@ -1246,12 +1315,14 @@ namespace ManagedOpenGL
 		PointFadeThresholdSizeSgis = SGIS_point_parameters.PointFadeThresholdSizeSgis,
 		DistanceAttenuationSgis = SGIS_point_parameters.DistanceAttenuationSgis,
 	}
+
 	public enum PolygonMode : uint
 	{
 		Point = 0x1B00,
 		Line = 0x1B01,
 		Fill = 0x1B02,
 	}
+
 	public enum ReadBufferMode : uint
 	{
 		FrontLeft = DrawBufferMode.FrontLeft,
@@ -1267,12 +1338,14 @@ namespace ManagedOpenGL
 		Aux2 = DrawBufferMode.Aux2,
 		Aux3 = DrawBufferMode.Aux3,
 	}
+
 	public enum RenderingMode : uint
 	{
 		Render = 0x1C00,
 		Feedback = 0x1C01,
 		Select = 0x1C02,
 	}
+
 	public enum SamplePatternSGIS : uint
 	{
 		gl1passSgis = SGIS_multisample.gl1passSgis,
@@ -1283,15 +1356,18 @@ namespace ManagedOpenGL
 		gl4pass2Sgis = SGIS_multisample.gl4pass2Sgis,
 		gl4pass3Sgis = SGIS_multisample.gl4pass3Sgis,
 	}
+
 	public enum SeparableTargetEXT : uint
 	{
 		Separable2dExt = EXT_convolution.Separable2dExt,
 	}
+
 	public enum ShadingModel : uint
 	{
 		Flat = 0x1D00,
 		Smooth = 0x1D01,
 	}
+
 	public enum StencilFunction : uint
 	{
 		Never = AlphaFunction.Never,
@@ -1303,6 +1379,7 @@ namespace ManagedOpenGL
 		Gequal = AlphaFunction.Gequal,
 		Always = AlphaFunction.Always,
 	}
+
 	public enum StencilOp : uint
 	{
 		Zero = BlendingFactorDest.Zero,
@@ -1312,6 +1389,7 @@ namespace ManagedOpenGL
 		Decr = 0x1E03,
 		Invert = LogicOp.Invert,
 	}
+
 	public enum StringName : uint
 	{
 		Vendor = 0x1F00,
@@ -1319,6 +1397,7 @@ namespace ManagedOpenGL
 		Version = 0x1F02,
 		Extensions = 0x1F03,
 	}
+
 	public enum TexCoordPointerType : uint
 	{
 		Short = DataType.Short,
@@ -1326,6 +1405,7 @@ namespace ManagedOpenGL
 		Float = DataType.Float,
 		Double = DataType.Double,
 	}
+
 	public enum TextureCoordName : uint
 	{
 		S = 0x2000,
@@ -1333,6 +1413,7 @@ namespace ManagedOpenGL
 		R = 0x2002,
 		Q = 0x2003,
 	}
+
 	public enum TextureEnvMode : uint
 	{
 		Modulate = 0x2100,
@@ -1342,19 +1423,23 @@ namespace ManagedOpenGL
 		Add = AccumOp.Add,
 		TextureEnvBiasSgix = SGIX_texture_add_env.TextureEnvBiasSgix,
 	}
+
 	public enum TextureEnvParameter : uint
 	{
 		TextureEnvMode = 0x2200,
 		TextureEnvColor = 0x2201,
 	}
+
 	public enum TextureEnvTarget : uint
 	{
 		TextureEnv = 0x2300,
 	}
+
 	public enum TextureFilterFuncSGIS : uint
 	{
 		Filter4Sgis = SGIS_texture_filter4.Filter4Sgis,
 	}
+
 	public enum TextureGenMode : uint
 	{
 		EyeLinear = 0x2400,
@@ -1365,6 +1450,7 @@ namespace ManagedOpenGL
 		EyeDistanceToLineSgis = SGIS_point_line_texgen.EyeDistanceToLineSgis,
 		ObjectDistanceToLineSgis = SGIS_point_line_texgen.ObjectDistanceToLineSgis,
 	}
+
 	public enum TextureGenParameter : uint
 	{
 		TextureGenMode = 0x2500,
@@ -1375,6 +1461,7 @@ namespace ManagedOpenGL
 		EyeLineSgis = SGIS_point_line_texgen.EyeLineSgis,
 		ObjectLineSgis = SGIS_point_line_texgen.ObjectLineSgis,
 	}
+
 	public enum TextureMagFilter : uint
 	{
 		Nearest = 0x2600,
@@ -1390,6 +1477,7 @@ namespace ManagedOpenGL
 		PixelTexGenQRoundSgix = SGIX_impact_pixel_texture.PixelTexGenQRoundSgix,
 		PixelTexGenQFloorSgix = SGIX_impact_pixel_texture.PixelTexGenQFloorSgix,
 	}
+
 	public enum TextureMinFilter : uint
 	{
 		Nearest = TextureMagFilter.Nearest,
@@ -1407,6 +1495,7 @@ namespace ManagedOpenGL
 		PixelTexGenQRoundSgix = SGIX_impact_pixel_texture.PixelTexGenQRoundSgix,
 		PixelTexGenQFloorSgix = SGIX_impact_pixel_texture.PixelTexGenQFloorSgix,
 	}
+
 	public enum TextureParameterName : uint
 	{
 		TextureMagFilter = 0x2800,
@@ -1440,6 +1529,7 @@ namespace ManagedOpenGL
 		PostTextureFilterBiasSgix = SGIX_texture_scale_bias.PostTextureFilterBiasSgix,
 		PostTextureFilterScaleSgix = SGIX_texture_scale_bias.PostTextureFilterScaleSgix,
 	}
+
 	public enum TextureTarget : uint
 	{
 		Texture1d = GetPName.Texture1d,
@@ -1456,6 +1546,7 @@ namespace ManagedOpenGL
 		TextureBaseLevelSgis = SGIS_texture_lod.TextureBaseLevelSgis,
 		TextureMaxLevelSgis = SGIS_texture_lod.TextureMaxLevelSgis,
 	}
+
 	public enum TextureWrapMode : uint
 	{
 		Clamp = 0x2900,
@@ -1463,6 +1554,7 @@ namespace ManagedOpenGL
 		ClampToBorderSgis = SGIS_texture_border_clamp.ClampToBorderSgis,
 		ClampToEdgeSgis = SGIS_texture_edge_clamp.ClampToEdgeSgis,
 	}
+
 	public enum PixelInternalFormat : uint
 	{
 		R3G3B2 = 0x2A10,
@@ -1523,6 +1615,7 @@ namespace ManagedOpenGL
 		DepthComponent24Sgix = SGIX_depth_texture.DepthComponent24Sgix,
 		DepthComponent32Sgix = SGIX_depth_texture.DepthComponent32Sgix,
 	}
+
 	public enum InterleavedArrayFormat : uint
 	{
 		V2f = 0x2A20,
@@ -1540,6 +1633,7 @@ namespace ManagedOpenGL
 		T2fC4fN3fV3f = 0x2A2C,
 		T4fC4fN3fV4f = 0x2A2D,
 	}
+
 	public enum VertexPointerType : uint
 	{
 		Short = DataType.Short,
@@ -1547,6 +1641,7 @@ namespace ManagedOpenGL
 		Float = DataType.Float,
 		Double = DataType.Double,
 	}
+
 	public enum ClipPlaneName : uint
 	{
 		ClipPlane0 = 0x3000,
@@ -1556,6 +1651,7 @@ namespace ManagedOpenGL
 		ClipPlane4 = 0x3004,
 		ClipPlane5 = 0x3005,
 	}
+
 	public enum LightName : uint
 	{
 		Light0 = 0x4000,
@@ -1575,10 +1671,12 @@ namespace ManagedOpenGL
 		FragmentLight6Sgix = SGIX_fragment_lighting.FragmentLight6Sgix,
 		FragmentLight7Sgix = SGIX_fragment_lighting.FragmentLight7Sgix,
 	}
+
 	public enum EXT_abgr : uint
 	{
 		AbgrExt = 0x8000,
 	}
+
 	public enum EXT_blend_color : uint
 	{
 		ConstantColor = 0x8001,
@@ -1592,6 +1690,7 @@ namespace ManagedOpenGL
 		BlendColor = 0x8005,
 		BlendColorExt = 0x8005,
 	}
+
 	public enum EXT_blend_minmax : uint
 	{
 		FuncAdd = 0x8006,
@@ -1603,6 +1702,7 @@ namespace ManagedOpenGL
 		BlendEquation = 0x8009,
 		BlendEquationExt = 0x8009,
 	}
+
 	public enum EXT_blend_subtract : uint
 	{
 		FuncSubtract = 0x800A,
@@ -1610,6 +1710,7 @@ namespace ManagedOpenGL
 		FuncReverseSubtract = 0x800B,
 		FuncReverseSubtractExt = 0x800B,
 	}
+
 	public enum EXT_cmyka : uint
 	{
 		CmykExt = 0x800C,
@@ -1617,6 +1718,7 @@ namespace ManagedOpenGL
 		PackCmykHintExt = 0x800E,
 		UnpackCmykHintExt = 0x800F,
 	}
+
 	public enum EXT_convolution : uint
 	{
 		Convolution1d = 0x8010,
@@ -1660,6 +1762,7 @@ namespace ManagedOpenGL
 		PostConvolutionAlphaBias = 0x8023,
 		PostConvolutionAlphaBiasExt = 0x8023,
 	}
+
 	public enum EXT_histogram : uint
 	{
 		Histogram = 0x8024,
@@ -1691,6 +1794,7 @@ namespace ManagedOpenGL
 		TableTooLarge = 0x8031,
 		TableTooLargeExt = 0x8031,
 	}
+
 	public enum EXT_packed_pixels : uint
 	{
 		UnsignedByte332 = 0x8032,
@@ -1718,17 +1822,20 @@ namespace ManagedOpenGL
 		UnsignedInt2101010Rev = 0x8368,
 		UnsignedInt2101010RevExt = 0x8368,
 	}
+
 	public enum EXT_polygon_offset : uint
 	{
 		PolygonOffsetExt = 0x8037,
 		PolygonOffsetFactorExt = 0x8038,
 		PolygonOffsetBiasExt = 0x8039,
 	}
+
 	public enum EXT_rescale_normal : uint
 	{
 		RescaleNormal = 0x803A,
 		RescaleNormalExt = 0x803A,
 	}
+
 	public enum EXT_texture : uint
 	{
 		Alpha4Ext = 0x803B,
@@ -1775,6 +1882,7 @@ namespace ManagedOpenGL
 		ProxyTexture2dExt = 0x8064,
 		TextureTooLargeExt = 0x8065,
 	}
+
 	public enum EXT_texture_object : uint
 	{
 		TexturePriorityExt = 0x8066,
@@ -1783,6 +1891,7 @@ namespace ManagedOpenGL
 		Texture2dBindingExt = 0x8069,
 		Texture3dBindingExt = 0x806A,
 	}
+
 	public enum EXT_texture3D : uint
 	{
 		PackSkipImages = 0x806B,
@@ -1804,6 +1913,7 @@ namespace ManagedOpenGL
 		Max3dTextureSize = 0x8073,
 		Max3dTextureSizeExt = 0x8073,
 	}
+
 	public enum EXT_vertex_array : uint
 	{
 		VertexArrayExt = 0x8074,
@@ -1839,10 +1949,12 @@ namespace ManagedOpenGL
 		TextureCoordArrayPointerExt = 0x8092,
 		EdgeFlagArrayPointerExt = 0x8093,
 	}
+
 	public enum SGIX_interlace : uint
 	{
 		InterlaceSgix = 0x8094,
 	}
+
 	public enum SGIS_detail_texture : uint
 	{
 		DetailTexture2dSgis = 0x8095,
@@ -1854,6 +1966,7 @@ namespace ManagedOpenGL
 		DetailTextureModeSgis = 0x809B,
 		DetailTextureFuncPointsSgis = 0x809C,
 	}
+
 	public enum ARB_multisample : uint
 	{
 		Multisample = 0x809D,
@@ -1874,6 +1987,7 @@ namespace ManagedOpenGL
 		SampleCoverageInvertArb = 0x80AB,
 		MultisampleBitArb = 0x20000000,
 	}
+
 	public enum SGIS_multisample : uint
 	{
 		MultisampleSgis = 0x809D,
@@ -1893,6 +2007,7 @@ namespace ManagedOpenGL
 		SampleMaskInvertSgis = 0x80AB,
 		SamplePatternSgis = 0x80AC,
 	}
+
 	public enum SGIS_sharpen_texture : uint
 	{
 		LinearSharpenSgis = 0x80AD,
@@ -1900,6 +2015,7 @@ namespace ManagedOpenGL
 		LinearSharpenColorSgis = 0x80AF,
 		SharpenTextureFuncPointsSgis = 0x80B0,
 	}
+
 	public enum SGI_color_matrix : uint
 	{
 		ColorMatrix = 0x80B1,
@@ -1925,19 +2041,23 @@ namespace ManagedOpenGL
 		PostColorMatrixAlphaBias = 0x80BB,
 		PostColorMatrixAlphaBiasSgi = 0x80BB,
 	}
+
 	public enum SGI_texture_color_table : uint
 	{
 		TextureColorTableSgi = 0x80BC,
 		ProxyTextureColorTableSgi = 0x80BD,
 	}
+
 	public enum SGIX_texture_add_env : uint
 	{
 		TextureEnvBiasSgix = 0x80BE,
 	}
+
 	public enum SGIX_shadow_ambient : uint
 	{
 		ShadowAmbientSgix = 0x80BF,
 	}
+
 	public enum SGI_color_table : uint
 	{
 		ColorTable = 0x80D0,
@@ -1973,6 +2093,7 @@ namespace ManagedOpenGL
 		ColorTableIntensitySize = 0x80DF,
 		ColorTableIntensitySizeSgi = 0x80DF,
 	}
+
 	public enum EXT_bgra : uint
 	{
 		Bgr = 0x80E0,
@@ -1980,6 +2101,7 @@ namespace ManagedOpenGL
 		Bgra = 0x80E1,
 		BgraExt = 0x80E1,
 	}
+
 	public enum VERSION_1_2 : uint
 	{
 		MaxElementsVertices = 0x80E8,
@@ -2024,6 +2146,7 @@ namespace ManagedOpenGL
 		SingleColor = 0x81F9,
 		SeparateSpecularColor = 0x81FA,
 	}
+
 	public enum SGIS_texture_select : uint
 	{
 		DualAlpha4Sgis = 0x8110,
@@ -2049,6 +2172,7 @@ namespace ManagedOpenGL
 		DualTextureSelectSgis = 0x8124,
 		QuadTextureSelectSgis = 0x8125,
 	}
+
 	public enum SGIS_point_parameters : uint
 	{
 		PointSizeMin = 0x8126,
@@ -2068,27 +2192,32 @@ namespace ManagedOpenGL
 		DistanceAttenuationExt = 0x8129,
 		DistanceAttenuationSgis = 0x8129,
 	}
+
 	public enum SGIS_fog_function : uint
 	{
 		FogFuncSgis = 0x812A,
 		FogFuncPointsSgis = 0x812B,
 		MaxFogFuncPointsSgis = 0x812C,
 	}
+
 	public enum SGIS_texture_border_clamp : uint
 	{
 		ClampToBorder = 0x812D,
 		ClampToBorderArb = 0x812D,
 		ClampToBorderSgis = 0x812D,
 	}
+
 	public enum SGIX_texture_multi_buffer : uint
 	{
 		TextureMultiBufferHintSgix = 0x812E,
 	}
+
 	public enum SGIS_texture_edge_clamp : uint
 	{
 		ClampToEdge = 0x812F,
 		ClampToEdgeSgis = 0x812F,
 	}
+
 	public enum SGIS_texture4D : uint
 	{
 		PackSkipVolumesSgis = 0x8130,
@@ -2102,11 +2231,13 @@ namespace ManagedOpenGL
 		Max4dTextureSizeSgis = 0x8138,
 		Texture4dBindingSgis = 0x814F,
 	}
+
 	public enum SGIX_pixel_texture : uint
 	{
 		PixelTexGenSgix = 0x8139,
 		PixelTexGenModeSgix = 0x832B,
 	}
+
 	public enum SGIS_texture_lod : uint
 	{
 		TextureMinLod = 0x813A,
@@ -2118,6 +2249,7 @@ namespace ManagedOpenGL
 		TextureMaxLevel = 0x813D,
 		TextureMaxLevelSgis = 0x813D,
 	}
+
 	public enum SGIX_pixel_tiles : uint
 	{
 		PixelTileBestAlignmentSgix = 0x813E,
@@ -2129,11 +2261,13 @@ namespace ManagedOpenGL
 		PixelTileGridDepthSgix = 0x8144,
 		PixelTileCacheSizeSgix = 0x8145,
 	}
+
 	public enum SGIS_texture_filter4 : uint
 	{
 		Filter4Sgis = 0x8146,
 		TextureFilter4SizeSgis = 0x8147,
 	}
+
 	public enum SGIX_sprite : uint
 	{
 		SpriteSgix = 0x8148,
@@ -2144,6 +2278,7 @@ namespace ManagedOpenGL
 		SpriteObjectAlignedSgix = 0x814D,
 		SpriteEyeAlignedSgix = 0x814E,
 	}
+
 	public enum HP_convolution_border_modes : uint
 	{
 		IgnoreBorderHp = 0x8150,
@@ -2154,6 +2289,7 @@ namespace ManagedOpenGL
 		ConvolutionBorderColor = 0x8154,
 		ConvolutionBorderColorHp = 0x8154,
 	}
+
 	public enum SGIX_clipmap : uint
 	{
 		LinearClipmapLinearSgix = 0x8170,
@@ -2169,6 +2305,7 @@ namespace ManagedOpenGL
 		NearestClipmapLinearSgix = 0x844E,
 		LinearClipmapNearestSgix = 0x844F,
 	}
+
 	public enum SGIX_texture_scale_bias : uint
 	{
 		PostTextureFilterBiasSgix = 0x8179,
@@ -2176,28 +2313,34 @@ namespace ManagedOpenGL
 		PostTextureFilterBiasRangeSgix = 0x817B,
 		PostTextureFilterScaleRangeSgix = 0x817C,
 	}
+
 	public enum SGIX_reference_plane : uint
 	{
 		ReferencePlaneSgix = 0x817D,
 		ReferencePlaneEquationSgix = 0x817E,
 	}
+
 	public enum SGIX_ir_instrument1 : uint
 	{
 		IrInstrument1Sgix = 0x817F,
 	}
+
 	public enum SGIX_instruments : uint
 	{
 		InstrumentBufferPointerSgix = 0x8180,
 		InstrumentMeasurementsSgix = 0x8181,
 	}
+
 	public enum SGIX_list_priority : uint
 	{
 		ListPrioritySgix = 0x8182,
 	}
+
 	public enum SGIX_calligraphic_fragment : uint
 	{
 		CalligraphicFragmentSgix = 0x8183,
 	}
+
 	public enum SGIX_impact_pixel_texture : uint
 	{
 		PixelTexGenQCeilingSgix = 0x8184,
@@ -2208,18 +2351,21 @@ namespace ManagedOpenGL
 		PixelTexGenAlphaLsSgix = 0x8189,
 		PixelTexGenAlphaMsSgix = 0x818A,
 	}
+
 	public enum SGIX_framezoom : uint
 	{
 		FramezoomSgix = 0x818B,
 		FramezoomFactorSgix = 0x818C,
 		MaxFramezoomFactorSgix = 0x818D,
 	}
+
 	public enum SGIX_texture_lod_bias : uint
 	{
 		TextureLodBiasSSgix = 0x818E,
 		TextureLodBiasTSgix = 0x818F,
 		TextureLodBiasRSgix = 0x8190,
 	}
+
 	public enum SGIS_generate_mipmap : uint
 	{
 		GenerateMipmap = 0x8191,
@@ -2231,11 +2377,13 @@ namespace ManagedOpenGL
 		DeformationsMaskSgix = 0x8196,
 		MaxDeformationOrderSgix = 0x8197,
 	}
+
 	public enum SGIX_fog_offset : uint
 	{
 		FogOffsetSgix = 0x8198,
 		FogOffsetValueSgix = 0x8199,
 	}
+
 	public enum SGIX_shadow : uint
 	{
 		TextureCompareSgix = 0x819A,
@@ -2243,6 +2391,7 @@ namespace ManagedOpenGL
 		TextureLequalRSgix = 0x819C,
 		TextureGequalRSgix = 0x819D,
 	}
+
 	public enum SGIX_depth_texture : uint
 	{
 		DepthComponent16 = 0x81A5,
@@ -2252,15 +2401,18 @@ namespace ManagedOpenGL
 		DepthComponent32 = 0x81A7,
 		DepthComponent32Sgix = 0x81A7,
 	}
+
 	public enum SGIX_ycrcb : uint
 	{
 		Ycrcb422Sgix = 0x81BB,
 		Ycrcb444Sgix = 0x81BC,
 	}
+
 	public enum SGIS_texture_color_mask : uint
 	{
 		TextureColorWritemaskSgis = 0x81EF,
 	}
+
 	public enum SGIS_point_line_texgen : uint
 	{
 		EyeDistanceToPointSgis = 0x81F0,
@@ -2272,6 +2424,7 @@ namespace ManagedOpenGL
 		EyeLineSgis = 0x81F6,
 		ObjectLineSgis = 0x81F7,
 	}
+
 	public enum EXT_separate_specular_color : uint
 	{
 		LightModelColorControl = 0x81F8,
@@ -2281,25 +2434,30 @@ namespace ManagedOpenGL
 		SeparateSpecularColor = 0x81FA,
 		SeparateSpecularColorExt = 0x81FA,
 	}
+
 	public enum EXT_shared_texture_palette : uint
 	{
 		SharedTexturePaletteExt = 0x81FB,
 	}
+
 	public enum SGIX_convolution_accuracy : uint
 	{
 		ConvolutionHintSgix = 0x8316,
 	}
+
 	public enum SGIX_blend_alpha_minmax : uint
 	{
 		AlphaMinSgix = 0x8320,
 		AlphaMaxSgix = 0x8321,
 		AsyncMarkerSgix = 0x8329,
 	}
+
 	public enum SGIX_async_histogram : uint
 	{
 		AsyncHistogramSgix = 0x832C,
 		MaxAsyncHistogramSgix = 0x832D,
 	}
+
 	public enum EXT_pixel_transform : uint
 	{
 		PixelTransform2dExt = 0x8330,
@@ -2312,6 +2470,7 @@ namespace ManagedOpenGL
 		MaxPixelTransform2dStackDepthExt = 0x8337,
 		PixelTransform2dMatrixExt = 0x8338,
 	}
+
 	public enum SGIS_pixel_texture : uint
 	{
 		PixelTextureSgis = 0x8353,
@@ -2319,6 +2478,7 @@ namespace ManagedOpenGL
 		PixelFragmentAlphaSourceSgis = 0x8355,
 		PixelGroupColorSgis = 0x8356,
 	}
+
 	public enum SGIX_async_pixel : uint
 	{
 		AsyncTexImageSgix = 0x835C,
@@ -2328,6 +2488,7 @@ namespace ManagedOpenGL
 		MaxAsyncDrawPixelsSgix = 0x8360,
 		MaxAsyncReadPixelsSgix = 0x8361,
 	}
+
 	public enum SGIX_texture_coordinate_clamp : uint
 	{
 		TextureMaxClampSSgix = 0x8369,
@@ -2335,11 +2496,13 @@ namespace ManagedOpenGL
 		TextureMaxClampRSgix = 0x836B,
 		FogFactorToAlphaSgix = 0x836F,
 	}
+
 	public enum SGIX_vertex_preclip : uint
 	{
 		VertexPreclipSgix = 0x83EE,
 		VertexPreclipHintSgix = 0x83EF,
 	}
+
 	public enum EXT_texture_compression_s3tc : uint
 	{
 		CompressedRgbS3tcDxt1Ext = 0x83F0,
@@ -2347,6 +2510,7 @@ namespace ManagedOpenGL
 		CompressedRgbaS3tcDxt3Ext = 0x83F2,
 		CompressedRgbaS3tcDxt5Ext = 0x83F3,
 	}
+
 	public enum INTEL_parallel_arrays : uint
 	{
 		ParallelArraysIntel = 0x83F4,
@@ -2355,6 +2519,7 @@ namespace ManagedOpenGL
 		ColorArrayParallelPointersIntel = 0x83F7,
 		TextureCoordArrayParallelPointersIntel = 0x83F8,
 	}
+
 	public enum SGIX_fragment_lighting : uint
 	{
 		FragmentLightingSgix = 0x8400,
@@ -2378,6 +2543,7 @@ namespace ManagedOpenGL
 		FragmentLight6Sgix = 0x8412,
 		FragmentLight7Sgix = 0x8413,
 	}
+
 	public enum SGIX_resample : uint
 	{
 		PackResampleSgix = 0x842C,
@@ -2386,6 +2552,7 @@ namespace ManagedOpenGL
 		ResampleZeroFillSgix = 0x842F,
 		ResampleDecimateSgix = 0x8430,
 	}
+
 	public enum SGIX_subsample : uint
 	{
 		PackSubsampleRateSgix = 0x85A0,
@@ -2394,6 +2561,7 @@ namespace ManagedOpenGL
 		PixelSubsample2424Sgix = 0x85A3,
 		PixelSubsample4242Sgix = 0x85A4,
 	}
+
 	public enum ARB_imaging : uint
 	{
 		ConstantColor = 0x8001,
@@ -2472,6 +2640,7 @@ namespace ManagedOpenGL
 		ReplicateBorder = 0x8153,
 		ConvolutionBorderColor = 0x8154,
 	}
+
 	public enum VERSION_1_3 : uint
 	{
 		Texture0 = 0x84C0,
@@ -2571,6 +2740,7 @@ namespace ManagedOpenGL
 		Dot3Rgb = 0x86AE,
 		Dot3Rgba = 0x86AF,
 	}
+
 	public enum VERSION_1_4 : uint
 	{
 		BlendDstRgb = 0x80C8,
@@ -2613,6 +2783,7 @@ namespace ManagedOpenGL
 		TextureCompareFunc = 0x884D,
 		CompareRToTexture = 0x884E,
 	}
+
 	public enum VERSION_1_5 : uint
 	{
 		BufferSize = 0x8764,
@@ -2652,6 +2823,7 @@ namespace ManagedOpenGL
 		DynamicCopy = 0x88EA,
 		SamplesPassed = 0x8914,
 	}
+
 	public enum VERSION_2_0 : uint
 	{
 		VertexAttribArrayEnabled = 0x8622,
@@ -2738,6 +2910,7 @@ namespace ManagedOpenGL
 		StencilBackValueMask = 0x8CA4,
 		StencilBackWritemask = 0x8CA5,
 	}
+
 	public enum VERSION_2_1 : uint
 	{
 		CurrentRasterSecondaryColor = 0x845F,
@@ -2764,6 +2937,7 @@ namespace ManagedOpenGL
 		CompressedSluminance = 0x8C4A,
 		CompressedSluminanceAlpha = 0x8C4B,
 	}
+
 	public enum ARB_multitexture : uint
 	{
 		Texture0Arb = 0x84C0,
@@ -2802,6 +2976,7 @@ namespace ManagedOpenGL
 		ClientActiveTextureArb = 0x84E1,
 		MaxTextureUnitsArb = 0x84E2,
 	}
+
 	public enum ARB_transpose_matrix : uint
 	{
 		TransposeModelviewMatrixArb = 0x84E3,
@@ -2809,9 +2984,12 @@ namespace ManagedOpenGL
 		TransposeTextureMatrixArb = 0x84E5,
 		TransposeColorMatrixArb = 0x84E6,
 	}
+
 	public enum ARB_texture_env_add : uint
 	{
-		}
+
+	}
+
 	public enum ARB_texture_cube_map : uint
 	{
 		NormalMapArb = 0x8511,
@@ -2827,6 +3005,7 @@ namespace ManagedOpenGL
 		ProxyTextureCubeMapArb = 0x851B,
 		MaxCubeMapTextureSizeArb = 0x851C,
 	}
+
 	public enum ARB_texture_compression : uint
 	{
 		CompressedAlphaArb = 0x84E9,
@@ -2841,10 +3020,12 @@ namespace ManagedOpenGL
 		NumCompressedTextureFormatsArb = 0x86A2,
 		CompressedTextureFormatsArb = 0x86A3,
 	}
+
 	public enum ARB_texture_border_clamp : uint
 	{
 		ClampToBorderArb = 0x812D,
 	}
+
 	public enum ARB_point_parameters : uint
 	{
 		PointSizeMinArb = 0x8126,
@@ -2852,6 +3033,7 @@ namespace ManagedOpenGL
 		PointFadeThresholdSizeArb = 0x8128,
 		PointDistanceAttenuationArb = 0x8129,
 	}
+
 	public enum ARB_vertex_blend : uint
 	{
 		MaxVertexUnitsArb = 0x86A4,
@@ -2897,6 +3079,7 @@ namespace ManagedOpenGL
 		Modelview30Arb = 0x873E,
 		Modelview31Arb = 0x873F,
 	}
+
 	public enum ARB_matrix_palette : uint
 	{
 		MatrixPaletteArb = 0x8840,
@@ -2910,6 +3093,7 @@ namespace ManagedOpenGL
 		MatrixIndexArrayStrideArb = 0x8848,
 		MatrixIndexArrayPointerArb = 0x8849,
 	}
+
 	public enum ARB_texture_env_combine : uint
 	{
 		CombineArb = 0x8570,
@@ -2935,18 +3119,23 @@ namespace ManagedOpenGL
 		PrimaryColorArb = 0x8577,
 		PreviousArb = 0x8578,
 	}
+
 	public enum ARB_texture_env_crossbar : uint
 	{
-		}
+
+	}
+
 	public enum ARB_texture_env_dot3 : uint
 	{
 		Dot3RgbArb = 0x86AE,
 		Dot3RgbaArb = 0x86AF,
 	}
+
 	public enum ARB_texture_mirrored_repeat : uint
 	{
 		MirroredRepeatArb = 0x8370,
 	}
+
 	public enum ARB_depth_texture : uint
 	{
 		DepthComponent16Arb = 0x81A5,
@@ -2955,19 +3144,24 @@ namespace ManagedOpenGL
 		TextureDepthSizeArb = 0x884A,
 		DepthTextureModeArb = 0x884B,
 	}
+
 	public enum ARB_shadow : uint
 	{
 		TextureCompareModeArb = 0x884C,
 		TextureCompareFuncArb = 0x884D,
 		CompareRToTextureArb = 0x884E,
 	}
+
 	public enum ARB_shadow_ambient : uint
 	{
 		TextureCompareFailValueArb = 0x80BF,
 	}
+
 	public enum ARB_window_pos : uint
 	{
-		}
+
+	}
+
 	public enum ARB_vertex_program : uint
 	{
 		ColorSumArb = 0x8458,
@@ -3050,6 +3244,7 @@ namespace ManagedOpenGL
 		Matrix30Arb = 0x88DE,
 		Matrix31Arb = 0x88DF,
 	}
+
 	public enum ARB_fragment_program : uint
 	{
 		FragmentProgramArb = 0x8804,
@@ -3068,6 +3263,7 @@ namespace ManagedOpenGL
 		MaxTextureCoordsArb = 0x8871,
 		MaxTextureImageUnitsArb = 0x8872,
 	}
+
 	public enum ARB_vertex_buffer_object : uint
 	{
 		BufferSizeArb = 0x8764,
@@ -3102,6 +3298,7 @@ namespace ManagedOpenGL
 		DynamicReadArb = 0x88E9,
 		DynamicCopyArb = 0x88EA,
 	}
+
 	public enum ARB_occlusion_query : uint
 	{
 		QueryCounterBitsArb = 0x8864,
@@ -3110,6 +3307,7 @@ namespace ManagedOpenGL
 		QueryResultAvailableArb = 0x8867,
 		SamplesPassedArb = 0x8914,
 	}
+
 	public enum ARB_shader_objects : uint
 	{
 		ProgramObjectArb = 0x8B40,
@@ -3147,6 +3345,7 @@ namespace ManagedOpenGL
 		ObjectActiveUniformMaxLengthArb = 0x8B87,
 		ObjectShaderSourceLengthArb = 0x8B88,
 	}
+
 	public enum ARB_vertex_shader : uint
 	{
 		VertexShaderArb = 0x8B31,
@@ -3157,27 +3356,35 @@ namespace ManagedOpenGL
 		ObjectActiveAttributesArb = 0x8B89,
 		ObjectActiveAttributeMaxLengthArb = 0x8B8A,
 	}
+
 	public enum ARB_fragment_shader : uint
 	{
 		FragmentShaderArb = 0x8B30,
 		MaxFragmentUniformComponentsArb = 0x8B49,
 		FragmentShaderDerivativeHintArb = 0x8B8B,
 	}
+
 	public enum ARB_shading_language_100 : uint
 	{
 		ShadingLanguageVersionArb = 0x8B8C,
 	}
+
 	public enum ARB_texture_non_power_of_two : uint
 	{
-		}
+
+	}
+
 	public enum ARB_point_sprite : uint
 	{
 		PointSpriteArb = 0x8861,
 		CoordReplaceArb = 0x8862,
 	}
+
 	public enum ARB_fragment_program_shadow : uint
 	{
-		}
+
+	}
+
 	public enum ARB_draw_buffers : uint
 	{
 		MaxDrawBuffersArb = 0x8824,
@@ -3198,6 +3405,7 @@ namespace ManagedOpenGL
 		DrawBuffer14Arb = 0x8833,
 		DrawBuffer15Arb = 0x8834,
 	}
+
 	public enum ARB_texture_rectangle : uint
 	{
 		TextureRectangleArb = 0x84F5,
@@ -3205,6 +3413,7 @@ namespace ManagedOpenGL
 		ProxyTextureRectangleArb = 0x84F7,
 		MaxRectangleTextureSizeArb = 0x84F8,
 	}
+
 	public enum ARB_color_buffer_float : uint
 	{
 		RgbaFloatModeArb = 0x8820,
@@ -3213,10 +3422,12 @@ namespace ManagedOpenGL
 		ClampReadColorArb = 0x891C,
 		FixedOnlyArb = 0x891D,
 	}
+
 	public enum ARB_half_float_pixel : uint
 	{
 		HalfFloatArb = 0x140B,
 	}
+
 	public enum ARB_texture_float : uint
 	{
 		TextureRedTypeArb = 0x8C10,
@@ -3240,6 +3451,7 @@ namespace ManagedOpenGL
 		Luminance16fArb = 0x881E,
 		LuminanceAlpha16fArb = 0x881F,
 	}
+
 	public enum ARB_pixel_buffer_object : uint
 	{
 		PixelPackBufferArb = 0x88EB,
@@ -3247,18 +3459,27 @@ namespace ManagedOpenGL
 		PixelPackBufferBindingArb = 0x88ED,
 		PixelUnpackBufferBindingArb = 0x88EF,
 	}
+
 	public enum EXT_subtexture : uint
 	{
-		}
+
+	}
+
 	public enum EXT_copy_texture : uint
 	{
-		}
+
+	}
+
 	public enum EXT_misc_attribute : uint
 	{
-		}
+
+	}
+
 	public enum EXT_blend_logic_op : uint
 	{
-		}
+
+	}
+
 	public enum EXT_point_parameters : uint
 	{
 		PointSizeMinExt = 0x8126,
@@ -3266,9 +3487,12 @@ namespace ManagedOpenGL
 		PointFadeThresholdSizeExt = 0x8128,
 		DistanceAttenuationExt = 0x8129,
 	}
+
 	public enum SGIX_tag_sample_buffer : uint
 	{
-		}
+
+	}
+
 	public enum SGIX_polynomial_ffd : uint
 	{
 		GeometryDeformationSgix = 0x8194,
@@ -3276,9 +3500,12 @@ namespace ManagedOpenGL
 		DeformationsMaskSgix = 0x8196,
 		MaxDeformationOrderSgix = 0x8197,
 	}
+
 	public enum SGIX_flush_raster : uint
 	{
-		}
+
+	}
+
 	public enum HP_image_transform : uint
 	{
 		ImageScaleXHp = 0x8155,
@@ -3297,12 +3524,17 @@ namespace ManagedOpenGL
 		PostImageTransformColorTableHp = 0x8162,
 		ProxyPostImageTransformColorTableHp = 0x8163,
 	}
+
 	public enum INGR_palette_buffer : uint
 	{
-		}
+
+	}
+
 	public enum EXT_color_subtable : uint
 	{
-		}
+
+	}
+
 	public enum PGI_vertex_hints : uint
 	{
 		VertexDataHintPgi = 0x1A22A,
@@ -3328,6 +3560,7 @@ namespace ManagedOpenGL
 		Vertex23BitPgi = 0x00000004,
 		Vertex4BitPgi = 0x00000008,
 	}
+
 	public enum PGI_misc_hints : uint
 	{
 		PreferDoublebufferHintPgi = 0x1A1F8,
@@ -3351,6 +3584,7 @@ namespace ManagedOpenGL
 		WideLineHintPgi = 0x1A222,
 		BackNormalsHintPgi = 0x1A223,
 	}
+
 	public enum EXT_paletted_texture : uint
 	{
 		ColorIndex1Ext = 0x80E2,
@@ -3361,25 +3595,31 @@ namespace ManagedOpenGL
 		ColorIndex16Ext = 0x80E7,
 		TextureIndexSizeExt = 0x80ED,
 	}
+
 	public enum EXT_clip_volume_hint : uint
 	{
 		ClipVolumeClippingHintExt = 0x80F0,
 	}
+
 	public enum EXT_index_texture : uint
 	{
-		}
+
+	}
+
 	public enum EXT_index_material : uint
 	{
 		IndexMaterialExt = 0x81B8,
 		IndexMaterialParameterExt = 0x81B9,
 		IndexMaterialFaceExt = 0x81BA,
 	}
+
 	public enum EXT_index_func : uint
 	{
 		IndexTestExt = 0x81B5,
 		IndexTestFuncExt = 0x81B6,
 		IndexTestRefExt = 0x81B7,
 	}
+
 	public enum EXT_index_array_formats : uint
 	{
 		IuiV2fExt = 0x81AD,
@@ -3391,41 +3631,49 @@ namespace ManagedOpenGL
 		T2fIuiN3fV2fExt = 0x81B3,
 		T2fIuiN3fV3fExt = 0x81B4,
 	}
+
 	public enum EXT_compiled_vertex_array : uint
 	{
 		ArrayElementLockFirstExt = 0x81A8,
 		ArrayElementLockCountExt = 0x81A9,
 	}
+
 	public enum EXT_cull_vertex : uint
 	{
 		CullVertexExt = 0x81AA,
 		CullVertexEyePositionExt = 0x81AB,
 		CullVertexObjectPositionExt = 0x81AC,
 	}
+
 	public enum IBM_rasterpos_clip : uint
 	{
 		RasterPositionUnclippedIbm = 0x19262,
 	}
+
 	public enum HP_texture_lighting : uint
 	{
 		TextureLightingModeHp = 0x8167,
 		TexturePostSpecularHp = 0x8168,
 		TexturePreSpecularHp = 0x8169,
 	}
+
 	public enum EXT_draw_range_elements : uint
 	{
 		MaxElementsVerticesExt = 0x80E8,
 		MaxElementsIndicesExt = 0x80E9,
 	}
+
 	public enum WIN_phong_shading : uint
 	{
 		PhongWin = 0x80EA,
 		PhongHintWin = 0x80EB,
 	}
+
 	public enum WIN_specular_fog : uint
 	{
 		FogSpecularTextureWin = 0x80EC,
 	}
+
 	public enum EXT_light_texture : uint
 	{
 		FragmentMaterialExt = 0x8349,
@@ -3439,21 +3687,28 @@ namespace ManagedOpenGL
 		TextureMaterialParameterExt = 0x8352,
 		FragmentDepthExt = EXT_fog_coord.FragmentDepthExt,
 	}
+
 	public enum SGIX_async : uint
 	{
 		AsyncMarkerSgix = 0x8329,
 	}
+
 	public enum INTEL_texture_scissor : uint
 	{
-		}
+
+	}
+
 	public enum HP_occlusion_test : uint
 	{
 		OcclusionTestHp = 0x8165,
 		OcclusionTestResultHp = 0x8166,
 	}
+
 	public enum EXT_pixel_transform_color_table : uint
 	{
-		}
+
+	}
+
 	public enum EXT_secondary_color : uint
 	{
 		ColorSumExt = 0x8458,
@@ -3464,14 +3719,18 @@ namespace ManagedOpenGL
 		SecondaryColorArrayPointerExt = 0x845D,
 		SecondaryColorArrayExt = 0x845E,
 	}
+
 	public enum EXT_texture_perturb_normal : uint
 	{
 		PerturbExt = 0x85AE,
 		TextureNormalExt = 0x85AF,
 	}
+
 	public enum EXT_multi_draw_arrays : uint
 	{
-		}
+
+	}
+
 	public enum EXT_fog_coord : uint
 	{
 		FogCoordinateSourceExt = 0x8450,
@@ -3483,11 +3742,13 @@ namespace ManagedOpenGL
 		FogCoordinateArrayPointerExt = 0x8456,
 		FogCoordinateArrayExt = 0x8457,
 	}
+
 	public enum REND_screen_coordinates : uint
 	{
 		ScreenCoordinatesRend = 0x8490,
 		InvertedScreenWRend = 0x8491,
 	}
+
 	public enum EXT_coordinate_frame : uint
 	{
 		TangentArrayExt = 0x8439,
@@ -3505,6 +3766,7 @@ namespace ManagedOpenGL
 		Map1BinormalExt = 0x8446,
 		Map2BinormalExt = 0x8447,
 	}
+
 	public enum EXT_texture_env_combine : uint
 	{
 		CombineExt = 0x8570,
@@ -3529,29 +3791,35 @@ namespace ManagedOpenGL
 		Operand1AlphaExt = 0x8599,
 		Operand2AlphaExt = 0x859A,
 	}
+
 	public enum APPLE_specular_vector : uint
 	{
 		LightModelSpecularVectorApple = 0x85B0,
 	}
+
 	public enum APPLE_transform_hint : uint
 	{
 		TransformHintApple = 0x85B1,
 	}
+
 	public enum SGIX_fog_scale : uint
 	{
 		FogScaleSgix = 0x81FC,
 		FogScaleValueSgix = 0x81FD,
 	}
+
 	public enum SUNX_constant_data : uint
 	{
 		UnpackConstantDataSunx = 0x81D5,
 		TextureConstantDataSunx = 0x81D6,
 	}
+
 	public enum SUN_global_alpha : uint
 	{
 		GlobalAlphaSun = 0x81D9,
 		GlobalAlphaFactorSun = 0x81DA,
 	}
+
 	public enum SUN_triangle_list : uint
 	{
 		RestartSun = 0x0001,
@@ -3572,9 +3840,12 @@ namespace ManagedOpenGL
 		R1uiT2fN3fV3fSun = 0x85CA,
 		R1uiT2fC4fN3fV3fSun = 0x85CB,
 	}
+
 	public enum SUN_vertex : uint
 	{
-		}
+
+	}
+
 	public enum EXT_blend_func_separate : uint
 	{
 		BlendDstRgbExt = 0x80C8,
@@ -3582,6 +3853,7 @@ namespace ManagedOpenGL
 		BlendDstAlphaExt = 0x80CA,
 		BlendSrcAlphaExt = 0x80CB,
 	}
+
 	public enum INGR_color_clamp : uint
 	{
 		RedMinClampIngr = 0x8560,
@@ -3593,15 +3865,18 @@ namespace ManagedOpenGL
 		BlueMaxClampIngr = 0x8566,
 		AlphaMaxClampIngr = 0x8567,
 	}
+
 	public enum INGR_interlace_read : uint
 	{
 		InterlaceReadIngr = 0x8568,
 	}
+
 	public enum EXT_stencil_wrap : uint
 	{
 		IncrWrapExt = 0x8507,
 		DecrWrapExt = 0x8508,
 	}
+
 	public enum EXT_422_pixels : uint
 	{
 		gl422Ext = 0x80CC,
@@ -3609,11 +3884,13 @@ namespace ManagedOpenGL
 		gl422AverageExt = 0x80CE,
 		gl422RevAverageExt = 0x80CF,
 	}
+
 	public enum NV_texgen_reflection : uint
 	{
 		NormalMapNv = 0x8511,
 		ReflectionMapNv = 0x8512,
 	}
+
 	public enum EXT_texture_cube_map : uint
 	{
 		NormalMapExt = 0x8511,
@@ -3629,24 +3906,30 @@ namespace ManagedOpenGL
 		ProxyTextureCubeMapExt = 0x851B,
 		MaxCubeMapTextureSizeExt = 0x851C,
 	}
+
 	public enum SUN_convolution_border_modes : uint
 	{
 		WrapBorderSun = 0x81D4,
 	}
+
 	public enum EXT_texture_env_add : uint
 	{
-		}
+
+	}
+
 	public enum EXT_texture_lod_bias : uint
 	{
 		MaxTextureLodBiasExt = 0x84FD,
 		TextureFilterControlExt = 0x8500,
 		TextureLodBiasExt = 0x8501,
 	}
+
 	public enum EXT_texture_filter_anisotropic : uint
 	{
 		TextureMaxAnisotropyExt = 0x84FE,
 		MaxTextureMaxAnisotropyExt = 0x84FF,
 	}
+
 	public enum EXT_vertex_weighting : uint
 	{
 		Modelview1StackDepthExt = 0x8502,
@@ -3660,11 +3943,13 @@ namespace ManagedOpenGL
 		VertexWeightArrayStrideExt = 0x850F,
 		VertexWeightArrayPointerExt = 0x8510,
 	}
+
 	public enum NV_light_max_exponent : uint
 	{
 		MaxShininessNv = 0x8504,
 		MaxSpotExponentNv = 0x8505,
 	}
+
 	public enum NV_vertex_array_range : uint
 	{
 		VertexArrayRangeNv = 0x851D,
@@ -3673,6 +3958,7 @@ namespace ManagedOpenGL
 		MaxVertexArrayRangeElementNv = 0x8520,
 		VertexArrayRangePointerNv = 0x8521,
 	}
+
 	public enum NV_register_combiners : uint
 	{
 		RegisterCombinersNv = 0x8522,
@@ -3732,6 +4018,7 @@ namespace ManagedOpenGL
 		None = DrawBufferMode.None,
 		Fog = GetPName.Fog,
 	}
+
 	public enum NV_fog_distance : uint
 	{
 		FogDistanceModeNv = 0x855A,
@@ -3739,15 +4026,19 @@ namespace ManagedOpenGL
 		EyePlaneAbsoluteNv = 0x855C,
 		EyePlane = TextureGenParameter.EyePlane,
 	}
+
 	public enum NV_texgen_emboss : uint
 	{
 		EmbossLightNv = 0x855D,
 		EmbossConstantNv = 0x855E,
 		EmbossMapNv = 0x855F,
 	}
+
 	public enum NV_blend_square : uint
 	{
-		}
+
+	}
+
 	public enum NV_texture_env_combine4 : uint
 	{
 		Combine4Nv = 0x8503,
@@ -3756,19 +4047,27 @@ namespace ManagedOpenGL
 		Operand3RgbNv = 0x8593,
 		Operand3AlphaNv = 0x859B,
 	}
+
 	public enum MESA_resize_buffers : uint
 	{
-		}
+
+	}
+
 	public enum MESA_window_pos : uint
 	{
-		}
+
+	}
+
 	public enum IBM_cull_vertex : uint
 	{
 		CullVertexIbm = 103050,
 	}
+
 	public enum IBM_multimode_draw_arrays : uint
 	{
-		}
+
+	}
+
 	public enum IBM_vertex_array_lists : uint
 	{
 		VertexArrayListIbm = 103070,
@@ -3788,6 +4087,7 @@ namespace ManagedOpenGL
 		FogCoordinateArrayListStrideIbm = 103086,
 		SecondaryColorArrayListStrideIbm = 103087,
 	}
+
 	public enum SGIX_ycrcb_subsample : uint
 	{
 		PackSubsampleRateSgix = 0x85A0,
@@ -3796,22 +4096,26 @@ namespace ManagedOpenGL
 		PixelSubsample2424Sgix = 0x85A3,
 		PixelSubsample4242Sgix = 0x85A4,
 	}
+
 	public enum SGIX_ycrcba : uint
 	{
 		YcrcbSgix = 0x8318,
 		YcrcbaSgix = 0x8319,
 	}
+
 	public enum SGI_depth_pass_instrument : uint
 	{
 		DepthPassInstrumentSgix = 0x8310,
 		DepthPassInstrumentCountersSgix = 0x8311,
 		DepthPassInstrumentMaxSgix = 0x8312,
 	}
+
 	public enum Gl3DFX_texture_compression_FXT1 : uint
 	{
 		CompressedRgbFxt13dfx = 0x86B0,
 		CompressedRgbaFxt13dfx = 0x86B1,
 	}
+
 	public enum Gl3DFX_multisample : uint
 	{
 		Multisample3dfx = 0x86B2,
@@ -3819,9 +4123,12 @@ namespace ManagedOpenGL
 		Samples3dfx = 0x86B4,
 		MultisampleBit3dfx = 0x20000000,
 	}
+
 	public enum Gl3DFX_tbuffer : uint
 	{
-		}
+
+	}
+
 	public enum EXT_multisample : uint
 	{
 		MultisampleExt = 0x809D,
@@ -3842,26 +4149,31 @@ namespace ManagedOpenGL
 		SamplePatternExt = 0x80AC,
 		MultisampleBitExt = 0x20000000,
 	}
+
 	public enum EXT_texture_env_dot3 : uint
 	{
 		Dot3RgbExt = 0x8740,
 		Dot3RgbaExt = 0x8741,
 	}
+
 	public enum ATI_texture_mirror_once : uint
 	{
 		MirrorClampAti = 0x8742,
 		MirrorClampToEdgeAti = 0x8743,
 	}
+
 	public enum NV_fence : uint
 	{
 		AllCompletedNv = 0x84F2,
 		FenceStatusNv = 0x84F3,
 		FenceConditionNv = 0x84F4,
 	}
+
 	public enum IBM_texture_mirrored_repeat : uint
 	{
 		MirroredRepeatIbm = 0x8370,
 	}
+
 	public enum NV_evaluators : uint
 	{
 		Eval2dNv = 0x86C0,
@@ -3889,18 +4201,23 @@ namespace ManagedOpenGL
 		MaxMapTessellationNv = 0x86D6,
 		MaxRationalEvalOrderNv = 0x86D7,
 	}
+
 	public enum NV_packed_depth_stencil : uint
 	{
 		DepthStencilNv = 0x84F9,
 		UnsignedInt248Nv = 0x84FA,
 	}
+
 	public enum NV_register_combiners2 : uint
 	{
 		PerStageConstantsNv = 0x8535,
 	}
+
 	public enum NV_texture_compression_vtc : uint
 	{
-		}
+
+	}
+
 	public enum NV_texture_rectangle : uint
 	{
 		TextureRectangleNv = 0x84F5,
@@ -3908,6 +4225,7 @@ namespace ManagedOpenGL
 		ProxyTextureRectangleNv = 0x84F7,
 		MaxRectangleTextureSizeNv = 0x84F8,
 	}
+
 	public enum NV_texture_shader : uint
 	{
 		OffsetTextureRectangleNv = 0x864C,
@@ -3981,14 +4299,17 @@ namespace ManagedOpenGL
 		TextureDtSizeNv = 0x871E,
 		TextureMagSizeNv = 0x871F,
 	}
+
 	public enum NV_texture_shader2 : uint
 	{
 		DotProductTexture3dNv = 0x86EF,
 	}
+
 	public enum NV_vertex_array_range2 : uint
 	{
 		VertexArrayRangeWithoutFlushNv = 0x8533,
 	}
+
 	public enum NV_vertex_program : uint
 	{
 		VertexProgramNv = 0x8620,
@@ -4075,20 +4396,24 @@ namespace ManagedOpenGL
 		Map2VertexAttrib144Nv = 0x867E,
 		Map2VertexAttrib154Nv = 0x867F,
 	}
+
 	public enum SGIX_scalebias_hint : uint
 	{
 		ScalebiasHintSgix = 0x8322,
 	}
+
 	public enum OML_interlace : uint
 	{
 		InterlaceOml = 0x8980,
 		InterlaceReadOml = 0x8981,
 	}
+
 	public enum OML_subsample : uint
 	{
 		FormatSubsample2424Oml = 0x8982,
 		FormatSubsample244244Oml = 0x8983,
 	}
+
 	public enum OML_resample : uint
 	{
 		PackResampleOml = 0x8984,
@@ -4098,11 +4423,13 @@ namespace ManagedOpenGL
 		ResampleAverageOml = 0x8988,
 		ResampleDecimateOml = 0x8989,
 	}
+
 	public enum NV_copy_depth_to_color : uint
 	{
 		DepthStencilToRgbaNv = 0x886E,
 		DepthStencilToBgraNv = 0x886F,
 	}
+
 	public enum ATI_envmap_bumpmap : uint
 	{
 		BumpRotMatrixAti = 0x8775,
@@ -4114,6 +4441,7 @@ namespace ManagedOpenGL
 		BumpEnvmapAti = 0x877B,
 		BumpTargetAti = 0x877C,
 	}
+
 	public enum ATI_fragment_shader : uint
 	{
 		FragmentShaderAti = 0x8920,
@@ -4221,6 +4549,7 @@ namespace ManagedOpenGL
 		NegateBitAti = 0x00000004,
 		BiasBitAti = 0x00000008,
 	}
+
 	public enum ATI_pn_triangles : uint
 	{
 		PnTrianglesAti = 0x87F0,
@@ -4233,6 +4562,7 @@ namespace ManagedOpenGL
 		PnTrianglesNormalModeLinearAti = 0x87F7,
 		PnTrianglesNormalModeQuadraticAti = 0x87F8,
 	}
+
 	public enum ATI_vertex_array_object : uint
 	{
 		StaticAti = 0x8760,
@@ -4244,6 +4574,7 @@ namespace ManagedOpenGL
 		ArrayObjectBufferAti = 0x8766,
 		ArrayObjectOffsetAti = 0x8767,
 	}
+
 	public enum EXT_vertex_shader : uint
 	{
 		VertexShaderExt = 0x8780,
@@ -4357,6 +4688,7 @@ namespace ManagedOpenGL
 		LocalConstantValueExt = 0x87EC,
 		LocalConstantDatatypeExt = 0x87ED,
 	}
+
 	public enum ATI_vertex_streams : uint
 	{
 		MaxVertexStreamsAti = 0x876B,
@@ -4370,29 +4702,35 @@ namespace ManagedOpenGL
 		VertexStream7Ati = 0x8773,
 		VertexSourceAti = 0x8774,
 	}
+
 	public enum ATI_element_array : uint
 	{
 		ElementArrayAti = 0x8768,
 		ElementArrayTypeAti = 0x8769,
 		ElementArrayPointerAti = 0x876A,
 	}
+
 	public enum SUN_mesh_array : uint
 	{
 		QuadMeshSun = 0x8614,
 		TriangleMeshSun = 0x8615,
 	}
+
 	public enum SUN_slice_accum : uint
 	{
 		SliceAccumSun = 0x85CC,
 	}
+
 	public enum NV_multisample_filter_hint : uint
 	{
 		MultisampleFilterHintNv = 0x8534,
 	}
+
 	public enum NV_depth_clamp : uint
 	{
 		DepthClampNv = 0x864F,
 	}
+
 	public enum NV_occlusion_query : uint
 	{
 		PixelCounterBitsNv = 0x8864,
@@ -4400,12 +4738,14 @@ namespace ManagedOpenGL
 		PixelCountNv = 0x8866,
 		PixelCountAvailableNv = 0x8867,
 	}
+
 	public enum NV_point_sprite : uint
 	{
 		PointSpriteNv = 0x8861,
 		CoordReplaceNv = 0x8862,
 		PointSpriteRModeNv = 0x8863,
 	}
+
 	public enum NV_texture_shader3 : uint
 	{
 		OffsetProjectiveTexture2dNv = 0x8850,
@@ -4426,40 +4766,51 @@ namespace ManagedOpenGL
 		SignedHilo8Nv = 0x885F,
 		ForceBlueToOneNv = 0x8860,
 	}
+
 	public enum NV_vertex_program1_1 : uint
 	{
-		}
+
+	}
+
 	public enum EXT_shadow_funcs : uint
 	{
-		}
+
+	}
+
 	public enum EXT_stencil_two_side : uint
 	{
 		StencilTestTwoSideExt = 0x8910,
 		ActiveStencilFaceExt = 0x8911,
 	}
+
 	public enum ATI_text_fragment_shader : uint
 	{
 		TextFragmentShaderAti = 0x8200,
 	}
+
 	public enum APPLE_client_storage : uint
 	{
 		UnpackClientStorageApple = 0x85B2,
 	}
+
 	public enum APPLE_element_array : uint
 	{
 		ElementArrayApple = 0x8768,
 		ElementArrayTypeApple = 0x8769,
 		ElementArrayPointerApple = 0x876A,
 	}
+
 	public enum APPLE_fence : uint
 	{
 		DrawPixelsApple = 0x8A0A,
 		FenceApple = 0x8A0B,
 	}
+
 	public enum APPLE_vertex_array_object : uint
 	{
 		VertexArrayBindingApple = 0x85B5,
 	}
+
 	public enum APPLE_vertex_array_range : uint
 	{
 		VertexArrayRangeApple = 0x851D,
@@ -4469,12 +4820,14 @@ namespace ManagedOpenGL
 		StorageCachedApple = 0x85BE,
 		StorageSharedApple = 0x85BF,
 	}
+
 	public enum APPLE_ycbcr_422 : uint
 	{
 		Ycbcr422Apple = 0x85B9,
 		UnsignedShort88Apple = 0x85BA,
 		UnsignedShort88RevApple = 0x85BB,
 	}
+
 	public enum S3_s3tc : uint
 	{
 		RgbS3tc = 0x83A0,
@@ -4482,6 +4835,7 @@ namespace ManagedOpenGL
 		RgbaS3tc = 0x83A2,
 		Rgba4S3tc = 0x83A3,
 	}
+
 	public enum ATI_draw_buffers : uint
 	{
 		MaxDrawBuffersAti = 0x8824,
@@ -4502,17 +4856,20 @@ namespace ManagedOpenGL
 		DrawBuffer14Ati = 0x8833,
 		DrawBuffer15Ati = 0x8834,
 	}
+
 	public enum ATI_pixel_format_float : uint
 	{
 		TypeRgbaFloatAti = 0x8820,
 		ColorClearUnclampedValueAti = 0x8835,
 	}
+
 	public enum ATI_texture_env_combine3 : uint
 	{
 		ModulateAddAti = 0x8744,
 		ModulateSignedAddAti = 0x8745,
 		ModulateSubtractAti = 0x8746,
 	}
+
 	public enum ATI_texture_float : uint
 	{
 		RgbaFloat32Ati = 0x8814,
@@ -4528,6 +4885,7 @@ namespace ManagedOpenGL
 		LuminanceFloat16Ati = 0x881E,
 		LuminanceAlphaFloat16Ati = 0x881F,
 	}
+
 	public enum NV_float_buffer : uint
 	{
 		FloatRNv = 0x8880,
@@ -4546,6 +4904,7 @@ namespace ManagedOpenGL
 		FloatClearColorValueNv = 0x888D,
 		FloatRgbaModeNv = 0x888E,
 	}
+
 	public enum NV_fragment_program : uint
 	{
 		MaxFragmentProgramLocalParametersNv = 0x8868,
@@ -4555,10 +4914,12 @@ namespace ManagedOpenGL
 		FragmentProgramBindingNv = 0x8873,
 		ProgramErrorStringNv = 0x8874,
 	}
+
 	public enum NV_half_float : uint
 	{
 		HalfFloatNv = 0x140B,
 	}
+
 	public enum NV_pixel_data_range : uint
 	{
 		WritePixelDataRangeNv = 0x8878,
@@ -4568,21 +4929,28 @@ namespace ManagedOpenGL
 		WritePixelDataRangePointerNv = 0x887C,
 		ReadPixelDataRangePointerNv = 0x887D,
 	}
+
 	public enum NV_primitive_restart : uint
 	{
 		PrimitiveRestartNv = 0x8558,
 		PrimitiveRestartIndexNv = 0x8559,
 	}
+
 	public enum NV_texture_expand_normal : uint
 	{
 		TextureUnsignedRemapModeNv = 0x888F,
 	}
+
 	public enum NV_vertex_program2 : uint
 	{
-		}
+
+	}
+
 	public enum ATI_map_object_buffer : uint
 	{
-		}
+
+	}
+
 	public enum ATI_separate_stencil : uint
 	{
 		StencilBackFuncAti = 0x8800,
@@ -4590,39 +4958,48 @@ namespace ManagedOpenGL
 		StencilBackPassDepthFailAti = 0x8802,
 		StencilBackPassDepthPassAti = 0x8803,
 	}
+
 	public enum ATI_vertex_attrib_array_object : uint
 	{
-		}
+
+	}
+
 	public enum OES_read_format : uint
 	{
 		ImplementationColorReadTypeOes = 0x8B9A,
 		ImplementationColorReadFormatOes = 0x8B9B,
 	}
+
 	public enum EXT_depth_bounds_test : uint
 	{
 		DepthBoundsTestExt = 0x8890,
 		DepthBoundsExt = 0x8891,
 	}
+
 	public enum EXT_texture_mirror_clamp : uint
 	{
 		MirrorClampExt = 0x8742,
 		MirrorClampToEdgeExt = 0x8743,
 		MirrorClampToBorderExt = 0x8912,
 	}
+
 	public enum EXT_blend_equation_separate : uint
 	{
 		BlendEquationAlphaExt = 0x883D,
 	}
+
 	public enum MESA_pack_invert : uint
 	{
 		PackInvertMesa = 0x8758,
 	}
+
 	public enum MESA_ycbcr_texture : uint
 	{
 		UnsignedShort88Mesa = 0x85BA,
 		UnsignedShort88RevMesa = 0x85BB,
 		YcbcrMesa = 0x8757,
 	}
+
 	public enum EXT_pixel_buffer_object : uint
 	{
 		PixelPackBufferExt = 0x88EB,
@@ -4630,9 +5007,12 @@ namespace ManagedOpenGL
 		PixelPackBufferBindingExt = 0x88ED,
 		PixelUnpackBufferBindingExt = 0x88EF,
 	}
+
 	public enum NV_fragment_program_option : uint
 	{
-		}
+
+	}
+
 	public enum NV_fragment_program2 : uint
 	{
 		MaxProgramExecInstructionsNv = 0x88F4,
@@ -4641,15 +5021,18 @@ namespace ManagedOpenGL
 		MaxProgramLoopDepthNv = 0x88F7,
 		MaxProgramLoopCountNv = 0x88F8,
 	}
+
 	public enum NV_vertex_program2_option : uint
 	{
 		MaxProgramExecInstructionsNv = NV_fragment_program2.MaxProgramExecInstructionsNv,
 		MaxProgramCallDepthNv = NV_fragment_program2.MaxProgramCallDepthNv,
 	}
+
 	public enum NV_vertex_program3 : uint
 	{
 		MaxVertexTextureImageUnitsArb = ARB_vertex_shader.MaxVertexTextureImageUnitsArb,
 	}
+
 	public enum EXT_framebuffer_object : uint
 	{
 		InvalidFramebufferOperationExt = 0x0506,
@@ -4704,9 +5087,12 @@ namespace ManagedOpenGL
 		RenderbufferDepthSizeExt = 0x8D54,
 		RenderbufferStencilSizeExt = 0x8D55,
 	}
+
 	public enum GREMEDY_string_marker : uint
 	{
-		}
+
+	}
+
 	public enum EXT_packed_depth_stencil : uint
 	{
 		DepthStencilExt = 0x84F9,
@@ -4714,11 +5100,13 @@ namespace ManagedOpenGL
 		Depth24Stencil8Ext = 0x88F0,
 		TextureStencilSizeExt = 0x88F1,
 	}
+
 	public enum EXT_stencil_clear_tag : uint
 	{
 		StencilTagBitsExt = 0x88F2,
 		StencilClearTagValueExt = 0x88F3,
 	}
+
 	public enum EXT_texture_sRGB : uint
 	{
 		SrgbExt = 0x8C40,
@@ -4738,18 +5126,21 @@ namespace ManagedOpenGL
 		CompressedSrgbAlphaS3tcDxt3Ext = 0x8C4E,
 		CompressedSrgbAlphaS3tcDxt5Ext = 0x8C4F,
 	}
+
 	public enum EXT_framebuffer_blit : uint
 	{
 		ReadFramebufferExt = 0x8CA8,
 		DrawFramebufferExt = 0x8CA9,
 		ReadFramebufferBindingExt = 0x8CAA,
 	}
+
 	public enum EXT_framebuffer_multisample : uint
 	{
 		RenderbufferSamplesExt = 0x8CAB,
 		FramebufferIncompleteMultisampleExt = 0x8D56,
 		MaxSamplesExt = 0x8D57,
 	}
+
 	public enum MESAX_texture_stack : uint
 	{
 		Texture1dStackMesax = 0x8759,
@@ -4759,18 +5150,23 @@ namespace ManagedOpenGL
 		Texture1dStackBindingMesax = 0x875D,
 		Texture2dStackBindingMesax = 0x875E,
 	}
+
 	public enum EXT_timer_query : uint
 	{
 		TimeElapsedExt = 0x88BF,
 	}
+
 	public enum EXT_gpu_program_parameters : uint
 	{
-		}
+
+	}
+
 	public enum APPLE_flush_buffer_range : uint
 	{
 		BufferSerializedModifyApple = 0x8A12,
 		BufferFlushingUnmapApple = 0x8A13,
 	}
+
 	public enum NV_gpu_program4 : uint
 	{
 		MinProgramTexelOffsetNv = 0x8904,
@@ -4782,6 +5178,7 @@ namespace ManagedOpenGL
 		MaxProgramGenericAttribsNv = 0x8DA5,
 		MaxProgramGenericResultsNv = 0x8DA6,
 	}
+
 	public enum NV_geometry_program4 : uint
 	{
 		LinesAdjacencyExt = 0x000A,
@@ -4801,6 +5198,7 @@ namespace ManagedOpenGL
 		FramebufferAttachmentTextureLayerExt = 0x8CD4,
 		ProgramPointSizeExt = 0x8642,
 	}
+
 	public enum EXT_geometry_shader4 : uint
 	{
 		GeometryShaderExt = 0x8DD9,
@@ -4824,10 +5222,12 @@ namespace ManagedOpenGL
 		FramebufferAttachmentTextureLayerExt = NV_geometry_program4.FramebufferAttachmentTextureLayerExt,
 		ProgramPointSizeExt = NV_geometry_program4.ProgramPointSizeExt,
 	}
+
 	public enum NV_vertex_program4 : uint
 	{
 		VertexAttribArrayIntegerNv = 0x88FD,
 	}
+
 	public enum EXT_gpu_shader4 : uint
 	{
 		Sampler1dArrayExt = 0x8DC0,
@@ -4856,15 +5256,19 @@ namespace ManagedOpenGL
 		UnsignedIntSampler2dArrayExt = 0x8DD7,
 		UnsignedIntSamplerBufferExt = 0x8DD8,
 	}
+
 	public enum EXT_draw_instanced : uint
 	{
-		}
+
+	}
+
 	public enum EXT_packed_float : uint
 	{
 		R11fG11fB10fExt = 0x8C3A,
 		UnsignedInt10f11f11fRevExt = 0x8C3B,
 		RgbaSignedComponentsExt = 0x8C3C,
 	}
+
 	public enum EXT_texture_array : uint
 	{
 		Texture1dArrayExt = 0x8C18,
@@ -4877,6 +5281,7 @@ namespace ManagedOpenGL
 		CompareRefDepthToTextureExt = 0x884E,
 		FramebufferAttachmentTextureLayerExt = NV_geometry_program4.FramebufferAttachmentTextureLayerExt,
 	}
+
 	public enum EXT_texture_buffer_object : uint
 	{
 		TextureBufferExt = 0x8C2A,
@@ -4885,6 +5290,7 @@ namespace ManagedOpenGL
 		TextureBufferDataStoreBindingExt = 0x8C2D,
 		TextureBufferFormatExt = 0x8C2E,
 	}
+
 	public enum EXT_texture_compression_latc : uint
 	{
 		CompressedLuminanceLatc1Ext = 0x8C70,
@@ -4892,6 +5298,7 @@ namespace ManagedOpenGL
 		CompressedLuminanceAlphaLatc2Ext = 0x8C72,
 		CompressedSignedLuminanceAlphaLatc2Ext = 0x8C73,
 	}
+
 	public enum EXT_texture_compression_rgtc : uint
 	{
 		CompressedRedRgtc1Ext = 0x8DBB,
@@ -4899,12 +5306,14 @@ namespace ManagedOpenGL
 		CompressedRedGreenRgtc2Ext = 0x8DBD,
 		CompressedSignedRedGreenRgtc2Ext = 0x8DBE,
 	}
+
 	public enum EXT_texture_shared_exponent : uint
 	{
 		Rgb9E5Ext = 0x8C3D,
 		UnsignedInt5999RevExt = 0x8C3E,
 		TextureSharedSizeExt = 0x8C3F,
 	}
+
 	public enum NV_depth_buffer_float : uint
 	{
 		DepthComponent32fNv = 0x8DAB,
@@ -4912,9 +5321,12 @@ namespace ManagedOpenGL
 		Float32UnsignedInt248RevNv = 0x8DAD,
 		DepthBufferFloatModeNv = 0x8DAF,
 	}
+
 	public enum NV_fragment_program4 : uint
 	{
-		}
+
+	}
+
 	public enum NV_framebuffer_multisample_coverage : uint
 	{
 		RenderbufferCoverageSamplesNv = 0x8CAB,
@@ -4922,14 +5334,18 @@ namespace ManagedOpenGL
 		MaxMultisampleCoverageModesNv = 0x8E11,
 		MultisampleCoverageModesNv = 0x8E12,
 	}
+
 	public enum EXT_framebuffer_sRGB : uint
 	{
 		FramebufferSrgbExt = 0x8DB9,
 		FramebufferSrgbCapableExt = 0x8DBA,
 	}
+
 	public enum NV_geometry_shader4 : uint
 	{
-		}
+
+	}
+
 	public enum NV_parameter_buffer_object : uint
 	{
 		MaxProgramParameterBufferBindingsNv = 0x8DA0,
@@ -4938,9 +5354,12 @@ namespace ManagedOpenGL
 		GeometryProgramParameterBufferNv = 0x8DA3,
 		FragmentProgramParameterBufferNv = 0x8DA4,
 	}
+
 	public enum EXT_draw_buffers2 : uint
 	{
-		}
+
+	}
+
 	public enum NV_transform_feedback : uint
 	{
 		BackPrimaryColorNv = 0x8C77,
@@ -4969,6 +5388,7 @@ namespace ManagedOpenGL
 		TransformFeedbackBufferNv = 0x8C8E,
 		TransformFeedbackBufferBindingNv = 0x8C8F,
 	}
+
 	public enum EXT_bindable_uniform : uint
 	{
 		MaxVertexBindableUniformsExt = 0x8DE2,
@@ -4978,6 +5398,7 @@ namespace ManagedOpenGL
 		UniformBufferExt = 0x8DEE,
 		UniformBufferBindingExt = 0x8DEF,
 	}
+
 	public enum EXT_texture_integer : uint
 	{
 		Rgba32uiExt = 0x8D70,
@@ -5028,8 +5449,9 @@ namespace ManagedOpenGL
 		LuminanceAlphaIntegerExt = 0x8D9D,
 		RgbaIntegerModeExt = 0x8D9E,
 	}
+
 	public enum GREMEDY_frame_terminator : uint
 	{
-		}
-}
 
+	}
+}

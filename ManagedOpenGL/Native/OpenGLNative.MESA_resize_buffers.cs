@@ -7,12 +7,11 @@ namespace ManagedOpenGL
 	{	
 		static void OpenGLNativeMESA_resize_buffersInit()
 		{
-						
+
 		}
-		
-	
+
+
 		[DllImport( "opengl32.dll", EntryPoint="glResizeBuffersMESA" )]
-		public static extern void ResizeBuffersMESA(  ); // 	
+		public static extern void ResizeBuffersMESA(  ); // 
 	}
 }
-

@@ -8,18 +8,17 @@ namespace ManagedOpenGL
 		static void OpenGLNativeARB_multisampleInit()
 		{
 			_SampleCoverageARB = GetProcAdress< SampleCoverageARBDelegate >( "glSampleCoverageARB" );
-			
 		}
-		
-	
+
+
 		public delegate void SampleCoverageARBDelegate( float value, bool invert ); // 
+
 		private static SampleCoverageARBDelegate _SampleCoverageARB;
-		
+
 		public static  void SampleCoverageARB( float value, bool invert )
 		{
 			if (_SampleCoverageARB == null) throw new Exception( "Extension method SampleCoverageARB not found" );
-			 _SampleCoverageARB( value, invert );
+		 _SampleCoverageARB( value, invert );
 		}
 	}
 }
-

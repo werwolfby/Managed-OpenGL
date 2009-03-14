@@ -12,24 +12,26 @@
  *******************************************************/
 
 using System;
-using ManagedOpenGL.CodeGenerator.Rules;
 
-public partial class EnumGenerator
+namespace ManagedOpenGL.CodeGenerator.Rules
 {
-	public static string GetCSName( string name )
-	{
-		if (!char.IsDigit( name[0] )) return name;
-		return "Gl" + name;
-	}
+    public partial class EnumGenerator
+    {
+        public static string GetCSName(string name)
+        {
+            if (!char.IsDigit(name[0])) return name;
+            return "Gl" + name;
+        }
 
-	public static string ConvertName( string name )
-	{
-		var defineParts = name.Split( '_' );
+        public static string ConvertName(string name)
+        {
+            var defineParts = name.Split('_');
 
-		defineParts = Array.ConvertAll( defineParts, s => s.FirstSymbolToUpper() );
+            defineParts = Array.ConvertAll(defineParts, s => s.FirstSymbolToUpper());
 
-		var newDefine = string.Join( "", defineParts );
-		if (Char.IsDigit( newDefine[0] )) newDefine = "gl" + newDefine;
-		return newDefine;
-	}
+            var newDefine = string.Join("", defineParts);
+            if (Char.IsDigit(newDefine[0])) newDefine = "gl" + newDefine;
+            return newDefine;
+        }
+    }
 }

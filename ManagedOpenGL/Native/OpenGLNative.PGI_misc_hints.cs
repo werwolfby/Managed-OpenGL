@@ -7,12 +7,11 @@ namespace ManagedOpenGL
 	{	
 		static void OpenGLNativePGI_misc_hintsInit()
 		{
-						
+
 		}
-		
-	
+
+
 		[DllImport( "opengl32.dll", EntryPoint="glHintPGI" )]
-		public static extern void HintPGI( uint target, int mode ); // 	
+		public static extern void HintPGI( uint target, int mode ); // 
 	}
 }
-

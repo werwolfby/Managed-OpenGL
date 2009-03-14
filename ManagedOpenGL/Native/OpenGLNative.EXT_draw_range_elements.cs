@@ -7,12 +7,11 @@ namespace ManagedOpenGL
 	{	
 		static void OpenGLNativeEXT_draw_range_elementsInit()
 		{
-						
+
 		}
-		
-	
+
+
 		[DllImport( "opengl32.dll", EntryPoint="glDrawRangeElementsEXT" )]
-		public static extern unsafe void DrawRangeElementsEXT( BeginMode mode, uint start, uint end, int count, uint type, void* indices ); // 	
+		public static extern unsafe void DrawRangeElementsEXT( BeginMode mode, uint start, uint end, int count, uint type, void* indices ); // 
 	}
 }
-

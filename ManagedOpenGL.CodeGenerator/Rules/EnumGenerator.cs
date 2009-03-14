@@ -2,99 +2,127 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using WolfGenerator.Core;
-using ManagedOpenGL.CodeGenerator;
-using System.Reflection;
-using System.Collections;
+using WolfGenerator.Core.Writer;
 
-public partial class EnumGenerator
+namespace ManagedOpenGL.CodeGenerator.Rules
 {
-	public string Main( IEnumerable<EnumData> enumList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
+	public partial class EnumGenerator : GeneratorBase
 	{
-		CodeWriter codeWriter = new CodeWriter();
-		codeWriter.AppendLine( "using System;" );
-		codeWriter.AppendLine();
-		codeWriter.AppendLine( "namespace ManagedOpenGL" );
-		codeWriter.AppendLine( "{" );
-		codeWriter.Append( "	" );
+		public CodeWriter Main( IEnumerable<EnumData> enumList, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
 		{
-			string value = string.Join( "", EntityConstructorsApplyMethod0( typeMapList, csTypeMapList, enumList ).ToArray() );
-			if (value.EndsWith( "\r\n" )) codeWriter.AppendLine( value );
-			else codeWriter.Append( value );
-		}
-		codeWriter.AppendLine( "}" );
-		return codeWriter.ToString();
-	}
-	public string GenerateEnum( EnumData enumData, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
-	{
-		CodeWriter codeWriter = new CodeWriter();
-		var glTypeMap = typeMapList.FirstOrDefault(map => map.GLName == enumData.Name);
-				if (glTypeMap != null)
+			var writer = new CodeWriter();
+
+			writer.Indent = 0;
+			writer.AppendLine( "using System;" );
+			writer.AppendLine();
+			writer.AppendLine( "namespace ManagedOpenGL" );
+			writer.AppendLine( "{" );
+			writer.Indent = 1;
+			{
+				var list = new List<CodeWriter>();
+				CodeWriter temp;
+
+				foreach (var item in enumList)
 				{
-					var csTypeMap = csTypeMapList.FirstOrDefault( map => map.GLName == glTypeMap.LanguageName.Name );
-					if (csTypeMap != null && csTypeMap.Attributes.Contains( "flags" ))
-					{
-		codeWriter.AppendLine( "[Flags]" );
-		}
+					temp = this.Invoke( "GenerateEnum", item, typeMapList, csTypeMapList );
+					list.Add( temp );
 				}
-		codeWriter.Append( "public enum " );
-		codeWriter.Append( GetCSName( enumData.Name ) );
-		codeWriter.AppendLine( " : uint" );
-		codeWriter.AppendLine( "{" );
-		codeWriter.Append( "	" );
-		{
-			string value = string.Join( "", EntityConstructorsApplyMethod1( enumData.ItemList ).ToArray() );
-			if (value.EndsWith( "\r\n" )) codeWriter.AppendLine( value );
-			else codeWriter.Append( value );
+
+				writer.AppendType = AppendType.EmptyLastLine;
+				for (var listI = 0; listI < list.Count; listI++)
+				{
+					var codeWriter = list[listI];
+					writer.Append( codeWriter );
+					if (listI < list.Count - 1)
+						writer.AppendText( "\r\n" );
+				}
+				writer.AppendType = AppendType.EmptyLastLine;
+			}
+			writer.Indent = 0;
+			writer.AppendLine();
+			writer.Append( "}" );
+
+			return writer;
 		}
-		codeWriter.AppendLine( "}" );
-		return codeWriter.ToString();
-	}
-	public string GetValue( EnumItem item )
-	{
-		CodeWriter codeWriter = new CodeWriter();
-		codeWriter.Append( ConvertName( item.Name ) );
-		codeWriter.Append( " = " );
-		codeWriter.Append( item.Value );
-		codeWriter.AppendLine( "," );
-		return codeWriter.ToString();
-	}
-	public string GetValue( UseEnumItem item )
-	{
-		CodeWriter codeWriter = new CodeWriter();
-		codeWriter.Append( ConvertName( item.Value ) );
-		codeWriter.Append( " = " );
-		codeWriter.Append( GetCSName( item.Name ) );
-		codeWriter.Append( "." );
-		codeWriter.Append( ConvertName( item.Value ) );
-		codeWriter.AppendLine( "," );
-		return codeWriter.ToString();
-	}
-	#region Apply Methods
-	public List<string> EntityConstructorsApplyMethod0(  IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList, IEnumerable enumList )
-	{
-		List<string> strings = new List<string>();
-		foreach( object item in enumList )
+
+		public CodeWriter GenerateEnum( EnumData enumData, IList<TypeMap> typeMapList, IList<CSTypeMap> csTypeMapList )
 		{
-			string value = this.GetType().InvokeMember( "GenerateEnum",
-			                             BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.Public,
-			                             Type.DefaultBinder, this, new object[] {  item, typeMapList, csTypeMapList  } ).ToString();
-			if (!string.IsNullOrEmpty( value )) strings.Add( value );
+			var writer = new CodeWriter();
+
+			var glTypeMap = typeMapList.FirstOrDefault(map => map.GLName == enumData.Name);
+					if (glTypeMap != null)
+					{
+						var csTypeMap = csTypeMapList.FirstOrDefault( map => map.GLName == glTypeMap.LanguageName.Name );
+						if (csTypeMap != null && csTypeMap.Attributes.Contains( "flags" ))
+						{
+			writer.Indent = 0;
+			writer.Append( "[Flags]" );
+			}
+					}
+			writer.Indent = 0;
+			writer.AppendLine();
+			writer.Append( "public enum " );
+			writer.AppendText( GetCSName( enumData.Name ) );
+			writer.Indent = 0;
+			writer.AppendLine( " : uint" );
+			writer.AppendLine( "{" );
+			writer.Indent = 1;
+			{
+				var list = new List<CodeWriter>();
+				CodeWriter temp;
+
+				foreach (var item in enumData.ItemList)
+				{
+					temp = this.Invoke( "GetValue", item );
+					list.Add( temp );
+				}
+
+				writer.AppendType = AppendType.EmptyLastLine;
+				for (var listI = 0; listI < list.Count; listI++)
+				{
+					var codeWriter = list[listI];
+					writer.Append( codeWriter );
+					if (listI < list.Count - 1)
+						writer.AppendText( "\r\n" );
+				}
+				writer.AppendType = AppendType.EmptyLastLine;
+			}
+			writer.Indent = 0;
+			writer.AppendLine();
+			writer.Append( "}" );
+
+			return writer;
 		}
-		return strings;
-	}
-	
-	
-	public List<string> EntityConstructorsApplyMethod1( IEnumerable enumList )
-	{
-		List<string> strings = new List<string>();
-		foreach( object item in enumList )
+
+		public CodeWriter GetValue( EnumItem item )
 		{
-			string value = this.GetType().InvokeMember( "GetValue",
-			                             BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.Public,
-			                             Type.DefaultBinder, this, new object[] {  item  } ).ToString();
-			if (!string.IsNullOrEmpty( value )) strings.Add( value );
+			var writer = new CodeWriter();
+
+			writer.AppendText( ConvertName( item.Name ) );
+			writer.Indent = 0;
+			writer.Append( " = " );
+			writer.AppendText( item.Value );
+			writer.Indent = 0;
+			writer.Append( "," );
+
+			return writer;
 		}
-		return strings;
+
+		public CodeWriter GetValue( UseEnumItem item )
+		{
+			var writer = new CodeWriter();
+
+			writer.AppendText( ConvertName( item.Value ) );
+			writer.Indent = 0;
+			writer.Append( " = " );
+			writer.AppendText( GetCSName( item.Name ) );
+			writer.Indent = 0;
+			writer.Append( "." );
+			writer.AppendText( ConvertName( item.Value ) );
+			writer.Indent = 0;
+			writer.Append( "," );
+
+			return writer;
+		}
 	}
-	#endregion 
 }

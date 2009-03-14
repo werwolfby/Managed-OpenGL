@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using ManagedOpenGL.CodeGenerator.Rules;
 
 namespace ManagedOpenGL.CodeGenerator
 {
@@ -36,14 +37,14 @@ namespace ManagedOpenGL.CodeGenerator
 				enumList.Add( enumData );
 			}
 
-			var enumGenerator = new EnumGenerator();
+		    var enumCode = new EnumGenerator().Main(enumList, typeMapList, csTypeMapList);
 
 			using (var writer = new StreamWriter( @"..\..\..\ManagedOpenGL\Enums.cs" ))
 			{
-				writer.WriteLine( enumGenerator.Main( enumList, typeMapList, csTypeMapList ) );
+			    writer.WriteLine( enumCode );
 			}
 
-			var nativeGenerator = new NativeGenerator();
+		    var nativeGenerator = new NativeGenerator();
 
 			var functionCategoryDictionary = new Dictionary<string, List<Function>>();
 
@@ -60,12 +61,13 @@ namespace ManagedOpenGL.CodeGenerator
 			{
 				var directory = @"..\..\..\ManagedOpenGL\Native\";
 				if (!Directory.Exists( directory )) Directory.CreateDirectory( directory );
-				using (var writer = new StreamWriter( directory + @"OpenGLNative." + keyValuePair.Key + @".cs" ))
+                var generatedCode = nativeGenerator.Main(keyValuePair.Value, typeMapList, csTypeMapList, enumDatas, first,
+                                                 keyValuePair.Key, functionCategoryDictionary.Keys);
+                using (var writer = new StreamWriter(directory + @"OpenGLNative." + keyValuePair.Key + @".cs"))
 				{
-					writer.WriteLine( nativeGenerator.Main( keyValuePair.Value, typeMapList, csTypeMapList, enumDatas, first,
-					                                        keyValuePair.Key, functionCategoryDictionary.Keys ) );
+				    writer.WriteLine( generatedCode );
 				}
-				first = false;
+			    first = false;
 			}
 		}
 

@@ -7,12 +7,11 @@ namespace ManagedOpenGL
 	{	
 		static void OpenGLNativeSUNX_constant_dataInit()
 		{
-						
+
 		}
-		
-	
+
+
 		[DllImport( "opengl32.dll", EntryPoint="glFinishTextureSUNX" )]
-		public static extern void FinishTextureSUNX(  ); // 	
+		public static extern void FinishTextureSUNX(  ); // 
 	}
 }
-

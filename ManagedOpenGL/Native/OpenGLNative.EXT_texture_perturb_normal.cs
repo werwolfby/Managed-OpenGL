@@ -7,12 +7,11 @@ namespace ManagedOpenGL
 	{	
 		static void OpenGLNativeEXT_texture_perturb_normalInit()
 		{
-						
+
 		}
-		
-	
+
+
 		[DllImport( "opengl32.dll", EntryPoint="glTextureNormalEXT" )]
-		public static extern void TextureNormalEXT( uint mode ); // 	
+		public static extern void TextureNormalEXT( uint mode ); // 
 	}
 }
-

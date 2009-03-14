@@ -7,12 +7,11 @@ namespace ManagedOpenGL
 	{	
 		static void OpenGLNativeSUN_mesh_arrayInit()
 		{
-						
+
 		}
-		
-	
+
+
 		[DllImport( "opengl32.dll", EntryPoint="glDrawMeshArraysSUN" )]
-		public static extern void DrawMeshArraysSUN( BeginMode mode, int first, int count, int width ); // 	
+		public static extern void DrawMeshArraysSUN( BeginMode mode, int first, int count, int width ); // 
 	}
 }
-
