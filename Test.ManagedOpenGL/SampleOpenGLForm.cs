@@ -18,6 +18,7 @@ using ManagedOpenGL;
 using ManagedOpenGL.Engine.Cameras;
 using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Windows;
+using Font=ManagedOpenGL.Engine.Windows.Font;
 
 namespace Test.ManagedOpenGL
 {
@@ -30,6 +31,8 @@ namespace Test.ManagedOpenGL
 		                                         	VelocitySpeed = 20,
 		                                         	StrafeSpeed = 20,
 		                                         };
+
+	    protected readonly Console console = new Console( new Font( @"Data\Fonts\Verdana.jpg" ) );
 
 		private readonly Dictionary<Keys, KeyPressedProcessDelegate> keyPressedProcessor = new Dictionary<Keys, KeyPressedProcessDelegate>();
 		private readonly Dictionary<Keys, KeyPressedProcessDelegate> keyUnpressedProcessor = new Dictionary<Keys, KeyPressedProcessDelegate>();
@@ -73,6 +76,13 @@ namespace Test.ManagedOpenGL
 			                                       	camera.StrafeSpeed = 20;
 			                                     	camera.LiftSpeed = 20;
 			                                       } );
+
+		    Keyboard.KeyDown += ( sender, e ) =>
+		                        {
+                                    if (e.KeyCode != (Keys)192) return;
+		                            if (console.Visible) console.Hide();
+		                            else console.Show();
+		                        };
 		}
 
 		protected void RegisterPressed( Keys key, KeyPressedProcessDelegate processDelegate )
@@ -124,6 +134,8 @@ namespace Test.ManagedOpenGL
 
 			OpenGLNative.Enable( EnableCap.DepthTest );
 			OpenGLNative.Enable( EnableCap.CullFace );
+
+            console.Draw();
 		}
 
 		protected override void Update( float elapsed ) 
@@ -139,6 +151,8 @@ namespace Test.ManagedOpenGL
 			{
 				if (!Keyboard.GetValue( keyValuePair.Key )) keyValuePair.Value( elapsed );
 			}
+
+		    console.Update( elapsed );
 		}
 	}
 }

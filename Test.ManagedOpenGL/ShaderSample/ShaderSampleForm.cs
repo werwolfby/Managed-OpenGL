@@ -95,8 +95,7 @@ namespace Test.ManagedOpenGL.ShaderSample
 
 		protected override void Draw() 
 		{
-			OpenGLNative.ClearColor( 1, 1, 1, 1 );
-			OpenGLNative.Clear( ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
+            Renderer.RenderMode = RenderMode.MODE_3D;
 
 			OpenGLNative.MatrixMode( MatrixMode.Modelview );
 			OpenGLNative.LoadMatrixf( camera.Data );
