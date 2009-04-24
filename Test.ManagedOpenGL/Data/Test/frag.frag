@@ -27,7 +27,7 @@ void main()
 	{
 		textureHeight = texture2D( heightMap, coord ).b;
 		currentHeight -= stepLength;
-		coord += deltaTexCoord;
+		coord -= deltaTexCoord;
 		
 		if (currentHeight < 0) break;
 	}
