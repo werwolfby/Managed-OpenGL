@@ -130,6 +130,7 @@ namespace Test.ManagedOpenGL.TestSample
 			this.topVector = new Vector3F( 0, 0, 50 );
 			//this.shader.Top = this.topVector;
 			this.shader.Top = this.camera.Position;
+			this.shader.Scale = 0.02f;
 
 			this.shader.ApplyProgram( this.itemsManager );
 			this.font.ApplyFont( this.itemsManager );
