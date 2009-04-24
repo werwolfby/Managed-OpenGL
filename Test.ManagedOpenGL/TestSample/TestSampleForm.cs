@@ -70,6 +70,7 @@ namespace Test.ManagedOpenGL.TestSample
 		#region Fields
 		private readonly TestShader shader = ShaderProgram.Create<TestShader>( @"Data\Test\vert.vert",
 		                                                                       @"Data\Test\frag.frag" );
+		private readonly Font font = new Font( @"Data\Fonts\Verdana.jpg" );
 
 		private readonly Vector3F[] quad = new[]
 		                                   {
@@ -91,13 +92,14 @@ namespace Test.ManagedOpenGL.TestSample
 			this.shader.Top = this.topVector;
 
 			this.shader.ApplyProgram( this.itemsManager );
+			this.font.ApplyFont( this.itemsManager );
 
-			this.RegisterPressed( Keys.Left, elapsed => this.topVector.X -= GetSpeedFactor() * elapsed );
-			this.RegisterPressed( Keys.Right, elapsed => this.topVector.X += GetSpeedFactor() * elapsed );
-			this.RegisterPressed( Keys.Down, elapsed => this.topVector.Y -= GetSpeedFactor() * elapsed );
-			this.RegisterPressed( Keys.Up, elapsed => this.topVector.Y += GetSpeedFactor() * elapsed );
-			this.RegisterPressed( Keys.PageUp, elapsed => this.topVector.Z -= GetSpeedFactor() * elapsed );
-			this.RegisterPressed( Keys.PageDown, elapsed => this.topVector.Z += GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Left, elapsed => shader.Top.X -= GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Right, elapsed => shader.Top.X += GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Down, elapsed => shader.Top.Y -= GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Up, elapsed => shader.Top.Y += GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.PageUp, elapsed => shader.Top.Z -= GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.PageDown, elapsed => shader.Top.Z += GetSpeedFactor() * elapsed );
 			this.RegisterPressed( Keys.O, elapsed => shader.Zoom -= elapsed );
 			this.RegisterPressed( Keys.P, elapsed => shader.Zoom += elapsed );
 		}
@@ -113,6 +115,8 @@ namespace Test.ManagedOpenGL.TestSample
 		{
 			base.Draw();
 
+			Renderer.RenderMode = RenderMode.MODE_3D;
+
 			this.shader.Use();
 
 			OpenGLNative.Begin( BeginMode.Quads );
@@ -125,6 +129,7 @@ namespace Test.ManagedOpenGL.TestSample
 
 			ShaderProgram.UnUse();
 
+			OpenGLNative.Disable( EnableCap.Texture2d );
 			OpenGLNative.Begin( BeginMode.Lines );
 
 			foreach (var quadVertex in this.quad)
@@ -136,6 +141,11 @@ namespace Test.ManagedOpenGL.TestSample
 			OpenGLNative.End();
 
 			Renderer.RenderMode = RenderMode.MODE_2D;
+
+			font.ResetLocation();
+			font.FontSize = 20;
+			font.WriteLine( "Top = {0}", shader.Top );
+			font.WriteLine( "Zoom = {0}", shader.Zoom );
 		}
 		#endregion
 	}

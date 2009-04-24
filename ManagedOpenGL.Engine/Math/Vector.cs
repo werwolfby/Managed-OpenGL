@@ -9,6 +9,7 @@
  * History:
  *   02.05.2008 13:36 - Create Wireframe
  *   31.05.2008 10:27 - Move to `Unit.ManagedOpenGL`
+ *   24.04.2009 21:45 - Override `ToString` method for Vector3F class.
  *
  *******************************************************/
 
@@ -279,6 +280,11 @@ namespace ManagedOpenGL.Engine.Math
 		public Vector3F Clone()
 		{
 			return new Vector3F( X, Y, Z );
+		}
+
+		public override string ToString()
+		{
+			return string.Format( "({0:F2};{1:F2};{2:F2})", this.X, this.Y, this.Z );
 		}
 	}
 	
