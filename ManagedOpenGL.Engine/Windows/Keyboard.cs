@@ -14,12 +14,13 @@
 
 using System;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace ManagedOpenGL.Engine.Windows
 {
 	public static class Keyboard
 	{
-		private static readonly bool[] keys = new bool[Enum.GetValues( typeof(Keys) ).Length];
+		private static readonly bool[] keys = new bool[Enum.GetValues( typeof(Keys) ).Cast<int>().Max()];
 
 		public static event KeyEventHandler KeyDown;
 		public static event KeyEventHandler KeyUp;

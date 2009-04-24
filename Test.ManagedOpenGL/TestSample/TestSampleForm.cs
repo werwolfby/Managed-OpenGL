@@ -11,122 +11,132 @@
  *
  *******************************************************/
 
+using System.Windows.Forms;
 using ManagedOpenGL;
 using ManagedOpenGL.Engine.Math;
 using ManagedOpenGL.Engine.Render;
 using ManagedOpenGL.Engine.Shaders;
+using ManagedOpenGL.Engine.Windows;
 using gl=ManagedOpenGL.OpenGLNative;
 
 namespace Test.ManagedOpenGL.TestSample
 {
-    public class TestSampleForm : SampleOpenGLForm
-    {
-        private const float size = 25.0f;
+	public class TestSampleForm : SampleOpenGLForm
+	{
+		#region Nested type: TestShader
+		private class TestShader : ShaderProgram
+		{
+			#region Properties
+			public Vector3F Top { get; set; }
 
-        private class TestShader : ShaderProgram
-        {
-            public Vector3F Top { get; set; }
+			public float Zoom { get; set; }
 
-            public int TopLocation { get; private set; }
+			private int TopLocation { get; set; }
 
-            protected override void AfterLink()
-            {
-                base.AfterLink();
+			private int ZoomLocation { get; set; }
+			#endregion
 
-                this.TopLocation = this.GetUniformLocation( "top" );
-            }
+			public TestShader()
+			{
+				this.Zoom = 1;
+			}
 
-            public override void Use()
-            {
-                base.Use();
+			#region Methods
+			protected override void AfterLink()
+			{
+				base.AfterLink();
 
-                gl.Uniform3fv( TopLocation, 3, Top.Data );
-            }
-        }
+				this.TopLocation = this.GetUniformLocation( "top" );
+				this.ZoomLocation = this.GetUniformLocation( "zoom" );
+			}
 
-        private readonly TestShader shader = ShaderProgram.Create<TestShader>( @"Data\Test\vert.vert",
-                                                                               @"Data\Test\frag.frag" );
+			public override void Use()
+			{
+				base.Use();
 
-        private readonly Vector3F[] quad = new[]
-                                           {
-                                               new Vector3F( -size, -size, 0 ),
-                                               new Vector3F( +size, -size, 0 ),
-                                               new Vector3F( +size, +size, 0 ),
-                                               new Vector3F( -size, +size, 0 ),
-                                           };
+				gl.Uniform3fv( this.TopLocation, 3, this.Top.Data );
+				gl.Uniform1f( this.ZoomLocation, this.Zoom );
+			}
+			#endregion
+		}
+		#endregion
 
-        private readonly Vector3F topVector;
+		#region Constants
+		private const float size = 25.0f;
+		private const float TopMoveSpeed = 3;
+		private const float TopMoveTurboSpeed = 9;
+		#endregion
 
-        #region Constructors
-        public TestSampleForm()
-        {
-            this.camera.Move( 0, 0, 50 );
+		#region Fields
+		private readonly TestShader shader = ShaderProgram.Create<TestShader>( @"Data\Test\vert.vert",
+		                                                                       @"Data\Test\frag.frag" );
 
-            this.topVector = new Vector3F( 0, 0, 50 );
-            this.shader.Top = this.topVector;
+		private readonly Vector3F[] quad = new[]
+		                                   {
+		                                   	new Vector3F( -size, -size, 0 ),
+		                                   	new Vector3F( +size, -size, 0 ),
+		                                   	new Vector3F( +size, +size, 0 ),
+		                                   	new Vector3F( -size, +size, 0 ),
+		                                   };
 
-            this.shader.ApplyProgram( itemsManager );
-        }
-        #endregion
+		private readonly Vector3F topVector;
+		#endregion
 
-        #region Methods
-        protected override void Draw()
-        {
-            base.Draw();
+		#region Constructors
+		public TestSampleForm()
+		{
+			this.camera.Move( 0, 0, 50 );
 
-            //shader.Use();
+			this.topVector = new Vector3F( 0, 0, 50 );
+			this.shader.Top = this.topVector;
 
-            gl.Begin(BeginMode.Quads);
+			this.shader.ApplyProgram( this.itemsManager );
 
-            gl.Color3f(1, 1, 1);
-            foreach (var quadVertex in quad)
-                gl.Vertex3fv( quadVertex.Data );
+			this.RegisterPressed( Keys.Left, elapsed => this.topVector.X -= GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Right, elapsed => this.topVector.X += GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Down, elapsed => this.topVector.Y -= GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.Up, elapsed => this.topVector.Y += GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.PageUp, elapsed => this.topVector.Z -= GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.PageDown, elapsed => this.topVector.Z += GetSpeedFactor() * elapsed );
+			this.RegisterPressed( Keys.O, elapsed => shader.Zoom -= elapsed );
+			this.RegisterPressed( Keys.P, elapsed => shader.Zoom += elapsed );
+		}
+		#endregion
 
-            gl.End();
+		#region Methods
+		private static float GetSpeedFactor()
+		{
+			return (Keyboard.GetValue( Keys.ShiftKey ) ? TopMoveTurboSpeed : TopMoveSpeed);
+		}
 
-            ShaderProgram.UnUse();
+		protected override void Draw()
+		{
+			base.Draw();
 
-            gl.LineWidth(4);
-            gl.Enable(EnableCap.LineSmooth);
+			this.shader.Use();
 
-            gl.Begin( BeginMode.Lines );
+			OpenGLNative.Begin( BeginMode.Quads );
 
-            gl.Color3f( 1, 1, 1 );
+			OpenGLNative.Color3f( 1, 1, 1 );
+			foreach (var quadVertex in this.quad)
+				OpenGLNative.Vertex3fv( quadVertex.Data );
 
-            //foreach (var quadVertex in quad)
-            //{
-            //    gl.Vertex3fv( topVector.Data );
-            //    gl.Vertex3fv( quadVertex.Data );
-            //}
+			OpenGLNative.End();
 
-            var length = 10;
+			ShaderProgram.UnUse();
 
-            for (var i = 0; i < length; i++)
-            {
-                var x = -size + (2 * size * i / (length - 1));
+			OpenGLNative.Begin( BeginMode.Lines );
 
-                for (var j = 0; j < length; j++)
-                {
-                    var y = -size + (2 * size * j / (length - 1));
+			foreach (var quadVertex in this.quad)
+			{
+				OpenGLNative.Vertex3fv( this.topVector.Data );
+				OpenGLNative.Vertex3fv( quadVertex.Data );
+			}
 
-                    var startVect = new Vector3F( x, y, 0 );
-                    var vect = topVector - startVect;
-                    vect.Normalize();
+			OpenGLNative.End();
 
-                    var colorVect = ((vect + new Vector3F( 1, 1, 1 )) * 0.5f);
-                    gl.Color3fv( colorVect.Data );
-
-                    vect = startVect + vect;
-
-                    gl.Vertex3fv( startVect.Data );
-                    gl.Vertex3fv( vect.Data );
-                }
-            }
-
-            gl.End();
-
-            Renderer.RenderMode = RenderMode.MODE_2D;
-        }
-        #endregion
-    }
+			Renderer.RenderMode = RenderMode.MODE_2D;
+		}
+		#endregion
+	}
 }
