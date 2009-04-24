@@ -31,9 +31,13 @@ namespace Test.ManagedOpenGL.TestSample
 
 			public float Zoom { get; set; }
 
+			public bool NormalizeVector { get; set; }
+
 			private int TopLocation { get; set; }
 
 			private int ZoomLocation { get; set; }
+
+			private int NormalizeVectorLocation { get; set; }
 			#endregion
 
 			public TestShader()
@@ -48,6 +52,7 @@ namespace Test.ManagedOpenGL.TestSample
 
 				this.TopLocation = this.GetUniformLocation( "top" );
 				this.ZoomLocation = this.GetUniformLocation( "zoom" );
+				this.NormalizeVectorLocation = this.GetUniformLocation( "normalizeVector" );
 			}
 
 			public override void Use()
@@ -56,6 +61,7 @@ namespace Test.ManagedOpenGL.TestSample
 
 				gl.Uniform3fv( this.TopLocation, 3, this.Top.Data );
 				gl.Uniform1f( this.ZoomLocation, this.Zoom );
+				gl.Uniform1i( this.NormalizeVectorLocation, this.NormalizeVector ? 1 : 0 );
 			}
 			#endregion
 		}
@@ -108,6 +114,8 @@ namespace Test.ManagedOpenGL.TestSample
 			this.RegisterKeyDown( Keys.D2, () => quadIndexRotation = 1 );
 			this.RegisterKeyDown( Keys.D3, () => quadIndexRotation = 2 );
 			this.RegisterKeyDown( Keys.D4, () => quadIndexRotation = 3 );
+
+			this.RegisterKeyDown( Keys.N, () => shader.NormalizeVector ^= true );
 		}
 		#endregion
 
@@ -155,6 +163,7 @@ namespace Test.ManagedOpenGL.TestSample
 			font.FontSize = 20;
 			font.WriteLine( "Top = {0}", shader.Top );
 			font.WriteLine( "Zoom = {0}", shader.Zoom );
+			font.WriteLine( "Normalize = {0}", shader.NormalizeVector );
 		}
 		#endregion
 	}

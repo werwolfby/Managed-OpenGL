@@ -86,10 +86,24 @@ namespace ManagedOpenGL.Engine.Shaders
 
 		protected int GetUniformLocation( string name )
 		{
+			var location = TryGetUniformLocation( name );
+			if (location == -1) throw new Exception( "Can't find uniform variable: " + name );
+			return location;
+		}
+
+		protected int TryGetUniformLocation( string name )
+		{
 			return OpenGLNative.GetUniformLocationARB( handle, name );
 		}
 
 		protected int GetAttribLocation( string name )
+		{
+			var location = TryGetAttribLocation( name );
+			if (location == -1) throw new Exception( "Can't find attribute variable: " + name );
+			return location;
+		}
+
+		protected int TryGetAttribLocation( string name )
 		{
 			return OpenGLNative.GetAttribLocationARB( handle, name );
 		}
