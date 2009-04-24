@@ -81,6 +81,7 @@ namespace Test.ManagedOpenGL.TestSample
 		                                   };
 
 		private readonly Vector3F topVector;
+		private int quadIndexRotation;
 		#endregion
 
 		#region Constructors
@@ -102,6 +103,11 @@ namespace Test.ManagedOpenGL.TestSample
 			this.RegisterPressed( Keys.PageDown, elapsed => shader.Top.Z += GetSpeedFactor() * elapsed );
 			this.RegisterPressed( Keys.O, elapsed => shader.Zoom -= elapsed );
 			this.RegisterPressed( Keys.P, elapsed => shader.Zoom += elapsed );
+
+			this.RegisterKeyDown( Keys.D1, () => quadIndexRotation = 0 );
+			this.RegisterKeyDown( Keys.D2, () => quadIndexRotation = 1 );
+			this.RegisterKeyDown( Keys.D3, () => quadIndexRotation = 2 );
+			this.RegisterKeyDown( Keys.D4, () => quadIndexRotation = 3 );
 		}
 		#endregion
 
@@ -122,8 +128,11 @@ namespace Test.ManagedOpenGL.TestSample
 			OpenGLNative.Begin( BeginMode.Quads );
 
 			OpenGLNative.Color3f( 1, 1, 1 );
-			foreach (var quadVertex in this.quad)
+			for (var i = 0; i < this.quad.Length; i++)
+			{
+				var quadVertex = this.quad[(i + quadIndexRotation) % 4];
 				OpenGLNative.Vertex3fv( quadVertex.Data );
+			}
 
 			OpenGLNative.End();
 
