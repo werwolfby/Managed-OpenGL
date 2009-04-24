@@ -1,14 +1,10 @@
 ﻿uniform vec3 top;
-uniform bool normalizeVector;
-
-varying vec3 eyeDir;
 varying vec3 vertexLocation;
 
 void main()
 {
-	vec3 color = top - vec3( vertexLocation );
-	if (normalizeVector) color = normalize( color );
-	color = (color + 1) * 0.5;
+	vec3 eyeDir = top - vec3( vertexLocation );
+	eyeDir = normalize( eyeDir );
 
-	gl_FragColor = vec4( color, 1 );
+	gl_FragColor = vec4( (eyeDir + 1) * 0.5, 1 );
 }

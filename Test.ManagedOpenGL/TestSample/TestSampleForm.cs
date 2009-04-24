@@ -29,21 +29,8 @@ namespace Test.ManagedOpenGL.TestSample
 			#region Properties
 			public Vector3F Top { get; set; }
 
-			public float Zoom { get; set; }
-
-			public bool NormalizeVector { get; set; }
-
 			private int TopLocation { get; set; }
-
-			private int ZoomLocation { get; set; }
-
-			private int NormalizeVectorLocation { get; set; }
 			#endregion
-
-			public TestShader()
-			{
-				this.Zoom = 1;
-			}
 
 			#region Methods
 			protected override void AfterLink()
@@ -51,8 +38,6 @@ namespace Test.ManagedOpenGL.TestSample
 				base.AfterLink();
 
 				this.TopLocation = this.GetUniformLocation( "top" );
-				this.ZoomLocation = this.GetUniformLocation( "zoom" );
-				this.NormalizeVectorLocation = this.GetUniformLocation( "normalizeVector" );
 			}
 
 			public override void Use()
@@ -60,8 +45,6 @@ namespace Test.ManagedOpenGL.TestSample
 				base.Use();
 
 				gl.Uniform3fv( this.TopLocation, 3, this.Top.Data );
-				gl.Uniform1f( this.ZoomLocation, this.Zoom );
-				gl.Uniform1i( this.NormalizeVectorLocation, this.NormalizeVector ? 1 : 0 );
 			}
 			#endregion
 		}
@@ -107,15 +90,11 @@ namespace Test.ManagedOpenGL.TestSample
 			this.RegisterPressed( Keys.Up, elapsed => shader.Top.Y += GetSpeedFactor() * elapsed );
 			this.RegisterPressed( Keys.PageUp, elapsed => shader.Top.Z -= GetSpeedFactor() * elapsed );
 			this.RegisterPressed( Keys.PageDown, elapsed => shader.Top.Z += GetSpeedFactor() * elapsed );
-			this.RegisterPressed( Keys.O, elapsed => shader.Zoom -= elapsed );
-			this.RegisterPressed( Keys.P, elapsed => shader.Zoom += elapsed );
 
 			this.RegisterKeyDown( Keys.D1, () => quadIndexRotation = 0 );
 			this.RegisterKeyDown( Keys.D2, () => quadIndexRotation = 1 );
 			this.RegisterKeyDown( Keys.D3, () => quadIndexRotation = 2 );
 			this.RegisterKeyDown( Keys.D4, () => quadIndexRotation = 3 );
-
-			this.RegisterKeyDown( Keys.N, () => shader.NormalizeVector ^= true );
 		}
 		#endregion
 
@@ -162,8 +141,6 @@ namespace Test.ManagedOpenGL.TestSample
 			font.ResetLocation();
 			font.FontSize = 20;
 			font.WriteLine( "Top = {0}", shader.Top );
-			font.WriteLine( "Zoom = {0}", shader.Zoom );
-			font.WriteLine( "Normalize = {0}", shader.NormalizeVector );
 		}
 		#endregion
 	}
