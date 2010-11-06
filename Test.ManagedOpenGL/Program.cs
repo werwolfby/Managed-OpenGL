@@ -10,8 +10,8 @@ namespace Test.ManagedOpenGL
 		[STAThread]
 		static void Main()
 		{
-			//Application.Run( new TestForm() );
-			OpenGLApplication.Run( new TestSampleForm() );
+			Application.Run( new TestForm() );
+			//OpenGLApplication.Run( new TestSampleForm() );
 		}
 	}
 }
